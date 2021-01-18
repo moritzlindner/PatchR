@@ -66,7 +66,7 @@ validPMTrace<-function(object) {
 #'
 #'    \item{Plots}{List that can contain any ggplot derived from the data. List item names that equal Channels are reserved.}
 #'
-#'    \item{RecordingParams}{An item of class RecordingParams containing recording parameters for that trace.}
+#'    \item{RecordingParams}{An item of class PMRecordingParams containing recording parameters for that trace.}
 #'  }
 #' @exportClass PMTrace
 PMTrace<-setClass(Class="PMTrace",
