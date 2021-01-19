@@ -1,6 +1,6 @@
 
 setGeneric(name="inspectTimeSeries",
-           def=function(object,Channel="I.mon")
+           def=function(object,Trace="I.mon")
            {
              standardGeneric("inspectTimeSeries")
            }
@@ -12,16 +12,16 @@ setGeneric(name="inspectTimeSeries",
 #'
 #' @name inspectTimeSeries
 #' @param object a PMTrace object
-#' @param Channel channel to plot
+#' @param Trace Trace to plot
 #' @import plotly
 #' @exportMethod inspectTimeSeries
 setMethod("inspectTimeSeries",
           "PMTrace",
-          definition=function(object,Channel="I.mon"){
-            if (!is.null(object@Plots[[Channel]])){
-              plotly(object@Plots[[Channel]])
+          definition=function(object,Trace="I.mon"){
+            if (!is.null(object@Plots[[Trace]])){
+              plotly(object@Plots[[Trace]])
             }else{
-              warning(paste("Use BuildTimeSeriesPlot first to buld Time series plot for channel ", Channel))
+              warning(paste("Use BuildTimeSeriesPlot first to buld Time series plot for Trace ", Trace))
             }
           }
 )

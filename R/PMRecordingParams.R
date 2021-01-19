@@ -4,7 +4,7 @@
 
 PMRecordingParams<-setClass(Class="PMRecordingParams",
                             slots= list(
-                              Channels="character",
+                              Traces="character",
                               RecMode="character",
                               ProtocolName="character",
                               RPip="numeric",

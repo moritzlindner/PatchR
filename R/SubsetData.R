@@ -1,6 +1,6 @@
 setGeneric(name="SubsetData",
            def=function(object,
-                        Channels=getChannels(object),
+                        Traces=getTraces(object),
                         Sweeps=getSweeps(object),
                         Time=range(getTimeTrace(object)),
                         TimeExclusive=F)
@@ -10,17 +10,17 @@ setGeneric(name="SubsetData",
 )
 #' Subsetting PMTrace objects
 #'
-#' This function subsets PMTrace objects by Channel, Sweep or Time
+#' This function subsets PMTrace objects by Trace, Sweep or Time
 #'
 #' @param object a PMTrace object
-#' @param Channels,Sweeps List of Channels/Sweeps to keep
+#' @param Traces,Sweeps List of Traces/Sweeps to keep
 #' @param Time either a range of time points to keep, or, if @param TimeExclusive is TRUE, then two particular time points
 #' @param TimeExclusive Keep only the two time points stated under Time, not the range
 #' @exportMethod SubsetData
 setMethod("SubsetData",
           "PMTrace",
           function(object,
-                   Channels=getChannels(object),
+                   Traces=getTraces(object),
                    Sweeps=getSweeps(object),
                    Time=range(getTimeTrace(object)
                    ),
@@ -29,18 +29,18 @@ setMethod("SubsetData",
             # FIXME !!! Below: only show this if any of that slots is not empty
             warning("Subsetting clears all analysis and plotting slots for data consistency!")
 
-            if(all.equal(Channels, getChannels(object))!=TRUE){
-              s<-cat(Channels)
-              print(paste("Only keep Channels:", cat(Channels)))
-              if(!all(Channels %in% getChannels(object))){
-                stop("Channels to subset not in object")
+            if(all.equal(Traces, getTraces(object))!=TRUE){
+              s<-cat(Traces)
+              print(paste("Only keep Traces:", cat(Traces)))
+              if(!all(Traces %in% getTraces(object))){
+                stop("Traces to subset not in object")
               }
             }
             if(all.equal(Sweeps, getSweeps(object))!=TRUE){
               s<-cat(Sweeps)
               print(paste("Only keep Sweeps: ", s))
               if(!all(Sweeps %in% getSweeps(object))){
-                stop("Channels to subset not in object")
+                stop("Traces to subset not in object")
               }
             }
             if(all.equal(Time, range(getTimeTrace(object)))!=TRUE){
@@ -57,14 +57,14 @@ setMethod("SubsetData",
             }
 
             RecordingParams<-object@RecordingParams
-            RecordingParams@Channels<-RecordingParams@Channels[RecordingParams@Channels %in% Channels]
+            RecordingParams@Traces<-RecordingParams@Traces[RecordingParams@Traces %in% Traces]
 
             DATA<-list()
-            for (i in Channels){
+            for (i in Traces){
               DATA[[i]]<-object@Data[[i]][getTimeTrace(object) %in% Time,getSweeps(object) %in% Sweeps]
             }
-            PMTrace(Channels=getChannels(object)[getChannels(object) %in% Channels],
-                    Units=object@Units[getChannels(object) %in% Channels],
+            PMTrace(Traces=getTraces(object)[getTraces(object) %in% Traces],
+                    Units=object@Units[getTraces(object) %in% Traces],
                     TimeTrace=getTimeTrace(object)[getTimeTrace(object) %in% Time],
                     TimeUnit=object@TimeUnit,
                     Sweeps=getSweeps(object)[getSweeps(object) %in% Sweeps],

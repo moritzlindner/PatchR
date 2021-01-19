@@ -18,23 +18,30 @@ setMethod("getSweeps",
           }
 )
 
-setGeneric(name="getChannels",
+setGeneric(name="getTraces",
            def=function(object)
            {
-             standardGeneric("getChannels")
+             standardGeneric("getTraces")
            }
 )
 
-#' getChannels
+#' getTraces
 #'
-#' get list of Channels from a PMTrace object
+#' get list of Traces from a PMTrace object
 #'
-#' @param object A PMTrace object
-#' @exportMethod getChannels
-setMethod("getChannels",
+#' @param object A PMTrace or PMRecordingParams object
+#' @exportMethod getTraces
+setMethod("getTraces",
           "PMTrace",
           function(object) {
-            object@Channels
+            object@Traces
+          }
+)
+
+setMethod("getTraces",
+          "PMRecordingParams",
+          function(object) {
+            object@Traces
           }
 )
 

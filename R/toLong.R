@@ -16,16 +16,16 @@ setGeneric(name="toLong",
 setMethod("toLong",
           "PMTrace",
           function(object){
-            channels<-rep(getChannels(object),
+            Traces<-rep(getTraces(object),
                           each=(length(getSweeps(object))*length(getTimeTrace(object))))
             sweeps<-type.convert(rep(rep(getSweeps(object),
-                                         each=length(getTimeTrace(object))),times=length(getChannels(object))))
+                                         each=length(getTimeTrace(object))),times=length(getTraces(object))))
             times<-rep(getTimeTrace(object),
-                       times=(length(getSweeps(object))*length(getChannels(object))))
+                       times=(length(getSweeps(object))*length(getTraces(object))))
 
-            out<-data.frame("Channels"=channels,"Sweeps"=sweeps,"Times"=times)
+            out<-data.frame("Traces"=Traces,"Sweeps"=sweeps,"Times"=times)
             values<-NULL
-            for (i in getChannels(object)){
+            for (i in getTraces(object)){
               values<-c(values,unlist(apply(object@Data[[i]],2,function(x)x)))
             }
             cbind(out,values)
