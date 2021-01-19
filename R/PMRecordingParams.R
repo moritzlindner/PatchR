@@ -13,7 +13,7 @@ PMRecordingParams<-setClass(Class="PMRecordingParams",
                               Cs="numeric",
                               Rs="numeric",
                               Experiment="character",
-                              Series="numeric",
+                              Series="character",
                               Created="POSIXct",
                               Filename="character"
                             ),
