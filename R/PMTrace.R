@@ -76,10 +76,10 @@ validPMTrace<-function(object) {
 PMTrace<-setClass(Class="PMTrace",
                   slots =  list(Traces="character",
                                 Units="character",
-                                TimeTrace="double",
+                                TimeTrace="numeric",
                                 TimeUnit="character",
                                 Sweeps="ordered", # was character
-                                SweepTimes="double",
+                                SweepTimes="numeric",
                                 Data="list",
                                 Plots="list",
                                 RecordingParams="PMRecordingParams"),
