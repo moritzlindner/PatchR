@@ -12,7 +12,7 @@ setGeneric(name="CurrentDensity",
 #'
 #' @name CurrentDensity
 #' @param object a PMTrace object
-#' @import sitoos
+#' @import sitools
 #' @exportMethod CurrentDensity
 setMethod("CurrentDensity",
           "PMTrace",
