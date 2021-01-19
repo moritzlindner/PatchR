@@ -51,6 +51,6 @@ ImportPMSeries<-function(filename,
                     Data=imp$sweeps$y,
                     isOrig=T)
   }
-  out
   }
+  return(out)
 }
