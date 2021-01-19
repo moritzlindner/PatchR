@@ -17,6 +17,7 @@ ImportPMSeries<-function(filename,
     print(paste("Importing trace", i))
     imp<-getSeries(filename,file=1,exp=experiment,ser=series,trace=i)
     if(first){
+      first=F
       params<-PMRecordingParams(
         Traces=imp$sweeps$tracename,
         RecMode=imp$sweeps$RecMode,
