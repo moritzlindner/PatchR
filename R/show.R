@@ -1,7 +1,7 @@
 setGeneric(name='show',
            def=function(object)
            {
-             standardGeneric('show')
+             standardGeneric('show', show.PMTrace)
            }
 )
 
@@ -9,7 +9,7 @@ setGeneric(name='show',
 #'
 #' Default mehtod show for PMTrace
 #' @exportMethod show
-setMethod("show",
+setMethod("show.PMTrace",
           "PMTrace",
           function(object) {
             cat("An object of class PMTrace")
