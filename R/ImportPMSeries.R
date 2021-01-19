@@ -6,7 +6,7 @@
 #' @param experiment Index of Experiment to import (1st order hirarchy in PM dat file).
 #' @param series Index of Series to import (2nd order hirarchy in PM dat file).
 #' @param traces Traces to import (indices). Must be vector of numerics of length > 0.
-#' @export SubsetData
+#' @export ImportPMSeries
 ImportPMSeries<-function(filename,
                    experiment=1,
                    series=1,

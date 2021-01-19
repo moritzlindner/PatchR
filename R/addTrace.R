@@ -18,7 +18,7 @@ setGeneric(name="addTrace",
 #' @param Trace Name of the new Trace
 #' @param Sweeps Names of the sweeps added. Default is colnames(mtx)
 #' @param mtx Any object convertible into a matrix, that has the same dimension as data in the Data slot of object
-#' @exportMethod SubsetData
+#' @exportMethod addTrace
 setMethod("addTrace",
           "PMTrace",
           function(object,
