@@ -27,7 +27,7 @@ ImportPMSeries<-function(filename,
         Cs=ephys2env$sweeps$Cs,
         Rs=ephys2env$sweeps$Rs,
         Experiment=epys2env$sweeps$exp,
-        Series=epys2env$sweeps$series,
+        Series=epys2env$sweeps$ser,
         Created=Sys.time(), # FIXME this should better be the timestamp from the *.dat File
         Filename=epys2env$sweeps$filename)
 
@@ -36,7 +36,7 @@ ImportPMSeries<-function(filename,
 
       out<-PMTrace(Traces=epys2env$sweeps$tracename,
                    Units=ephys2env$sweeps$YUnit,
-                   TimeTraceepys2env$sweeps$x[,1],
+                   TimeTrace<-epys2env$sweeps$x[,1],
                    Sweeps=ordered(colnames(epys2env$sweeps$y),levels=colnames(epys2env$sweeps$y)),
                    SweepTimes=as.vector(epys2env$sweeps$Trace_Time),
                    Data=Data,
