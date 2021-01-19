@@ -15,7 +15,7 @@ ImportPMSeries<-function(filename,
   first=T
   for(i in traces){
     print(paste("Importing trace", i))
-    ephys2env<-getSeries(filename,file=1,exp=exp,ser=ser,trace=i)
+    ephys2env<-getSeries(filename,file=1,exp=experiment,ser=series,trace=i)
     if(first){
       params<-PMRecordingParams(
         Traces=epys2env$sweeps$tracename,
@@ -26,8 +26,8 @@ ImportPMSeries<-function(filename,
         Urest=ephys2env$sweeps$Urest,
         Cs=ephys2env$sweeps$Cs,
         Rs=ephys2env$sweeps$Rs,
-        Experiment=epys2env$sweeps$exp,
-        Series=epys2env$sweeps$ser,
+        Experiment=epys2env$sweeps$experiment,
+        Series=epys2env$sweeps$series,
         Created=Sys.time(), # FIXME this should better be the timestamp from the *.dat File
         Filename=epys2env$sweeps$filename)
 
