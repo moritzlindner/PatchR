@@ -49,7 +49,7 @@ ImportPMSeries<-function(filename,
     out<-addTrace(object=out,
                     Trace=imp$sweeps$tracename,
                     Unit=imp$sweeps$YUnit,
-                    Data=imp$sweeps$y,
+                    mtx=imp$sweeps$y,
                     isOrig=T)
   }
   }
