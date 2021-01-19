@@ -15,39 +15,39 @@ ImportPMSeries<-function(filename,
   first=T
   for(i in traces){
     print(paste("Importing trace", i))
-    ephys2env<-getSeries(filename,file=1,exp=experiment,ser=series,trace=i)
+    imp<-getSeries(filename,file=1,exp=experiment,ser=series,trace=i)
     if(first){
       params<-PMRecordingParams(
-        Traces=epys2env$sweeps$tracename,
-        RecMode=ephys2env$sweeps$RecMode,
-        ProtocolName=epys2env$sweeps$Stimulus,
-        RPip=ephys2env$sweeps$RPip,
-        RSeal=ephys2env$sweeps$RSeal,
-        Urest=ephys2env$sweeps$Urest,
-        Cs=ephys2env$sweeps$Cs,
-        Rs=ephys2env$sweeps$Rs,
-        Experiment=epys2env$sweeps$exp,
-        Series=epys2env$sweeps$ser,
+        Traces=imp$sweeps$tracename,
+        RecMode=imp$sweeps$RecMode,
+        ProtocolName=imp$sweeps$Stimulus,
+        RPip=imp$sweeps$RPip,
+        RSeal=imp$sweeps$RSeal,
+        Urest=imp$sweeps$Urest,
+        Cs=imp$sweeps$Cs,
+        Rs=imp$sweeps$Rs,
+        Experiment=imp$sweeps$exp,
+        Series=imp$sweeps$ser,
         Created=Sys.time(), # FIXME this should better be the timestamp from the *.dat File
-        Filename=epys2env$sweeps$filename)
+        Filename=imp$sweeps$filename)
 
       Data<-list()
-      Data[[epys2env$sweeps$tracename]]<-as.matrix(epys2env$sweeps$y)
+      Data[[imp$sweeps$tracename]]<-as.matrix(imp$sweeps$y)
 
-      out<-PMTrace(Traces=epys2env$sweeps$tracename,
-                   Units=ephys2env$sweeps$YUnit,
-                   TimeTrace<-epys2env$sweeps$x[,1],
-                   Sweeps=ordered(colnames(epys2env$sweeps$y),levels=colnames(epys2env$sweeps$y)),
-                   SweepTimes=as.numeric(as.vector(epys2env$sweeps$Trace_Time)),
+      out<-PMTrace(Traces=imp$sweeps$tracename,
+                   Units=imp$sweeps$YUnit,
+                   TimeTrace<-imp$sweeps$x[,1],
+                   Sweeps=ordered(colnames(imp$sweeps$y),levels=colnames(imp$sweeps$y)),
+                   SweepTimes=as.numeric(as.vector(imp$sweeps$Trace_Time)),
                    Data=Data,
                    Plots=list(),
                    RecordingParams=params
                    )
     }else{
     out<-addTrace(object=out,
-                    Trace=epys2env$sweeps$tracename,
-                    Unit=ephys2env$sweeps$YUnit,
-                    Data=epys2env$sweeps$y,
+                    Trace=imp$sweeps$tracename,
+                    Unit=imp$sweeps$YUnit,
+                    Data=imp$sweeps$y,
                     isOrig=T)
   }
   out
