@@ -6,7 +6,7 @@ Author: person("Moritz", "Lindner", email = "moritz.lindne@ndcn.ox.ac.uk", role 
 Maintainer: Moritz Lindner <moritz.lindne@ndcn.ox.ac.uk>
 Description: An environment for working with Traces imorted form HEKA's PatchMaster
 License: GPL-3
-Depends: ggplot2,plotly
+Depends: ggplot2,plotly,proto,sitools,stringr,methods
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
