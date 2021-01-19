@@ -6,7 +6,7 @@
 #' @param experiment Index of Experiment to import (1st order hirarchy in PM dat file).
 #' @param series Index of Series to import (2nd order hirarchy in PM dat file).
 #' @param traces Traces to import (indices). Must be vector of numerics of length > 0.
-#' @export ImportPMSeries
+#' @export
 ImportPMSeries<-function(filename,
                    experiment=1,
                    series=1,
@@ -15,7 +15,7 @@ ImportPMSeries<-function(filename,
   first=T
   for(i in traces){
     print(paste("Importing trace", i))
-    ephys2env<-getSeries(FN,file=1,exp=exp,ser=ser,trace=i)
+    ephys2env<-getSeries(filename,file=1,exp=exp,ser=ser,trace=i)
     if(first){
       params<-PMRecordingParams(
         Traces=epys2env$sweeps$tracename,
