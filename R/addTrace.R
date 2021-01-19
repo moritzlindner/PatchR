@@ -44,7 +44,7 @@ setMethod("addTrace",
               if(dim(object@Data[[1]])[1] == dim(mtx)[1] && getSweeps(object) == Sweeps){
                 object@Data[[Trace]]<-as.matrix(mtx)
                 object@Traces<-c(getTraces(object),Trace)
-                object@Units<-c(object@Units,Units)
+                object@Units<-c(object@Units,Unit)
                 if(isOrig){
                   object@RecordingParams@Traces<-c(getTraces(object@RecordingParams),Trace)
                 }
