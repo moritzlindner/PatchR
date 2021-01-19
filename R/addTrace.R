@@ -1,11 +1,12 @@
-setGeneric(name='addTrace',
+setGeneric(name="addTrace",
            def=function(object,
                         Trace,
                         Unit,
                         Sweeps=colnames(mtx),
+                        isOrig=F,
                         mtx)
            {
-             standardGeneric('addTrace')
+             standardGeneric("addTrace")
            }
 )
 

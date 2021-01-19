@@ -65,3 +65,22 @@ setMethod("getTimeTrace",
           }
 )
 
+setGeneric(name="getCs",
+           def=function(object)
+           {
+             standardGeneric("getCs")
+           }
+)
+
+#' getCs
+#'
+#' get Cs from PMTrace
+#'
+#' @param object A PMTrace object
+#' @exportMethod getCs
+setMethod("getCs",
+          "PMTrace",
+          function(object) {
+            object@RecordingParams@Cs
+          }
+)

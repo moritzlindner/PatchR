@@ -4,7 +4,7 @@ setGeneric(name="ImportPMSeries",
                         series=1,
                         traces=c(1,2))
            {
-             standardGeneric("ImportPMFile")
+             standardGeneric("ImportPMSeries")
            }
 )
 
@@ -43,18 +43,19 @@ setMethod("ImportPMSeries",
                   Created=Sys.time(), # FIXME this should better be the timestamp from the *.dat File
                   Filename=epys2env$sweeps$filename)
 
+                Data<-list()
+                Data[[epys2env$sweeps$tracename]]<-as.matrix(epys2env$sweeps$y)
+
                 out<-PMTrace(Traces=epys2env$sweeps$tracename,
                              Units=ephys2env$sweeps$YUnit,
                              TimeTraceepys2env$sweeps$x[,1],
                              Sweeps=ordered(colnames(epys2env$sweeps$y),levels=colnames(epys2env$sweeps$y)),
                              SweepTimes=as.vector(epys2env$sweeps$Trace_Time),
-                             Data=list(epys2env$sweeps$tracename=as.matrix(epys2env$sweeps$y)),
+                             Data=Data,
                              Plots=list(),
                              RecordingParams=params
                              )
-              }
-
-            }else{
+              }else{
               out<-addTrace(object=out,
                               Trace=epys2env$sweeps$tracename,
                               Unit=ephys2env$sweeps$YUnit,
@@ -62,5 +63,6 @@ setMethod("ImportPMSeries",
                               isOrig=T)
             }
             out
+            }
           }
 )
