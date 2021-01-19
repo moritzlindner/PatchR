@@ -38,7 +38,7 @@ ImportPMSeries<-function(filename,
                    Units=ephys2env$sweeps$YUnit,
                    TimeTrace<-epys2env$sweeps$x[,1],
                    Sweeps=ordered(colnames(epys2env$sweeps$y),levels=colnames(epys2env$sweeps$y)),
-                   SweepTimes=as.vector(epys2env$sweeps$Trace_Time),
+                   SweepTimes=as.numeric(as.vector(epys2env$sweeps$Trace_Time)),
                    Data=Data,
                    Plots=list(),
                    RecordingParams=params
