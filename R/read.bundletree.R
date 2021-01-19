@@ -1,6 +1,7 @@
 #' read.bundletree
 #'
 #' function inherited from ephys2 (/github/tdanker/ephys2/). Undocumented.
+#' @noRd
 read.bundletree<-function (myfile, bundlename = ".pul", con = NA)
 {
   finally_close_con = is.na(con)

@@ -1,6 +1,7 @@
 #' getTrace_
 #'
 #' function inherited from ephys2 (/github/tdanker/ephys2/). Undocumented.
+#' @noRd
 getTrace_<-function (con, ptr, start = 0, n = NA, read_data = T, name = "",
                      con_dat = con)
 {

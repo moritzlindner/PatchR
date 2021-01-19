@@ -1,6 +1,7 @@
 #' add_atributes
 #'
 #' function inherited from ephys2 (/github/tdanker/ephys2/). Undocumented.
+#' @noRd
 add_atributes<-function (tree, con, verbose = F, filename, con_pgf = con)
 {
   bundletree.pgf <- read.bundletree(filename, ".pgf",

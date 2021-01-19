@@ -8,13 +8,13 @@ setGeneric(name="convenientScales",
 
 #' convenientScales
 #'
-#' This function converts scaling of a PMTrace object and adjusts/adds SI prefixes
+#' This function converts scaling of a PMSeries object and adjusts/adds SI prefixes
 #'
 #' @name convenientScales
-#' @param object a PMTrace object
+#' @param object a PMSeries object
 #' @exportMethod convenientScales
 setMethod("convenientScales",
-          "PMTrace",
+          "PMSeries",
           function(object){
             for (i in 1:length(getTraces(object))){
               decimals<-seq(0,21,3)

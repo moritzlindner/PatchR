@@ -10,17 +10,17 @@ setGeneric(name="addTrace",
            }
 )
 
-#' Adding data to PMTrace objects
+#' Adding data to PMSeries objects
 #'
-#' This function adds a new Trace (with data) from any object convertible into a matrix to the Data slot of PMTrace objects
+#' This function adds a new Trace (with data) from any object convertible into a matrix to the Data slot of PMSeries objects
 #'
-#' @param object A PMTrace object
+#' @param object A PMSeries object
 #' @param Trace Name of the new Trace
 #' @param Sweeps Names of the sweeps added. Default is colnames(mtx)
 #' @param mtx Any object convertible into a matrix, that has the same dimension as data in the Data slot of object
 #' @exportMethod addTrace
 setMethod("addTrace",
-          "PMTrace",
+          "PMSeries",
           function(object,
                    Trace,
                    Unit,
@@ -28,8 +28,8 @@ setMethod("addTrace",
                    isOrig=F,
                    mtx)
           {
-            if(!PatchMasteR:::validPMTrace(object)){
-              stop(paste(deparse(substitute(object)), "is not a valid PMTrace"))
+            if(!PatchMasteR:::validPMSeries(object)){
+              stop(paste(deparse(substitute(object)), "is not a valid PMSeries"))
             }
 
             if(all(getSweeps(object) %in% Sweeps) && length(getSweeps(object))== length(Sweeps)){
@@ -56,8 +56,8 @@ setMethod("addTrace",
             }
 
 
-            if(!PatchMasteR:::validPMTrace(object)){
-              stop(paste("updating PMTrace", deparse(substitute(object)), "failed."))
+            if(!PatchMasteR:::validPMSeries(object)){
+              stop(paste("updating PMSeries", deparse(substitute(object)), "failed."))
             }
             object
           }

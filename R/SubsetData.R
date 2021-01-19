@@ -8,17 +8,17 @@ setGeneric(name="SubsetData",
              standardGeneric("SubsetData")
            }
 )
-#' Subsetting PMTrace objects
+#' Subsetting PMSeries objects
 #'
-#' This function subsets PMTrace objects by Trace, Sweep or Time
+#' This function subsets PMSeries objects by Trace, Sweep or Time
 #'
-#' @param object a PMTrace object
+#' @param object a PMSeries object
 #' @param Traces,Sweeps List of Traces/Sweeps to keep
 #' @param Time either a range of time points to keep, or, if @param TimeExclusive is TRUE, then two particular time points
 #' @param TimeExclusive Keep only the two time points stated under Time, not the range
 #' @exportMethod SubsetData
 setMethod("SubsetData",
-          "PMTrace",
+          "PMSeries",
           function(object,
                    Traces=getTraces(object),
                    Sweeps=getSweeps(object),
@@ -63,7 +63,7 @@ setMethod("SubsetData",
             for (i in Traces){
               DATA[[i]]<-object@Data[[i]][getTimeTrace(object) %in% Time,getSweeps(object) %in% Sweeps]
             }
-            PMTrace(Traces=getTraces(object)[getTraces(object) %in% Traces],
+            PMSeries(Traces=getTraces(object)[getTraces(object) %in% Traces],
                     Units=object@Units[getTraces(object) %in% Traces],
                     TimeTrace=getTimeTrace(object)[getTimeTrace(object) %in% Time],
                     TimeUnit=object@TimeUnit,

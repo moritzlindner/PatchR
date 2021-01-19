@@ -2,6 +2,7 @@
 #'
 #' function inherited from ephys2 (/github/tdanker/ephys2/). Undocumented.
 #' @import stringr
+#' @noRd
 getSeries_from_node<-function (node, sweeps = 1:length(node), trace = 1, read_data = T)
 {
   path <- attr(node, "path")

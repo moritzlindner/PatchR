@@ -1,4 +1,4 @@
-validPMTrace<-function(object) {
+validPMSeries<-function(object) {
   ret=0
   if (!(length(object@Traces) == length(object@Data))){
     ret+1
@@ -72,8 +72,8 @@ validPMTrace<-function(object) {
 #'
 #'    \item{RecordingParams}{An item of class PMRecordingParams containing recording parameters for that trace.}
 #'  }
-#' @exportClass PMTrace
-PMTrace<-setClass(Class="PMTrace",
+#' @exportClass PMSeries
+PMSeries<-setClass(Class="PMSeries",
                   slots =  list(Traces="character",
                                 Units="character",
                                 TimeTrace="numeric",
@@ -83,5 +83,5 @@ PMTrace<-setClass(Class="PMTrace",
                                 Data="list",
                                 Plots="list",
                                 RecordingParams="PMRecordingParams"),
-                  validity = validPMTrace
+                  validity = validPMSeries
 )

@@ -2,6 +2,7 @@
 #'
 #' function inherited from ephys2 (/github/tdanker/ephys2/). Undocumented.
 #' @import proto
+#' @noRd
 getSeries<-function (node_or_tree, file = NA, exp = NA, ser = NA, trace = 1,
                      read_data = T, CompoundName = NA)
 {

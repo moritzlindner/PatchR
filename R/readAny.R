@@ -1,6 +1,7 @@
 #' readAny
 #'
 #' function inherited from ephys2 (/github/tdanker/ephys2/). Undocumented.
+#' @noRd
 readAny<-function (ptr, con, offset, what, size)
 {
   seek(con, where = ptr + offset)

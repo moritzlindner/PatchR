@@ -8,13 +8,13 @@ setGeneric(name="toLong",
 
 #' toLong
 #'
-#' converts data from a PMTrace object into its long representation, analog to tidyR's gather
+#' converts data from a PMSeries object into its long representation, analog to tidyR's gather
 #'
 #' @name toLong
-#' @param object a PMTrace object
+#' @param object a PMSeries object
 #' @exportMethod toLong
 setMethod("toLong",
-          "PMTrace",
+          "PMSeries",
           function(object){
             Traces<-rep(getTraces(object),
                           each=(length(getSweeps(object))*length(getTimeTrace(object))))

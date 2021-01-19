@@ -5,10 +5,10 @@
 \alias{inspectTimeSeries}
 \title{inspectTimeSeries}
 \usage{
-\S4method{inspectTimeSeries}{PMTrace}(object, Trace = "I.mon")
+\S4method{inspectTimeSeries}{PMSeries}(object, Trace = "I.mon")
 }
 \arguments{
-\item{object}{a PMTrace object}
+\item{object}{a PMSeries object}
 
 \item{Trace}{Trace to plot}
 }

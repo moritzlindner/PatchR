@@ -8,16 +8,16 @@ setGeneric(name="downsample",
              standardGeneric("downsample")
            }
 )
-#' Donwsample a PMTrace object
+#' Donwsample a PMSeries object
 #'
-#' Downsample PMTrace object along the time axis
+#' Downsample PMSeries object along the time axis
 #'
-#' @param object a PMTrace
+#' @param object a PMSeries
 #' @param npnts.out Number of points in output matrix, ignored if NULL
 #' @param sample.rate New sampling rate in 1/[object@TimeUnit]
 #' @exportMethod downsample
 setMethod("downsample",
-          "PMTrace",
+          "PMSeries",
           function(object,
                    npnts.out=NULL,
                    sample.rate=NULL){

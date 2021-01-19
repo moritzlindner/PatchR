@@ -5,10 +5,10 @@
 \alias{CurrentDensity}
 \title{CurrentDensity}
 \usage{
-\S4method{CurrentDensity}{PMTrace}(object, trace = "I.mon")
+\S4method{CurrentDensity}{PMSeries}(object, trace = "I.mon")
 }
 \arguments{
-\item{object}{a PMTrace object}
+\item{object}{a PMSeries object}
 }
 \description{
 This function normalizes current traces to cell capacity

@@ -1,6 +1,7 @@
 #' pm_load_nodes
 #'
 #' function inherited from ephys2 (/github/tdanker/ephys2/). Undocumented.
+#' @noRd
 pm_load_nodes<-function (con, nlevels, lvl_sizes, level)
 {
   stopifnot(level <= nlevels)

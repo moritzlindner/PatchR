@@ -2,7 +2,7 @@
 % Please edit documentation in R/ImportPMSeries.R
 \name{ImportPMSeries}
 \alias{ImportPMSeries}
-\title{Import Series from Patch Master *.dat file into a PMTrace object}
+\title{Import Series from Patch Master *.dat file into a PMSeries object}
 \usage{
 ImportPMSeries(filename, experiment = 1, series = 1, traces = c(1,
   2))
@@ -17,5 +17,5 @@ ImportPMSeries(filename, experiment = 1, series = 1, traces = c(1,
 \item{traces}{Traces to import (indices). Must be vector of numerics of length > 0.}
 }
 \description{
-This function imports Series from Patch Master *.dat files and creates PMTrace objects
+This function imports Series from Patch Master *.dat files and creates PMSeries objects
 }

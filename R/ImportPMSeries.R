@@ -1,6 +1,6 @@
-#' Import Series from Patch Master *.dat file into a PMTrace object
+#' Import Series from Patch Master *.dat file into a PMSeries object
 #'
-#' This function imports Series from Patch Master *.dat files and creates PMTrace objects
+#' This function imports Series from Patch Master *.dat files and creates PMSeries objects
 #'
 #' @param filename path to a Patch Master *.dat file.
 #' @param experiment Index of Experiment to import (1st order hirarchy in PM dat file).
@@ -35,7 +35,7 @@ ImportPMSeries<-function(filename,
       Data<-list()
       Data[[imp$sweeps$tracename]]<-as.matrix(imp$sweeps$y)
 
-      out<-PMTrace(Traces=imp$sweeps$tracename,
+      out<-PMSeries(Traces=imp$sweeps$tracename,
                    Units=imp$sweeps$YUnit,
                    TimeTrace=imp$sweeps$x[,1],
                    TimeUnit = imp$sweeps$XUnit,

@@ -5,11 +5,11 @@
 \alias{toLong}
 \title{toLong}
 \usage{
-\S4method{toLong}{PMTrace}(object)
+\S4method{toLong}{PMSeries}(object)
 }
 \arguments{
-\item{object}{a PMTrace object}
+\item{object}{a PMSeries object}
 }
 \description{
-converts data from a PMTrace object into its long representation, analog to tidyR's gather
+converts data from a PMSeries object into its long representation, analog to tidyR's gather
 }

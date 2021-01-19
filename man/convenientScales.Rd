@@ -5,11 +5,11 @@
 \alias{convenientScales}
 \title{convenientScales}
 \usage{
-\S4method{convenientScales}{PMTrace}(object)
+\S4method{convenientScales}{PMSeries}(object)
 }
 \arguments{
-\item{object}{a PMTrace object}
+\item{object}{a PMSeries object}
 }
 \description{
-This function converts scaling of a PMTrace object and adjusts/adds SI prefixes
+This function converts scaling of a PMSeries object and adjusts/adds SI prefixes
 }

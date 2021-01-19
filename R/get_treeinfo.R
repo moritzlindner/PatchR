@@ -1,6 +1,7 @@
 #' get_treeinfo
 #'
 #' function inherited from ephys2 (/github/tdanker/ephys2/). Undocumented.
+#' @noRd
 get_treeinfo<-function (filename, slim = F)
 {
   con = file(filename, "rb")

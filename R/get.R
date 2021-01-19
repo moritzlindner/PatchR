@@ -7,12 +7,12 @@ setGeneric(name="getSweeps",
 
 #' getSweeps
 #'
-#' get list of Sweeps from a PMTrace object
+#' get list of Sweeps from a PMSeries object
 #'
-#' @param object A PMTrace object
+#' @param object A PMSeries object
 #' @exportMethod getSweeps
 setMethod("getSweeps",
-          "PMTrace",
+          "PMSeries",
           function(object) {
             object@Sweeps
           }
@@ -27,12 +27,12 @@ setGeneric(name="getTraces",
 
 #' getTraces
 #'
-#' get list of Traces from a PMTrace object
+#' get list of Traces from a PMSeries object
 #'
-#' @param object A PMTrace or PMRecordingParams object
+#' @param object A PMSeries or PMRecordingParams object
 #' @exportMethod getTraces
 setMethod("getTraces",
-          "PMTrace",
+          "PMSeries",
           function(object) {
             object@Traces
           }
@@ -54,12 +54,12 @@ setGeneric(name="getTimeTrace",
 
 #' getTimeTrace
 #'
-#' get Time trace from a PMTrace object
+#' get Time trace from a PMSeries object
 #'
-#' @param object A PMTrace object
+#' @param object A PMSeries object
 #' @exportMethod getTimeTrace
 setMethod("getTimeTrace",
-          "PMTrace",
+          "PMSeries",
           function(object) {
             object@TimeTrace
           }
@@ -74,12 +74,12 @@ setGeneric(name="getCs",
 
 #' getCs
 #'
-#' get Cs from PMTrace
+#' get Cs from PMSeries
 #'
-#' @param object A PMTrace object
+#' @param object A PMSeries object
 #' @exportMethod getCs
 setMethod("getCs",
-          "PMTrace",
+          "PMSeries",
           function(object) {
             object@RecordingParams@Cs
           }

@@ -11,11 +11,11 @@ setGeneric(name="BuildTimeSeriesPlot",
 #'
 #' This function creats a basic visualization for each Trace in the object. These will be stored in the Plots slot
 #'
-#' @param object a PMTrace object
+#' @param object a PMSeries object
 #' @import ggplot2
 #' @exportMethod BuildTimeSeriesPlot
 setMethod("BuildTimeSeriesPlot",
-          "PMTrace",
+          "PMSeries",
           function(object){
             tmp.object<-downsample(object,npnts.out = 1000)
             tmp.object<-convenientScales(tmp.object)
