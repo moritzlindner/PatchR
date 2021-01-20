@@ -3,24 +3,24 @@
 #' Core component of PatchMasteR is the Class PMTrace, wich Stores a Series imported from a Patchmaster *.dat file
 #'
 #' @section Import functions:
-#' ImportPMSeries
+#' ImportPMSeries \cr
 #'
 #' @section Accession functions:
-#' getCs \n
-#' getSweeps \n
-#' getTimeTrace \n
-#' getTraces \n
-#' as.data.frame \n
+#' getCs \cr
+#' getSweeps \cr
+#' getTimeTrace \cr
+#' getTraces \cr
+#' as.data.frame \cr
 #'
 #' @section Visuaization functions:
-#' BuildTimeSeriesPlot
-#' InspectTimeSeries
+#' BuildTimeSeriesPlot \cr
+#' InspectTimeSeries \cr
 #'
 #' @section Math, conversion and subsampling functions:
-#' CurrentDensity
-#' SubsetData
-#' CalculateIV
-#' apply
+#' CurrentDensity \cr
+#' SubsetData \cr
+#' CalculateIV \cr
+#' apply \crs
 #'
 #'
 #' @docType package
