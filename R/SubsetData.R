@@ -3,7 +3,8 @@ setGeneric(name="SubsetData",
                         Traces=getTraces(object),
                         Sweeps=getSweeps(object),
                         Time=range(getTimeTrace(object)),
-                        TimeExclusive=F)
+                        TimeExclusive=F,
+                        nowarnings=F)
            {
              standardGeneric("SubsetData")
            }
@@ -22,13 +23,14 @@ setMethod("SubsetData",
           function(object,
                    Traces=getTraces(object),
                    Sweeps=getSweeps(object),
-                   Time=range(getTimeTrace(object)
-                   ),
-                   TimeExclusive=F
-          ){
-            # FIXME !!! Below: only show this if any of that slots is not empty
-            warning("Subsetting clears all analysis and plotting slots for data consistency!")
-
+                   Time=range(getTimeTrace(object)),
+                   TimeExclusive=F,
+                   nowarnings=F)
+            {
+            if(!nowarnings){
+              # FIXME !!! Below: only show this if any of that slots is not empty
+              warning("Subsetting clears all analysis and plotting slots for data consistency!")
+            }
             if(all.equal(Traces, getTraces(object))!=TRUE){
               s<-cat(Traces)
               print(paste("Only keep Traces:", cat(Traces)))

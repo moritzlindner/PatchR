@@ -7,7 +7,7 @@
 \usage{
 \S4method{SubsetData}{PMSeries}(object, Traces = getTraces(object),
   Sweeps = getSweeps(object), Time = range(getTimeTrace(object)),
-  TimeExclusive = F)
+  TimeExclusive = F, nowarnings = F)
 }
 \arguments{
 \item{object}{a PMSeries object}

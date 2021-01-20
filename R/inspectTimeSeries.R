@@ -1,21 +1,21 @@
 
-setGeneric(name="inspectTimeSeries",
+setGeneric(name="InspectTimeSeries",
            def=function(object,Trace="I.mon")
            {
-             standardGeneric("inspectTimeSeries")
+             standardGeneric("InspectTimeSeries")
            }
 )
 
-#' inspectTimeSeries
+#' InspectTimeSeries
 #'
 #' This function creates an interactive graph from a plot generated using BuildTimeSeriesPlot
 #'
-#' @name inspectTimeSeries
+#' @name InspectTimeSeries
 #' @param object a PMSeries object
 #' @param Trace Trace to plot
 #' @import plotly
-#' @exportMethod inspectTimeSeries
-setMethod("inspectTimeSeries",
+#' @exportMethod InspectTimeSeries
+setMethod("InspectTimeSeries",
           "PMSeries",
           definition=function(object,Trace="I.mon"){
             if (!is.null(object@Plots[[Trace]])){

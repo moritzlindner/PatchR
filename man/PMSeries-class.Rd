@@ -24,6 +24,8 @@ This class stores imported PatchMaster Traces. Currently only checked for time s
 
 \item{Plots}{List that can contain any ggplot derived from the data. List item names that equal Traces are reserved.}
 
+\item{metaData}{List that can contain any ggplot derived from the data. List item names that equal Traces are reserved.}
+
 \item{RecordingParams}{An item of class PMRecordingParams containing recording parameters for that trace.}
  }
 }

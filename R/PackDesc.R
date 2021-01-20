@@ -6,19 +6,21 @@
 #' ImportPMSeries
 #'
 #' @section Accession functions:
-#' getCs
-#' getSweeps
-#' getTimeTrace
-#' getTraces
-#' toLong
+#' getCs \n
+#' getSweeps \n
+#' getTimeTrace \n
+#' getTraces \n
+#' as.data.frame \n
 #'
 #' @section Visuaization functions:
 #' BuildTimeSeriesPlot
-#' inspectTimeSeries
+#' InspectTimeSeries
 #'
-#' @section Conversion and subsampling functions:
+#' @section Math, conversion and subsampling functions:
 #' CurrentDensity
 #' SubsetData
+#' CalculateIV
+#' apply
 #'
 #'
 #' @docType package

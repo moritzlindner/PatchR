@@ -19,7 +19,7 @@ setMethod("BuildTimeSeriesPlot",
           function(object){
             tmp.object<-downsample(object,npnts.out = 1000)
             tmp.object<-convenientScales(tmp.object)
-            dat<-toLong(tmp.object)
+            dat<-as.data.frame(tmp.object)
             for (i in tmp.object@Traces)
             {
               object@Plots[[i]]<-ggplot(dat[dat$Traces==i,])+

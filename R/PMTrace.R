@@ -70,6 +70,8 @@ validPMSeries<-function(object) {
 #'
 #'    \item{Plots}{List that can contain any ggplot derived from the data. List item names that equal Traces are reserved.}
 #'
+#'    \item{metaData}{List that can contain any ggplot derived from the data. List item names that equal Traces are reserved.}
+#'
 #'    \item{RecordingParams}{An item of class PMRecordingParams containing recording parameters for that trace.}
 #'  }
 #' @exportClass PMSeries
@@ -81,7 +83,9 @@ PMSeries<-setClass(Class="PMSeries",
                                 Sweeps="ordered", # was character
                                 SweepTimes="numeric",
                                 Data="list",
+                                MetaData="list",
                                 Plots="list",
+                                Computed="list",
                                 RecordingParams="PMRecordingParams"),
                   validity = validPMSeries
 )
