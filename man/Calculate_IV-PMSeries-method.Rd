@@ -6,7 +6,7 @@
 \title{Averaging PMSeries objects}
 \usage{
 \S4method{Calculate_IV}{PMSeries}(object, X_FROM, X_TO,
-  ReturnPMTRace = T, I_Trace = "I-mon", V_Trace = "V-mon",
+  ReturnPMTRace = T, ITrace = "I-mon", VTrace = "V-mon",
   x_D_FROM = NA, X_D_TO = NA)
 }
 \arguments{
@@ -16,7 +16,7 @@
 
 \item{ReturnPMTRace}{whether to return results as a PMSeries with an additional, computed trace}
 
-\item{I_Trace, V_Trace}{Name of the traces containig I and V}
+\item{ITrace, VTrace}{Name of the traces containig I and V}
 }
 \value{
 a matrix or PMSeries with IV data and ggplot stored in the MetaData and Plot slot, resp.
