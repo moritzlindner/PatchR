@@ -20,7 +20,7 @@
 #' CurrentDensity \cr
 #' SubsetData \cr
 #' CalculateIV \cr
-#' apply \crs
+#' apply \cr
 #'
 #'
 #' @docType package

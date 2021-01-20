@@ -33,6 +33,6 @@ InspectTimeSeries \cr
 CurrentDensity \cr
 SubsetData \cr
 CalculateIV \cr
-apply \crs
+apply \cr
 }
 
