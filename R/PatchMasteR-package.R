@@ -25,4 +25,5 @@
 #'
 #' @docType package
 #' @name PatchMasteR
-NULL
+#' @keywords internal
+"_PACKAGE"
