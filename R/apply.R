@@ -5,8 +5,8 @@
 #' @param X a PMSeries object
 #' @param MARGIN a vector giving the subscripts which the function will be applied along. Understands "Time", "Sweep","Trace", or 1-3 resp.
 #' @param FUN the function to be applied
-#' @param ReturnPMTRace whether to return results as a PMSeries with an additional, computed trace
-#' @return a matrix or PMSeries object
+#' @param ReturnPMTRace whether to return results as a PMSeries with an additional, computed trace. Default is \code{FALSE}, then returns a matrix.
+#' @return a matrix or \link[PMSeries]{PMSeries} object
 #' @exportMethod apply
 setMethod("apply",
           "PMSeries",

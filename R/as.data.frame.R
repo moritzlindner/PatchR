@@ -1,6 +1,6 @@
-#' toLong
+#' Converts PMSeries x into a long data frame
 #'
-#' converts PMSeries x into a data frame in a long representation, analog to tidyR's gather
+#' Converts PMSeries x into a data frame in a long representation, analog to tidyR's gather
 #'
 #' @name as.data.frame
 #' @param x a PMSeries x
@@ -13,6 +13,7 @@ setMethod("as.data.frame",
                           each=(length(getSweeps(x))*length(getTimeTrace(x))))
             sweeps<-type.convert(rep(rep(getSweeps(x),
                                          each=length(getTimeTrace(x))),times=length(getTraces(x))))
+            sweeps<-ordered(sweeps,levels=levels(getSweeps(x)))
             times<-rep(getTimeTrace(x),
                        times=(length(getSweeps(x))*length(getTraces(x))))
 

@@ -4,6 +4,7 @@
 #'
 #' @section Import functions:
 #' ImportPMSeries
+#' addTrace
 #'
 #' @section Accession functions:
 #' getCs

@@ -4,8 +4,7 @@
 \alias{ImportPMSeries}
 \title{Import Series from Patch Master *.dat file into a PMSeries object}
 \usage{
-ImportPMSeries(filename, experiment = 1, series = 1, traces = c(1,
-  2))
+ImportPMSeries(filename, experiment = 1, series = 1, traces = c(1, 2))
 }
 \arguments{
 \item{filename}{path to a Patch Master *.dat file.}

@@ -7,7 +7,7 @@ setGeneric(name="BuildTimeSeriesPlot",
 )
 
 
-#'#' Basic ggplots for time series data
+#' Basic ggplots for time series data
 #'
 #' This function creats a basic visualization for each Trace in the object. These will be stored in the Plots slot
 #'
