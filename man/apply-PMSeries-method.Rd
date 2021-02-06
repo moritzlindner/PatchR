@@ -16,7 +16,7 @@
 \item{ReturnPMTRace}{whether to return results as a PMSeries with an additional, computed trace. Default is \code{FALSE}, then returns a matrix.}
 }
 \value{
-a matrix or \link[PMSeries]{PMSeries} object
+A matrix or \link[PMSeries]{PMSeries()} \link[PMSeries]{?PMSeries()} \link[=func]{PMSeries()} \link[=PMSeries]{PMSeries}object
 }
 \description{
 This is the PatchMastR analog to "apply"
