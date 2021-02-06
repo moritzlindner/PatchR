@@ -2,9 +2,8 @@
 #'
 #' Converts PMSeries x into a data frame in a long representation, analog to tidyR's gather
 #'
-#' @name as.data.frame
 #' @param x a \link[=PMSeries]{PMSeries} object
-#' @exportMethod \link[=base::data.frame]{base::data.frame} object
+#' @exportMethod as.data.frame
 setMethod("as.data.frame",
           "PMSeries",
           function(x,

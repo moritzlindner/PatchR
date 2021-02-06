@@ -13,7 +13,7 @@
 
 \item{FUN}{the function to be applied}
 
-\item{ReturnPMTRace}{whether to return results as a PMSeries with an additional, computed trace. Default is \var{FALSE}, then returns a \link[=base::matrix]{base::matrix}.}
+\item{ReturnPMTRace}{whether to return results as a PMSeries with an additional, computed trace. Default is \var{FALSE}, then returns a matrix.}
 }
 \value{
 A matrix or \link[=PMSeries]{PMSeries} object
