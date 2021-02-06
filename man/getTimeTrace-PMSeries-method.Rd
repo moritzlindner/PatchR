@@ -7,8 +7,8 @@
 \S4method{getTimeTrace}{PMSeries}(object)
 }
 \arguments{
-\item{object}{A PMSeries object}
+\item{object}{A \link[=PMSeries]{PMSeries}  object}
 }
 \description{
-get Time trace from a PMSeries object
+get Time trace from a \link[=PMSeries]{PMSeries}  object
 }

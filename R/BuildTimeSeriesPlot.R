@@ -11,7 +11,8 @@ setGeneric(name="BuildTimeSeriesPlot",
 #'
 #' This function creats a basic visualization for each Trace in the object. These will be stored in the Plots slot
 #'
-#' @param object a PMSeries object
+#' @param object a \link[=PMSeries]{PMSeries} object object
+#' @return A matrix or \link[=PMSeries]{PMSeries} object
 #' @import ggplot2
 #' @exportMethod BuildTimeSeriesPlot
 setMethod("BuildTimeSeriesPlot",

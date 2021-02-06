@@ -2,7 +2,7 @@
 % Please edit documentation in R/SubsetData.R
 \name{SubsetData,PMSeries-method}
 \alias{SubsetData,PMSeries-method}
-\title{Subsetting PMSeries objects}
+\title{Subset a PMSeries object}
 \usage{
 \S4method{SubsetData}{PMSeries}(
   object,
@@ -14,14 +14,17 @@
 )
 }
 \arguments{
-\item{object}{a PMSeries object}
+\item{object}{a \link[=PMSeries]{PMSeries}  object}
 
 \item{Traces, Sweeps}{List of Traces/Sweeps to keep}
 
-\item{Time}{either a range of time points to keep, or, if @param TimeExclusive is TRUE, then two particular time points}
+\item{Time}{either a range of time points to keep, or, if \code{TimeExclusive} is \code{TRUE}, then two particular time points}
 
 \item{TimeExclusive}{Keep only the two time points stated under Time, not the range}
 }
+\value{
+A \link[=PMSeries]{PMSeries} object
+}
 \description{
-This function subsets PMSeries objects by Trace, Sweep or Time
+This function subsets \link[=PMSeries]{PMSeries}  objects by Trace, Sweep or Time
 }

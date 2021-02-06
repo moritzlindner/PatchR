@@ -6,12 +6,12 @@ setGeneric(name="CurrentDensity",
            }
 )
 
-#' CurrentDensity
+#' Normalizes current traces to cell capacity
 #'
-#' This function normalizes current traces to cell capacity
+#' This function normalizes current traces to cell capacity and adds it as a new Trace
 #'
-#' @name CurrentDensity
-#' @param object a PMSeries object
+#' @param object a \link[=PMSeries]{PMSeries} object
+#' @return a \link[=PMSeries]{PMSeries} object
 #' @import sitools
 #' @exportMethod CurrentDensity
 setMethod("CurrentDensity",

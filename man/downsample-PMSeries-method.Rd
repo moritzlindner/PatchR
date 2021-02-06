@@ -7,12 +7,15 @@
 \S4method{downsample}{PMSeries}(object, npnts.out = NULL, sample.rate = NULL)
 }
 \arguments{
-\item{object}{a PMSeries}
+\item{object}{a \link[=PMSeries]{PMSeries} object}
 
-\item{npnts.out}{Number of points in output matrix, ignored if NULL}
+\item{npnts.out}{Number of points in output time axis, ignored if NULL}
 
 \item{sample.rate}{New sampling rate in 1/[object@TimeUnit]}
 }
+\value{
+A matrix or \link[=PMSeries]{PMSeries} object
+}
 \description{
-Downsample PMSeries object along the time axis
+Downsample \link[=PMSeries]{PMSeries} object along the time axis
 }

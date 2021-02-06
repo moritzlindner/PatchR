@@ -7,8 +7,8 @@
 \S4method{getSweeps}{PMSeries}(object)
 }
 \arguments{
-\item{object}{A PMSeries object}
+\item{object}{A \link[=PMSeries]{PMSeries} object}
 }
 \description{
-get list of Sweeps from a PMSeries object
+get list of Sweeps from a \link[=PMSeries]{PMSeries} object
 }

@@ -12,16 +12,16 @@ setGeneric(name="Calculate_IV",
            }
 )
 
-#' Averaging PMSeries objects
+#' Caluclates IV from a PMSeries object
 #'
-#' This function averages PMSeries objects by Trace, Sweep or Time
+#' This function averages \link[=PMSeries]{PMSeries} objects by Trace, Sweep or Time
 #'
-#' @param object a PMSeries object
+#' @param object a \link[=PMSeries]{PMSeries} object
 #' @param X_FROM,X_TO,x_D_FROM,X_D_TO Time points to perform averaging for IV prodcution
-#' @param ITrace,VTrace Name of the traces containig I and V
-#' @param ReturnPMTRace whether to return results as a PMSeries with an additional, computed trace
+#' @param ITrace,VTrace Name of the traces containig Current(I) and and Voltage(V)
+#' @param ReturnPMTRace whether to return results as a \link[=PMSeries]{PMSeries}  with an additional, computed trace. If set to \code{FALSE}, will return a \link[=base::matrix]{base::matrix}. Default is \code{TRUE}.
 #' @import ggplot2
-#' @return a matrix or PMSeries with IV data and ggplot stored in the MetaData and Plot slot, resp.
+#' @return a matrix or PMSeries with IV \link[=base::matrix]{base::matrix} and \link[=ggplot2::ggplot]{ggplot2::ggplot} stored in the MetaData and Plot slot, resp.
 #' @exportMethod Calculate_IV
 setMethod("Calculate_IV",
           "PMSeries",

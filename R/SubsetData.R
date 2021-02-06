@@ -9,14 +9,15 @@ setGeneric(name="SubsetData",
              standardGeneric("SubsetData")
            }
 )
-#' Subsetting PMSeries objects
+#' Subset a PMSeries object
 #'
-#' This function subsets PMSeries objects by Trace, Sweep or Time
+#' This function subsets \link[=PMSeries]{PMSeries}  objects by Trace, Sweep or Time
 #'
-#' @param object a PMSeries object
+#' @param object a \link[=PMSeries]{PMSeries}  object
 #' @param Traces,Sweeps List of Traces/Sweeps to keep
-#' @param Time either a range of time points to keep, or, if @param TimeExclusive is TRUE, then two particular time points
+#' @param Time either a range of time points to keep, or, if \code{TimeExclusive} is \code{TRUE}, then two particular time points
 #' @param TimeExclusive Keep only the two time points stated under Time, not the range
+#' @return A \link[=PMSeries]{PMSeries} object
 #' @exportMethod SubsetData
 setMethod("SubsetData",
           "PMSeries",

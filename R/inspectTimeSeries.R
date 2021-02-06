@@ -8,11 +8,11 @@ setGeneric(name="InspectTimeSeries",
 
 #' InspectTimeSeries
 #'
-#' This function creates an interactive graph from a plot generated using BuildTimeSeriesPlot
+#' This function plots an interactive \link[=plotly]{plotly} graph from a plot generated using \link[=BuildTimeSeriesPlot.]{BuildTimeSeriesPlot}
 #'
 #' @name InspectTimeSeries
-#' @param object a PMSeries object
-#' @param Trace Trace to plot
+#' @param object a \link[=base::matrix]{base::matrix} object
+#' @param Trace Specifies a trace to be plotted
 #' @import plotly
 #' @exportMethod InspectTimeSeries
 setMethod("InspectTimeSeries",

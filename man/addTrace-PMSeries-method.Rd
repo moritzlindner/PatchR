@@ -15,6 +15,9 @@
 
 \item{mtx}{Any object convertible into a matrix, that has the same dimension as data in the Data slot of \code{object}}
 }
+\value{
+A matrix or \link[=PMSeries]{PMSeries} object
+}
 \description{
 This function adds a new Trace (with data) from any object convertible into a matrix to a PMSeries object
 }

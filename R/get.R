@@ -7,9 +7,9 @@ setGeneric(name="getSweeps",
 
 #' getSweeps
 #'
-#' get list of Sweeps from a PMSeries object
+#' get list of Sweeps from a \link[=PMSeries]{PMSeries} object
 #'
-#' @param object A PMSeries object
+#' @param object A \link[=PMSeries]{PMSeries} object
 #' @exportMethod getSweeps
 setMethod("getSweeps",
           "PMSeries",
@@ -27,9 +27,9 @@ setGeneric(name="getTraces",
 
 #' getTraces
 #'
-#' get list of Traces from a PMSeries object
+#' get list of Traces from a \link[=PMSeries]{PMSeries} or \link[=PMRecordingParams]{PMRecordingParams} object
 #'
-#' @param object A PMSeries or PMRecordingParams object
+#' @param object A \link[=PMSeries]{PMSeries} or \link[=PMRecordingParams]{PMRecordingParams} object
 #' @exportMethod getTraces
 setMethod("getTraces",
           "PMSeries",
@@ -54,9 +54,9 @@ setGeneric(name="getTimeTrace",
 
 #' getTimeTrace
 #'
-#' get Time trace from a PMSeries object
+#' get Time trace from a \link[=PMSeries]{PMSeries}  object
 #'
-#' @param object A PMSeries object
+#' @param object A \link[=PMSeries]{PMSeries}  object
 #' @exportMethod getTimeTrace
 setMethod("getTimeTrace",
           "PMSeries",

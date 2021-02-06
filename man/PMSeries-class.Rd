@@ -4,9 +4,9 @@
 \name{PMSeries-class}
 \alias{PMSeries-class}
 \alias{PMSeries}
-\title{S4 class storing imported PatchMaster Traces.}
+\title{S4 class storing imported [Patch Master](https://www.heka.com/downloads/downloads_main.html#down_patchmaster)  Traces.}
 \description{
-This class stores imported PatchMaster Traces. Currently only checked for time series. It is strictly validated to assure data consistency
+This class stores imported [Patch Master](https://www.heka.com/downloads/downloads_main.html#down_patchmaster)  Traces. Currently only checked for time series. It is strictly validated to assure data consistency
 }
 \details{
 \describe{

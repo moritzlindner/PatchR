@@ -7,13 +7,16 @@
 ImportPMSeries(filename, experiment = 1, series = 1, traces = c(1, 2))
 }
 \arguments{
-\item{filename}{path to a Patch Master *.dat file.}
+\item{filename}{path to a [Patch Master](https://www.heka.com/downloads/downloads_main.html#down_patchmaster) *.dat file.}
 
 \item{experiment}{Index of Experiment to import (1st order hirarchy in PM dat file).}
 
 \item{series}{Index of Series to import (2nd order hirarchy in PM dat file).}
 
 \item{traces}{Traces to import (indices). Must be vector of numerics of length > 0.}
+}
+\value{
+A \link[=PMSeries]{PMSeries} object
 }
 \description{
 This function imports Series from Patch Master *.dat files and creates PMSeries objects

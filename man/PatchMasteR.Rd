@@ -9,30 +9,30 @@ Core component of PatchMasteR is the Class PMTrace, wich Stores a Series importe
 }
 \section{Import functions}{
 
-ImportPMSeries
-addTrace
+\link[=ImportPMSeries]{ImportPMSeries}
+\link[=addTrace]{addTrace}
 }
 
 \section{Accession functions}{
 
-getCs
-getSweeps
-getTimeTrace
-getTraces
-as.data.frame
+\link[=getCs]{getCs}
+\link[=getSweeps]{getSweeps}
+\link[=getTimeTrace]{getTimeTrace}
+\link[=getTraces]{getTraces}
+\link[=as.data.frame]{as.data.frame}
 }
 
 \section{Visuaization functions}{
 
-BuildTimeSeriesPlot
-InspectTimeSeries
+\link[=BuildTimeSeriesPlot]{BuildTimeSeriesPlot}
+\link[=InspectTimeSeries]{InspectTimeSeries}
 }
 
 \section{Math, conversion and subsampling functions}{
 
-CurrentDensity
-SubsetData
-CalculateIV
-apply
+\link[=CurrentDensity]{CurrentDensity}
+\link[=SubsetData]{SubsetData}
+\link[=CalculateIV]{CalculateIV}
+\link[=apply]{apply}
 }
 

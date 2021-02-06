@@ -7,7 +7,7 @@
 \S4method{as.data.frame}{PMSeries}(x, row.names = NULL, optional = FALSE, ...)
 }
 \arguments{
-\item{x}{a PMSeries x}
+\item{x}{a \link[=PMSeries]{PMSeries} object}
 }
 \description{
 Converts PMSeries x into a data frame in a long representation, analog to tidyR's gather

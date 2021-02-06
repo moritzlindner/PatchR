@@ -6,12 +6,12 @@ setGeneric(name="convenientScales",
            }
 )
 
-#' convenientScales
+#' Makes PMSeries object scales convenient.
 #'
-#' This function converts scaling of a PMSeries object and adjusts/adds SI prefixes
+#' This function converts scaling of a \link[=PMSeries]{PMSeries} object and adjusts/adds SI prefixes
 #'
-#' @name convenientScales
-#' @param object a PMSeries object
+#' @param object a \link[=PMSeries]{PMSeries} object
+#' @return a \link[=PMSeries]{PMSeries} object
 #' @exportMethod convenientScales
 setMethod("convenientScales",
           "PMSeries",

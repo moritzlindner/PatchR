@@ -51,9 +51,9 @@ validPMSeries<-function(object) {
 }
 
 
-#' S4 class storing imported PatchMaster Traces.
+#' S4 class storing imported [Patch Master](https://www.heka.com/downloads/downloads_main.html#down_patchmaster)  Traces.
 #'
-#' This class stores imported PatchMaster Traces. Currently only checked for time series. It is strictly validated to assure data consistency
+#' This class stores imported [Patch Master](https://www.heka.com/downloads/downloads_main.html#down_patchmaster)  Traces. Currently only checked for time series. It is strictly validated to assure data consistency
 #'
 #' \describe{
 #'    \item{Traces}{Character vector containing names of the Traces (=Monitors) imported form the dat file and any subsequently computed Trace. Computed Traces have the same dimensions as imported}

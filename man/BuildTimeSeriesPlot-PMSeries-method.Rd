@@ -7,7 +7,10 @@
 \S4method{BuildTimeSeriesPlot}{PMSeries}(object)
 }
 \arguments{
-\item{object}{a PMSeries object}
+\item{object}{a \link[=PMSeries]{PMSeries} object object}
+}
+\value{
+A matrix or \link[=PMSeries]{PMSeries} object
 }
 \description{
 This function creats a basic visualization for each Trace in the object. These will be stored in the Plots slot

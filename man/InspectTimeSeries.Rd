@@ -7,10 +7,10 @@
 \S4method{InspectTimeSeries}{PMSeries}(object, Trace = "I.mon")
 }
 \arguments{
-\item{object}{a PMSeries object}
+\item{object}{a \link[=base::matrix]{base::matrix} object}
 
-\item{Trace}{Trace to plot}
+\item{Trace}{Specifies a trace to be plotted}
 }
 \description{
-This function creates an interactive graph from a plot generated using BuildTimeSeriesPlot
+This function plots an interactive \link[=plotly]{plotly} graph from a plot generated using \link[=BuildTimeSeriesPlot.]{BuildTimeSeriesPlot}
 }

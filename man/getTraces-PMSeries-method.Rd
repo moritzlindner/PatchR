@@ -7,8 +7,8 @@
 \S4method{getTraces}{PMSeries}(object)
 }
 \arguments{
-\item{object}{A PMSeries or PMRecordingParams object}
+\item{object}{A \link[=PMSeries]{PMSeries} or \link[=PMRecordingParams]{PMRecordingParams} object}
 }
 \description{
-get list of Traces from a PMSeries object
+get list of Traces from a \link[=PMSeries]{PMSeries} or \link[=PMRecordingParams]{PMRecordingParams} object
 }
