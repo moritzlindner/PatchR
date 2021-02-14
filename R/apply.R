@@ -37,14 +37,12 @@ setMethod("apply",
                 MARG<-"Trace"
               }
             }
-
             print(paste("Function ",as.character(substitute(mean))[1]," applied along", MARG))
 
             #simplify and apply
             DAT<-simplify2array(X@Data)
             margins<-1:length(dim(DAT))
             out<-apply(DAT,margins[!(margins %in% MARGIN)],FUN)
-
             if(MARGIN==1){
               colnames(out)<-getTraces(X)
               rownames(out)<-getSweeps(X)

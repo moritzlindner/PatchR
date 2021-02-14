@@ -8,7 +8,7 @@ setGeneric(name="convenientScales",
 
 #' Makes PMSeries object scales convenient.
 #'
-#' This function converts scaling of a \link[=PMSeries]{PMSeries} object and adjusts/adds SI prefixes
+#' This function converts scaling of a \link[=PMSeries]{PMSeries} or a \link[=PMExperiment]{PMExperiment} object and adjusts/adds SI prefixes
 #'
 #' @param object a \link[=PMSeries]{PMSeries} object
 #' @return a \link[=PMSeries]{PMSeries} object
@@ -25,5 +25,13 @@ setMethod("convenientScales",
               print(dim(object@Data[[getTraces(object)[i]]]))
             }
             object
+          }
+)
+
+#' @exportMethod convenientScales
+setMethod("convenientScales",
+          "PMExperiment",
+          function(object){
+            lapply(object,convenientScales)
           }
 )

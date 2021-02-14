@@ -1,8 +1,8 @@
 
-setGeneric(name="BuildTimeSeriesPlot",
+setGeneric(name="BuildSeriesPlot",
            def=function(object)
            {
-             standardGeneric("BuildTimeSeriesPlot")
+             standardGeneric("BuildSeriesPlot")
            }
 )
 
@@ -14,8 +14,8 @@ setGeneric(name="BuildTimeSeriesPlot",
 #' @param object a \link[=PMSeries]{PMSeries} object object
 #' @return A matrix or \link[=PMSeries]{PMSeries} object
 #' @import ggplot2
-#' @exportMethod BuildTimeSeriesPlot
-setMethod("BuildTimeSeriesPlot",
+#' @exportMethod BuildSeriesPlot
+setMethod("BuildSeriesPlot",
           "PMSeries",
           function(object){
             tmp.object<-downsample(object,npnts.out = 1000)

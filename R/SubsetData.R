@@ -3,6 +3,8 @@ setGeneric(name="SubsetData",
                         Traces=getTraces(object),
                         Sweeps=getSweeps(object),
                         Time=range(getTimeTrace(object)),
+                        Series=NULL,
+                        Group=NULL,
                         TimeExclusive=F,
                         nowarnings=F)
            {
@@ -11,11 +13,13 @@ setGeneric(name="SubsetData",
 )
 #' Subset a PMSeries object
 #'
-#' This function subsets \link[=PMSeries]{PMSeries}  objects by Trace, Sweep or Time
+#' This function subsets \link[=PMSeries]{PMSeries} or \link[=PMExperiment]{PMExperiment} objects by Trace, Sweep or Time
 #'
-#' @param object a \link[=PMSeries]{PMSeries}  object
+#' @param object a \link[=PMSeries]{PMSeries} or \link[=PMExperiment]{PMExperiment} object
 #' @param Traces,Sweeps List of Traces/Sweeps to keep
 #' @param Time either a range of time points to keep, or, if \code{TimeExclusive} is \code{TRUE}, then two particular time points
+#' @param Series Subset by Series name. Only for \link[=PMExperiment]{PMExperiment}.
+#' @param Group Subset by Group name. Only for \link[=PMExperiment]{PMExperiment}.
 #' @param TimeExclusive Keep only the two time points stated under Time, not the range
 #' @return A \link[=PMSeries]{PMSeries} object
 #' @exportMethod SubsetData
@@ -33,15 +37,13 @@ setMethod("SubsetData",
               warning("Subsetting clears all analysis and plotting slots for data consistency!")
             }
             if(all.equal(Traces, getTraces(object))!=TRUE){
-              s<-cat(Traces)
-              print(paste("Only keep Traces:", cat(Traces)))
+              cat("Only keep Traces:", Traces,"\n")
               if(!all(Traces %in% getTraces(object))){
                 stop("Traces to subset not in object")
               }
             }
             if(all.equal(Sweeps, getSweeps(object))!=TRUE){
-              s<-cat(Sweeps)
-              print(paste("Only keep Sweeps: ", s))
+              cat("Only keep Sweeps: ", Sweeps,"\n")
               if(!all(Sweeps %in% getSweeps(object))){
                 stop("Traces to subset not in object")
               }
@@ -61,10 +63,9 @@ setMethod("SubsetData",
 
             RecordingParams<-object@RecordingParams
             RecordingParams@Traces<-RecordingParams@Traces[RecordingParams@Traces %in% Traces]
-
             DATA<-list()
             for (i in Traces){
-              DATA[[i]]<-object@Data[[i]][getTimeTrace(object) %in% Time,getSweeps(object) %in% Sweeps]
+              DATA[[i]]<-as.matrix(object@Data[[i]][getTimeTrace(object) %in% Time,getSweeps(object) %in% Sweeps])
             }
             PMSeries(Traces=getTraces(object)[getTraces(object) %in% Traces],
                     Units=object@Units[getTraces(object) %in% Traces],
@@ -75,5 +76,56 @@ setMethod("SubsetData",
                     Data=DATA,
                     RecordingParams=RecordingParams
             )
+          }
+)
+
+#' @exportMethod SubsetData
+setMethod("SubsetData",
+          "PMExperiment",
+          function(object,
+                   Traces=getTraces(object@Series[[1]]),
+                   Sweeps=getSweeps(object@Series[[1]]),
+                   Time=range(getTimeTrace(object@Series[[1]])),
+                   Series=NULL,
+                   Group=NULL,
+                   TimeExclusive=F,
+                   nowarnings=F)
+          {
+            object<-lapply(object,function(x) SubsetData(x,Traces,Sweeps,Time,TimeExclusive,nowarnings=T),ReturnPMExperiment=T)
+
+            if (!is.null(Group)){
+              warning("Plots droped for consistency.")
+                keep<-as.character(object@Group) %in% as.character(Group)
+                object<-PMExperiment(
+                  Series=object@Series[keep],
+                  Names=object@Names[keep],
+                  Group=object@Group[keep],
+                  MetaData=object@MetaData[keep],
+                  RecordingParams=object@RecordingParams
+                )
+            }
+
+            if (!is.null(Series)){
+              warning("Plots droped for consistency.")
+              if(is.numeric(Series)){
+                object<-PMExperiment(
+                  Series=object@Series[Series],
+                  Names=object@Names[Series],
+                  Group=object@Group[Series],
+                  MetaData=object@MetaData[Series],
+                  RecordingParams=object@RecordingParams
+                )
+              }else{
+                keep<-object@Names %in% Series
+                object<-PMExperiment(
+                  Series=object@Series[keep],
+                  Names=object@Names[keep],
+                  Group=object@Group[keep],
+                  MetaData=object@MetaData[keep],
+                  RecordingParams=object@RecordingParams
+                )
+              }
+            }
+            object
           }
 )

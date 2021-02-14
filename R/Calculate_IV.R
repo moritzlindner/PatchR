@@ -12,9 +12,9 @@ setGeneric(name="Calculate_IV",
            }
 )
 
-#' Caluclates IV from a PMSeries object
+#' Caluclates IV from a PMSeries or PMExperiment object
 #'
-#' This function averages \link[=PMSeries]{PMSeries} objects by Trace, Sweep or Time
+#' This function averages \link[=PMSeries]{PMSeries} objects by Trace, Sweep or Time. If object is a \link[=PMExperiment]{PMExperiment}. then does so for each Series stored in the object
 #'
 #' @param object a \link[=PMSeries]{PMSeries} object
 #' @param X_FROM,X_TO,x_D_FROM,X_D_TO Time points to perform averaging for IV prodcution
@@ -43,7 +43,7 @@ setMethod("Calculate_IV",
               out[,"I.Substracted"]<-out[,ITrace]-substract[,ITrace]
             }
             if(ReturnPMTRace){
-              object@MetaData[["IV"]]<-out
+              object<-AddMetaData(out,c(colnames(out)))
 
               out<-as.data.frame(out)
               rownames(out)<-NULL
@@ -70,5 +70,20 @@ setMethod("Calculate_IV",
               out<-object
             }
             out
+          }
+)
+
+#' @exportMethod Calculate_IV
+setMethod("Calculate_IV",
+          "PMExperiment",
+          function(object,
+                   X_FROM,
+                   X_TO,
+                   ReturnPMTRace=T,
+                   ITrace="I-mon",
+                   VTrace="V-mon",
+                   x_D_FROM=NA,
+                   X_D_TO=NA){
+            lapply(object,function(x){Calculate_IV(object,X_FROM,X_TO,ReturnPMTRace,ITrace="I-mon",VTrace="V-mon",x_D_FROM,X_D_TO)})
           }
 )

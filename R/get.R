@@ -38,6 +38,7 @@ setMethod("getTraces",
           }
 )
 
+#' @exportMethod getTraces
 setMethod("getTraces",
           "PMRecordingParams",
           function(object) {

@@ -15,7 +15,7 @@ Core component of PatchMasteR is the PMTrace class, wich stores a series importe
 library(PatchMasteR)
 
 # import a PatchMaster file
-tmp<-ImportPMSeries("test.dat"),series = 1,traces = c(1,2))
+tmp<-ImportPMSeries("test.dat",series = 1,traces = c(1,2))
 
 # build a Plot superimposing all sweeps and inspect interactivley
 tmp<-BuildTimeSeriesPlot(tmp)

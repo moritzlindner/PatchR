@@ -47,6 +47,12 @@ validPMSeries<-function(object) {
     ret+1
     print("Incompatible Trace list")
   }
+  if(!all(dim(object@MetaData)==0)){
+    if (!(dim(object@MetaData)[1] == length(object@Sweeps))){
+      ret+1
+      print("MetaData has not the same length as there are Sweeps")
+    }
+  }
   if(ret==0) {TRUE} else {FALSE}
 }
 
@@ -70,7 +76,7 @@ validPMSeries<-function(object) {
 #'
 #'    \item{Plots}{List that can contain any ggplot derived from the data. List item names that equal Traces are reserved.}
 #'
-#'    \item{MetaData}{List that can contain any ggplot derived from the data. List item names that equal Traces are reserved.}
+#'    \item{MetaData}{matrix that can contain additional per-sweep Metadata. Per-time Metadata can be stored in the Data slot using the \link[=addTrace]{addTrace} method.
 #'
 #'    \item{RecordingParams}{An item of class PMRecordingParams containing recording parameters for that trace.}
 #'  }
@@ -83,9 +89,10 @@ PMSeries<-setClass(Class="PMSeries",
                                 Sweeps="ordered", # was character
                                 SweepTimes="numeric",
                                 Data="list",
-                                MetaData="list",
+                                MetaData="matrix",
+                                .MetaDataFx="list",
                                 Plots="list",
-                                Computed="list",
+                                #Computed="list",
                                 RecordingParams="PMRecordingParams"),
                   validity = validPMSeries
 )

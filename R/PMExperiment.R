@@ -1,29 +1,35 @@
-validPMExperiment<-function(object) { # todo
+validPMExperiment<-function(object) {
   ret=0
   if (!(length(object@Series) == length(object@Names))){
     ret+1
     print("Name list incompatible to items in Series")
   }
+  if(any(duplicated(object@Names))){
+    ret+1
+    cat("Name provided not unique: ", object@Names[duplicated(object@Names)])
+  }
   if (!(length(object@Series) == length(object@Group))){
     ret+1
     print("Group list incompatible to items in Series")
   }
-  if (!(dim(object@MetaData)[1] == length(object@Group))){
-    ret+1
-    print("MetaData incompatible to items in Series")
+  if(!all(dim(object@MetaData)==0)){
+    if (!(dim(object@MetaData)[1] == length(object@Group))){
+      ret+1
+      print("MetaData incompatible to items in Series")
+    }
   }
-
-  if (!all(lapply(object@Series,getTraces(x@RecordingParams))==getTraces(object@RecordingParams))){
+  if (!all(unlist(lapply(object@Series,function(x) getTraces(x@RecordingParams))) %in% getTraces(object@RecordingParams))){
     ret+1
+    print(getTraces(object@RecordingParams))
     print("Unequal trace names")
   }
 
-  if (!all(lapply(object@Series,x@RecordingParams@ProtocolName)==object@RecordingParams@ProtocolName)){
+  if (!all(lapply(object@Series,function(x) x@RecordingParams@ProtocolName)==object@RecordingParams@ProtocolName)){
     ret+1
     print("Unequal Protocol names")
   }
 
-  if (!all(lapply(object@Series,x@RecordingParams@RecMode)==object@RecordingParams@RecMode)){
+  if (!all(lapply(object@Series,function(x) x@RecordingParams@RecMode)==object@RecordingParams@RecMode)){
     ret+1
     print("Unequal Recording modes")
   }
@@ -44,12 +50,13 @@ validPMExperiment<-function(object) { # todo
 #'    \item{Plots}{A slot to store ggplots}
 #'    \item{RecordingParams}{Stores the Recording parameters that must be identical for all entries in Series (ProtocolName, RecMode, Traces)}
 #'  }
-#' @exportClass PMSeries
-PMSeries<-setClass(Class="PMExperiment",
+#' @exportClass PMExperiment
+PMExperiment<-setClass(Class="PMExperiment",
                   slots =  list(Series="list",
                                 Names="character",
-                                Group="character",
+                                Group="factor",
                                 MetaData="matrix",
+                                .MetaDataFx="list",
                                 Plots="list",
                                 RecordingParams="PMRecordingParams"),
                   validity = validPMExperiment
