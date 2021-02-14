@@ -28,6 +28,12 @@ Core component of PatchMasteR is the Class PMTrace, wich Stores a Series importe
 * \link[=as.data.frame]{as.data.frame}
 }
 
+\section{Visuaization functions}{
+
+* \link[=BuildSeriesPlot]{BuildSeriesPlot} (\link[=PMSeries]{PMSeries} objects)
+* \link[=InspectSeries]{InspectSeries} (\link[=PMSeries]{PMSeries} objects)
+}
+
 \section{Math, conversion and subsampling functions}{
 
 * \link[=CurrentDensity]{CurrentDensity} (only for for \link[=PMSeries]{PMSeries} objects)

@@ -9,6 +9,8 @@ newPMExperiment(PMSeries, Names = NULL, Group = "Generic")
 \arguments{
 \item{PMSeries}{a PMSeries object, or list of PMSeries objects}
 
+\item{Names}{Names of the PMSeries, character vector w same number of entires as PMSeries}
+
 \item{Group}{Group variable or list thereof, of the same lenght as PMSeries}
 }
 \value{

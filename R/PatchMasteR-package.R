@@ -16,7 +16,7 @@
 #' @section Accession functions for \link[=PMExperiment]{PMExperiment} objects:
 #' * \link[=as.data.frame]{as.data.frame}
 #'
-#' @section Visuaization functions
+#' @section Visuaization functions:
 #' * \link[=BuildSeriesPlot]{BuildSeriesPlot} (\link[=PMSeries]{PMSeries} objects)
 #' * \link[=InspectSeries]{InspectSeries} (\link[=PMSeries]{PMSeries} objects)
 #'

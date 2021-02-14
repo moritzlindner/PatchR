@@ -3,7 +3,7 @@
 #' Generates a new PMExperiment from a single PMSeries
 #'
 #' @param PMSeries a PMSeries object, or list of PMSeries objects
-#' @param
+#' @param Names Names of the PMSeries, character vector w same number of entires as PMSeries
 #' @param Group Group variable or list thereof, of the same lenght as PMSeries
 #' @return A \link[=PMExperiment]{PMExperiment} object
 #' @export

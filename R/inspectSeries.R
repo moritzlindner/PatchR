@@ -8,7 +8,7 @@ setGeneric(name="InspectSeries",
 
 #' InspectSeries
 #'
-#' This function plots an interactive \link[=plotly]{plotly} graph from a plot generated using \link[=BuildSeriesPlot.]{BuildSeriesPlot}
+#' This function plots an interactive \link[=plotly]{plotly} graph from a plot generated using \link[=BuildSeriesPlot]{BuildSeriesPlot}.
 #'
 #' @name InspectSeries
 #' @param object a \link[=base::matrix]{base::matrix} object
