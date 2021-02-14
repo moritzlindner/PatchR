@@ -1,8 +1,8 @@
 
-setGeneric(name="InspectTimeSeries",
+setGeneric(name="InspectSeries",
            def=function(object,Trace="I.mon")
            {
-             standardGeneric("InspectTimeSeries")
+             standardGeneric("InspectSeries")
            }
 )
 
@@ -15,7 +15,7 @@ setGeneric(name="InspectTimeSeries",
 #' @param Trace Specifies a trace to be plotted
 #' @import plotly
 #' @exportMethod InspectSeries
-setMethod("InspectTimeSeries",
+setMethod("InspectSeries",
           "PMSeries",
           definition=function(object,Trace="I.mon"){
             if (!is.null(object@Plots[[Trace]])){

@@ -27,8 +27,8 @@ library(PatchMasteR)
 tmp<-ImportPMSeries("test.dat",series = 1,traces = c(1,2))
 
 # build a Plot superimposing all sweeps and inspect interactivley
-tmp<-BuildTimeSeriesPlot(tmp)
-tmp<-InspectTimeSeries(tmp, Trace = "I.mon")
+tmp<-BuildSeriesPlot(tmp)
+tmp<-InspectSeries(tmp, Trace = "I.mon")
 
 # apply any function to the PMSeries object, in this case, make mean over all sweeps
 tmp<-apply(tmp, "Sweep", mean, ReturnPMTRace = T)

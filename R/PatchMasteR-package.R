@@ -18,7 +18,7 @@
 #'
 #' @section Visuaization functions
 #' * \link[=BuildSeriesPlot]{BuildSeriesPlot} (\link[=PMSeries]{PMSeries} objects)
-#' * \link[=InspectTimeSeries]{InspectTimeSeries} (\link[=PMSeries]{PMSeries} objects)
+#' * \link[=InspectSeries]{InspectSeries} (\link[=PMSeries]{PMSeries} objects)
 #'
 #' @section Math, conversion and subsampling functions:
 #' * \link[=CurrentDensity]{CurrentDensity} (only for for \link[=PMSeries]{PMSeries} objects)
