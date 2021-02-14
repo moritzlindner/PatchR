@@ -19,7 +19,9 @@ setMethod("lapply",
               print("OK")
               return(X)
             }else{
-              as.data.frame(dat)
+              dat<-t(as.data.frame(dat))
+              rownames(dat)<-X@Names
+              dat
             }
           }
 )

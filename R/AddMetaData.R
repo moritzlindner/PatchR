@@ -20,8 +20,17 @@ setMethod("AddMetaData",
           function(object,
                    values,
                    title=colnames(values)){
+
+            if(any(duplicated(title))){
+              stop("Duplicate MetaData names not allowed")
+            }
+            if(any(title %in% colnames(object@MetaData))){
+              stop("MetaData names already in use")
+            }
+
             print(sys.calls()[[1]])
             values<-as.matrix(values)
+            colnames(values)<-title
             cat("adding metadata column(s)",title)
             if(all(dim(object@MetaData)==0)){
               object@MetaData<-values
@@ -44,15 +53,23 @@ setMethod("AddMetaData",
           function(object,
                    values,
                    title=colnames(values)){
+
+            if(any(duplicated(title))){
+              stop("Duplicate MetaData names not allowed")
+            }
+            if(any(title %in% colnames(object@MetaData))){
+              stop("MetaData names already in use")
+            }
+
             values<-as.matrix(values)
+            colnames(values)<-title
+            print(values)
             cat("adding metadata column(s)",title)
             if(all(dim(object@MetaData)==0)){
               object@MetaData<-values
-              colnames(object@MetaData)<-as.vector(title)
               object@.MetaDataFx[[1]]<-sys.calls()[[1]]
             }else{
               object@MetaData<-cbind(object@MetaData,values)
-              colnames(object@MetaData)<-c(colnames(object@MetaData),title)
               object@.MetaDataFx<-append(object@.MetaDataFx,sys.calls()[[1]])
             }
 

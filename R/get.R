@@ -85,3 +85,40 @@ setMethod("getCs",
             object@RecordingParams@Cs
           }
 )
+
+
+setGeneric(name="getMetaData",
+           def=function(object,which)
+           {
+             standardGeneric("getMetaData")
+           }
+)
+
+#' getMetaData
+#'
+#' get MetaData from PMSeries or PMExperiment
+#'
+#' @param object A PMSeries or PMExperiment object
+#' @param which columns form MetaData to retrieve. Default is all.
+#' @exportMethod getMetaData
+setMethod("getMetaData",
+          c("PMSeries"),
+          function(object,which=colnames(object@MetaData)) {
+            out<-cbind(object@Names,object@Group,as.data.frame(object@MetaData[,which]))
+            colnames(out)<-c("Series","Group",which)
+            rownames(out)<-object@Names
+            out
+          }
+)
+
+#' @exportMethod getMetaData
+setMethod("getMetaData",
+          c("PMExperiment"),
+          function(object,which=colnames(object@MetaData)) {
+            out<-cbind(object@Names,object@Group,as.data.frame(object@MetaData[,which]))
+            colnames(out)<-c("Series","Group",which)
+            rownames(out)<-object@Names
+            out
+          }
+)
+

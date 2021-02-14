@@ -1,19 +1,19 @@
 validPMSeries<-function(object) {
   ret=0
   if (!(length(object@Traces) == length(object@Data))){
-    ret+1
+    ret<-ret+1
     print("Monitor name list incompatible to items in Data")
   }
   if (!(length(object@Traces) == length(object@Units))){
-    ret+1
+    ret<-ret+1
     print("Monitor name list incompatible to items in Units")
   }
   if (!(length(object@Data)>0)){
-    ret+1
+    ret<-ret+1
     print("No data added")
   }
   if (!(all(unlist(lapply(object@Data,function(x){is.matrix(x)}))))){
-    ret+1
+    ret<-ret+1
     print("Data not in matrix format")
   }
   if( length(object@Data)>1){
@@ -26,12 +26,12 @@ validPMSeries<-function(object) {
     s<-var(unlist(lapply(object@Data,function(x){dim(x)[2]})))
     s[is.na(s)] <- 0
     if (!(s==0)){
-      ret+1
+      ret<-ret+1
       print("Traces have unequal dimensions")
     }
   }
   if (!(length(object@TimeTrace) == dim(object@Data[[1]])[1])){
-    ret+1
+    ret<-ret+1
     print("Time trace inconsitent to data")
   }
   if (!(length(object@Sweeps) == dim(object@Data[[1]])[2])){
@@ -39,17 +39,17 @@ validPMSeries<-function(object) {
     print("Sweep names inconsitent to Data")
   }
   if (!(length(object@Sweeps) == length(object@SweepTimes))){
-    ret+1
+    ret<-ret+1
     print("incompatible sweep ids and timing data")
 
   }
   if (!(all(object@RecordingParams@Traces %in% object@Traces))){
-    ret+1
+    ret<-ret+1
     print("Incompatible Trace list")
   }
   if(!all(dim(object@MetaData)==0)){
     if (!(dim(object@MetaData)[1] == length(object@Sweeps))){
-      ret+1
+      ret<-ret+1
       print("MetaData has not the same length as there are Sweeps")
     }
   }
@@ -94,5 +94,10 @@ PMSeries<-setClass(Class="PMSeries",
                                 Plots="list",
                                 #Computed="list",
                                 RecordingParams="PMRecordingParams"),
+                  prototype=list(
+                    MetaData = matrix(ncol=0,nrow=0),
+                    .MetaDataFx = list(),
+                    Plots = list()
+                  ),
                   validity = validPMSeries
 )

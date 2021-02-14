@@ -35,6 +35,16 @@ setMethod("addPMExperiment",
             {
             warning("MetaData and Plots are dropped to assure conistency.")
 
+            if(length(Group)==1 & length(PMSeries)>1){
+              Group<-rep(Group,length(PMSeries))
+            }
+            if(length(Group)!=length(PMSeries)){
+              stop("Incorrect length of 'Group'")
+            }
+            if(length(Names)!=length(PMSeries)){
+              stop("Incorrect length of 'Names'")
+            }
+
             object@Series<-append(object@Series,PMSeries)
             object@Names<-append(object@Names,Names)
             object@Group<-as.factor(c(as.character(object@Group),as.character(Group)))
