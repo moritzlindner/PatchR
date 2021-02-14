@@ -6,35 +6,34 @@
 \alias{PatchMasteR-package}
 \title{PatchMasteR: An environment for handling and analzing Patch Clamp measuremnts recorded with HEKA Patchmaster}
 \description{
-Core component of PatchMasteR is the Class PMTrace, wich Stores a Series imported from a Patchmaster *.dat file
+Core component of PatchMasteR is the Class PMTrace, wich Stores a Series imported from a Patchmaster *.dat file. Several PMTraces can be assembled into a PMExperiment.
 }
 \section{Import functions}{
 
-\link[=ImportPMSeries]{ImportPMSeries}
-\link[=addTrace]{addTrace}
+* \link[=ImportPMSeries]{ImportPMSeries}
+* \link[=addTrace]{addTrace}
 }
 
-\section{Accession functions}{
+\section{Accession functions for \link[=PMSeries]{PMSeries} objects}{
 
-\link[=getCs]{getCs}
-\link[=getSweeps]{getSweeps}
-\link[=getTimeTrace]{getTimeTrace}
-\link[=getTraces]{getTraces}
-\link[=as.data.frame]{as.data.frame}
+* \link[=getCs]{getCs}
+* \link[=getSweeps]{getSweeps}
+* \link[=getTimeTrace]{getTimeTrace}
+* \link[=getTraces]{getTraces}
+* \link[=as.data.frame]{as.data.frame}
 }
 
-\section{Visuaization functions}{
+\section{Accession functions for \link[=PMExperiment]{PMExperiment} objects}{
 
-\link[=BuildTimeSeriesPlot]{BuildTimeSeriesPlot}
-\link[=InspectTimeSeries]{InspectTimeSeries}
+* \link[=as.data.frame]{as.data.frame}
 }
 
 \section{Math, conversion and subsampling functions}{
 
-\link[=CurrentDensity]{CurrentDensity}
-\link[=SubsetData]{SubsetData}
-\link[=CalculateIV]{CalculateIV}
-\link[=apply]{apply}
+* \link[=CurrentDensity]{CurrentDensity} (only for for \link[=PMSeries]{PMSeries} objects)
+* \link[=SubsetData]{SubsetData}
+* \link[=CalculateIV]{CalculateIV}
+* \link[=apply]{apply} for for \link[=PMSeries]{PMSeries} and \link[=lapply]{lapply} for for \link[=PMExperiment]{PMExperiment}
 }
 
 \keyword{internal}

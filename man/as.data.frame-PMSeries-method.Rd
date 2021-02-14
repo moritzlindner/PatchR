@@ -2,13 +2,13 @@
 % Please edit documentation in R/as.data.frame.R
 \name{as.data.frame,PMSeries-method}
 \alias{as.data.frame,PMSeries-method}
-\title{Converts PMSeries x into a long data frame}
+\title{Converts PMSeries or PMExperiment into a long data frame}
 \usage{
 \S4method{as.data.frame}{PMSeries}(x, row.names = NULL, optional = FALSE, ...)
 }
 \arguments{
-\item{x}{a \link[=PMSeries]{PMSeries} object}
+\item{x}{a \link[=PMSeries]{PMSeries} or \link[=PMExperiment]{PMExperiment}object}
 }
 \description{
-Converts PMSeries x into a data frame in a long representation, analog to tidyR's gather
+Converts PMSeries or PMExperiment into a data frame in a long representation, analog to tidyR's gather
 }

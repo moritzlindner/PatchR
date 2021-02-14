@@ -2,7 +2,7 @@
 % Please edit documentation in R/Calculate_IV.R
 \name{Calculate_IV,PMSeries-method}
 \alias{Calculate_IV,PMSeries-method}
-\title{Caluclates IV from a PMSeries object}
+\title{Caluclates IV from a PMSeries or PMExperiment object}
 \usage{
 \S4method{Calculate_IV}{PMSeries}(
   object,
@@ -28,5 +28,5 @@
 a matrix or PMSeries with IV \link[=base::matrix]{base::matrix} and \link[=ggplot2::ggplot]{ggplot2::ggplot} stored in the MetaData and Plot slot, resp.
 }
 \description{
-This function averages \link[=PMSeries]{PMSeries} objects by Trace, Sweep or Time
+This function averages \link[=PMSeries]{PMSeries} objects by Trace, Sweep or Time. If object is a \link[=PMExperiment]{PMExperiment}. then does so for each Series stored in the object
 }

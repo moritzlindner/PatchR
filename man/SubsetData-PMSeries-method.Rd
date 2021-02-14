@@ -14,17 +14,21 @@
 )
 }
 \arguments{
-\item{object}{a \link[=PMSeries]{PMSeries}  object}
+\item{object}{a \link[=PMSeries]{PMSeries} or \link[=PMExperiment]{PMExperiment} object}
 
 \item{Traces, Sweeps}{List of Traces/Sweeps to keep}
 
 \item{Time}{either a range of time points to keep, or, if \code{TimeExclusive} is \code{TRUE}, then two particular time points}
 
 \item{TimeExclusive}{Keep only the two time points stated under Time, not the range}
+
+\item{Series}{Subset by Series name. Only for \link[=PMExperiment]{PMExperiment}.}
+
+\item{Group}{Subset by Group name. Only for \link[=PMExperiment]{PMExperiment}.}
 }
 \value{
 A \link[=PMSeries]{PMSeries} object
 }
 \description{
-This function subsets \link[=PMSeries]{PMSeries}  objects by Trace, Sweep or Time
+This function subsets \link[=PMSeries]{PMSeries} or \link[=PMExperiment]{PMExperiment} objects by Trace, Sweep or Time
 }

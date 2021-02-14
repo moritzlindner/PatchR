@@ -13,5 +13,5 @@
 a \link[=PMSeries]{PMSeries} object
 }
 \description{
-This function converts scaling of a \link[=PMSeries]{PMSeries} object and adjusts/adds SI prefixes
+This function converts scaling of a \link[=PMSeries]{PMSeries} or a \link[=PMExperiment]{PMExperiment} object and adjusts/adds SI prefixes
 }
