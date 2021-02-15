@@ -1,3 +1,8 @@
+#' @docType package
+#' @name PatchMasteR
+#' @keywords internal
+"_PACKAGE"
+
 #' PatchMasteR: An environment for handling and analzing Patch Clamp measuremnts recorded with HEKA Patchmaster
 #'
 #' Core component of PatchMasteR is the PMRecording class, wich stores a series imported from a Patchmaster *.dat file. Several integrety checks are implemented into the PMRecording class to assure data integrity is maintained.
@@ -35,9 +40,5 @@
 #' * \link[=SubsetData]{SubsetData}
 #' * \link[=CalculateIV]{CalculateIV} CHECK!!!
 #' * \link[=apply]{apply} for for \link[=PMRecording]{PMRecording} and \link[=lapply]{lapply} for for \link[=PMCollection]{PMCollection}
-#'
-#' @docType package
-#' @name PatchMasteR
-#' @keywords internal
+
 NULL
-#> NULL
