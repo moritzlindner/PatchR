@@ -1,7 +1,7 @@
 setGeneric(name="AddMetaData",
            def=function(object,
                         values,
-                        title=colnames(values))
+                        title)
            {
              standardGeneric("AddMetaData")
            }
