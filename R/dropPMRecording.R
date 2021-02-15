@@ -22,7 +22,7 @@ setMethod("dropPMRecording",
                    Group=NULL)
           {
             warning("MetaData and Plots are dropped to assure conistency.")
-            if (!exists("PMRecording") & !is.null(Group)){
+            if (!is.null(PMRecording) & !is.null(Group)){
               stop("Only Group or PMRecording may be provided")
             }
             if(!is.null(Group)){

@@ -6,9 +6,6 @@
 \usage{
 \S4method{getTimeTrace}{PMRecording}(object)
 }
-\arguments{
-\item{object}{A \link[=PMRecording]{PMRecording}  object}
-}
 \description{
 get Time trace from a \link[=PMRecording]{PMRecording}  object
 }

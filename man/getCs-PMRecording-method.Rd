@@ -6,9 +6,6 @@
 \usage{
 \S4method{getCs}{PMRecording}(object)
 }
-\arguments{
-\item{object}{A PMRecording object}
-}
 \description{
 get Cs from PMRecording
 }

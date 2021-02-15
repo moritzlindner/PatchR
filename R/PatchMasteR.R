@@ -1,16 +1,23 @@
 #' PatchMasteR: An environment for handling and analzing Patch Clamp measuremnts recorded with HEKA Patchmaster
 #'
 #' Core component of PatchMasteR is the PMRecording class, wich stores a series imported from a Patchmaster *.dat file. Several integrety checks are implemented into the PMRecording class to assure data integrity is maintained.
-#' Multiple recordings (PMRecording) objects can be stored and processed within the PMCollection class.#'
+#' Multiple recordings (PMRecording) objects can be stored and processed within the PMCollection class.
 #'
 #' @import ggplot2 plotly sitools
 #'
+#'
+#' First Header  | Second Header
+#' ------------- | -------------
+#'  Content Cell  | Content Cell
+#' Content Cell  | Content Cell
+#' Reference Style Links and Images
+#'
 #' @section Import and creation functions:
-#' * \link[=ImportPMRecording]{ImportPMRecording} (\link[=PMRecording]{PMRecording} objects)
-#' * \link[=addTrace]{addTrace} (\link[=PMRecording]{PMRecording} objects)
-#' * \link[=newPMCollection]{newPMCollection} (\link[=PMCollection]{PMCollection} objects)
-#' * \link[=addPMRecording]{addPMRecording} (\link[=PMCollection]{PMCollection} objects)
-#' * \link[=dropPMRecording]{addPMRecording} (\link[=PMCollection]{PMCollection} objects)
+#' * \link[=ImportPMRecording]{ImportPMRecording} (for \link[=PMRecording]{PMRecording} objects) \cr
+#' * \link[=addTrace]{addTrace} (for \link[=PMRecording]{PMRecording} objects) \cr
+#' * \link[=newPMCollection]{newPMCollection} (for \link[=PMCollection]{PMCollection} objects) \cr
+#' * \link[=addPMRecording]{addPMRecording} (for \link[=PMCollection]{PMCollection} objects) \cr
+#' * \link[=dropPMRecording]{addPMRecording} (for \link[=PMCollection]{PMCollection} objects) \cr
 #'
 #' @section Accession functions for \link[=PMRecording]{PMRecording} objects:
 #' * \link[=getCs]{getCs}
@@ -27,16 +34,18 @@
 #' * \link[=RecParam]{RecParam}
 #'
 #' @section Visuaization functions:
-#' * \link[=BuildSeriesPlot]{BuildSeriesPlot} (\link[=PMRecording]{PMRecording} objects)
-#' * \link[=BuildQCPlot]{BuildSeriesPlot} (\link[=PMCollection]{PMCollection} objects)
-#' * \link[=Inspect]{Inspect} (\link[=PMRecording]{PMRecording} and \link[=PMCollection]{PMCollection} oojects)
+#' * \link[=BuildSeriesPlot]{BuildSeriesPlot} (for \link[=PMRecording]{PMRecording} objects)
+#' * \link[=BuildQCPlot]{BuildSeriesPlot} (for \link[=PMCollection]{PMCollection} objects)
+#' * \link[=Inspect]{Inspect} (for \link[=PMRecording]{PMRecording} and \link[=PMCollection]{PMCollection} oojects)
 #' *visualize time series
 #'
 #' @section Math, conversion and subsampling functions:
-#' * \link[=CurrentDensity]{CurrentDensity} (only for for \link[=PMRecording]{PMRecording} objects)
+#' * \link[=CurrentDensity]{CurrentDensity} (for \link[=PMRecording]{PMRecording} objects)
 #' * \link[=SubsetData]{SubsetData}
 #' * \link[=CalculateIV]{CalculateIV} CHECK!!!
-#' * \link[=apply]{apply} for for \link[=PMRecording]{PMRecording} and \link[=lapply]{lapply} for for \link[=PMCollection]{PMCollection}
+#' * \link[=apply]{apply} for \link[=PMRecording]{PMRecording} and \link[=lapply]{lapply} for \link[=PMCollection]{PMCollection}
+#'
+#' @author \link[https://www.uni-marburg.de/en/fb20/departments/physiology/research/dominik-oliver-lab/research2/retinal-physiology-and-gene-therapy]{Moritz Lindner}
 #'
 #' @docType package
 #' @name PatchMasteR

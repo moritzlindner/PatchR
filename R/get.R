@@ -57,7 +57,7 @@ setGeneric(name="getTimeTrace",
 #'
 #' get Time trace from a \link[=PMRecording]{PMRecording}  object
 #'
-#' @param object A \link[=PMRecording]{PMRecording}  object
+#' @inheritParams SweepNames
 #' @exportMethod getTimeTrace
 setMethod("getTimeTrace",
           "PMRecording",
@@ -77,7 +77,7 @@ setGeneric(name="getCs",
 #'
 #' get Cs from PMRecording
 #'
-#' @param object A PMRecording object
+#' @inheritParams SweepNames
 #' @exportMethod getCs
 setMethod("getCs",
           "PMRecording",
@@ -120,7 +120,7 @@ setGeneric(name="RecParam",
 #'
 #' get Recording parameters from PMRecording or PMCollection
 #'
-#' @param object A PMRecordingor PMCollection object
+#' @inheritParams SweepNames
 #' @param param parameter to fetch, can be either of Rpip, RSeal, Urest, Cs, Rs
 #' @exportMethod RecParam
 setMethod("RecParam",

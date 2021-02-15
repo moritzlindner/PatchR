@@ -7,8 +7,6 @@
 \S4method{RecParam}{PMRecording}(object, param)
 }
 \arguments{
-\item{object}{A PMRecordingor PMCollection object}
-
 \item{param}{parameter to fetch, can be either of Rpip, RSeal, Urest, Cs, Rs}
 }
 \description{
