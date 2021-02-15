@@ -1,15 +1,15 @@
 #' show
 #'
-#' Default mehtod show for PMSeries
+#' Default mehtod show for PMRecording
 #' @importMethodsFrom methods show
 #' @exportMethod show
 setMethod("show",
-          "PMSeries",
+          "PMRecording",
           function(object) {
-            cat("An object of class PMSeries \n")
+            cat("An object of class PMRecording \n")
             cat(object@RecordingParams@RecMode, "Experiment \n")
             cat("From", object@RecordingParams@Filename, "\n")
-            cat("With", length(getTraces(object)), "Traces ,", length(getSweeps(object)), "Sweeps and", length(getTimeTrace(object)), "Timepoints \n")
+            cat("With", length(TraceNames(object)), "Traces ,", length(SweepNames(object)), "Sweeps and", length(getTimeTrace(object)), "Timepoints \n")
             cat("Protocol is ", object@RecordingParams@ProtocolName, "\n")
             cat("Imported on", as.character(as.Date(object@RecordingParams@Created)), "\n")
           }
@@ -17,9 +17,9 @@ setMethod("show",
 
 #' @exportMethod show
 setMethod("show",
-          "PMExperiment",
+          "PMCollection",
           function(object) {
-            cat("An object of class PMExperiment \n")
+            cat("An object of class PMCollection \n")
             cat(object@RecordingParams@RecMode, "Experiment \n")
             cat("With", length(object@Series), " Series \n")
             cat("in", length(levels(object@Group)), " Groups \n")

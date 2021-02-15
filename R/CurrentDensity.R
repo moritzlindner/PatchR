@@ -10,12 +10,12 @@ setGeneric(name="CurrentDensity",
 #'
 #' This function normalizes current traces to cell capacity and adds it as a new Trace
 #'
-#' @param object a \link[=PMSeries]{PMSeries} object
-#' @return a \link[=PMSeries]{PMSeries} object
+#' @param object a \link[=PMRecording]{PMRecording} object
+#' @return a \link[=PMRecording]{PMRecording} object
 #' @import sitools
 #' @exportMethod CurrentDensity
 setMethod("CurrentDensity",
-          "PMSeries",
+          "PMRecording",
           function(object,
                    trace="I.mon"){
             print(paste0("Capacitance in record: ",sitools::f2si(round(getCs(object),15)),"F"))
@@ -23,7 +23,7 @@ setMethod("CurrentDensity",
             object<-addTrace(object,
               Trace="curr.dens",
               Unit=paste0(object@Units[getChannels(object)==trace],"/F"),
-              Sweeps=getSweeps(object),
+              Sweeps=SweepNames(object),
               mtx=objcet@Data[[trace]]/getCs(object))
 
             object

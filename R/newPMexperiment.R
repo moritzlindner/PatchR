@@ -1,42 +1,42 @@
-#' Generates a new PMExperiment from a single PMSeries
+#' Generates a new PMCollection from a single PMRecording
 #'
-#' Generates a new PMExperiment from a single PMSeries
+#' Generates a new PMCollection from a single PMRecording
 #'
-#' @param PMSeries a PMSeries object, or list of PMSeries objects
-#' @param Names Names of the PMSeries, character vector w same number of entires as PMSeries
-#' @param Group Group variable or list thereof, of the same lenght as PMSeries
-#' @return A \link[=PMExperiment]{PMExperiment} object
+#' @param PMRecording a PMRecording object, or list of PMRecording objects
+#' @param Names Names of the PMRecording, character vector w same number of entires as PMRecording
+#' @param Group Group variable or list thereof, of the same lenght as PMRecording
+#' @return A \link[=PMCollection]{PMCollection} object
 #' @export
-newPMExperiment<-function(PMSeries,
+newPMCollection<-function(PMRecording,
                           Names=NULL,
                           Group="Generic"){
                             Exps<-list()
-                            if(!is.list(PMSeries)){
-                              Exps[[1]]<-PMSeries
+                            if(!is.list(PMRecording)){
+                              Exps[[1]]<-PMRecording
                               if(is.null(Names)){
                                 Names<-character()
-                                Names<-PMSeries@RecordingParams@Filename
+                                Names<-PMRecording@RecordingParams@Filename
                               }
-                              params<-PMRecordingParams(ProtocolName=PMSeries@RecordingParams@ProtocolName,
-                                                        RecMode=PMSeries@RecordingParams@RecMode,
-                                                        Traces=PMSeries@RecordingParams@Traces
+                              params<-PMRecordingParams(ProtocolName=PMRecording@RecordingParams@ProtocolName,
+                                                        RecMode=PMRecording@RecordingParams@RecMode,
+                                                        Traces=PMRecording@RecordingParams@Traces
                               )
-                            }else{ #list of PMSeries Objects provided
-                              Exps<-PMSeries
+                            }else{ #list of PMRecording Objects provided
+                              Exps<-PMRecording
                               Group<-rep(Group,length(Exps))
                                 #Trim Traces if requires
-                                # could include function f trimming PMSeries to common minium or orignals, if required. Make dropTrace function therefore.
+                                # could include function f trimming PMRecording to common minium or orignals, if required. Make dropTrace function therefore.
 
                               if(is.null(Names)){
                                 Names<-character()
-                                Names<-unlist(lapply(PMSeries,function(x) x@RecordingParams@Filename))
+                                Names<-unlist(lapply(PMRecording,function(x) x@RecordingParams@Filename))
                               }
-                              params<-PMRecordingParams(ProtocolName=PMSeries[[1]]@RecordingParams@ProtocolName,
-                                                        RecMode=PMSeries[[1]]@RecordingParams@RecMode,
-                                                        Traces=PMSeries[[1]]@RecordingParams@Traces
+                              params<-PMRecordingParams(ProtocolName=PMRecording[[1]]@RecordingParams@ProtocolName,
+                                                        RecMode=PMRecording[[1]]@RecordingParams@RecMode,
+                                                        Traces=PMRecording[[1]]@RecordingParams@Traces
                               )
                             }
-                            out<-PMExperiment(
+                            out<-PMCollection(
                               Series=Exps,
                               Names=Names,
                               Group=as.factor(Group),

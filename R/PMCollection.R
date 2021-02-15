@@ -1,4 +1,4 @@
-validPMExperiment<-function(object) {
+validPMCollection<-function(object) {
   ret=0
   if (!(length(object@Series) == length(object@Names))){
     ret<-ret+1
@@ -18,9 +18,9 @@ validPMExperiment<-function(object) {
       stop("MetaData incompatible to items in Series")
     }
   }
-  if (!all(unlist(lapply(object@Series,function(x) getTraces(x@RecordingParams))) %in% getTraces(object@RecordingParams))){
+  if (!all(unlist(lapply(object@Series,function(x) TraceNames(x@RecordingParams))) %in% TraceNames(object@RecordingParams))){
     ret<-ret+1
-    print(getTraces(object@RecordingParams))
+    print(TraceNames(object@RecordingParams))
     stop("Unequal trace names")
   }
 
@@ -43,15 +43,15 @@ validPMExperiment<-function(object) {
 #' This class stores imported [Patch Master](https://www.heka.com/downloads/downloads_main.html#down_patchmaster)  Traces. Currently only checked for time series. It is strictly validated to assure data consistency
 #'
 #' \describe{
-#'    \item{Series}{A list containing individual PMSeries objects of identical dimensisons, ProtocolName, RecMode and trace names}
+#'    \item{Series}{A list containing individual PMRecording objects of identical dimensisons, ProtocolName, RecMode and trace names}
 #'    \item{Names}{Name identifier for the individual Series. Unique.}
 #'    \item{Group}{Group identifier for the individual Series.}
-#'    \item{MetaData}{A matrix with metatdata, e.g. calculated summay stats of each PMSeries object. One row per entry in Series allowed}
+#'    \item{MetaData}{A matrix with metatdata, e.g. calculated summay stats of each PMRecording object. One row per entry in Series allowed}
 #'    \item{Plots}{A slot to store ggplots}
 #'    \item{RecordingParams}{Stores the Recording parameters that must be identical for all entries in Series (ProtocolName, RecMode, Traces)}
 #'  }
-#' @exportClass PMExperiment
-PMExperiment<-setClass(Class="PMExperiment",
+#' @exportClass PMCollection
+PMCollection<-setClass(Class="PMCollection",
                   slots =  list(Series="list",
                                 Names="character",
                                 Group="factor",
@@ -64,5 +64,5 @@ PMExperiment<-setClass(Class="PMExperiment",
                     .MetaDataFx = list(),
                     Plots = list()
                   ),
-                  validity = validPMExperiment
+                  validity = validPMCollection
 )

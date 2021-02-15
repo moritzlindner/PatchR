@@ -1,24 +1,24 @@
-#' Converts PMSeries or PMExperiment into a long data frame
+#' Converts PMRecording or PMCollection into a long data frame
 #'
-#' Converts PMSeries or PMExperiment into a data frame in a long representation, analog to tidyR's gather
+#' Converts PMRecording or PMCollection into a data frame in a long representation, analog to tidyR's gather
 #'
-#' @param x a \link[=PMSeries]{PMSeries} or \link[=PMExperiment]{PMExperiment}object
+#' @param x a \link[=PMRecording]{PMRecording} or \link[=PMCollection]{PMCollection}object
 #' @exportMethod as.data.frame
 setMethod("as.data.frame",
-          "PMSeries",
+          "PMRecording",
           function(x,
                    ...){
-            Traces<-rep(getTraces(x),
-                        each=(length(getSweeps(x))*length(getTimeTrace(x))))
-            sweeps<-type.convert(rep(rep(getSweeps(x),
-                                         each=length(getTimeTrace(x))),times=length(getTraces(x))))
-            sweeps<-ordered(sweeps,levels=levels(getSweeps(x)))
+            Traces<-rep(TraceNames(x),
+                        each=(length(SweepNames(x))*length(getTimeTrace(x))))
+            sweeps<-type.convert(rep(rep(SweepNames(x),
+                                         each=length(getTimeTrace(x))),times=length(TraceNames(x))))
+            sweeps<-ordered(sweeps,levels=levels(SweepNames(x)))
             times<-rep(getTimeTrace(x),
-                       times=(length(getSweeps(x))*length(getTraces(x))))
+                       times=(length(SweepNames(x))*length(TraceNames(x))))
 
             out<-data.frame("Traces"=Traces,"Sweeps"=sweeps,"Times"=times)
             values<-NULL
-            for (i in getTraces(x)){
+            for (i in TraceNames(x)){
               values<-c(values,unlist(apply(x@Data[[i]],2,function(x)x)))
             }
             cbind(out,values)
@@ -28,7 +28,7 @@ setMethod("as.data.frame",
 #' @import plyr
 #' @exportMethod as.data.frame
 setMethod("as.data.frame",
-          "PMExperiment",
+          "PMCollection",
           function(x,
                    ...){
             lst<-plyr::ldply(x@Series,as.data.frame)

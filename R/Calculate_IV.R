@@ -2,7 +2,7 @@ setGeneric(name="Calculate_IV",
            def=function(object,
                         X_FROM,
                         X_TO,
-                        ReturnPMTRace=T,
+                        ReturnPMRecording=T,
                         ITrace="I-mon",
                         VTrace="V-mon",
                         x_D_FROM=NA,
@@ -12,23 +12,23 @@ setGeneric(name="Calculate_IV",
            }
 )
 
-#' Caluclates IV from a PMSeries or PMExperiment object
+#' Caluclates IV from a PMRecording or PMCollection object
 #'
-#' This function averages \link[=PMSeries]{PMSeries} objects by Trace, Sweep or Time. If object is a \link[=PMExperiment]{PMExperiment}. then does so for each Series stored in the object
+#' This function averages \link[=PMRecording]{PMRecording} objects by Trace, Sweep or Time. If object is a \link[=PMCollection]{PMCollection}. then does so for each Series stored in the object
 #'
-#' @param object a \link[=PMSeries]{PMSeries} object
+#' @param object a \link[=PMRecording]{PMRecording} object
 #' @param X_FROM,X_TO,x_D_FROM,X_D_TO Time points to perform averaging for IV prodcution
 #' @param ITrace,VTrace Name of the traces containig Current(I) and and Voltage(V)
-#' @param ReturnPMTRace whether to return results as a \link[=PMSeries]{PMSeries}  with an additional, computed trace. If set to \code{FALSE}, will return a \link[=base::matrix]{base::matrix}. Default is \code{TRUE}.
+#' @param ReturnPMRecording whether to return results as a \link[=PMRecording]{PMRecording}  with an additional, computed trace. If set to \code{FALSE}, will return a \link[=base::matrix]{base::matrix}. Default is \code{TRUE}.
 #' @import ggplot2
-#' @return a matrix or PMSeries with IV \link[=base::matrix]{base::matrix} and \link[=ggplot2::ggplot]{ggplot2::ggplot} stored in the MetaData and Plot slot, resp.
+#' @return a matrix or PMRecording with IV \link[=base::matrix]{base::matrix} and \link[=ggplot2::ggplot]{ggplot2::ggplot} stored in the MetaData and Plot slot, resp.
 #' @exportMethod Calculate_IV
 setMethod("Calculate_IV",
-          "PMSeries",
+          "PMRecording",
           function(object,
                    X_FROM,
                    X_TO,
-                   ReturnPMTRace=T,
+                   ReturnPMRecording=T,
                    ITrace="I-mon",
                    VTrace="V-mon",
                    x_D_FROM=NA,
@@ -42,8 +42,8 @@ setMethod("Calculate_IV",
               substract<-apply(object,1,mean)
               out[,"I.Substracted"]<-out[,ITrace]-substract[,ITrace]
             }
-            if(ReturnPMTRace){
-              object<-AddMetaData(out,c(colnames(out)))
+            if(ReturnPMRecording){
+              object<-AddMetaData(object,out)
 
               out<-as.data.frame(out)
               rownames(out)<-NULL
@@ -54,8 +54,8 @@ setMethod("Calculate_IV",
                 theme_classic()+
                 theme(legend.position = "none",
                       text = element_text(size=8))+
-                xlab(paste("Voltage [",object@Units[getTraces(object)==VTrace],"]"))+
-                ylab(paste("Current [",object@Units[getTraces(object)==ITrace],"]"))
+                xlab(paste("Voltage [",object@Units[TraceNames(object)==VTrace],"]"))+
+                ylab(paste("Current [",object@Units[TraceNames(object)==ITrace],"]"))
 
               if(!is.na(X_D_TO)){
                 object@Plots[["IV.Substracted"]]<-ggplot(as.data.frame(out))+
@@ -63,8 +63,8 @@ setMethod("Calculate_IV",
                   theme_classic()+
                   theme(legend.position = "none",
                         text = element_text(size=8))+
-                  xlab(paste("Voltage [",object@Units[getTraces(object)==VTrace],"]"))+
-                  ylab(paste("Current [",object@Units[getTraces(object)=="I.Substracted"],"]"))
+                  xlab(paste("Voltage [",object@Units[TraceNames(object)==VTrace],"]"))+
+                  ylab(paste("Current [",object@Units[TraceNames(object)=="I.Substracted"],"]"))
               }
 
               out<-object
@@ -75,15 +75,15 @@ setMethod("Calculate_IV",
 
 #' @exportMethod Calculate_IV
 setMethod("Calculate_IV",
-          "PMExperiment",
+          "PMCollection",
           function(object,
                    X_FROM,
                    X_TO,
-                   ReturnPMTRace=T,
+                   ReturnPMRecording=T,
                    ITrace="I-mon",
                    VTrace="V-mon",
                    x_D_FROM=NA,
                    X_D_TO=NA){
-            lapply(object,function(x){Calculate_IV(object,X_FROM,X_TO,ReturnPMTRace,ITrace="I-mon",VTrace="V-mon",x_D_FROM,X_D_TO)})
+            lapply(object,function(x){Calculate_IV(object,X_FROM,X_TO,ReturnPMRecording,ITrace="I-mon",VTrace="V-mon",x_D_FROM,X_D_TO)})
           }
 )

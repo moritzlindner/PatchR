@@ -7,16 +7,16 @@ setGeneric(name="BuildSeriesPlot",
 )
 
 
-#' Basic ggplots for time series data
+#' Basic ggplots for  series data
 #'
 #' This function creats a basic visualization for each Trace in the object. These will be stored in the Plots slot
 #'
-#' @param object a \link[=PMSeries]{PMSeries} object object
-#' @return A matrix or \link[=PMSeries]{PMSeries} object
+#' @param object a \link[=PMRecording]{PMRecording} object object
+#' @return A \link[=PMRecording]{PMRecording} object
 #' @import ggplot2
 #' @exportMethod BuildSeriesPlot
 setMethod("BuildSeriesPlot",
-          "PMSeries",
+          "PMRecording",
           function(object){
             tmp.object<-downsample(object,npnts.out = 1000)
             tmp.object<-convenientScales(tmp.object)

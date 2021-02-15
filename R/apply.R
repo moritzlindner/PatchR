@@ -1,19 +1,19 @@
-#' apply function for PMSeries objects
+#' apply function for PMRecording objects
 #'
 #' This is the PatchMastR analog to "apply"
 #'
-#' @param X a PMSeries object
+#' @param X a PMRecording object
 #' @param MARGIN a vector giving the subscripts which the function will be applied along. Understands "Time", "Sweep","Trace", or 1-3 resp.
 #' @param FUN the function to be applied
-#' @param ReturnPMTRace whether to return results as a PMSeries with an additional, computed trace. Default is \var{FALSE}, then returns a matrix.
-#' @return A matrix or \link[=PMSeries]{PMSeries} object
+#' @param ReturnPMRecording whether to return results as a PMRecording with an additional, computed trace. Default is \var{FALSE}, then returns a matrix.
+#' @return A matrix or \link[=PMRecording]{PMRecording} object
 #' @exportMethod apply
 setMethod("apply",
-          "PMSeries",
+          "PMRecording",
           function(X,
                    MARGIN,
                    FUN,
-                   ReturnPMTRace=F){
+                   ReturnPMRecording=F){
             # translate Margins
             if(is.character(MARGIN)){
               MARG<-MARGIN
@@ -44,17 +44,17 @@ setMethod("apply",
             margins<-1:length(dim(DAT))
             out<-apply(DAT,margins[!(margins %in% MARGIN)],FUN)
             if(MARGIN==1){
-              colnames(out)<-getTraces(X)
-              rownames(out)<-getSweeps(X)
+              colnames(out)<-TraceNames(X)
+              rownames(out)<-SweepNames(X)
             }
             if(MARGIN==2){
               out<-cbind(X@TimeTrace,out)
-              colnames(out)<-c(paste0("Time [",X@TimeUnit,"]"),getTraces(X))
+              colnames(out)<-c(paste0("Time [",X@TimeUnit,"]"),TraceNames(X))
             }
             if(MARGIN==3){
-              if(!ReturnPMTRace){
+              if(!ReturnPMRecording){
                 out<-cbind(X@TimeTrace,out)
-                colnames(out)<-c(paste0("Time [",X@TimeUnit,"]"),getSweeps(X))
+                colnames(out)<-c(paste0("Time [",X@TimeUnit,"]"),SweepNames(X))
               }else
                 X<-addTrace(object=X,Trace=as.character(substitute(mean))[1],Unit="NA",mtx=out )
               out<-X

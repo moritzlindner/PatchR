@@ -6,40 +6,40 @@
 \alias{PatchMasteR-package}
 \title{PatchMasteR: An environment for handling and analzing Patch Clamp measuremnts recorded with HEKA Patchmaster}
 \description{
-Core component of PatchMasteR is the Class PMTrace, wich Stores a Series imported from a Patchmaster *.dat file. Several PMTraces can be assembled into a PMExperiment.
+Core component of PatchMasteR is the Class PMTrace, wich Stores a Series imported from a Patchmaster *.dat file. Several PMTraces can be assembled into a PMCollection.
 }
 \section{Import functions}{
 
-* \link[=ImportPMSeries]{ImportPMSeries}
+* \link[=ImportPMRecording]{ImportPMRecording}
 * \link[=addTrace]{addTrace}
 }
 
-\section{Accession functions for \link[=PMSeries]{PMSeries} objects}{
+\section{Accession functions for \link[=PMRecording]{PMRecording} objects}{
 
 * \link[=getCs]{getCs}
-* \link[=getSweeps]{getSweeps}
+* \link[=SweepNames]{SweepNames}
 * \link[=getTimeTrace]{getTimeTrace}
-* \link[=getTraces]{getTraces}
+* \link[=TraceNames]{TraceNames}
 * \link[=as.data.frame]{as.data.frame}
 }
 
-\section{Accession functions for \link[=PMExperiment]{PMExperiment} objects}{
+\section{Accession functions for \link[=PMCollection]{PMCollection} objects}{
 
 * \link[=as.data.frame]{as.data.frame}
 }
 
 \section{Visuaization functions}{
 
-* \link[=BuildSeriesPlot]{BuildSeriesPlot} (\link[=PMSeries]{PMSeries} objects)
-* \link[=InspectSeries]{InspectSeries} (\link[=PMSeries]{PMSeries} objects)
+* \link[=BuildSeriesPlot]{BuildSeriesPlot} (\link[=PMRecording]{PMRecording} objects)
+* \link[=InspectSeries]{InspectSeries} (\link[=PMRecording]{PMRecording} objects)
 }
 
 \section{Math, conversion and subsampling functions}{
 
-* \link[=CurrentDensity]{CurrentDensity} (only for for \link[=PMSeries]{PMSeries} objects)
+* \link[=CurrentDensity]{CurrentDensity} (only for for \link[=PMRecording]{PMRecording} objects)
 * \link[=SubsetData]{SubsetData}
 * \link[=CalculateIV]{CalculateIV}
-* \link[=apply]{apply} for for \link[=PMSeries]{PMSeries} and \link[=lapply]{lapply} for for \link[=PMExperiment]{PMExperiment}
+* \link[=apply]{apply} for for \link[=PMRecording]{PMRecording} and \link[=lapply]{lapply} for for \link[=PMCollection]{PMCollection}
 }
 
 \keyword{internal}

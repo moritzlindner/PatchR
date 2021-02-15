@@ -16,7 +16,7 @@ setGeneric(name="InspectSeries",
 #' @import plotly
 #' @exportMethod InspectSeries
 setMethod("InspectSeries",
-          "PMSeries",
+          "PMRecording",
           definition=function(object,Trace="I.mon"){
             if (!is.null(object@Plots[[Trace]])){
               ggplotly(object@Plots[[Trace]])

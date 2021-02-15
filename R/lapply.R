@@ -1,20 +1,20 @@
-#' apply function for PMExperiment objects
+#' apply function for PMCollection objects
 #'
-#' This is the PatchMastR analog to "lapply" for PMExperiment objects
+#' This is the PatchMastR analog to "lapply" for PMCollection objects
 #'
-#' @param X a PMExperiment object
+#' @param X a PMCollection object
 #' @param FUN the function to be applied
-#' @return A \link[=PMExperiment]{PMExperiment} object
-#' @param ReturnPMExperiment whether to return results as a PMExperiment. Default is \var{FALSE}, then returns a list
+#' @return A \link[=PMCollection]{PMCollection} object
+#' @param ReturnPMCollection whether to return results as a PMCollection. Default is \var{FALSE}, then returns a list
 #' @exportMethod lapply
 setMethod("lapply",
-          "PMExperiment",
-          function(X, FUN, ReturnPMExperiment=F){
+          "PMCollection",
+          function(X, FUN, ReturnPMCollection=F){
             dat<-lapply(X@Series,FUN)
-            if(ReturnPMExperiment){
+            if(ReturnPMCollection){
               X@Series<-dat
-               if(!PatchMasteR:::validPMExperiment(X)){
-                 stop(paste("Applying to PMExperiment", deparse(substitute(object)), "failed. No valid PMExperiment object returned"))
+               if(!PatchMasteR:::validPMCollection(X)){
+                 stop(paste("Applying to PMCollection", deparse(substitute(object)), "failed. No valid PMCollection object returned"))
                }
               print("OK")
               return(X)

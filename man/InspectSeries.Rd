@@ -4,7 +4,7 @@
 \alias{InspectSeries}
 \title{InspectSeries}
 \usage{
-\S4method{InspectSeries}{PMSeries}(object, Trace = "I.mon")
+\S4method{InspectSeries}{PMRecording}(object, Trace = "I.mon")
 }
 \arguments{
 \item{object}{a \link[=base::matrix]{base::matrix} object}

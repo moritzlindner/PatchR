@@ -6,17 +6,17 @@ setGeneric(name="AddMetaData",
              standardGeneric("AddMetaData")
            }
 )
-#' Adds metadata to an PMExperiment object
+#' Adds metadata to an PMCollection object
 #'
-#' This function adds metadata to an PMExperiment object. The MetaData slot is a matrix with one row per sweep in PMSeries and one row per Series in PMExperiments. The calling function is stored in the .MetaDataFx slot.
+#' This function adds metadata to an PMCollection object. The MetaData slot is a matrix with one row per sweep in PMRecording and one row per Series in PMCollections. The calling function is stored in the .MetaDataFx slot.
 #'
-#' @param object A \link[=PMSeries]{PMSeries} or \link[=PMExperiment]{PMExperiment} object
+#' @param object A \link[=PMRecording]{PMRecording} or \link[=PMCollection]{PMCollection} object
 #' @param values to be added
 #' @param title title for metadata column(s).
-#' @return A \link[=PMSeries]{PMSeries} or \link[=PMExperiment]{PMExperiment}  object, respectively
+#' @return A \link[=PMRecording]{PMRecording} or \link[=PMCollection]{PMCollection}  object, respectively
 #' @exportMethod AddMetaData
 setMethod("AddMetaData",
-          "PMSeries",
+          "PMRecording",
           function(object,
                    values,
                    title=colnames(values)){
@@ -39,8 +39,8 @@ setMethod("AddMetaData",
               colnames(object@MetaData)<-cbind(rownames(object@MetaData),title)
             }
 
-            if(!PatchMasteR:::validPPMSeries(object)){
-              stop(paste("Adding Metadata to PMSeries", deparse(substitute(object)), "failed. incorrect dimensison"))
+            if(!PatchMasteR:::validPPMRecording(object)){
+              stop(paste("Adding Metadata to PMRecording", deparse(substitute(object)), "failed. incorrect dimensison"))
             }
             object
           }
@@ -49,7 +49,7 @@ setMethod("AddMetaData",
 
 #' @exportMethod AddMetaData
 setMethod("AddMetaData",
-          "PMExperiment",
+          "PMCollection",
           function(object,
                    values,
                    title=colnames(values)){
@@ -73,8 +73,8 @@ setMethod("AddMetaData",
               object@.MetaDataFx<-append(object@.MetaDataFx,sys.calls()[[1]])
             }
 
-            if(!PatchMasteR:::validPMExperiment(object)){
-              stop(paste("Adding Metadata to PMExperiment", deparse(substitute(object)), "failed. incorrect dimensison"))
+            if(!PatchMasteR:::validPMCollection(object)){
+              stop(paste("Adding Metadata to PMCollection", deparse(substitute(object)), "failed. incorrect dimensison"))
             }
             object
           }

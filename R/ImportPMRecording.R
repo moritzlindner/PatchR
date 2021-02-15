@@ -1,14 +1,14 @@
-#' Import Series from Patch Master *.dat file into a PMSeries object
+#' Import Series from Patch Master *.dat file into a PMRecording object
 #'
-#' This function imports Series from Patch Master *.dat files and creates PMSeries objects
+#' This function imports Series from Patch Master *.dat files and creates PMRecording objects
 #'
 #' @param filename path to a [Patch Master](https://www.heka.com/downloads/downloads_main.html#down_patchmaster) *.dat file.
 #' @param experiment Index of Experiment to import (1st order hirarchy in PM dat file).
 #' @param series Index of Series to import (2nd order hirarchy in PM dat file).
 #' @param traces Traces to import (indices). Must be vector of numerics of length > 0.
-#' @return A \link[=PMSeries]{PMSeries} object
+#' @return A \link[=PMRecording]{PMRecording} object
 #' @export
-ImportPMSeries<-function(filename,
+ImportPMRecording<-function(filename,
                    experiment=1,
                    series=1,
                    traces=c(1,2)){
@@ -36,7 +36,7 @@ ImportPMSeries<-function(filename,
       Data<-list()
       Data[[imp$sweeps$tracename]]<-as.matrix(imp$sweeps$y)
 
-      out<-PMSeries(Traces=imp$sweeps$tracename,
+      out<-PMRecording(Traces=imp$sweeps$tracename,
                    Units=imp$sweeps$YUnit,
                    TimeTrace=imp$sweeps$x[,1],
                    TimeUnit = imp$sweeps$XUnit,

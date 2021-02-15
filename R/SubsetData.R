@@ -1,7 +1,7 @@
 setGeneric(name="SubsetData",
            def=function(object,
-                        Traces=getTraces(object),
-                        Sweeps=getSweeps(object),
+                        Traces=TraceNames(object),
+                        Sweeps=SweepNames(object),
                         Time=range(getTimeTrace(object)),
                         Series=NULL,
                         Group=NULL,
@@ -11,23 +11,23 @@ setGeneric(name="SubsetData",
              standardGeneric("SubsetData")
            }
 )
-#' Subset a PMSeries object
+#' Subset a PMRecording object
 #'
-#' This function subsets \link[=PMSeries]{PMSeries} or \link[=PMExperiment]{PMExperiment} objects by Trace, Sweep or Time
+#' This function subsets \link[=PMRecording]{PMRecording} or \link[=PMCollection]{PMCollection} objects by Trace, Sweep or Time
 #'
-#' @param object a \link[=PMSeries]{PMSeries} or \link[=PMExperiment]{PMExperiment} object
+#' @param object a \link[=PMRecording]{PMRecording} or \link[=PMCollection]{PMCollection} object
 #' @param Traces,Sweeps List of Traces/Sweeps to keep
 #' @param Time either a range of time points to keep, or, if \code{TimeExclusive} is \code{TRUE}, then two particular time points
-#' @param Series Subset by Series name. Only for \link[=PMExperiment]{PMExperiment}.
-#' @param Group Subset by Group name. Only for \link[=PMExperiment]{PMExperiment}.
+#' @param Series Subset by Series name. Only for \link[=PMCollection]{PMCollection}.
+#' @param Group Subset by Group name. Only for \link[=PMCollection]{PMCollection}.
 #' @param TimeExclusive Keep only the two time points stated under Time, not the range
-#' @return A \link[=PMSeries]{PMSeries} object
+#' @return A \link[=PMRecording]{PMRecording} object
 #' @exportMethod SubsetData
 setMethod("SubsetData",
-          "PMSeries",
+          "PMRecording",
           function(object,
-                   Traces=getTraces(object),
-                   Sweeps=getSweeps(object),
+                   Traces=TraceNames(object),
+                   Sweeps=SweepNames(object),
                    Time=range(getTimeTrace(object)),
                    TimeExclusive=F,
                    nowarnings=F)
@@ -36,15 +36,15 @@ setMethod("SubsetData",
               # FIXME !!! Below: only show this if any of that slots is not empty
               warning("Subsetting clears all analysis and plotting slots for data consistency!")
             }
-            if(all.equal(Traces, getTraces(object))!=TRUE){
+            if(all.equal(Traces, TraceNames(object))!=TRUE){
               cat("Only keep Traces:", Traces,"\n")
-              if(!all(Traces %in% getTraces(object))){
+              if(!all(Traces %in% TraceNames(object))){
                 stop("Traces to subset not in object")
               }
             }
-            if(all.equal(Sweeps, getSweeps(object))!=TRUE){
+            if(all.equal(Sweeps, SweepNames(object))!=TRUE){
               cat("Only keep Sweeps: ", Sweeps,"\n")
-              if(!all(Sweeps %in% getSweeps(object))){
+              if(!all(Sweeps %in% SweepNames(object))){
                 stop("Traces to subset not in object")
               }
             }
@@ -65,14 +65,14 @@ setMethod("SubsetData",
             RecordingParams@Traces<-RecordingParams@Traces[RecordingParams@Traces %in% Traces]
             DATA<-list()
             for (i in Traces){
-              DATA[[i]]<-as.matrix(object@Data[[i]][getTimeTrace(object) %in% Time,getSweeps(object) %in% Sweeps])
+              DATA[[i]]<-as.matrix(object@Data[[i]][getTimeTrace(object) %in% Time,SweepNames(object) %in% Sweeps])
             }
-            PMSeries(Traces=getTraces(object)[getTraces(object) %in% Traces],
-                    Units=object@Units[getTraces(object) %in% Traces],
+            PMRecording(Traces=TraceNames(object)[TraceNames(object) %in% Traces],
+                    Units=object@Units[TraceNames(object) %in% Traces],
                     TimeTrace=getTimeTrace(object)[getTimeTrace(object) %in% Time],
                     TimeUnit=object@TimeUnit,
-                    Sweeps=getSweeps(object)[getSweeps(object) %in% Sweeps],
-                    SweepTimes=object@SweepTimes[getSweeps(object) %in% Sweeps],
+                    Sweeps=SweepNames(object)[SweepNames(object) %in% Sweeps],
+                    SweepTimes=object@SweepTimes[SweepNames(object) %in% Sweeps],
                     Data=DATA,
                     RecordingParams=RecordingParams
             )
@@ -81,22 +81,22 @@ setMethod("SubsetData",
 
 #' @exportMethod SubsetData
 setMethod("SubsetData",
-          "PMExperiment",
+          "PMCollection",
           function(object,
-                   Traces=getTraces(object@Series[[1]]),
-                   Sweeps=getSweeps(object@Series[[1]]),
+                   Traces=TraceNames(object@Series[[1]]),
+                   Sweeps=SweepNames(object@Series[[1]]),
                    Time=range(getTimeTrace(object@Series[[1]])),
                    Series=NULL,
                    Group=NULL,
                    TimeExclusive=F,
                    nowarnings=F)
           {
-            object<-lapply(object,function(x) SubsetData(x,Traces,Sweeps,Time,TimeExclusive,nowarnings=T),ReturnPMExperiment=T)
+            object<-lapply(object,function(x) SubsetData(x,Traces,Sweeps,Time,TimeExclusive,nowarnings=T),ReturnPMCollection=T)
 
             if (!is.null(Group)){
               warning("Plots droped for consistency.")
                 keep<-as.character(object@Group) %in% as.character(Group)
-                object<-PMExperiment(
+                object<-PMCollection(
                   Series=object@Series[keep],
                   Names=object@Names[keep],
                   Group=object@Group[keep],
@@ -108,7 +108,7 @@ setMethod("SubsetData",
             if (!is.null(Series)){
               warning("Plots droped for consistency.")
               if(is.numeric(Series)){
-                object<-PMExperiment(
+                object<-PMCollection(
                   Series=object@Series[Series],
                   Names=object@Names[Series],
                   Group=object@Group[Series],
@@ -117,7 +117,7 @@ setMethod("SubsetData",
                 )
               }else{
                 keep<-object@Names %in% Series
-                object<-PMExperiment(
+                object<-PMCollection(
                   Series=object@Series[keep],
                   Names=object@Names[keep],
                   Group=object@Group[keep],
