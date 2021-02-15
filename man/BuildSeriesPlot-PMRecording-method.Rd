@@ -2,7 +2,7 @@
 % Please edit documentation in R/BuildSeriesPlot.R
 \name{BuildSeriesPlot,PMRecording-method}
 \alias{BuildSeriesPlot,PMRecording-method}
-\title{Basic ggplots for time series data}
+\title{Basic ggplots for  series data}
 \usage{
 \S4method{BuildSeriesPlot}{PMRecording}(object)
 }
@@ -10,7 +10,7 @@
 \item{object}{a \link[=PMRecording]{PMRecording} object object}
 }
 \value{
-A matrix or \link[=PMRecording]{PMRecording} object
+A \link[=PMRecording]{PMRecording} object
 }
 \description{
 This function creats a basic visualization for each Trace in the object. These will be stored in the Plots slot

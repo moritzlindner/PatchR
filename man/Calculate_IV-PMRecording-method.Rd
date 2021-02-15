@@ -8,7 +8,7 @@
   object,
   X_FROM,
   X_TO,
-  ReturnPMTRace = T,
+  ReturnPMRecording = T,
   ITrace = "I-mon",
   VTrace = "V-mon",
   x_D_FROM = NA,
@@ -20,7 +20,7 @@
 
 \item{X_FROM, X_TO, x_D_FROM, X_D_TO}{Time points to perform averaging for IV prodcution}
 
-\item{ReturnPMTRace}{whether to return results as a \link[=PMRecording]{PMRecording}  with an additional, computed trace. If set to \code{FALSE}, will return a \link[=base::matrix]{base::matrix}. Default is \code{TRUE}.}
+\item{ReturnPMRecording}{whether to return results as a \link[=PMRecording]{PMRecording}  with an additional, computed trace. If set to \code{FALSE}, will return a \link[=base::matrix]{base::matrix}. Default is \code{TRUE}.}
 
 \item{ITrace, VTrace}{Name of the traces containig Current(I) and and Voltage(V)}
 }
