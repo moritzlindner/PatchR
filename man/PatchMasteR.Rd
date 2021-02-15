@@ -3,17 +3,18 @@
 \docType{package}
 \name{PatchMasteR}
 \alias{PatchMasteR}
-\alias{PatchMasteR-package}
 \title{PatchMasteR: An environment for handling and analzing Patch Clamp measuremnts recorded with HEKA Patchmaster}
 \description{
-Core component of PatchMasteR is the Class PMRecording, wich Stores a Series imported from a Patchmaster *.dat file. Several PMRecordings can be assembled into a PMCollection.
+Core component of PatchMasteR is the PMRecording class, wich stores a series imported from a Patchmaster *.dat file. Several integrety checks are implemented into the PMRecording class to assure data integrity is maintained.
+Multiple recordings (PMRecording) objects can be stored and processed within the PMCollection class.
 }
 \section{Import and creation functions}{
 
-* \link[=ImportPMRecording]{ImportPMRecording}
-* \link[=addTrace]{addTrace}
-* \link[=addPMCollection]{addPMCollection}
-* \link[=newPMCollection]{newPMCollection}
+* \link[=ImportPMRecording]{ImportPMRecording} (\link[=PMRecording]{PMRecording} objects)
+* \link[=addTrace]{addTrace} (\link[=PMRecording]{PMRecording} objects)
+* \link[=newPMCollection]{newPMCollection} (\link[=PMCollection]{PMCollection} objects)
+* \link[=addPMRecording]{addPMRecording} (\link[=PMCollection]{PMCollection} objects)
+* \link[=dropPMRecording]{addPMRecording} (\link[=PMCollection]{PMCollection} objects)
 }
 
 \section{Accession functions for \link[=PMRecording]{PMRecording} objects}{
@@ -37,8 +38,8 @@ Core component of PatchMasteR is the Class PMRecording, wich Stores a Series imp
 \section{Visuaization functions}{
 
 * \link[=BuildSeriesPlot]{BuildSeriesPlot} (\link[=PMRecording]{PMRecording} objects)
-* \link[=InspectSeries]{InspectSeries} (\link[=PMRecording]{PMRecording} objects)
-* visualize Recparams/outliers
+* \link[=BuildQCPlot]{BuildSeriesPlot} (\link[=PMCollection]{PMCollection} objects)
+* \link[=Inspect]{Inspect} (\link[=PMRecording]{PMRecording} and \link[=PMCollection]{PMCollection} oojects)
 *visualize time series
 }
 
@@ -50,4 +51,4 @@ Core component of PatchMasteR is the Class PMRecording, wich Stores a Series imp
 * \link[=apply]{apply} for for \link[=PMRecording]{PMRecording} and \link[=lapply]{lapply} for for \link[=PMCollection]{PMCollection}
 }
 
-\keyword{internal}
+\keyword{internal#'}

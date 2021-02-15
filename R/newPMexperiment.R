@@ -23,7 +23,9 @@ newPMCollection<-function(PMRecording,
                               )
                             }else{ #list of PMRecording Objects provided
                               Exps<-PMRecording
-                              Group<-rep(Group,length(Exps))
+                              if(length(Group)==1){
+                                Group<-rep(Group,length(Exps))
+                              }
                                 #Trim Traces if requires
                                 # could include function f trimming PMRecording to common minium or orignals, if required. Make dropTrace function therefore.
 

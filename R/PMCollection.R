@@ -10,7 +10,7 @@ validPMCollection<-function(object) {
   }
   if (!(length(object@Series) == length(object@Group))){
     ret<-ret+1
-    stop("Group list incompatible to items in Series")
+    stop("Group list length incompatible.")
   }
   if(!all(dim(object@MetaData)==0)){
     if (!(dim(object@MetaData)[1] == length(object@Group))){

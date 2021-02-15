@@ -1,27 +1,38 @@
 
-setGeneric(name="InspectSeries",
-           def=function(object,Trace="I.mon")
+setGeneric(name="Inspect",
+           def=function(object,what="I.mon")
            {
-             standardGeneric("InspectSeries")
+             standardGeneric("Inspect")
            }
 )
 
-#' InspectSeries
+#' Inspect
 #'
-#' This function plots an interactive \link[=plotly]{plotly} graph from a plot generated using \link[=BuildSeriesPlot]{BuildSeriesPlot}.
+#' This function plots an interactive \link[=plotly]{plotly} graph from a plot generated using a Build method.
 #'
-#' @name InspectSeries
 #' @param object a \link[=base::matrix]{base::matrix} object
-#' @param Trace Specifies a trace to be plotted
+#' @param what Specifies a plot to be plotted. any ggplot inside the Plots slot can be named
 #' @import plotly
-#' @exportMethod InspectSeries
-setMethod("InspectSeries",
+#' @exportMethod Inspect
+setMethod("Inspect",
           "PMRecording",
-          definition=function(object,Trace="I.mon"){
-            if (!is.null(object@Plots[[Trace]])){
-              ggplotly(object@Plots[[Trace]])
+          definition=function(object,what="I.mon"){
+            if (!is.null(object@Plots[[what]])){
+              ggplotly(object@Plots[[what]])
             }else{
-              warning(paste("Use BuildSeriesPlot first to buld Series plot for Trace ", Trace))
+              warning(paste("Use Build* first to generate ", what))
+            }
+          }
+)
+
+#' @exportMethod Inspect
+setMethod("Inspect",
+          "PMCollection",
+          definition=function(object,what="I.mon"){
+            if (!is.null(object@Plots[[what]])){
+              ggplotly(object@Plots[[what]])
+            }else{
+              warning(paste("Use Build* first to generate ", what))
             }
           }
 )

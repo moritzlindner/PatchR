@@ -1,4 +1,4 @@
-setGeneric(name="addPMCollection",
+setGeneric(name="addPMRecording",
            def=function(object,
                         PMRecording,
                         Names=if(is.list(PMRecording)){
@@ -8,7 +8,7 @@ setGeneric(name="addPMCollection",
                         },
                         Group)
            {
-             standardGeneric("addPMCollection")
+             standardGeneric("addPMRecording")
            }
 )
 
@@ -21,8 +21,8 @@ setGeneric(name="addPMCollection",
 #' @param Names names for imported PMRecording. Standard is variable name given in PMRecording if single PMRecording, i
 #' @param Group Group variable or list thereof, of the same lenght as PMRecording
 #' @return A \link[=PMCollection]{PMCollection} object
-#' @exportMethod addPMCollection
-setMethod("addPMCollection",
+#' @exportMethod addPMRecording
+setMethod("addPMRecording",
           "PMCollection",
           function(object,
                    PMRecording,

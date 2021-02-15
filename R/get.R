@@ -86,6 +86,27 @@ setMethod("getCs",
           }
 )
 
+setGeneric(name="getGroupMembers",
+           def=function(object,Group)
+           {
+             standardGeneric("getGroupMembers")
+           }
+)
+
+#' getGroupMembers
+#'
+#' get names of all memebers of a group from PMCollection
+#'
+#' @param object A PMCollection object
+#' @param Goup one or more name(s) of Groups contained in PMCollection
+#' @exportMethod getGroupMembers
+setMethod("getGroupMembers",
+          "PMCollection",
+          function(object,Group) {
+            object@Names[object@Group %in% Group]
+          }
+)
+
 
 setGeneric(name="RecParam",
            def=function(object,
@@ -121,7 +142,9 @@ setMethod("RecParam",
 setMethod("RecParam",
           "PMCollection",
           function(object,param) {
-            lapply(object, function (x) x@RecordingParams[[param]])
+            out<-lapply(object,function(x){unlist(lapply(paste0("x@RecordingParams@",param),function(y){eval(parse(text=y))}))})
+            colnames(out)<-param
+            out
           }
 )
 

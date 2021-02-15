@@ -22,7 +22,6 @@ setMethod("convenientScales",
               leading0<-min(decimals[decimals>leading0])
               object@Units[[i]]<-gsub("[^a-zA-Z]", "", sitools::f2si(10^-(leading0),object@Units[[i]]))
               object@Data[[TraceNames(object)[i]]]<-object@Data[[TraceNames(object)[i]]]*10^(leading0)
-              print(dim(object@Data[[TraceNames(object)[i]]]))
             }
             object
           }
@@ -32,6 +31,6 @@ setMethod("convenientScales",
 setMethod("convenientScales",
           "PMCollection",
           function(object){
-            lapply(object,convenientScales)
+            lapply(object,convenientScales,ReturnPMCollection=T)
           }
 )
