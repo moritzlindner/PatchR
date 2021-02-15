@@ -13,7 +13,6 @@ setGeneric(name="BuildQCPlot",
 #'
 #' @param object a \link[=PMCollection]{PMCollection} object object
 #' @return A \link[=PMCollection]{PMCollection} object
-#' @import ggplot2 plotly sitools
 #' @exportMethod BuildQCPlot
 setMethod("BuildQCPlot",
           "PMCollection",

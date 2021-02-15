@@ -1,7 +1,9 @@
 #' PatchMasteR: An environment for handling and analzing Patch Clamp measuremnts recorded with HEKA Patchmaster
 #'
 #' Core component of PatchMasteR is the PMRecording class, wich stores a series imported from a Patchmaster *.dat file. Several integrety checks are implemented into the PMRecording class to assure data integrity is maintained.
-#' Multiple recordings (PMRecording) objects can be stored and processed within the PMCollection class.
+#' Multiple recordings (PMRecording) objects can be stored and processed within the PMCollection class.#'
+#'
+#' @import ggplot2 plotly sitools
 #'
 #' @section Import and creation functions:
 #' * \link[=ImportPMRecording]{ImportPMRecording} (\link[=PMRecording]{PMRecording} objects)
