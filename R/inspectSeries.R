@@ -12,7 +12,6 @@ setGeneric(name="Inspect",
 #'
 #' @param object a \link[=base::matrix]{base::matrix} object
 #' @param what Specifies a plot to be plotted. any ggplot inside the Plots slot can be named
-#' @import plotly
 #' @exportMethod Inspect
 setMethod("Inspect",
           "PMRecording",

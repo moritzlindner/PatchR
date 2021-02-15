@@ -13,7 +13,6 @@ setGeneric(name="BuildSeriesPlot",
 #'
 #' @param object a \link[=PMRecording]{PMRecording} object object
 #' @return A \link[=PMRecording]{PMRecording} object
-#' @import ggplot2
 #' @exportMethod BuildSeriesPlot
 setMethod("BuildSeriesPlot",
           "PMRecording",
