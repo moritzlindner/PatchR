@@ -51,4 +51,4 @@ Multiple recordings (PMRecording) objects can be stored and processed within the
 * \link[=apply]{apply} for for \link[=PMRecording]{PMRecording} and \link[=lapply]{lapply} for for \link[=PMCollection]{PMCollection}
 }
 
-\keyword{internal#'}
+\keyword{internal}

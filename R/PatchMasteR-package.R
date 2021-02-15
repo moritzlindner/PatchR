@@ -38,7 +38,6 @@
 #'
 #' @docType package
 #' @name PatchMasteR
-#' @keywords internal#'
-#' @export
+#' @keywords internal
 NULL
 #> NULL
