@@ -11,10 +11,11 @@ remotes::install_github("moritzlindner/PatchMasteR")
 
 ## Description
 
-Core component of PatchMasteR is the PMRecording class, wich stores a series
-imported from a Patchmaster \*.dat file. Several integrety checks are
-implemented into the PMRecording class to assure data integrity is
-maintained.
+Core component of PatchMasteR is the PMRecording class, wich stores a
+series imported from a Patchmaster \*.dat file. Several integrety checks
+are implemented into the PMRecording class to assure data integrity is
+maintained. Multiple recordings (PMRecording) objects can be stored and
+processed within the PMCollection class.
 
 ## Examples
 
@@ -56,7 +57,7 @@ AddMetaData(exp, #add as metadata to PMCollection
                      apply( # average over time
                        SubsetData(x, # extract values from I-mon trace, Sweep 15, between 1 and 1.19 s only 
                                   Traces="I-mon",
-                                  Time =c(1,1.19)
+                                  Time =c(1,1.19),
                                   Sweeps=SweepNames(x)[c(15)]),
                        "Time",
                        mean)
@@ -66,6 +67,8 @@ AddMetaData(exp, #add as metadata to PMCollection
 
 exp@MetaData
 ```
+
+\[=newPMCollection\]{newPMCollection}
 
 *The import functions have been adopted from the [ephys2
 package](https://github.com/tdanker/ephys2) from Timm Danker*

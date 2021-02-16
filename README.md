@@ -8,7 +8,8 @@ remotes::install_github("moritzlindner/PatchMasteR")
 
 ## Description
 
-Core component of PatchMasteR is the PMTrace class, wich stores a series imported from a Patchmaster *.dat file. Several integrety checks are implemented into the PMTrace class to assure data integrity is maintained.
+Core component of PatchMasteR is the PMRecording class, wich stores a series imported from a Patchmaster *.dat file. Several integrety checks are implemented into the PMRecording class to assure data integrity is maintained.
+Multiple recordings (PMRecording) objects can be stored and processed within the PMCollection class.
 
 ## Example
 ```{r}

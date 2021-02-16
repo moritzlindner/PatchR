@@ -1,3 +1,11 @@
+#' Accession functions
+#'
+#' These functions are used to access information from \link[=PMRecording]{PMRecording} and  \link[=PMCollection]{PMCollection} objects
+#'
+#' @param objectA  \link[=PMRecording]{PMRecording} or PMCollection object
+#' @name accession
+NULL
+
 setGeneric(name="SweepNames",
            def=function(object)
            {
@@ -5,16 +13,20 @@ setGeneric(name="SweepNames",
            }
 )
 
-#' SweepNames
-#'
-#' get list of Sweeps from a \link[=PMRecording]{PMRecording} object
-#'
-#' @param object A \link[=PMRecording]{PMRecording} object
+#' @rdname accession
 #' @exportMethod SweepNames
 setMethod("SweepNames",
           "PMRecording",
           function(object) {
             object@Sweeps
+          }
+)
+
+#' @exportMethod SweepNames
+setMethod("SweepNames",
+          "PMCollection",
+          function(object) {
+            SweepNames(object@Series[[1]])
           }
 )
 

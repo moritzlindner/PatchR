@@ -6,12 +6,6 @@
 #' @import ggplot2 plotly sitools
 #'
 #'
-#' First Header  | Second Header
-#' ------------- | -------------
-#'  Content Cell  | Content Cell
-#' Content Cell  | Content Cell
-#' Reference Style Links and Images
-#'
 #' @section Import and creation functions:
 #' * \link[=ImportPMRecording]{ImportPMRecording} (for \link[=PMRecording]{PMRecording} objects) \cr
 #' * \link[=addTrace]{addTrace} (for \link[=PMRecording]{PMRecording} objects) \cr
@@ -20,30 +14,30 @@
 #' * \link[=dropPMRecording]{addPMRecording} (for \link[=PMCollection]{PMCollection} objects) \cr
 #'
 #' @section Accession functions for \link[=PMRecording]{PMRecording} objects:
-#' * \link[=getCs]{getCs}
-#' * \link[=SweepNames]{SweepNames}
-#' * \link[=getTimeTrace]{getTimeTrace}
-#' * \link[=TraceNames]{TraceNames}
-#' * \link[=getMetaData]{getMetaData}
-#' * \link[=RecParam]{RecParam}
-#' * \link[=as.data.frame]{as.data.frame}
+#' * \link[=getCs]{getCs} \cr
+#' * \link[=SweepNames]{SweepNames} \cr
+#' * \link[=getTimeTrace]{getTimeTrace} \cr
+#' * \link[=TraceNames]{TraceNames} \cr
+#' * \link[=getMetaData]{getMetaData} \cr
+#' * \link[=RecParam]{RecParam} \cr
+#' * \link[=as.data.frame]{as.data.frame} \cr
 #'
 #' @section Accession functions for \link[=PMCollection]{PMCollection} objects:
-#' * \link[=as.data.frame]{as.data.frame}
-#' * \link[=getMetaData]{getMetaData}
-#' * \link[=RecParam]{RecParam}
+#' * \link[=as.data.frame]{as.data.frame} \cr
+#' * \link[=getMetaData]{getMetaData} \cr
+#' * \link[=RecParam]{RecParam} \cr
 #'
 #' @section Visuaization functions:
-#' * \link[=BuildSeriesPlot]{BuildSeriesPlot} (for \link[=PMRecording]{PMRecording} objects)
-#' * \link[=BuildQCPlot]{BuildSeriesPlot} (for \link[=PMCollection]{PMCollection} objects)
-#' * \link[=Inspect]{Inspect} (for \link[=PMRecording]{PMRecording} and \link[=PMCollection]{PMCollection} oojects)
+#' * \link[=BuildSeriesPlot]{BuildSeriesPlot} (for \link[=PMRecording]{PMRecording} objects) \cr
+#' * \link[=BuildQCPlot]{BuildSeriesPlot} (for \link[=PMCollection]{PMCollection} objects) \cr
+#' * \link[=Inspect]{Inspect} (for \link[=PMRecording]{PMRecording} and \link[=PMCollection]{PMCollection} oojects) \cr
 #' *visualize time series
 #'
 #' @section Math, conversion and subsampling functions:
-#' * \link[=CurrentDensity]{CurrentDensity} (for \link[=PMRecording]{PMRecording} objects)
-#' * \link[=SubsetData]{SubsetData}
-#' * \link[=CalculateIV]{CalculateIV} CHECK!!!
-#' * \link[=apply]{apply} for \link[=PMRecording]{PMRecording} and \link[=lapply]{lapply} for \link[=PMCollection]{PMCollection}
+#' * \link[=CurrentDensity]{CurrentDensity} (for \link[=PMRecording]{PMRecording} objects) \cr
+#' * \link[=SubsetData]{SubsetData} \cr
+#' * \link[=CalculateIV]{CalculateIV} CHECK!!! \cr
+#' * \link[=apply]{apply} for \link[=PMRecording]{PMRecording} and \link[=lapply]{lapply} for \link[=PMCollection]{PMCollection} \cr
 #'
 #' @author \link[https://www.uni-marburg.de/en/fb20/departments/physiology/research/dominik-oliver-lab/research2/retinal-physiology-and-gene-therapy]{Moritz Lindner}
 #'

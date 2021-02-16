@@ -37,20 +37,20 @@ setMethod("SubsetData",
               warning("Subsetting clears all analysis and plotting slots for data consistency!")
             }
             if(all.equal(Traces, TraceNames(object))!=TRUE){
-              cat("Only keep Traces:", Traces,"\n")
+              if(!nowarnings) {cat("Only keep Traces:", Traces,"\n")}
               if(!all(Traces %in% TraceNames(object))){
                 stop("Traces to subset not in object")
               }
             }
             if(all.equal(Sweeps, SweepNames(object))!=TRUE){
-              cat("Only keep Sweeps: ", Sweeps,"\n")
+              if(!nowarnings) {cat("Only keep Sweeps: ", Sweeps,"\n")}
               if(!all(Sweeps %in% SweepNames(object))){
                 stop("Traces to subset not in object")
               }
             }
             if(all.equal(Time, range(getTimeTrace(object)))!=TRUE){
               if(!TimeExclusive){
-                cat("Only keep Times: ", Time[1]," to ", Time[2],"\n")
+                if(!nowarnings) {cat("Only keep Times: ", Time[1]," to ", Time[2],"\n")}
                 Time<-getTimeTrace(object)[getTimeTrace(object)>=Time[1] & getTimeTrace(object)<=Time[2]]
               }else{ # if extracting exact time points. get closest to values entered
                 Time[1]<-getTimeTrace(object)[which(abs(getTimeTrace(object)-Time[1])==min(abs(getTimeTrace(object)-Time[1])))]
