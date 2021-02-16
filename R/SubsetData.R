@@ -69,7 +69,7 @@ setMethod("SubsetData",
             }
             PMRecording(Traces=getTraceNames(object)[getTraceNames(object) %in% Traces],
                     Units=object@Units[getTraceNames(object) %in% Traces],
-                    getTimeTrace=getTimeTrace(object)[getTimeTrace(object) %in% Time],
+                    TimeTrace=getTimeTrace(object)[getTimeTrace(object) %in% Time],
                     TimeUnit=object@TimeUnit,
                     Sweeps=getSweepNames(object)[getSweepNames(object) %in% Sweeps],
                     SweepTimes=object@SweepTimes[getSweepNames(object) %in% Sweeps],

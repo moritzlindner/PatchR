@@ -38,7 +38,7 @@ ImportPMRecording<-function(filename,
 
       out<-PMRecording(Traces=imp$sweeps$tracename,
                    Units=imp$sweeps$YUnit,
-                   getTimeTrace=imp$sweeps$x[,1],
+                   TimeTrace=imp$sweeps$x[,1],
                    TimeUnit = imp$sweeps$XUnit,
                    Sweeps=ordered(colnames(imp$sweeps$y),levels=colnames(imp$sweeps$y)),
                    SweepTimes=as.numeric(as.vector(imp$sweeps$Trace_Time)),
