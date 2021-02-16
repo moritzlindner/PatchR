@@ -1,3 +1,14 @@
+#' Subset a PMRecording or PMCollection bject
+#'
+#' This function subsets \link[=PMRecording]{PMRecording} or \link[=PMCollection]{PMCollection} objects by Trace, Sweep or Time
+#'
+#' @param object a \link[=PMRecording]{PMRecording} or \link[=PMCollection]{PMCollection} object
+#' @param Traces,Sweeps List of Traces/Sweeps to keep
+#' @param Time either a range of time points to keep, or, if \code{TimeExclusive} is \code{TRUE}, then two particular time points
+#' @param Series Subset by Series name. Only for \link[=PMCollection]{PMCollection}.
+#' @param Group Subset by Group name. Only for \link[=PMCollection]{PMCollection}.
+#' @param TimeExclusive Keep only the two time points stated under Time, not the range
+#' @return A \link[=PMRecording]{PMRecording} object
 setGeneric(name="SubsetData",
            def=function(object,
                         Traces=getTraceNames(object),
@@ -11,18 +22,6 @@ setGeneric(name="SubsetData",
              standardGeneric("SubsetData")
            }
 )
-#' Subset a PMRecording object
-#'
-#' This function subsets \link[=PMRecording]{PMRecording} or \link[=PMCollection]{PMCollection} objects by Trace, Sweep or Time
-#'
-#' @param object a \link[=PMRecording]{PMRecording} or \link[=PMCollection]{PMCollection} object
-#' @param Traces,Sweeps List of Traces/Sweeps to keep
-#' @param Time either a range of time points to keep, or, if \code{TimeExclusive} is \code{TRUE}, then two particular time points
-#' @param Series Subset by Series name. Only for \link[=PMCollection]{PMCollection}.
-#' @param Group Subset by Group name. Only for \link[=PMCollection]{PMCollection}.
-#' @param TimeExclusive Keep only the two time points stated under Time, not the range
-#' @return A \link[=PMRecording]{PMRecording} object
-#' @exportMethod SubsetData
 setMethod("SubsetData",
           "PMRecording",
           function(object,
@@ -79,7 +78,6 @@ setMethod("SubsetData",
           }
 )
 
-#' @exportMethod SubsetData
 setMethod("SubsetData",
           "PMCollection",
           function(object,
@@ -112,7 +110,7 @@ setMethod("SubsetData",
                   Series=object@Series[Series],
                   Names=object@Names[Series],
                   Group=object@Group[Series],
-                  MetaData=object@MetaData[Series],
+                  MetaData=object@MetaData[Series,],
                   RecordingParams=object@RecordingParams
                 )
               }else{
@@ -121,7 +119,7 @@ setMethod("SubsetData",
                   Series=object@Series[keep],
                   Names=object@Names[keep],
                   Group=object@Group[keep],
-                  MetaData=object@MetaData[keep],
+                  MetaData=object@MetaData[keep,],
                   RecordingParams=object@RecordingParams
                 )
               }

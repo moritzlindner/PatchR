@@ -27,8 +27,6 @@ setMethod("AddMetaData",
             if(any(title %in% colnames(object@MetaData))){
               stop("MetaData names already in use")
             }
-
-            print(sys.calls()[[1]])
             values<-as.matrix(values)
             colnames(values)<-title
             cat("adding metadata column(s)",title)
@@ -63,7 +61,6 @@ setMethod("AddMetaData",
 
             values<-as.matrix(values)
             colnames(values)<-title
-            print(values)
             cat("adding metadata column(s)",title)
             if(all(dim(object@MetaData)==0)){
               object@MetaData<-values
