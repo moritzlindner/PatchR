@@ -56,19 +56,21 @@ setMethod("getTraceNames",
 )
 #' ------------------
 #' @describeIn get Can be used on \linkS4class{PMRecording} and \linkS4class{PMCollection} objects and returns a vector containing the times at which the individual sweeps were recorded.
-#' @exportMethod getTimeTrace
+
 setGeneric(name="getTimeTrace",
            def=function(object)
            {
              standardGeneric("getTimeTrace")
            }
 )
+#' @exportMethod getTimeTrace
 setMethod("getTimeTrace",
           "PMRecording",
           function(object) {
-            object@getTimeTrace
+            object@TimeTrace
           }
 )
+#' @exportMethod getTimeTrace
 setMethod("getTimeTrace",
           "PMCollection",
           function(object) {

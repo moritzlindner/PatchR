@@ -30,7 +30,7 @@ validPMRecording<-function(object) {
       print("Traces have unequal dimensions")
     }
   }
-  if (!(length(object@getTimeTrace) == dim(object@Data[[1]])[1])){
+  if (!(length(object@TimeTrace) == dim(object@Data[[1]])[1])){
     ret<-ret+1
     print("Time trace inconsitent to data")
   }

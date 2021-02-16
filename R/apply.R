@@ -48,12 +48,12 @@ setMethod("apply",
               rownames(out)<-getSweepNames(X)
             }
             if(MARGIN==2){
-              out<-cbind(X@getTimeTrace,out)
+              out<-cbind(X@TimeTrace,out)
               colnames(out)<-c(paste0("Time [",X@TimeUnit,"]"),getTraceNames(X))
             }
             if(MARGIN==3){
               if(!ReturnPMRecording){
-                out<-cbind(X@getTimeTrace,out)
+                out<-cbind(X@TimeTrace,out)
                 colnames(out)<-c(paste0("Time [",X@TimeUnit,"]"),getSweepNames(X))
               }else
                 X<-addTrace(object=X,Trace=as.character(substitute(mean))[1],Unit="NA",mtx=out )
