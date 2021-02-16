@@ -6,8 +6,8 @@
 \usage{
 \S4method{SubsetData}{PMRecording}(
   object,
-  Traces = TraceNames(object),
-  Sweeps = SweepNames(object),
+  Traces = getTraceNames(object),
+  Sweeps = getSweepNames(object),
   Time = range(getTimeTrace(object)),
   TimeExclusive = F,
   nowarnings = F

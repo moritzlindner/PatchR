@@ -1,7 +1,7 @@
 setGeneric(name="MeasureSweeps",
            def=function(object,
                         Trace="I-mon",
-                        Sweeps=SweepNames(object),
+                        Sweeps=getSweepNames(object),
                         Time,
                         label,
                         fun=mean)
@@ -25,7 +25,7 @@ setMethod("MeasureSweeps",
           "PMCollection",
           function(object,
                    Trace="I-mon",
-                   Sweeps=SweepNames(object),
+                   Sweeps=getSweepNames(object),
                    Time,
                    label,
                    fun=mean

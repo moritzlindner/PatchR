@@ -33,21 +33,21 @@ setMethod("addTrace",
               stop(paste(deparse(substitute(object)), "is not a valid PMRecording"))
             }
 
-            if(all(SweepNames(object) %in% Sweeps) && length(SweepNames(object))== length(Sweeps)){
+            if(all(getSweepNames(object) %in% Sweeps) && length(getSweepNames(object))== length(Sweeps)){
               if(!is.ordered(Sweeps)){
-                Sweeps<-ordered(Sweeps,levels=SweepNames(object))
+                Sweeps<-ordered(Sweeps,levels=getSweepNames(object))
               }
             }else{
               print("Sweep definitions do not match.")
             }
 
             if(!(Trace %in% object@Traces)){
-              if(dim(object@Data[[1]])[1] == dim(mtx)[1] && SweepNames(object) == Sweeps){
+              if(dim(object@Data[[1]])[1] == dim(mtx)[1] && getSweepNames(object) == Sweeps){
                 object@Data[[Trace]]<-as.matrix(mtx)
-                object@Traces<-c(TraceNames(object),Trace)
+                object@Traces<-c(getTraceNames(object),Trace)
                 object@Units<-c(object@Units,Unit)
                 if(isOrig){
-                  object@RecordingParams@Traces<-c(TraceNames(object@RecordingParams),Trace)
+                  object@RecordingParams@Traces<-c(getTraceNames(object@RecordingParams),Trace)
                 }
               }else{
                 stop("Data dimension mismatch")

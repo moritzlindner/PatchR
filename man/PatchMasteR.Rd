@@ -19,12 +19,12 @@ Multiple recordings (PMRecording) objects can be stored and processed within the
 
 \section{Accession functions for \link[=PMRecording]{PMRecording} objects}{
 
-* \link[=getCs]{getCs} \cr
-* \link[=SweepNames]{SweepNames} \cr
+* \link[=getCSlow]{getCSlow} \cr
+* \link[=getSweepNames]{getSweepNames} \cr
 * \link[=getTimeTrace]{getTimeTrace} \cr
-* \link[=TraceNames]{TraceNames} \cr
+* \link[=getTraceNames]{getTraceNames} \cr
 * \link[=getMetaData]{getMetaData} \cr
-* \link[=RecParam]{RecParam} \cr
+* \link[=getRecParam]{getRecParam} \cr
 * \link[=as.data.frame]{as.data.frame} \cr
 }
 
@@ -32,7 +32,7 @@ Multiple recordings (PMRecording) objects can be stored and processed within the
 
 * \link[=as.data.frame]{as.data.frame} \cr
 * \link[=getMetaData]{getMetaData} \cr
-* \link[=RecParam]{RecParam} \cr
+* \link[=getRecParam]{getRecParam} \cr
 }
 
 \section{Visuaization functions}{

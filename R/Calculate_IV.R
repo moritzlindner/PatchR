@@ -53,8 +53,8 @@ setMethod("Calculate_IV",
                 theme_classic()+
                 theme(legend.position = "none",
                       text = element_text(size=8))+
-                xlab(paste("Voltage [",object@Units[TraceNames(object)==VTrace],"]"))+
-                ylab(paste("Current [",object@Units[TraceNames(object)==ITrace],"]"))
+                xlab(paste("Voltage [",object@Units[getTraceNames(object)==VTrace],"]"))+
+                ylab(paste("Current [",object@Units[getTraceNames(object)==ITrace],"]"))
 
               if(!is.na(X_D_TO)){
                 object@Plots[["IV.Substracted"]]<-ggplot(as.data.frame(out))+
@@ -62,8 +62,8 @@ setMethod("Calculate_IV",
                   theme_classic()+
                   theme(legend.position = "none",
                         text = element_text(size=8))+
-                  xlab(paste("Voltage [",object@Units[TraceNames(object)==VTrace],"]"))+
-                  ylab(paste("Current [",object@Units[TraceNames(object)=="I.Substracted"],"]"))
+                  xlab(paste("Voltage [",object@Units[getTraceNames(object)==VTrace],"]"))+
+                  ylab(paste("Current [",object@Units[getTraceNames(object)=="I.Substracted"],"]"))
               }
 
               out<-object

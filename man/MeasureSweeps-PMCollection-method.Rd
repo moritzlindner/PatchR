@@ -7,7 +7,7 @@
 \S4method{MeasureSweeps}{PMCollection}(
   object,
   Trace = "I-mon",
-  Sweeps = SweepNames(object),
+  Sweeps = getSweepNames(object),
   Time,
   label,
   fun = mean

@@ -1,7 +1,7 @@
 setGeneric(name="SubsetData",
            def=function(object,
-                        Traces=TraceNames(object),
-                        Sweeps=SweepNames(object),
+                        Traces=getTraceNames(object),
+                        Sweeps=getSweepNames(object),
                         Time=range(getTimeTrace(object)),
                         Series=NULL,
                         Group=NULL,
@@ -26,8 +26,8 @@ setGeneric(name="SubsetData",
 setMethod("SubsetData",
           "PMRecording",
           function(object,
-                   Traces=TraceNames(object),
-                   Sweeps=SweepNames(object),
+                   Traces=getTraceNames(object),
+                   Sweeps=getSweepNames(object),
                    Time=range(getTimeTrace(object)),
                    TimeExclusive=F,
                    nowarnings=F)
@@ -36,15 +36,15 @@ setMethod("SubsetData",
               # FIXME !!! Below: only show this if any of that slots is not empty
               warning("Subsetting clears all analysis and plotting slots for data consistency!")
             }
-            if(all.equal(Traces, TraceNames(object))!=TRUE){
+            if(all.equal(Traces, getTraceNames(object))!=TRUE){
               if(!nowarnings) {cat("Only keep Traces:", Traces,"\n")}
-              if(!all(Traces %in% TraceNames(object))){
+              if(!all(Traces %in% getTraceNames(object))){
                 stop("Traces to subset not in object")
               }
             }
-            if(all.equal(Sweeps, SweepNames(object))!=TRUE){
+            if(all.equal(Sweeps, getSweepNames(object))!=TRUE){
               if(!nowarnings) {cat("Only keep Sweeps: ", Sweeps,"\n")}
-              if(!all(Sweeps %in% SweepNames(object))){
+              if(!all(Sweeps %in% getSweepNames(object))){
                 stop("Traces to subset not in object")
               }
             }
@@ -65,14 +65,14 @@ setMethod("SubsetData",
             RecordingParams@Traces<-RecordingParams@Traces[RecordingParams@Traces %in% Traces]
             DATA<-list()
             for (i in Traces){
-              DATA[[i]]<-as.matrix(object@Data[[i]][getTimeTrace(object) %in% Time,SweepNames(object) %in% Sweeps])
+              DATA[[i]]<-as.matrix(object@Data[[i]][getTimeTrace(object) %in% Time,getSweepNames(object) %in% Sweeps])
             }
-            PMRecording(Traces=TraceNames(object)[TraceNames(object) %in% Traces],
-                    Units=object@Units[TraceNames(object) %in% Traces],
-                    TimeTrace=getTimeTrace(object)[getTimeTrace(object) %in% Time],
+            PMRecording(Traces=getTraceNames(object)[getTraceNames(object) %in% Traces],
+                    Units=object@Units[getTraceNames(object) %in% Traces],
+                    getTimeTrace=getTimeTrace(object)[getTimeTrace(object) %in% Time],
                     TimeUnit=object@TimeUnit,
-                    Sweeps=SweepNames(object)[SweepNames(object) %in% Sweeps],
-                    SweepTimes=object@SweepTimes[SweepNames(object) %in% Sweeps],
+                    Sweeps=getSweepNames(object)[getSweepNames(object) %in% Sweeps],
+                    SweepTimes=object@SweepTimes[getSweepNames(object) %in% Sweeps],
                     Data=DATA,
                     RecordingParams=RecordingParams
             )
@@ -83,8 +83,8 @@ setMethod("SubsetData",
 setMethod("SubsetData",
           "PMCollection",
           function(object,
-                   Traces=TraceNames(object@Series[[1]]),
-                   Sweeps=SweepNames(object@Series[[1]]),
+                   Traces=getTraceNames(object@Series[[1]]),
+                   Sweeps=getSweepNames(object@Series[[1]]),
                    Time=range(getTimeTrace(object@Series[[1]])),
                    Series=NULL,
                    Group=NULL,

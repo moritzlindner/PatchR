@@ -18,9 +18,9 @@ validPMCollection<-function(object) {
       stop("MetaData incompatible to items in Series")
     }
   }
-  if (!all(unlist(lapply(object@Series,function(x) TraceNames(x@RecordingParams))) %in% TraceNames(object@RecordingParams))){
+  if (!all(unlist(lapply(object@Series,function(x) getTraceNames(x@RecordingParams))) %in% getTraceNames(object@RecordingParams))){
     ret<-ret+1
-    print(TraceNames(object@RecordingParams))
+    print(getTraceNames(object@RecordingParams))
     stop("Unequal trace names")
   }
 

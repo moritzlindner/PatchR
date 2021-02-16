@@ -14,13 +14,13 @@ This class stores imported [Patch Master](https://www.heka.com/downloads/downloa
 
    \item{Units}{Character vector containing the SI units for data stored in corresponding Trace. Order as in Traces.}
 
-   \item{TimeTrace}{Numeric vector containing the time points of the recording.}
+   \item{getTimeTrace}{Numeric vector containing the time points of the recording.}
 
    \item{Sweeps}{Ordered vector containing the names of the sweeps.}
 
    \item{SweepTimes}{Numeric vector containing start times corresponding to Sweeps}
 
-   \item{Data}{List of matrices. One list item per Trace. Matrix rows correspond to TimeTrace, columns to Sweeps}
+   \item{Data}{List of matrices. One list item per Trace. Matrix rows correspond to getTimeTrace, columns to Sweeps}
 
    \item{Plots}{List that can contain any ggplot derived from the data. List item names that equal Traces are reserved.}
 

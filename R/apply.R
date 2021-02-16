@@ -44,17 +44,17 @@ setMethod("apply",
             margins<-1:length(dim(DAT))
             out<-apply(DAT,margins[!(margins %in% MARGIN)],FUN)
             if(MARGIN==1){
-              colnames(out)<-TraceNames(X)
-              rownames(out)<-SweepNames(X)
+              colnames(out)<-getTraceNames(X)
+              rownames(out)<-getSweepNames(X)
             }
             if(MARGIN==2){
-              out<-cbind(X@TimeTrace,out)
-              colnames(out)<-c(paste0("Time [",X@TimeUnit,"]"),TraceNames(X))
+              out<-cbind(X@getTimeTrace,out)
+              colnames(out)<-c(paste0("Time [",X@TimeUnit,"]"),getTraceNames(X))
             }
             if(MARGIN==3){
               if(!ReturnPMRecording){
-                out<-cbind(X@TimeTrace,out)
-                colnames(out)<-c(paste0("Time [",X@TimeUnit,"]"),SweepNames(X))
+                out<-cbind(X@getTimeTrace,out)
+                colnames(out)<-c(paste0("Time [",X@TimeUnit,"]"),getSweepNames(X))
               }else
                 X<-addTrace(object=X,Trace=as.character(substitute(mean))[1],Unit="NA",mtx=out )
               out<-X

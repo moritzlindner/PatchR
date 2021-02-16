@@ -58,7 +58,7 @@ AddMetaData(exp, #add as metadata to PMCollection
                        SubsetData(x, # extract values from I-mon trace, Sweep 15, between 1 and 1.19 s only 
                                   Traces="I-mon",
                                   Time =c(1,1.19),
-                                  Sweeps=SweepNames(x)[c(15)]),
+                                  Sweeps=getSweepNames(x)[c(15)]),
                        "Time",
                        mean)
                      }

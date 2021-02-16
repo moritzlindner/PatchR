@@ -9,7 +9,7 @@ setMethod("show",
             cat("An object of class PMRecording \n")
             cat(object@RecordingParams@RecMode, "Experiment \n")
             cat("From", object@RecordingParams@Filename, "\n")
-            cat("With", length(TraceNames(object)), "Traces ,", length(SweepNames(object)), "Sweeps and", length(getTimeTrace(object)), "Timepoints \n")
+            cat("With", length(getTraceNames(object)), "Traces ,", length(getSweepNames(object)), "Sweeps and", length(getTimeTrace(object)), "Timepoints \n")
             cat("Protocol is ", object@RecordingParams@ProtocolName, "\n")
             cat("Imported on", as.character(as.Date(object@RecordingParams@Created)), "\n")
           }

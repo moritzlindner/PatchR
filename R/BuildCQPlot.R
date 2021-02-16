@@ -19,7 +19,7 @@ setMethod("BuildQCPlot",
           function(object){
             items<-c("Cs", "Rs")
 
-            dat<-cbind(object@Names,object@Group,as.data.frame(RecParam(object,items)))
+            dat<-cbind(object@Names,object@Group,as.data.frame(getRecParam(object,items)))
             colnames(dat)<-c("Name","Group",items)
 
             dat[,"Cs"]<-dat[,"Cs"]/sitools::pico

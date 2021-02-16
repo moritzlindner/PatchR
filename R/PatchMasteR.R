@@ -14,18 +14,18 @@
 #' * \link[=dropPMRecording]{addPMRecording} (for \link[=PMCollection]{PMCollection} objects) \cr
 #'
 #' @section Accession functions for \link[=PMRecording]{PMRecording} objects:
-#' * \link[=getCs]{getCs} \cr
-#' * \link[=SweepNames]{SweepNames} \cr
+#' * \link[=getCSlow]{getCSlow} \cr
+#' * \link[=getSweepNames]{getSweepNames} \cr
 #' * \link[=getTimeTrace]{getTimeTrace} \cr
-#' * \link[=TraceNames]{TraceNames} \cr
+#' * \link[=getTraceNames]{getTraceNames} \cr
 #' * \link[=getMetaData]{getMetaData} \cr
-#' * \link[=RecParam]{RecParam} \cr
+#' * \link[=getRecParam]{getRecParam} \cr
 #' * \link[=as.data.frame]{as.data.frame} \cr
 #'
 #' @section Accession functions for \link[=PMCollection]{PMCollection} objects:
 #' * \link[=as.data.frame]{as.data.frame} \cr
 #' * \link[=getMetaData]{getMetaData} \cr
-#' * \link[=RecParam]{RecParam} \cr
+#' * \link[=getRecParam]{getRecParam} \cr
 #'
 #' @section Visuaization functions:
 #' * \link[=BuildSeriesPlot]{BuildSeriesPlot} (for \link[=PMRecording]{PMRecording} objects) \cr

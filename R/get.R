@@ -1,179 +1,163 @@
 #' Accession functions
 #'
-#' These functions are used to access information from \link[=PMRecording]{PMRecording} and  \link[=PMCollection]{PMCollection} objects
+#' These functions are used to access information from \linkS4class{PMRecording} and/or \linkS4class{PMCollection} objects
 #'
-#' @param objectA  \link[=PMRecording]{PMRecording} or PMCollection object
-#' @name accession
+#' @param object A \linkS4class{PMRecording} or \linkS4class{PMCollection}  object
+#' @param which A name of a valid Group in a \linkS4class{PMCollection} (for \code{getGroupMembers}). \cr A name or a vector of names of slot(s) in RecordingParams (for \code{getRecParam}). \cr A name or a vector of names of a column in the MetaData slot (for \code{getMetaData}).
+#' @name get
 NULL
 
-setGeneric(name="SweepNames",
+#' ------------------
+setGeneric(name="getSweepNames",
            def=function(object)
            {
-             standardGeneric("SweepNames")
+             standardGeneric("getSweepNames")
            }
 )
-
-#' @rdname accession
-#' @exportMethod SweepNames
-setMethod("SweepNames",
+#' @rdname get
+#' @exportMethod getSweepNames
+setMethod("getSweepNames",
           "PMRecording",
           function(object) {
             object@Sweeps
           }
 )
-
-#' @exportMethod SweepNames
-setMethod("SweepNames",
+#' @rdname get
+#' @exportMethod getSweepNames
+setMethod("getSweepNames",
           "PMCollection",
           function(object) {
-            SweepNames(object@Series[[1]])
+            getSweepNames(object@Series[[1]])
           }
 )
 
-setGeneric(name="TraceNames",
+#' ------------------
+setGeneric(name="getTraceNames",
            def=function(object)
            {
-             standardGeneric("TraceNames")
+             standardGeneric("getTraceNames")
            }
 )
-
-#' TraceNames
-#'
-#' get list of Traces from a \link[=PMRecording]{PMRecording} or \link[=PMRecordingParams]{PMRecordingParams} object
-#'
-#' @param object A \link[=PMRecording]{PMRecording} or \link[=PMRecordingParams]{PMRecordingParams} object
-#' @exportMethod TraceNames
-setMethod("TraceNames",
+#' @rdname get
+#' @exportMethod getTraceNames
+setMethod("getTraceNames",
           "PMRecording",
           function(object) {
             object@Traces
           }
 )
-
-#' @exportMethod TraceNames
-setMethod("TraceNames",
+setMethod("getTraceNames",
           "PMRecordingParams",
           function(object) {
             object@Traces
           }
 )
-
+#' ------------------
 setGeneric(name="getTimeTrace",
            def=function(object)
            {
              standardGeneric("getTimeTrace")
            }
 )
-
-#' getTimeTrace
-#'
-#' get Time trace from a \link[=PMRecording]{PMRecording}  object
-#'
-#' @inheritParams SweepNames
+#' @rdname get
 #' @exportMethod getTimeTrace
 setMethod("getTimeTrace",
           "PMRecording",
           function(object) {
-            object@TimeTrace
+            object@getTimeTrace
+          }
+)
+#' @rdname get
+#' @exportMethod getTimeTrace
+setMethod("getTimeTrace",
+          "PMCollection",
+          function(object) {
+            getTimeTrace(object@Series[[1]])
           }
 )
 
-setGeneric(name="getCs",
+
+#' ------------------
+setGeneric(name="getCSlow",
            def=function(object)
            {
-             standardGeneric("getCs")
+             standardGeneric("getCSlow")
            }
 )
-
-#' getCs
-#'
-#' get Cs from PMRecording
-#'
-#' @inheritParams SweepNames
-#' @exportMethod getCs
-setMethod("getCs",
+#' @rdname get
+#' @exportMethod getCSlow
+setMethod("getCSlow",
           "PMRecording",
           function(object) {
             object@RecordingParams@Cs
           }
 )
+#' @rdname get
+#' @exportMethod getCSlow
+setMethod("getCSlow",
+          "PMCollection",
+          function(object) {
+            lapply(object,getCSlow)
+          }
+)
 
+#' ------------------
 setGeneric(name="getGroupMembers",
-           def=function(object,Group)
+           def=function(object,which)
            {
              standardGeneric("getGroupMembers")
            }
 )
-
-#' getGroupMembers
-#'
-#' get names of all memebers of a group from PMCollection
-#'
-#' @param object A PMCollection object
-#' @param Goup one or more name(s) of Groups contained in PMCollection
+#' @rdname get
 #' @exportMethod getGroupMembers
 setMethod("getGroupMembers",
           "PMCollection",
-          function(object,Group) {
-            object@Names[object@Group %in% Group]
+          function(object,which) {
+            object@Names[object@Group %in% which]
           }
 )
 
-
-setGeneric(name="RecParam",
+#' ------------------
+setGeneric(name="getRecParam",
            def=function(object,
-                        param)
+                        which)
            {
-             standardGeneric("RecParam")
+             standardGeneric("getRecParam")
            }
 )
-
-#' RecParam
-#'
-#' get Recording parameters from PMRecording or PMCollection
-#'
-#' @inheritParams SweepNames
-#' @param param parameter to fetch, can be either of Rpip, RSeal, Urest, Cs, Rs
-#' @exportMethod RecParam
-setMethod("RecParam",
+#' @rdname get
+#' @exportMethod getRecParam
+setMethod("getRecParam",
           "PMRecording",
-          function(object,param) {
-            object@RecordingParams[[param]]
+          function(object,which) {
+            object@RecordingParams[[which]]
           }
 )
-
-#' @exportMethod RecParam
-setMethod("RecParam",
+setMethod("getRecParam",
           "PMRecordingParams",
-          function(object,param) {
-            object[[param]]
+          function(object,which) {
+            object[[which]]
           }
 )
-
-#' @exportMethod RecParam
-setMethod("RecParam",
+#' @rdname get
+#' @exportMethod getRecParam
+setMethod("getRecParam",
           "PMCollection",
-          function(object,param) {
-            out<-lapply(object,function(x){unlist(lapply(paste0("x@RecordingParams@",param),function(y){eval(parse(text=y))}))})
-            colnames(out)<-param
+          function(object,which) {
+            out<-lapply(object,function(x){unlist(lapply(paste0("x@RecordingParams@",which),function(y){eval(parse(text=y))}))})
+            colnames(out)<-which
             out
           }
 )
 
-
+#' ------------------
 setGeneric(name="getMetaData",
            def=function(object,which)
            {
              standardGeneric("getMetaData")
            }
 )
-
-#' getMetaData
-#'
-#' get MetaData from PMRecording or PMCollection
-#'
-#' @param object A PMRecording or PMCollection object
-#' @param which columns form MetaData to retrieve. Default is all.
+#' @rdname get
 #' @exportMethod getMetaData
 setMethod("getMetaData",
           c("PMRecording"),
@@ -184,7 +168,7 @@ setMethod("getMetaData",
             out
           }
 )
-
+#' @rdname get
 #' @exportMethod getMetaData
 setMethod("getMetaData",
           c("PMCollection"),
