@@ -106,20 +106,24 @@ setMethod("SubsetData",
             if (!is.null(Series)){
               warning("Plots droped for consistency.")
               if(is.numeric(Series)){
+                md<-matrix(nrow=0,ncol=0)
+                try(md<-object@MetaData[Series,],silent=T)
                 object<-PMCollection(
                   Series=object@Series[Series],
                   Names=object@Names[Series],
                   Group=object@Group[Series],
-                  MetaData=object@MetaData[Series,],
+                  MetaData=md,
                   RecordingParams=object@RecordingParams
                 )
               }else{
                 keep<-object@Names %in% Series
+                md<-matrix(nrow=0,ncol=0)
+                try(md<-object@MetaData[keep,],silent=T)
                 object<-PMCollection(
                   Series=object@Series[keep],
                   Names=object@Names[keep],
                   Group=object@Group[keep],
-                  MetaData=object@MetaData[keep,],
+                  MetaData=md,
                   RecordingParams=object@RecordingParams
                 )
               }
