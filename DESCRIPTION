@@ -1,7 +1,7 @@
 Package: PatchMasteR
 Type: Package
 Title: An environment for working with Traces imorted form HEKA's PatchMaster
-Version: 0.5.0
+Version: 0.6.0
 Author: person("Moritz", "Lindner", email = "moritz.lindne@ndcn.ox.ac.uk", role = c("aut", "cre"))
 Maintainer: Moritz Lindner <moritz.lindne@ndcn.ox.ac.uk>
 Description: An environment for working with Traces imorted form HEKA's PatchMaster
