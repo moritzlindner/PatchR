@@ -9,6 +9,7 @@
 #' @param label A label (if \code{Sweeps} has length 1) or a prefix
 #' @param FUN function to apply on sweep. Can be anything that woks with \link[=base::apply]{apply}. But will be usually \link[=base::mean]{mean}, \link[=base::max]{max}, \link[=base::min]{min}, or \link[=base::`-`]{`-`}.
 #' @param ReturnPMObject whether to return a PMCollection or a Matrix.
+#' @import dplyr tidyr
 #' @name Measure
 NULL
 
@@ -136,7 +137,7 @@ setMethod("MeasureStimResp",
                    Time,
                    FUN=mean){
 
-            stim<-t(MeasureSweeps(SubsetData(X,Series=X@Names[1]),
+            stim<-t(MeasureSweeps(X,
                                   Trace=StimTrace,
                                   Sweeps=getSweepNames(X),
                                   Time,
@@ -151,10 +152,11 @@ setMethod("MeasureStimResp",
                                   FUN=FUN,
                                   ReturnPMObject=F))
             out<-as.data.frame(cbind(stim,getSweepTimes(X)-min(getSweepTimes(X)),resp))
-            colnames(out)<-c("Stimulus","StimTimes",X@Names)
+            colnames(out)<-c("Stimulus","StimTimes")
+            print(head(out))
             out<-pivot_longer(out,X@Names)
             colnames(out)<-c("Stimulus","StimTimes","Name","Response")
-            groups<-as.data.frame(cbind(X@Names,as.character(X@Group)))
+            groups<-as.data.frame(cbind(X@RecordingParams@Filename,as.character(X@Group)))
             colnames(groups)<-c("Name","Group")
             groups$Name<-as.factor(groups$Name)
             groups$Group<-as.factor(groups$Group)
