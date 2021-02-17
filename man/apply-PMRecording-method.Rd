@@ -4,20 +4,20 @@
 \alias{apply,PMRecording-method}
 \title{apply function for PMRecording objects}
 \usage{
-\S4method{apply}{PMRecording}(X, MARGIN, FUN, ReturnPMRecording = F)
+\S4method{apply}{PMRecording}(X, MARGIN, FUN, ReturnPMObject = F)
 }
 \arguments{
-\item{X}{a PMRecording object}
+\item{X}{a \linkS4class{PMRecording}  object}
 
 \item{MARGIN}{a vector giving the subscripts which the function will be applied along. Understands "Time", "Sweep","Trace", or 1-3 resp.}
 
 \item{FUN}{the function to be applied}
 
-\item{ReturnPMRecording}{whether to return results as a PMRecording with an additional, computed trace. Default is \var{FALSE}, then returns a matrix.}
+\item{ReturnPMObject}{whether to return results as a PMRecording with an additional, computed trace. Default is \var{FALSE}, then returns a matrix.}
 }
 \value{
-A matrix or \link[=PMRecording]{PMRecording} object
+A \link[base::matrix]{matrix}  or \linkS4class{PMRecording}  object
 }
 \description{
-This is the PatchMastR analog to "apply"
+This is the PatchMasteR analog to "apply"
 }

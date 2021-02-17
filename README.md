@@ -25,8 +25,9 @@ tmp<-InspectSeries(tmp, Trace = "I.mon")
 # apply any function to the PMSeries object, in this case, make mean over all sweeps
 tmp<-apply(tmp, "Sweep", mean, ReturnPMTRace = T)
 
-# and return as data.fram
+# and return as data.frame
 as.data.frame(tmp)
+
 ```
 
 

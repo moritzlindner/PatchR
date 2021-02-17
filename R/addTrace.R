@@ -1,3 +1,13 @@
+#' Add data (Trace) to PMRecording objects
+#'
+#' This function adds a new Trace (with data) from any object convertible into a matrix to a PMRecording object
+#'
+#' @param object A \linkS4class{PMRecording} object
+#' @param Trace Name of the new Trace
+#' @param Sweeps Names of the sweeps added. Must be the same as sweep names in \code{object}. Data will be sorted accoding to order of Sweeps in \code{object} Default is \code{colnames(object)}
+#' @param mtx Any object convertible into a matrix, that has the same dimension as data in the Data slot of \code{object}
+#' @return A matrix or \linkS4class{PMRecording} object
+#' @exportMethod addTrace
 setGeneric(name="addTrace",
            def=function(object,
                         Trace,
@@ -9,17 +19,6 @@ setGeneric(name="addTrace",
              standardGeneric("addTrace")
            }
 )
-
-#' Add data (Trace) to PMRecording objects
-#'
-#' This function adds a new Trace (with data) from any object convertible into a matrix to a PMRecording object
-#'
-#' @param object A PMRecording object
-#' @param Trace Name of the new Trace
-#' @param Sweeps Names of the sweeps added. Must be the same as sweep names in \code{object}. Data will be sorted accoding to order of Sweeps in \code{object} Default is \code{colnames(object)}
-#' @param mtx Any object convertible into a matrix, that has the same dimension as data in the Data slot of \code{object}
-#' @return A matrix or \link[=PMRecording]{PMRecording} object
-#' @exportMethod addTrace
 setMethod("addTrace",
           "PMRecording",
           function(object,

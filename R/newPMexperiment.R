@@ -1,11 +1,11 @@
 #' Generates a new PMCollection from a single PMRecording
 #'
-#' Generates a new PMCollection from a single PMRecording
+#' Generates a new \linkS4class{PMCollection} from a single \linkS4class{PMRecording}
 #'
 #' @param PMRecording a PMRecording object, or list of PMRecording objects
 #' @param Names Names of the PMRecording, character vector w same number of entires as PMRecording
 #' @param Group Group variable or list thereof, of the same lenght as PMRecording
-#' @return A \link[=PMCollection]{PMCollection} object
+#' @return A \linkS4class{PMCollection}object
 #' @export
 newPMCollection<-function(PMRecording,
                           Names=NULL,

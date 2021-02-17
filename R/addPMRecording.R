@@ -1,3 +1,15 @@
+
+
+#' Adds PMRecording to PMCollection
+#'
+#' Adds a \linkS4class{PMRecording} to existing \linkS4class{PMCollection}
+#'
+#' @param object a \linkS4class{PMRecording} object
+#' @param PMRecording a PMRecording object, or list of PMRecording objects
+#' @param Names names for imported PMRecording. Standard is variable name given in PMRecording if single PMRecording, i
+#' @param Group Group variable or list thereof, of the same lenght as PMRecording
+#' @return A \linkS4class{PMCollection} object
+#' @exportMethod addPMRecording
 setGeneric(name="addPMRecording",
            def=function(object,
                         PMRecording,
@@ -11,17 +23,6 @@ setGeneric(name="addPMRecording",
              standardGeneric("addPMRecording")
            }
 )
-
-#' Adds PMRecording to PMCollection
-#'
-#' Adds PMRecording to existing PMCollection
-#'
-#' @param object a PMCollection object
-#' @param PMRecording a PMRecording object, or list of PMRecording objects
-#' @param Names names for imported PMRecording. Standard is variable name given in PMRecording if single PMRecording, i
-#' @param Group Group variable or list thereof, of the same lenght as PMRecording
-#' @return A \link[=PMCollection]{PMCollection} object
-#' @exportMethod addPMRecording
 setMethod("addPMRecording",
           "PMCollection",
           function(object,

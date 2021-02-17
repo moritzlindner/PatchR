@@ -56,21 +56,19 @@ setMethod("getTraceNames",
 )
 #' ------------------
 #' @describeIn get Can be used on \linkS4class{PMRecording} and \linkS4class{PMCollection} objects and returns a vector containing the times at which the individual sweeps were recorded.
-
+#' @exportMethod getTimeTrace
 setGeneric(name="getTimeTrace",
            def=function(object)
            {
              standardGeneric("getTimeTrace")
            }
 )
-#' @exportMethod getTimeTrace
 setMethod("getTimeTrace",
           "PMRecording",
           function(object) {
             object@TimeTrace
           }
 )
-#' @exportMethod getTimeTrace
 setMethod("getTimeTrace",
           "PMCollection",
           function(object) {
@@ -79,21 +77,19 @@ setMethod("getTimeTrace",
 )
 #' ------------------
 #' @describeIn get Can be used on \linkS4class{PMRecording} and \linkS4class{PMCollection} objects and returns a vector containing the times at which the individual sweeps were recorded.
+#' @exportMethod getSweepTimes
 setGeneric(name="getSweepTimes",
            def=function(object)
            {
              standardGeneric("getSweepTimes")
            }
 )
-
-#' @exportMethod getSweepTimes
 setMethod("getSweepTimes",
           "PMRecording",
           function(object) {
             object@SweepTimes
           }
 )
-#' @exportMethod getSweepTimes
 setMethod("getSweepTimes",
           "PMCollection",
           function(object) {
@@ -109,7 +105,6 @@ setGeneric(name="getCSlow",
              standardGeneric("getCSlow")
            }
 )
-
 setMethod("getCSlow",
           "PMRecording",
           function(object) {
@@ -117,7 +112,6 @@ setMethod("getCSlow",
           }
 )
 #' @describeIn get
-#' @exportMethod getCSlow
 setMethod("getCSlow",
           "PMCollection",
           function(object) {
@@ -182,9 +176,9 @@ setGeneric(name="getMetaData",
 setMethod("getMetaData",
           c("PMRecording"),
           function(object,which=colnames(object@MetaData)) {
-            out<-cbind(object@Names,object@Group,as.data.frame(object@MetaData[,which]))
-            colnames(out)<-c("Series","Group",which)
-            rownames(out)<-object@Names
+            out<-cbind(getSweepNames(object),as.data.frame(object@MetaData[,which]))
+            colnames(out)<-c("Sweep",which)
+            rownames(out)<-getSweepNames(object)
             out
           }
 )

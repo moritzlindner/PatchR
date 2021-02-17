@@ -14,8 +14,8 @@ newPMCollection(PMRecording, Names = NULL, Group = "Generic")
 \item{Group}{Group variable or list thereof, of the same lenght as PMRecording}
 }
 \value{
-A \link[=PMCollection]{PMCollection} object
+A \linkS4class{PMCollection}object
 }
 \description{
-Generates a new PMCollection from a single PMRecording
+Generates a new \linkS4class{PMCollection} from a single \linkS4class{PMRecording}
 }

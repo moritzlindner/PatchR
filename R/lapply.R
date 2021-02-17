@@ -2,10 +2,10 @@
 #'
 #' This is the PatchMastR analog to "lapply" for PMCollection objects
 #'
-#' @param X a PMCollection object
+#' @param X a \linkS4class{PMCollection} object
 #' @param FUN the function to be applied
-#' @return A \link[=PMCollection]{PMCollection} object
-#' @param ReturnPMObject whether to return results as a PMCollection. Default is \var{FALSE}, then returns a list
+#' @return A \linkS4class{PMCollection} object
+#' @param ReturnPMObject whether to return results as a \linkS4class{PMCollection}  Default is \var{FALSE}, then returns a list
 #' @exportMethod lapply
 setMethod("lapply",
           "PMCollection",
@@ -16,7 +16,6 @@ setMethod("lapply",
                if(!PatchMasteR:::validPMCollection(X)){
                  stop(paste("Applying to PMCollection", deparse(substitute(object)), "failed. No valid PMCollection object returned"))
                }
-              print("OK")
               return(X)
             }else{
               dat<-t(as.data.frame(dat))

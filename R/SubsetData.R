@@ -1,19 +1,19 @@
-#' Subset a PMRecording or PMCollection bject
+#' Subset a PMRecording or PMCollection object
 #'
 #' This function subsets \link[=PMRecording]{PMRecording} or \link[=PMCollection]{PMCollection} objects by Trace, Sweep or Time
 #'
-#' @param object a \link[=PMRecording]{PMRecording} or \link[=PMCollection]{PMCollection} object
+#' @param X a \link[=PMRecording]{PMRecording} or \link[=PMCollection]{PMCollection} Object
 #' @param Traces,Sweeps List of Traces/Sweeps to keep
 #' @param Time either a range of time points to keep, or, if \code{TimeExclusive} is \code{TRUE}, then two particular time points
 #' @param Series Subset by Series name. Only for \link[=PMCollection]{PMCollection}.
 #' @param Group Subset by Group name. Only for \link[=PMCollection]{PMCollection}.
 #' @param TimeExclusive Keep only the two time points stated under Time, not the range
-#' @return A \link[=PMRecording]{PMRecording} object
+#' @return A \link[=PMRecording]{PMRecording} X
 setGeneric(name="SubsetData",
-           def=function(object,
-                        Traces=getTraceNames(object),
-                        Sweeps=getSweepNames(object),
-                        Time=range(getTimeTrace(object)),
+           def=function(X,
+                        Traces=getTraceNames(X),
+                        Sweeps=getSweepNames(X),
+                        Time=range(getTimeTrace(X)),
                         Series=NULL,
                         Group=NULL,
                         TimeExclusive=F,
@@ -24,10 +24,10 @@ setGeneric(name="SubsetData",
 )
 setMethod("SubsetData",
           "PMRecording",
-          function(object,
-                   Traces=getTraceNames(object),
-                   Sweeps=getSweepNames(object),
-                   Time=range(getTimeTrace(object)),
+          function(X,
+                   Traces=getTraceNames(X),
+                   Sweeps=getSweepNames(X),
+                   Time=range(getTimeTrace(X)),
                    TimeExclusive=F,
                    nowarnings=F)
             {
@@ -35,43 +35,43 @@ setMethod("SubsetData",
               # FIXME !!! Below: only show this if any of that slots is not empty
               warning("Subsetting clears all analysis and plotting slots for data consistency!")
             }
-            if(all.equal(Traces, getTraceNames(object))!=TRUE){
+            if(all.equal(Traces, getTraceNames(X))!=TRUE){
               if(!nowarnings) {cat("Only keep Traces:", Traces,"\n")}
-              if(!all(Traces %in% getTraceNames(object))){
-                stop("Traces to subset not in object")
+              if(!all(Traces %in% getTraceNames(X))){
+                stop("Traces to subset not in X")
               }
             }
-            if(all.equal(Sweeps, getSweepNames(object))!=TRUE){
+            if(all.equal(Sweeps, getSweepNames(X))!=TRUE){
               if(!nowarnings) {cat("Only keep Sweeps: ", Sweeps,"\n")}
-              if(!all(Sweeps %in% getSweepNames(object))){
-                stop("Traces to subset not in object")
+              if(!all(Sweeps %in% getSweepNames(X))){
+                stop("Traces to subset not in X")
               }
             }
-            if(all.equal(Time, range(getTimeTrace(object)))!=TRUE){
+            if(all.equal(Time, range(getTimeTrace(X)))!=TRUE){
               if(!TimeExclusive){
                 if(!nowarnings) {cat("Only keep Times: ", Time[1]," to ", Time[2],"\n")}
-                Time<-getTimeTrace(object)[getTimeTrace(object)>=Time[1] & getTimeTrace(object)<=Time[2]]
+                Time<-getTimeTrace(X)[getTimeTrace(X)>=Time[1] & getTimeTrace(X)<=Time[2]]
               }else{ # if extracting exact time points. get closest to values entered
-                Time[1]<-getTimeTrace(object)[which(abs(getTimeTrace(object)-Time[1])==min(abs(getTimeTrace(object)-Time[1])))]
-                Time[2]<-getTimeTrace(object)[which(abs(getTimeTrace(object)-Time[2])==min(abs(getTimeTrace(object)-Time[2])))]
+                Time[1]<-getTimeTrace(X)[which(abs(getTimeTrace(X)-Time[1])==min(abs(getTimeTrace(X)-Time[1])))]
+                Time[2]<-getTimeTrace(X)[which(abs(getTimeTrace(X)-Time[2])==min(abs(getTimeTrace(X)-Time[2])))]
                 cat("Only keep Times: ", Time[1]," and ", length(Time)-1,"others \n")
               }
             }else{
-              Time<-getTimeTrace(object)
+              Time<-getTimeTrace(X)
             }
 
-            RecordingParams<-object@RecordingParams
+            RecordingParams<-X@RecordingParams
             RecordingParams@Traces<-RecordingParams@Traces[RecordingParams@Traces %in% Traces]
             DATA<-list()
             for (i in Traces){
-              DATA[[i]]<-as.matrix(object@Data[[i]][getTimeTrace(object) %in% Time,getSweepNames(object) %in% Sweeps])
+              DATA[[i]]<-as.matrix(X@Data[[i]][getTimeTrace(X) %in% Time,getSweepNames(X) %in% Sweeps])
             }
-            PMRecording(Traces=getTraceNames(object)[getTraceNames(object) %in% Traces],
-                    Units=object@Units[getTraceNames(object) %in% Traces],
-                    TimeTrace=getTimeTrace(object)[getTimeTrace(object) %in% Time],
-                    TimeUnit=object@TimeUnit,
-                    Sweeps=getSweepNames(object)[getSweepNames(object) %in% Sweeps],
-                    SweepTimes=object@SweepTimes[getSweepNames(object) %in% Sweeps],
+            PMRecording(Traces=getTraceNames(X)[getTraceNames(X) %in% Traces],
+                    Units=X@Units[getTraceNames(X) %in% Traces],
+                    TimeTrace=getTimeTrace(X)[getTimeTrace(X) %in% Time],
+                    TimeUnit=X@TimeUnit,
+                    Sweeps=getSweepNames(X)[getSweepNames(X) %in% Sweeps],
+                    SweepTimes=X@SweepTimes[getSweepNames(X) %in% Sweeps],
                     Data=DATA,
                     RecordingParams=RecordingParams
             )
@@ -80,26 +80,26 @@ setMethod("SubsetData",
 
 setMethod("SubsetData",
           "PMCollection",
-          function(object,
-                   Traces=getTraceNames(object@Series[[1]]),
-                   Sweeps=getSweepNames(object@Series[[1]]),
-                   Time=range(getTimeTrace(object@Series[[1]])),
+          function(X,
+                   Traces=getTraceNames(X@Series[[1]]),
+                   Sweeps=getSweepNames(X@Series[[1]]),
+                   Time=range(getTimeTrace(X@Series[[1]])),
                    Series=NULL,
                    Group=NULL,
                    TimeExclusive=F,
                    nowarnings=F)
           {
-            object<-lapply(object,function(x) SubsetData(x,Traces,Sweeps,Time,TimeExclusive,nowarnings=T),ReturnPMObject=T)
+            X<-lapply(X,function(x) SubsetData(x,Traces,Sweeps,Time,TimeExclusive,nowarnings=T),ReturnPMObject=T)
 
             if (!is.null(Group)){
               warning("Plots droped for consistency.")
-                keep<-as.character(object@Group) %in% as.character(Group)
-                object<-PMCollection(
-                  Series=object@Series[keep],
-                  Names=object@Names[keep],
-                  Group=object@Group[keep],
-                  MetaData=object@MetaData[keep],
-                  RecordingParams=object@RecordingParams
+                keep<-as.character(X@Group) %in% as.character(Group)
+                X<-PMCollection(
+                  Series=X@Series[keep],
+                  Names=X@Names[keep],
+                  Group=X@Group[keep],
+                  MetaData=X@MetaData[keep],
+                  RecordingParams=X@RecordingParams
                 )
             }
 
@@ -107,27 +107,27 @@ setMethod("SubsetData",
               warning("Plots droped for consistency.")
               if(is.numeric(Series)){
                 md<-matrix(nrow=0,ncol=0)
-                try(md<-object@MetaData[Series,],silent=T)
-                object<-PMCollection(
-                  Series=object@Series[Series],
-                  Names=object@Names[Series],
-                  Group=object@Group[Series],
+                try(md<-X@MetaData[Series,],silent=T)
+                X<-PMCollection(
+                  Series=X@Series[Series],
+                  Names=X@Names[Series],
+                  Group=X@Group[Series],
                   MetaData=md,
-                  RecordingParams=object@RecordingParams
+                  RecordingParams=X@RecordingParams
                 )
               }else{
-                keep<-object@Names %in% Series
+                keep<-X@Names %in% Series
                 md<-matrix(nrow=0,ncol=0)
-                try(md<-object@MetaData[keep,],silent=T)
-                object<-PMCollection(
-                  Series=object@Series[keep],
-                  Names=object@Names[keep],
-                  Group=object@Group[keep],
+                try(md<-X@MetaData[keep,],silent=T)
+                X<-PMCollection(
+                  Series=X@Series[keep],
+                  Names=X@Names[keep],
+                  Group=X@Group[keep],
                   MetaData=md,
-                  RecordingParams=object@RecordingParams
+                  RecordingParams=X@RecordingParams
                 )
               }
             }
-            object
+            X
           }
 )

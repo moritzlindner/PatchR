@@ -4,17 +4,17 @@
 \alias{lapply,PMCollection-method}
 \title{apply function for PMCollection objects}
 \usage{
-\S4method{lapply}{PMCollection}(X, FUN, ReturnPMCollection = F)
+\S4method{lapply}{PMCollection}(X, FUN, ReturnPMObject = F)
 }
 \arguments{
-\item{X}{a PMCollection object}
+\item{X}{a \linkS4class{PMCollection} object}
 
 \item{FUN}{the function to be applied}
 
-\item{ReturnPMCollection}{whether to return results as a PMCollection. Default is \var{FALSE}, then returns a list}
+\item{ReturnPMObject}{whether to return results as a \linkS4class{PMCollection}  Default is \var{FALSE}, then returns a list}
 }
 \value{
-A \link[=PMCollection]{PMCollection} object
+A \linkS4class{PMCollection} object
 }
 \description{
 This is the PatchMastR analog to "lapply" for PMCollection objects

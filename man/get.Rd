@@ -5,6 +5,7 @@
 \alias{getSweepNames}
 \alias{getTraceNames}
 \alias{getTimeTrace}
+\alias{getSweepTimes}
 \alias{getCSlow}
 \alias{getRecParam}
 \alias{getGroupMembers}
@@ -16,6 +17,8 @@ getSweepNames(object)
 getTraceNames(object)
 
 getTimeTrace(object)
+
+getSweepTimes(object)
 
 getCSlow(object)
 
@@ -46,6 +49,8 @@ These methods can be used to access information stored in \linkS4class{PMRecordi
 \item \code{getTraceNames}: Can be used on \linkS4class{PMRecording} and \linkS4class{PMCollection} objects and return the Trace names.
 
 \item \code{getTimeTrace}: Can be used on \linkS4class{PMRecording} and \linkS4class{PMCollection} objects and returns a vector containing the times at which the individual sweeps were recorded.
+
+\item \code{getSweepTimes}: Can be used on \linkS4class{PMRecording} and \linkS4class{PMCollection} objects and returns a vector containing the times at which the individual sweeps were recorded.
 
 \item \code{getCSlow}: is a special case of \code{getRecParam} and can be used on \linkS4class{PMRecording} and \linkS4class{PMCollection} objects. It returns the C-slow value.
 
