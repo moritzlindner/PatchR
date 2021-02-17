@@ -9,6 +9,7 @@
 #' @param Group Subset by Group name. Only for \link[=PMCollection]{PMCollection}.
 #' @param TimeExclusive Keep only the two time points stated under Time, not the range
 #' @return A \link[=PMRecording]{PMRecording} X
+#' @exportMethod SubsetData
 setGeneric(name="SubsetData",
            def=function(X,
                         Traces=getTraceNames(X),
