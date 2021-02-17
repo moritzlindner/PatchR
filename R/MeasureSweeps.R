@@ -10,7 +10,6 @@
 #' @param FUN function to apply on sweep. Can be anything that woks with \link[=base::apply]{apply}. But will be usually \link[=base::mean]{mean}, \link[=base::max]{max}, \link[=base::min]{min}, or \link[=base::`-`]{`-`}.
 #' @param ReturnPMObject whether to return a PMCollection or a Matrix.
 #' @name Measure
-#' @export
 NULL
 
 #' @describeIn Measure This function performs the actual measurements. It subsets an object by \code{Trace} and \code{Sweeps}. If \code{FUN} is a binary operator, then applies it to the exact time points given in \code{Time}, else, it applies it to the range indicated by \code{Time}.
