@@ -1,7 +1,7 @@
 setGeneric(name="AddMetaData",
            def=function(object,
                         values,
-                        title)
+                        title=colnames(values))
            {
              standardGeneric("AddMetaData")
            }
@@ -29,7 +29,7 @@ setMethod("AddMetaData",
             }
             values<-as.matrix(values)
             colnames(values)<-title
-            cat("adding metadata column(s)",title)
+            message("Adding metadata column(s) ",title)
             if(all(dim(object@MetaData)==0)){
               object@MetaData<-values
               colnames(object@MetaData)<-as.vector(title)
@@ -37,7 +37,7 @@ setMethod("AddMetaData",
               colnames(object@MetaData)<-cbind(rownames(object@MetaData),title)
             }
 
-            if(!PatchMasteR:::validPPMRecording(object)){
+            if(!PatchMasteR:::validPMRecording(object)){
               stop(paste("Adding Metadata to PMRecording", deparse(substitute(object)), "failed. incorrect dimensison"))
             }
             object
@@ -61,7 +61,7 @@ setMethod("AddMetaData",
 
             values<-as.matrix(values)
             colnames(values)<-title
-            cat("adding metadata column(s)",title)
+            message("Adding metadata column(s) ",title)
             if(all(dim(object@MetaData)==0)){
               object@MetaData<-values
               object@.MetaDataFx[[1]]<-sys.calls()[[1]]

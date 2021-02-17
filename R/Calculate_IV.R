@@ -2,7 +2,7 @@ setGeneric(name="Calculate_IV",
            def=function(object,
                         X_FROM,
                         X_TO,
-                        ReturnPMRecording=T,
+                        ReturnPMObject=T,
                         ITrace="I-mon",
                         VTrace="V-mon",
                         x_D_FROM=NA,
@@ -19,7 +19,7 @@ setGeneric(name="Calculate_IV",
 #' @param object a \link[=PMRecording]{PMRecording} object
 #' @param X_FROM,X_TO,x_D_FROM,X_D_TO Time points to perform averaging for IV prodcution
 #' @param ITrace,VTrace Name of the traces containig Current(I) and and Voltage(V)
-#' @param ReturnPMRecording whether to return results as a \link[=PMRecording]{PMRecording}  with an additional, computed trace. If set to \code{FALSE}, will return a \link[=base::matrix]{base::matrix}. Default is \code{TRUE}.
+#' @param ReturnPMObject whether to return results as a \link[=PMRecording]{PMRecording}  with an additional, computed trace. If set to \code{FALSE}, will return a \link[=base::matrix]{base::matrix}. Default is \code{TRUE}.
 #' @return a matrix or PMRecording with IV \link[=base::matrix]{base::matrix} and \link[=ggplot2::ggplot]{ggplot2::ggplot} stored in the MetaData and Plot slot, resp.
 #' @exportMethod Calculate_IV
 setMethod("Calculate_IV",
@@ -27,7 +27,7 @@ setMethod("Calculate_IV",
           function(object,
                    X_FROM,
                    X_TO,
-                   ReturnPMRecording=T,
+                   ReturnPMObject=T,
                    ITrace="I-mon",
                    VTrace="V-mon",
                    x_D_FROM=NA,
@@ -41,7 +41,7 @@ setMethod("Calculate_IV",
               substract<-apply(object,1,mean)
               out[,"I.Substracted"]<-out[,ITrace]-substract[,ITrace]
             }
-            if(ReturnPMRecording){
+            if(ReturnPMObject){
               object<-AddMetaData(object,out)
 
               out<-as.data.frame(out)
@@ -78,11 +78,11 @@ setMethod("Calculate_IV",
           function(object,
                    X_FROM,
                    X_TO,
-                   ReturnPMRecording=T,
+                   ReturnPMObject=T,
                    ITrace="I-mon",
                    VTrace="V-mon",
                    x_D_FROM=NA,
                    X_D_TO=NA){
-            lapply(object,function(x){Calculate_IV(object,X_FROM,X_TO,ReturnPMRecording,ITrace="I-mon",VTrace="V-mon",x_D_FROM,X_D_TO)})
+            lapply(object,function(x){Calculate_IV(object,X_FROM,X_TO,ReturnPMObject,ITrace="I-mon",VTrace="V-mon",x_D_FROM,X_D_TO)})
           }
 )

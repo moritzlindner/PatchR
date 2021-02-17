@@ -89,7 +89,7 @@ setMethod("SubsetData",
                    TimeExclusive=F,
                    nowarnings=F)
           {
-            object<-lapply(object,function(x) SubsetData(x,Traces,Sweeps,Time,TimeExclusive,nowarnings=T),ReturnPMCollection=T)
+            object<-lapply(object,function(x) SubsetData(x,Traces,Sweeps,Time,TimeExclusive,nowarnings=T),ReturnPMObject=T)
 
             if (!is.null(Group)){
               warning("Plots droped for consistency.")

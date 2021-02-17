@@ -31,6 +31,6 @@ setMethod("convenientScales",
 setMethod("convenientScales",
           "PMCollection",
           function(object){
-            lapply(object,convenientScales,ReturnPMCollection=T)
+            lapply(object,convenientScales,ReturnPMObject=T)
           }
 )

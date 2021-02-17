@@ -5,13 +5,13 @@
 #' @param X a PMCollection object
 #' @param FUN the function to be applied
 #' @return A \link[=PMCollection]{PMCollection} object
-#' @param ReturnPMCollection whether to return results as a PMCollection. Default is \var{FALSE}, then returns a list
+#' @param ReturnPMObject whether to return results as a PMCollection. Default is \var{FALSE}, then returns a list
 #' @exportMethod lapply
 setMethod("lapply",
           "PMCollection",
-          function(X, FUN, ReturnPMCollection=F){
+          function(X, FUN, ReturnPMObject=F){
             dat<-lapply(X@Series,FUN)
-            if(ReturnPMCollection){
+            if(ReturnPMObject){
               X@Series<-dat
                if(!PatchMasteR:::validPMCollection(X)){
                  stop(paste("Applying to PMCollection", deparse(substitute(object)), "failed. No valid PMCollection object returned"))

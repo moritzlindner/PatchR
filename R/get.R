@@ -78,6 +78,29 @@ setMethod("getTimeTrace",
           }
 )
 #' ------------------
+#' @describeIn get Can be used on \linkS4class{PMRecording} and \linkS4class{PMCollection} objects and returns a vector containing the times at which the individual sweeps were recorded.
+setGeneric(name="getSweepTimes",
+           def=function(object)
+           {
+             standardGeneric("getSweepTimes")
+           }
+)
+
+#' @exportMethod getSweepTimes
+setMethod("getSweepTimes",
+          "PMRecording",
+          function(object) {
+            object@SweepTimes
+          }
+)
+#' @exportMethod getSweepTimes
+setMethod("getSweepTimes",
+          "PMCollection",
+          function(object) {
+            getSweepTimes(object@Series[[1]])
+          }
+)
+#' ------------------
 #' @describeIn get is a special case of \code{getRecParam} and can be used on \linkS4class{PMRecording} and \linkS4class{PMCollection} objects. It returns the C-slow value.
 #' @exportMethod getCSlow
 setGeneric(name="getCSlow",
