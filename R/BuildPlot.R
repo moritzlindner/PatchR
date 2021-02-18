@@ -117,7 +117,7 @@ setMethod("TimeSeriesPlot",
                    Time,
                    fun=mean,
                    ReturnPMObject=T){
-            DoseRespPlotgeneric(X,
+            TimeSeriesPlotgeneric(X,
                                 RespTrace,
                                 Time,
                                 fun,
@@ -131,24 +131,25 @@ setMethod("TimeSeriesPlot",
                    Time,
                    fun=mean,
                    ReturnPMObject=T){
-            DoseRespPlotgeneric(X,
-                                RespTrace,
-                                Time,
-                                fun,
-                                ReturnPMObject)
+            TimeSeriesPlotgeneric(X=X,
+                           RespTrace=RespTrace,
+                           Time=Time,
+                           fun=fun,
+                           ReturnPMObject=ReturnPMObject)
           }
 )
 TimeSeriesPlotgeneric<-function(X,
-                             RespTrace="I-mon",
+                             RespTrace,
                              Time,
                              fun,
                              ReturnPMObject){
+  print(Time)
   dat<-MeasureStimResp(X=X,
                        StimTrace=RespTrace,
                        RespTrace=RespTrace,
                        Time=Time,
                        FUN=fun)
-
+  print(dat)
   if(class(X)[1]=="PMRecording"){
     TimeUnit<-paste0(convenientScalessi(dat$StimTimes),X@TimeUnit)
     RespUnit<-paste0(convenientScalessi(dat$Response),X@Units[getTraceNames(X)==RespTrace])
@@ -201,7 +202,7 @@ setMethod("GroupComparisonPlot",
                    Time,
                    fun=mean,
                    ReturnPMObject=T){
-            GroupComparisonPlot(X,
+            GroupComparisonPlotgeneric(X,
                                 Sweep,
                                 RespTrace,
                                 Time,
