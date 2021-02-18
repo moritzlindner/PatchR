@@ -163,7 +163,7 @@ TimeSeriesPlotgeneric<-function(X,
   if(!("Group" %in% colnames(dat))){
     dat$Group<-"Genereic"
   }
-  out<-ggplot(dat,aes(y=Response,x=Stimulus,colour=Group))+
+  out<-ggplot(dat,aes(y=Response,x=StimTimes,colour=Group))+
     stat_summary(fun = mean, geom="line")+
     stat_summary(fun = mean, geom="point")+
     stat_summary(fun.data = mean_se, geom="errorbar")+
