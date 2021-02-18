@@ -1,7 +1,7 @@
-#' PatchR: An environment for handling and analzing Patch Clamp measuremnts recorded with HEKA Patchmaster
+#' PatchR: An environment for handling and analyzing electrophysiological (Patch Clamp) measurements
 #'
 #' Core component of PatchR is the PRecording class, wich stores a series imported from a Patchmaster *.dat file. Several integrety checks are implemented into the PRecording class to assure data integrity is maintained.
-#' Multiple recordings (PRecording) objects can be stored and processed within the PCollection class.
+#' Multiple recordings (PRecording) objects can be stored and processed within the PCollection class using mostly identical commands and synthax.
 #'
 #' @import ggplot2 plotly sitools
 #'
@@ -28,8 +28,8 @@
 #' * \link[=getRecParam]{getRecParam} \cr
 #'
 #' @section Visuaization functions:
-#' * \link[=BuildSeriesPlot]{BuildSeriesPlot} (for \link[=PRecording]{PRecording} objects) \cr
-#' * \link[=BuildQCPlot]{BuildSeriesPlot} (for \link[=PCollection]{PCollection} objects) \cr
+#' * \link[=PlotRecording]{PlotRecording} (for \link[=PRecording]{PRecording} objects) \cr
+#' * \link[=PlotQC]{PlotRecording} (for \link[=PCollection]{PCollection} objects) \cr
 #' * \link[=Plot_Inspect]{Plot_Inspect} (for \link[=PRecording]{PRecording} and \link[=PCollection]{PCollection} oojects) \cr
 #' *visualize time series
 #'

@@ -31,7 +31,7 @@ library(PatchR)
 tmp<-ImportPRecording("test.dat",series = 1,traces = c(1,2))
 
 # build a Plot superimposing all sweeps and inspect interactivley
-tmp<-BuildSeriesPlot(tmp)
+tmp<-PlotRecording(tmp)
 tmp<-InspectSeries(tmp, Trace = "I.mon")
 
 # apply any function to the PRecording object, in this case, make mean over all sweeps

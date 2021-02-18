@@ -1,18 +1,13 @@
-#' Visualize quality metrics for PRecordings in PCollection
-#'
-#' This function creates a basic visualization of quality-relevant recording parameters in the PCollection These will be stored in the Plots slot and can be accessed using \link[=Inspect]{Inspect}(object,"QC_Metrics")
-#'
-#' @param object a \link[=PCollection]{PCollection} object object
-#' @return A \link[=PCollection]{PCollection} object
-#' @exportMethod BuildQCPlot
-setGeneric(name="BuildQCPlot",
+#' @describeIn Plots This function creates a basic visualization of quality-relevant recording parameters in the PCollection
+#' @exportMethod PlotQC
+setGeneric(name="PlotQC",
            def=function(object)
            {
-             standardGeneric("BuildQCPlot")
+             standardGeneric("PlotQC")
            }
 )
 
-setMethod("BuildQCPlot",
+setMethod("PlotQC",
           "PCollection",
           function(object){
             items<-c("Cs", "Rs")

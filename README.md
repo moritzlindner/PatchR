@@ -1,5 +1,5 @@
-# PatchMasteR
-### An environment for handling and analzing Patch Clamp measuremnts recorded with [HEKA Patchmaster (R)](https://www.heka.com/downloads/downloads_main.html#down_patchmaster) 
+# PatchR
+### PatchR: An environment for handling and analyzing electrophysiological (Patch Clamp) measurements
 
 ## Installation
 ```{r}
@@ -7,9 +7,10 @@ remotes::install_github("moritzlindner/PatchMasteR")
 ```
 
 ## Description
+Core component of PatchR is the PRecording class, wich stores a series imported from a Patchmaster *.dat file. Several integrety checks are implemented into the PRecording class to assure data integrity is maintained.
+CMultiple recordings (PRecording) objects can be stored and processed within the PCollection class using mostly identical commands and synthax.
 
-Core component of PatchMasteR is the PMRecording class, wich stores a series imported from a Patchmaster *.dat file. Several integrety checks are implemented into the PMRecording class to assure data integrity is maintained.
-Multiple recordings (PMRecording) objects can be stored and processed within the PMCollection class.
+Import procedures are currently implemented for HEKA's PachtMaster file format.
 
 ## Example
 ```{r}

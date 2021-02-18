@@ -1,18 +1,13 @@
-#' Basic ggplots forseries data
-#'
-#' This function creats a basic visualization for each Trace in the object. These will be stored in the Plots slot
-#'
-#' @param object a \link[=PRecording]{PRecording} object object
-#' @return A \link[=PRecording]{PRecording} object
-#' @exportMethod BuildSeriesPlot
-setGeneric(name="BuildSeriesPlot",
+#' @describeIn This function creates a basic visualization for each Trace in a single \linkS4class{PRecording} object.
+#' @exportMethod PlotRecording
+setGeneric(name="PlotRecording",
            def=function(object)
            {
-             standardGeneric("BuildSeriesPlot")
+             standardGeneric("PlotRecording")
            }
 )
 
-setMethod("BuildSeriesPlot",
+setMethod("PlotRecording",
           "PRecording",
           function(object){
             tmp.object<-downsample(object,npnts.out = 1000)

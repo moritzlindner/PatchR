@@ -1,4 +1,4 @@
-#' @describeIn Plots This function plots an interactive \link[=plotly]{plotly} graph from a plot generated using a Build* method.
+#' @describeIn Plots This function plots an interactive \link[=plotly]{plotly} graph from a plot generated using a Plot* method.
 #' @param what Specifies a plot to be plotted. any ggplot inside the Plots slot can be named
 #' @exportMethod Plot_Inspect
 setGeneric(name="Plot_Inspect",

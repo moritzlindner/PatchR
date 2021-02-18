@@ -51,6 +51,7 @@ validPCollection<-function(object) {
 #'    \item{RecordingParams}{Stores the Recording parameters that must be identical for all entries in Series (ProtocolName, RecMode, Traces)}
 #'  }
 #' @seealso \linkS4class{PRecording}
+#' @include PatchR.R
 #' @exportClass PCollection
 PCollection<-setClass(Class="PCollection",
                   slots =  list(Series="list",
