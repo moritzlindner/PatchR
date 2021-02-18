@@ -30,7 +30,7 @@
 #' @section Visuaization functions:
 #' * \link[=BuildSeriesPlot]{BuildSeriesPlot} (for \link[=PMRecording]{PMRecording} objects) \cr
 #' * \link[=BuildQCPlot]{BuildSeriesPlot} (for \link[=PMCollection]{PMCollection} objects) \cr
-#' * \link[=Inspect]{Inspect} (for \link[=PMRecording]{PMRecording} and \link[=PMCollection]{PMCollection} oojects) \cr
+#' * \link[=Plot_Inspect]{Plot_Inspect} (for \link[=PMRecording]{PMRecording} and \link[=PMCollection]{PMCollection} oojects) \cr
 #' *visualize time series
 #'
 #' @section Math, conversion and subsampling functions:

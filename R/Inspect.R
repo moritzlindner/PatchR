@@ -1,19 +1,13 @@
-
-setGeneric(name="Inspect",
+#' @describeIn Plots This function plots an interactive \link[=plotly]{plotly} graph from a plot generated using a Build* method.
+#' @param what Specifies a plot to be plotted. any ggplot inside the Plots slot can be named
+#' @exportMethod Plot_Inspect
+setGeneric(name="Plot_Inspect",
            def=function(object,what="I.mon")
            {
-             standardGeneric("Inspect")
+             standardGeneric("Plot_Inspect")
            }
 )
-
-#' Inspect
-#'
-#' This function plots an interactive \link[=plotly]{plotly} graph from a plot generated using a Build method.
-#'
-#' @param object a \link[=base::matrix]{base::matrix} object
-#' @param what Specifies a plot to be plotted. any ggplot inside the Plots slot can be named
-#' @exportMethod Inspect
-setMethod("Inspect",
+setMethod("Plot_Inspect",
           "PMRecording",
           definition=function(object,what="I.mon"){
             if (!is.null(object@Plots[[what]])){
@@ -24,8 +18,8 @@ setMethod("Inspect",
           }
 )
 
-#' @exportMethod Inspect
-setMethod("Inspect",
+#' @exportMethod Plot_Inspect
+setMethod("Plot_Inspect",
           "PMCollection",
           definition=function(object,what="I.mon"){
             if (!is.null(object@Plots[[what]])){

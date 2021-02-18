@@ -9,8 +9,8 @@
 NULL
 
 #' @describeIn Plots This method builds a dose-response curve
-#' @exportMethod DoseRespPlot
-setGeneric(name="DoseRespPlot",
+#' @exportMethod PlotDoseResp
+setGeneric(name="PlotDoseResp",
            def=function(X,
                         StimTrace="V-mon",
                         RespTrace="I-mon",
@@ -18,11 +18,11 @@ setGeneric(name="DoseRespPlot",
                         fun=mean,
                         ReturnPMObject=T)
            {
-             standardGeneric("DoseRespPlot")
+             standardGeneric("PlotDoseResp")
            }
 )
 
-setMethod("DoseRespPlot",
+setMethod("PlotDoseResp",
           "PMRecording",
           function(X,
                    StimTrace="V-mon",
@@ -30,7 +30,7 @@ setMethod("DoseRespPlot",
                    Time,
                    fun=mean,
                    ReturnPMObject=T){
-            DoseRespPlotgeneric(X,
+            PlotDoseRespgeneric(X,
                                StimTrace,
                                RespTrace,
                                Time,
@@ -38,7 +38,7 @@ setMethod("DoseRespPlot",
                                ReturnPMObject)
           }
           )
-setMethod("DoseRespPlot",
+setMethod("PlotDoseResp",
           "PMCollection",
           function(X,
                    StimTrace="V-mon",
@@ -46,7 +46,7 @@ setMethod("DoseRespPlot",
                    Time,
                    fun=mean,
                    ReturnPMObject=T){
-            DoseRespPlotgeneric(X,
+            PlotDoseRespgeneric(X,
                                StimTrace,
                                RespTrace,
                                Time,
@@ -55,7 +55,7 @@ setMethod("DoseRespPlot",
           }
           )
 
-DoseRespPlotgeneric<-function(X,
+PlotDoseRespgeneric<-function(X,
                              StimTrace="V-mon",
                              RespTrace="I-mon",
                              Time,
@@ -99,63 +99,62 @@ DoseRespPlotgeneric<-function(X,
 }
 
 #' @describeIn Plots This method builds a time Series plot
-#' @exportMethod TimeSeriesPlot
-setGeneric(name="TimeSeriesPlot",
+#' @exportMethod PlotTimeSeries
+setGeneric(name="PlotTimeSeries",
            def=function(X,
                         RespTrace="I-mon",
                         Time,
                         fun=mean,
                         ReturnPMObject=T)
            {
-             standardGeneric("TimeSeriesPlot")
+             standardGeneric("PlotTimeSeries")
            }
 )
-setMethod("TimeSeriesPlot",
+setMethod("PlotTimeSeries",
           "PMRecording",
           function(X,
                    RespTrace="I-mon",
                    Time,
                    fun=mean,
                    ReturnPMObject=T){
-            TimeSeriesPlotgeneric(X,
+            PlotTimeSeriesgeneric(X,
                                 RespTrace,
                                 Time,
                                 fun,
                                 ReturnPMObject)
           }
 )
-setMethod("TimeSeriesPlot",
+setMethod("PlotTimeSeries",
           "PMCollection",
           function(X,
                    RespTrace="I-mon",
                    Time,
                    fun=mean,
                    ReturnPMObject=T){
-            TimeSeriesPlotgeneric(X=X,
+            PlotTimeSeriesgeneric(X=X,
                            RespTrace=RespTrace,
                            Time=Time,
                            fun=fun,
                            ReturnPMObject=ReturnPMObject)
           }
 )
-TimeSeriesPlotgeneric<-function(X,
+PlotTimeSeriesgeneric<-function(X,
                              RespTrace,
                              Time,
                              fun,
                              ReturnPMObject){
-  print(Time)
   dat<-MeasureStimResp(X=X,
                        StimTrace=RespTrace,
                        RespTrace=RespTrace,
                        Time=Time,
                        FUN=fun)
-  print(dat)
   if(class(X)[1]=="PMRecording"){
     TimeUnit<-paste0(convenientScalessi(dat$StimTimes),X@TimeUnit)
     RespUnit<-paste0(convenientScalessi(dat$Response),X@Units[getTraceNames(X)==RespTrace])
   }else{
-    TimeUnit<-paste0(convenientScalessi(dat$StimTimes),X@Series[[1]])
+    TimeUnit<-paste0(convenientScalessi(dat$StimTimes),X@Series[[1]]@TimeUnit)
     RespUnit<-paste0(convenientScalessi(dat$Response),X@Series[[1]]@Units[getTraceNames(X@Series[[1]])==RespTrace])
+
   }
   dat$StimTimes<-convenientScalesvalue(dat$StimTimes)
   dat$Response<-convenientScalesvalue(dat$Response)
@@ -182,8 +181,8 @@ TimeSeriesPlotgeneric<-function(X,
 }
 
 #' @describeIn Plots This method builds a boxplot for comparison between groups as stored in the \linkS4class{PMCollection}.
-#' @exportMethod GroupComparisonPlot
-setGeneric(name="GroupComparisonPlot",
+#' @exportMethod PlotGroupComparison
+setGeneric(name="PlotGroupComparison",
            def=function(X,
                         Sweep,
                         RespTrace="I-mon",
@@ -191,10 +190,10 @@ setGeneric(name="GroupComparisonPlot",
                         fun=mean,
                         ReturnPMObject=T)
            {
-             standardGeneric("GroupComparisonPlot")
+             standardGeneric("PlotGroupComparison")
            }
 )
-setMethod("GroupComparisonPlot",
+setMethod("PlotGroupComparison",
           "PMCollection",
           function(X,
                    Sweep,
@@ -202,7 +201,7 @@ setMethod("GroupComparisonPlot",
                    Time,
                    fun=mean,
                    ReturnPMObject=T){
-            GroupComparisonPlotgeneric(X,
+            PlotGroupComparisongeneric(X,
                                 Sweep,
                                 RespTrace,
                                 Time,
@@ -211,7 +210,7 @@ setMethod("GroupComparisonPlot",
           }
 )
 #' @importFrom ggpubr stat_compare_means desc_statby compare_means
-GroupComparisonPlotgeneric<-function(X,
+PlotGroupComparisongeneric<-function(X,
                            Sweep,
                            RespTrace="I-mon",
                            Time,
@@ -235,12 +234,15 @@ GroupComparisonPlotgeneric<-function(X,
     dat$Group<-"Genereic"
   }
 
+  message("Summary statistics")
   print(desc_statby(dat,"Response","Group"))
+  message("Group comparison")
   print(compare_means(Response ~ Group,dat))
 
   out<-ggplot(dat,aes(y=Response,x=Group))+
     geom_boxplot()+
-    stat_compare_means()
+    geom_point(position = "jitter")+
+    stat_compare_means()+
     theme_classic()+
     theme(legend.position = "bottom",
           text = element_text(size=8),

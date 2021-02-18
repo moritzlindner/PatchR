@@ -5,7 +5,7 @@
 #' @param X a \linkS4class{PMRecording}  object
 #' @param MARGIN a vector giving the subscripts which the function will be applied along. Understands "Time", "Sweep","Trace", or 1-3 resp.
 #' @param FUN the function to be applied
-#' @param ReturnPMObject whether to return results as a PMRecording with an additional, computed trace. Default is \var{FALSE}, then returns a matrix.
+#' @param ReturnPMObject whether to return results as a \linkS4class{PMRecording} with an additional, computed trace only works with \code{MARGIN=TRACE} or if applying \code{FUN} leaves dimensions unchanged. Default is \var{FALSE}, then returns a matrix.
 #' @return A \link[base::matrix]{matrix}  or \linkS4class{PMRecording}  object
 #' @exportMethod apply
 setMethod("apply",
@@ -13,7 +13,8 @@ setMethod("apply",
           function(X,
                    MARGIN,
                    FUN,
-                   ReturnPMObject=F){
+                   ReturnPMObject=F,
+                   Verbose=T){
             # translate Margins
             if(is.character(MARGIN)){
               MARG<-MARGIN
@@ -37,27 +38,39 @@ setMethod("apply",
                 MARG<-"Trace"
               }
             }
-            message(paste("Function ",as.character(substitute(mean))[1]," applied along", MARG))
+            if(Verbose){message(paste("Function ",paste(eval(deparse(FUN)),collapse = '')," applied along", MARG))}
 
             #simplify and apply
             DAT<-simplify2array(X@Data)
             margins<-1:length(dim(DAT))
             out<-apply(DAT,margins[!(margins %in% MARGIN)],FUN)
-            if(MARGIN==1){
-              colnames(out)<-getTraceNames(X)
-              rownames(out)<-getSweepNames(X)
-            }
-            if(MARGIN==2){
-              out<-cbind(X@TimeTrace,out)
-              colnames(out)<-c(paste0("Time [",X@TimeUnit,"]"),getTraceNames(X))
-            }
-            if(MARGIN==3){
-              if(!ReturnPMObject){
+            if(isTRUE(all.equal(dim(out),dim(DAT)))){
+              dimnames(out)<-dimnames(DAT)
+              if(ReturnPMObject){
+                warning("Updating data in PMRecording!")
+                out<-lapply(seq(dim(out)[3]), function(y) out[ , , y])
+                names(out)<-names(X@Data)
+                X@Data<-out
+                out<-X
+              }
+            }else{
+              if(MARGIN==1){
+                colnames(out)<-getTraceNames(X)
+                rownames(out)<-getSweepNames(X)
+              }
+              if(MARGIN==2){
                 out<-cbind(X@TimeTrace,out)
-                colnames(out)<-c(paste0("Time [",X@TimeUnit,"]"),getSweepNames(X))
-              }else
-                X<-addTrace(object=X,Trace=as.character(substitute(mean))[1],Unit="NA",mtx=out )
-              out<-X
+                colnames(out)<-c(paste0("Time [",X@TimeUnit,"]"),getTraceNames(X))
+              }
+              if(MARGIN==3){
+                if(!ReturnPMObject){
+                  out<-cbind(X@TimeTrace,out)
+                  colnames(out)<-c(paste0("Time [",X@TimeUnit,"]"),getSweepNames(X))
+                }else{
+                  X<-addTrace(object=X,Trace=as.character(substitute(mean))[1],Unit="NA",mtx=out )
+                  out<-X
+                }
+              }
             }
             return(out)
           }

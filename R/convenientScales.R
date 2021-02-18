@@ -15,20 +15,22 @@ setGeneric(name="convenientScales",
 #' @importFrom stringr str_sub str_locate
 convenientScalesdecimals<-function(X){
   decimals<-seq(-21,21,3)
-  min(
-    decimals[
-      decimals>=median(
-        as.numeric(
-          str_sub(
-            format(X,scientific=T),
-            (str_locate(format(X,scientific=T),
-                        "e[\\+\\-]"))
-            [,2]
+  decimals[
+    which.min(
+      abs(
+        decimals-median(
+          as.numeric(
+            str_sub(
+              format(X,scientific=T),
+              (str_locate(format(X,scientific=T),
+                          "e[\\+\\-]"))
+              [,2]
+            )
           )
+        )
         )
       )
     ]
-  )
 }
 
 convenientScalesvalue<-function(X){

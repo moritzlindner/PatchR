@@ -4,7 +4,7 @@
 \alias{apply,PMRecording-method}
 \title{apply function for PMRecording objects}
 \usage{
-\S4method{apply}{PMRecording}(X, MARGIN, FUN, ReturnPMObject = F)
+\S4method{apply}{PMRecording}(X, MARGIN, FUN, ReturnPMObject = F, Verbose = T)
 }
 \arguments{
 \item{X}{a \linkS4class{PMRecording}  object}
@@ -13,7 +13,7 @@
 
 \item{FUN}{the function to be applied}
 
-\item{ReturnPMObject}{whether to return results as a PMRecording with an additional, computed trace. Default is \var{FALSE}, then returns a matrix.}
+\item{ReturnPMObject}{whether to return results as a \linkS4class{PMRecording} with an additional, computed trace only works with \code{MARGIN=TRACE} or if applying \code{FUN} leaves dimensions unchanged. Default is \var{FALSE}, then returns a matrix.}
 }
 \value{
 A \link[base::matrix]{matrix}  or \linkS4class{PMRecording}  object
