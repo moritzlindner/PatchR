@@ -3,6 +3,8 @@
 
 ## Installation
 ```{r}
+if (!requireNamespace("remotes", quietly = TRUE))
+    install.packages("remotes")
 remotes::install_github("moritzlindner/PatchMasteR")
 ```
 
@@ -14,7 +16,7 @@ Import procedures are currently implemented for HEKA's PachtMaster file format.
 
 ## Example
 ```{r}
-library(PatchMasteR)
+library(PatchR)
 
 # import a PatchMaster file
 tmp<-ImportPMSeries("test.dat",series = 1,traces = c(1,2))
