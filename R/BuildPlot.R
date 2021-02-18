@@ -141,13 +141,13 @@ setMethod("TimeSeriesPlot",
 TimeSeriesPlotgeneric<-function(X,
                              RespTrace="I-mon",
                              Time,
-                             fun=mean,
-                             ReturnPMObject=T){
-  dat<-MeasureStimResp(X,
+                             fun,
+                             ReturnPMObject){
+  dat<-MeasureStimResp(X=X,
                        StimTrace=RespTrace,
-                       RespTrace,
-                       Time,
-                       fun)
+                       RespTrace=RespTrace,
+                       Time=Time,
+                       FUN=fun)
 
   if(class(X)[1]=="PMRecording"){
     TimeUnit<-paste0(convenientScalessi(dat$StimTimes),X@TimeUnit)
