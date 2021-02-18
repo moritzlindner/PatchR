@@ -1,12 +1,3 @@
-
-setGeneric(name="BuildQCPlot",
-           def=function(object)
-           {
-             standardGeneric("BuildQCPlot")
-           }
-)
-
-
 #' Visualize quality metrics for PMRecordings in PMCollection
 #'
 #' This function creates a basic visualization of quality-relevant recording parameters in the PMCollection These will be stored in the Plots slot and can be accessed using \link[=Inspect]{Inspect}(object,"QC_Metrics")
@@ -14,6 +5,13 @@ setGeneric(name="BuildQCPlot",
 #' @param object a \link[=PMCollection]{PMCollection} object object
 #' @return A \link[=PMCollection]{PMCollection} object
 #' @exportMethod BuildQCPlot
+setGeneric(name="BuildQCPlot",
+           def=function(object)
+           {
+             standardGeneric("BuildQCPlot")
+           }
+)
+
 setMethod("BuildQCPlot",
           "PMCollection",
           function(object){

@@ -1,4 +1,10 @@
-
+#' Basic ggplots forseries data
+#'
+#' This function creats a basic visualization for each Trace in the object. These will be stored in the Plots slot
+#'
+#' @param object a \link[=PMRecording]{PMRecording} object object
+#' @return A \link[=PMRecording]{PMRecording} object
+#' @exportMethod BuildSeriesPlot
 setGeneric(name="BuildSeriesPlot",
            def=function(object)
            {
@@ -6,14 +12,6 @@ setGeneric(name="BuildSeriesPlot",
            }
 )
 
-
-#' Basic ggplots for  series data
-#'
-#' This function creats a basic visualization for each Trace in the object. These will be stored in the Plots slot
-#'
-#' @param object a \link[=PMRecording]{PMRecording} object object
-#' @return A \link[=PMRecording]{PMRecording} object
-#' @exportMethod BuildSeriesPlot
 setMethod("BuildSeriesPlot",
           "PMRecording",
           function(object){

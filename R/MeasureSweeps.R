@@ -137,35 +137,27 @@ setMethod("MeasureStimResp",
                    Time,
                    FUN=mean){
 
-            stim<-t(MeasureSweeps(X,
+            stim<-MeasureSweeps(X,
                                   Trace=StimTrace,
                                   Sweeps=getSweepNames(X),
                                   Time,
                                   label="Stimulus",
                                   FUN=FUN,
-                                  ReturnPMObject=F))
-            resp<-t(MeasureSweeps(X,
+                                  ReturnPMObject=F)
+            resp<-MeasureSweeps(X,
                                   Trace=RespTrace,
                                   Sweeps=getSweepNames(X),
                                   Time,
                                   label="Response",
                                   FUN=FUN,
-                                  ReturnPMObject=F))
+                                  ReturnPMObject=F)
             out<-as.data.frame(cbind(stim,getSweepTimes(X)-min(getSweepTimes(X)),resp))
-            colnames(out)<-c("Stimulus","StimTimes")
             print(head(out))
-            out<-pivot_longer(out,X@Names)
-            colnames(out)<-c("Stimulus","StimTimes","Name","Response")
-            groups<-as.data.frame(cbind(X@RecordingParams@Filename,as.character(X@Group)))
-            colnames(groups)<-c("Name","Group")
-            groups$Name<-as.factor(groups$Name)
-            groups$Group<-as.factor(groups$Group)
-            out<-as.data.frame(left_join(out,groups,by="Name",copy=T))
-            out[, c("Name","Group","Stimulus","StimTimes","Response")]
+            out<-cbind<-cbind(getSweepNames(X),out)
+            colnames(out)<-c("Name","Stimulus","StimTimes","Response")
             out
           }
 )
-
 
 setMethod("MeasureStimResp",
           "PMCollection",
