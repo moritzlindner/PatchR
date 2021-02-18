@@ -3,7 +3,7 @@
 #' Core component of PatchR is the PRecording class, wich stores a series imported from a Patchmaster *.dat file. Several integrety checks are implemented into the PRecording class to assure data integrity is maintained.
 #' Multiple recordings (PRecording) objects can be stored and processed within the PCollection class using mostly identical commands and synthax.
 #'
-#' @import ggplot2 plotly sitools
+#' @import ggplot2 plotly
 #'
 #'
 #' @section Import and creation functions:

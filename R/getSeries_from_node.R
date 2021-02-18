@@ -3,17 +3,17 @@
 #' function inherited from ephys2 (/github/tdanker/ephys2/). Undocumented.
 #' @import stringr
 #' @noRd
-getSeries_from_node<-function (node, sweeps = 1:length(node), trace = 1, read_data = T)
+getSeries_from_node<-function (node, sweeps = 1:length(node), trace = 1, read_data = T,encoding=getOption("encoding"))
 {
   path <- attr(node, "path")
   filename <- path[1]
   if (!file.exists(filename)) {
     filename <- paste("../", filename, sep = "")
   }
-  con <- file(filename, "rb")
+  con <- file(filename, "rb", encoding=encoding)
   signature <- readChar(con, 4)
   if (signature == "DAT1") {
-    mypul <- stringr::str_replace(filename, ".dat$",
+    mypul <- str_replace(filename, ".dat$",
                                   ".pul")
     if (!file.exists(mypul))
       stop("while trying to read from *.dat file, detected the old 'DAT1' format (no bundle file), therefore expected but could not find a correspoding *.pul file")

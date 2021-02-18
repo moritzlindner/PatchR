@@ -2,11 +2,11 @@
 #'
 #' function inherited from ephys2 (/github/tdanker/ephys2/). Undocumented.
 #' @noRd
-read.bundletree<-function (myfile, bundlename = ".pul", con = NA)
+read.bundletree<-function (myfile, bundlename = ".pul", con = NA,encoding=getOption("encoding"))
 {
   finally_close_con = is.na(con)
   if (is.na(con)) {
-    con <- file(myfile, "rb")
+    con <- file(myfile, "rb", encoding=encoding)
   }
   seek(con, 0)
   signature <- readChar(con, 8)

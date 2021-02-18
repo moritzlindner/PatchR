@@ -1,5 +1,5 @@
 # PatchR
-### PatchR: An environment for handling and analyzing electrophysiological (Patch Clamp) measurements
+### PatchR: An environment for handling and analyzing electrophysiological (Patch Clamp) measurements in R
 
 ## Installation
 ```{r}
@@ -10,7 +10,7 @@ remotes::install_github("moritzlindner/PatchMasteR")
 
 ## Description
 Core component of PatchR is the PRecording class, wich stores a series imported from a Patchmaster *.dat file. Several integrety checks are implemented into the PRecording class to assure data integrity is maintained.
-CMultiple recordings (PRecording) objects can be stored and processed within the PCollection class using mostly identical commands and synthax.
+Multiple recordings (PRecording) objects can be stored and processed within the PCollection class using mostly identical commands and synthax.
 
 Import procedures are currently implemented for HEKA's PachtMaster file format.
 

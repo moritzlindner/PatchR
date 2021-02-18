@@ -25,13 +25,13 @@ setMethod("as.data.frame",
           }
 )
 
-#' @import plyr
+#' @importFrom plyr ldply
 #' @exportMethod as.data.frame
 setMethod("as.data.frame",
           "PCollection",
           function(x,
                    ...){
-            lst<-plyr::ldply(x@Series,as.data.frame)
+            lst<-ldply(x@Series,as.data.frame)
             nms<-rep(x@Names,each=dim(as.data.frame(x@Series[[1]]))[1])
             grp<-rep(x@Group,each=dim(as.data.frame(x@Series[[1]]))[1])
 

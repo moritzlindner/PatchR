@@ -2,7 +2,7 @@
 #'
 #' function inherited from ephys2 (/github/tdanker/ephys2/). Undocumented.
 #' @noRd
-get_treeinfo<-function (filename, slim = F)
+get_treeinfo<-function (filename, slim = F,encoding=getOption("encoding"))
 {
   con = file(filename, "rb")
   signature <- readChar(con, 4)
@@ -29,12 +29,12 @@ get_treeinfo<-function (filename, slim = F)
     con_pgf = con
   }
   treeinfo <- list(root = read.bundletree(filename, ".pul",
-                                          con = con_pul))
+                                          con = con_pul,encoding=encoding))
   attr(treeinfo[["root"]], "filename") <- filename
   names(treeinfo) <- filename
   class(treeinfo) <- "HEKA_treeinfo"
   treeinfo <- add_atributes(treeinfo, con_pul, verbose = !slim,
-                            filename = filename, con_pgf = con_pgf)
+                            filename = filename, con_pgf = con_pgf,encoding=encoding)
   if (signature == "DAT1") {
     close(con_pul)
     close(con_pgf)

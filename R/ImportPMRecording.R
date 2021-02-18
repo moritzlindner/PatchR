@@ -6,17 +6,19 @@
 #' @param experiment Index of Experiment to import (1st order hirarchy in PM dat file).
 #' @param series Index of Series to import (2nd order hirarchy in PM dat file).
 #' @param traces Traces to import (indices). Must be vector of numerics of length > 0.
+#' @param encoding file encoding to use, default is \code{getOption("encoding")}
 #' @return A \link[=PRecording]{PRecording} object
 #' @export
 ImportPRecording<-function(filename,
                    experiment=1,
                    series=1,
-                   traces=c(1,2)){
+                   traces=c(1,2),
+                   encoding=getOption("encoding")){
   print(paste("Importing", filename))
   first=T
   for(i in traces){
     print(paste("Importing trace", i))
-    imp<-getSeries(filename,file=1,exp=experiment,ser=series,trace=i)
+    imp<-getSeries(filename,file=1,exp=experiment,ser=series,trace=i,encoding=encoding)
     if(first){
       first=F
       params<-PRecordingParams(

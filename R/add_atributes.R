@@ -2,10 +2,10 @@
 #'
 #' function inherited from ephys2 (/github/tdanker/ephys2/). Undocumented.
 #' @noRd
-add_atributes<-function (tree, con, verbose = F, filename, con_pgf = con)
+add_atributes<-function (tree, con, verbose = F, filename, con_pgf = con,encoding=getOption("encoding"))
 {
   bundletree.pgf <- read.bundletree(filename, ".pgf",
-                                    con_pgf)
+                                    con_pgf,encoding=encoding)
   for (rootname in names(tree)) {
     attr(tree[[c(rootname)]], "class") <- c("HEKA_treeinfo_rootnode",
                                             "HEKA_treeinfo")

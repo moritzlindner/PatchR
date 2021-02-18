@@ -12,13 +12,13 @@ setGeneric(name="CurrentDensity",
 #'
 #' @param object a \link[=PRecording]{PRecording} object
 #' @return a \link[=PRecording]{PRecording} object
-#' @import sitools
+#' @importFrom  sitools f2si
 #' @exportMethod CurrentDensity
 setMethod("CurrentDensity",
           "PRecording",
           function(object,
                    trace="I.mon"){
-            print(paste0("Capacitance in record: ",sitools::f2si(round(getCSlow(object),15)),"F"))
+            print(paste0("Capacitance in record: ",f2si(round(getCSlow(object),15)),"F"))
 
             object<-addTrace(object,
               Trace="curr.dens",

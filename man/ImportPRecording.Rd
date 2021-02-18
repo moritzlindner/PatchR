@@ -4,7 +4,13 @@
 \alias{ImportPRecording}
 \title{Import Series from Patch Master *.dat file into a PRecording object}
 \usage{
-ImportPRecording(filename, experiment = 1, series = 1, traces = c(1, 2))
+ImportPRecording(
+  filename,
+  experiment = 1,
+  series = 1,
+  traces = c(1, 2),
+  encoding = getOption("encoding")
+)
 }
 \arguments{
 \item{filename}{path to a [Patch Master](https://www.heka.com/downloads/downloads_main.html#down_patchmaster) *.dat file.}
@@ -14,6 +20,8 @@ ImportPRecording(filename, experiment = 1, series = 1, traces = c(1, 2))
 \item{series}{Index of Series to import (2nd order hirarchy in PM dat file).}
 
 \item{traces}{Traces to import (indices). Must be vector of numerics of length > 0.}
+
+\item{encoding}{file encoding to use, default is \code{getOption("encoding")}}
 }
 \value{
 A \link[=PRecording]{PRecording} object

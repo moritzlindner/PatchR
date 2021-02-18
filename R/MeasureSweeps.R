@@ -9,7 +9,6 @@
 #' @param label A label (if \code{Sweeps} has length 1) or a prefix
 #' @param FUN function to apply on sweep. Can be anything that woks with \link[=base::apply]{apply}. But will be usually \link[=base::mean]{mean}, \link[=base::max]{max}, \link[=base::min]{min}, or \link[=base::`-`]{`-`}.
 #' @param ReturnPMObject whether to return a PCollection or a Matrix.
-#' @import dplyr tidyr
 #' @name Measure
 NULL
 
@@ -158,6 +157,8 @@ setMethod("MeasureStimResp",
           }
 )
 
+#' @importFrom tidyr pivot_longer
+#' @importFrom dplyr left_join
 setMethod("MeasureStimResp",
           "PCollection",
           function(X,

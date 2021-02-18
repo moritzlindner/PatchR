@@ -8,7 +8,8 @@ ImportCollection(
   parent.dir = NULL,
   filelist = NULL,
   traces = c(1, 2),
-  type = "PatchMaster"
+  type = "PatchMaster",
+  encoding = getOption("encoding")
 )
 }
 \arguments{
@@ -19,6 +20,8 @@ ImportCollection(
 \item{traces}{which traces to import. default is \code{c(1,2)}}
 
 \item{type}{File Type. Currently not implemented. Only works with PatchMatster files.}
+
+\item{encoding}{file encoding to use, default is \code{getOption("encoding")}}
 }
 \value{
 A \link[=PCollection]{PCollection} object
