@@ -29,36 +29,36 @@ getGroupMembers(object, which)
 getMetaData(object, which)
 }
 \arguments{
-\item{object}{A \linkS4class{PMRecording} or \linkS4class{PMCollection}  object}
+\item{object}{A \linkS4class{PRecording} or \linkS4class{PCollection}  object}
 
-\item{which}{A name of a valid Group in a \linkS4class{PMCollection} (for \code{getGroupMembers}). \cr A name or a vector of names of slot(s) in RecordingParams (for \code{getRecParam}). \cr A name or a vector of names of a column in the MetaData slot (for \code{getMetaData}).}
+\item{which}{A name of a valid Group in a \linkS4class{PCollection} (for \code{getGroupMembers}). \cr A name or a vector of names of slot(s) in RecordingParams (for \code{getRecParam}). \cr A name or a vector of names of a column in the MetaData slot (for \code{getMetaData}).}
 }
 \value{
 A numeric vector or a matrix (for \code{getMetaData}).
 }
 \description{
-These methods are used to access information from \linkS4class{PMRecording} and/or \linkS4class{PMCollection} objects
+These methods are used to access information from \linkS4class{PRecording} and/or \linkS4class{PCollection} objects
 }
 \details{
-These methods can be used to access information stored in \linkS4class{PMRecording} and/or \linkS4class{PMCollection} objects. \cr \cr
+These methods can be used to access information stored in \linkS4class{PRecording} and/or \linkS4class{PCollection} objects. \cr \cr
 }
 \section{Functions}{
 \itemize{
-\item \code{getSweepNames}: Can be used on \linkS4class{PMRecording} and \linkS4class{PMCollection} objects and return the Sweep names.
+\item \code{getSweepNames}: Can be used on \linkS4class{PRecording} and \linkS4class{PCollection} objects and return the Sweep names.
 
-\item \code{getTraceNames}: Can be used on \linkS4class{PMRecording} and \linkS4class{PMCollection} objects and return the Trace names.
+\item \code{getTraceNames}: Can be used on \linkS4class{PRecording} and \linkS4class{PCollection} objects and return the Trace names.
 
-\item \code{getTimeTrace}: Can be used on \linkS4class{PMRecording} and \linkS4class{PMCollection} objects and returns a vector containing the times at which the individual sweeps were recorded.
+\item \code{getTimeTrace}: Can be used on \linkS4class{PRecording} and \linkS4class{PCollection} objects and returns a vector containing the times at which the individual sweeps were recorded.
 
-\item \code{getSweepTimes}: Can be used on \linkS4class{PMRecording} and \linkS4class{PMCollection} objects and returns a vector containing the times at which the individual sweeps were recorded.
+\item \code{getSweepTimes}: Can be used on \linkS4class{PRecording} and \linkS4class{PCollection} objects and returns a vector containing the times at which the individual sweeps were recorded.
 
-\item \code{getCSlow}: is a special case of \code{getRecParam} and can be used on \linkS4class{PMRecording} and \linkS4class{PMCollection} objects. It returns the C-slow value.
+\item \code{getCSlow}: is a special case of \code{getRecParam} and can be used on \linkS4class{PRecording} and \linkS4class{PCollection} objects. It returns the C-slow value.
 
-\item \code{getRecParam}: Can be used on \linkS4class{PMRecording} and \linkS4class{PMCollection} objects and returns any value stored in the RecordingParams slot.
+\item \code{getRecParam}: Can be used on \linkS4class{PRecording} and \linkS4class{PCollection} objects and returns any value stored in the RecordingParams slot.
 
-\item \code{getGroupMembers}: get Can be used on \linkS4class{PMCollection} objects and returns the names of all PMRecordings belonging to the named Group.
+\item \code{getGroupMembers}: get Can be used on \linkS4class{PCollection} objects and returns the names of all PRecordings belonging to the named Group.
 
-\item \code{getMetaData}: Can be used on \linkS4class{PMRecording} and \linkS4class{PMCollection} objects and returns one or more columns from the MetaData Slot.
+\item \code{getMetaData}: Can be used on \linkS4class{PRecording} and \linkS4class{PCollection} objects and returns one or more columns from the MetaData Slot.
 }}
 
 \examples{

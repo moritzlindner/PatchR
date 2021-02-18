@@ -1,44 +1,44 @@
-#' Generates a new PMCollection from a single PMRecording
+#' Generates a new PCollection from a single PRecording
 #'
-#' Generates a new \linkS4class{PMCollection} from a single \linkS4class{PMRecording}
+#' Generates a new \linkS4class{PCollection} from a single \linkS4class{PRecording}
 #'
-#' @param PMRecording a PMRecording object, or list of PMRecording objects
-#' @param Names Names of the PMRecording, character vector w same number of entires as PMRecording
-#' @param Group Group variable or list thereof, of the same lenght as PMRecording
-#' @return A \linkS4class{PMCollection}object
+#' @param PRecording a PRecording object, or list of PRecording objects
+#' @param Names Names of the PRecording, character vector w same number of entires as PRecording
+#' @param Group Group variable or list thereof, of the same lenght as PRecording
+#' @return A \linkS4class{PCollection}object
 #' @export
-newPMCollection<-function(PMRecording,
+newPCollection<-function(PRecording,
                           Names=NULL,
                           Group="Generic"){
                             Exps<-list()
-                            if(!is.list(PMRecording)){
-                              Exps[[1]]<-PMRecording
+                            if(!is.list(PRecording)){
+                              Exps[[1]]<-PRecording
                               if(is.null(Names)){
                                 Names<-character()
-                                Names<-PMRecording@RecordingParams@Filename
+                                Names<-PRecording@RecordingParams@Filename
                               }
-                              params<-PMRecordingParams(ProtocolName=PMRecording@RecordingParams@ProtocolName,
-                                                        RecMode=PMRecording@RecordingParams@RecMode,
-                                                        Traces=PMRecording@RecordingParams@Traces
+                              params<-PRecordingParams(ProtocolName=PRecording@RecordingParams@ProtocolName,
+                                                        RecMode=PRecording@RecordingParams@RecMode,
+                                                        Traces=PRecording@RecordingParams@Traces
                               )
-                            }else{ #list of PMRecording Objects provided
-                              Exps<-PMRecording
+                            }else{ #list of PRecording Objects provided
+                              Exps<-PRecording
                               if(length(Group)==1){
                                 Group<-rep(Group,length(Exps))
                               }
                                 #Trim Traces if requires
-                                # could include function f trimming PMRecording to common minium or orignals, if required. Make dropTrace function therefore.
+                                # could include function f trimming PRecording to common minium or orignals, if required. Make dropTrace function therefore.
 
                               if(is.null(Names)){
                                 Names<-character()
-                                Names<-unlist(lapply(PMRecording,function(x) x@RecordingParams@Filename))
+                                Names<-unlist(lapply(PRecording,function(x) x@RecordingParams@Filename))
                               }
-                              params<-PMRecordingParams(ProtocolName=PMRecording[[1]]@RecordingParams@ProtocolName,
-                                                        RecMode=PMRecording[[1]]@RecordingParams@RecMode,
-                                                        Traces=PMRecording[[1]]@RecordingParams@Traces
+                              params<-PRecordingParams(ProtocolName=PRecording[[1]]@RecordingParams@ProtocolName,
+                                                        RecMode=PRecording[[1]]@RecordingParams@RecMode,
+                                                        Traces=PRecording[[1]]@RecordingParams@Traces
                               )
                             }
-                            out<-PMCollection(
+                            out<-PCollection(
                               Series=Exps,
                               Names=Names,
                               Group=as.factor(Group),

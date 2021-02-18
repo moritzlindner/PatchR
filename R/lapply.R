@@ -1,20 +1,20 @@
-#' apply function for PMCollection objects
+#' apply function for PCollection objects
 #'
-#' This is the PatchMastR analog to "lapply" for PMCollection objects
+#' This is the PatchMastR analog to "lapply" for PCollection objects
 #'
-#' @param X a \linkS4class{PMCollection} object
+#' @param X a \linkS4class{PCollection} object
 #' @param FUN the function to be applied
-#' @return A \linkS4class{PMCollection} object
-#' @param ReturnPMObject whether to return results as a \linkS4class{PMCollection}  Default is \var{FALSE}, then returns a list
+#' @return A \linkS4class{PCollection} object
+#' @param ReturnPMObject whether to return results as a \linkS4class{PCollection}  Default is \var{FALSE}, then returns a list
 #' @exportMethod lapply
 setMethod("lapply",
-          "PMCollection",
+          "PCollection",
           function(X, FUN, ReturnPMObject=F){
             dat<-lapply(X@Series,FUN)
             if(ReturnPMObject){
               X@Series<-dat
-               if(!PatchMasteR:::validPMCollection(X)){
-                 stop(paste("Applying to PMCollection", deparse(substitute(object)), "failed. No valid PMCollection object returned"))
+               if(!PatchR:::validPCollection(X)){
+                 stop(paste("Applying to PCollection", deparse(substitute(object)), "failed. No valid PCollection object returned"))
                }
               return(X)
             }else{

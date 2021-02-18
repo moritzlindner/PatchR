@@ -2,16 +2,16 @@
 % Please edit documentation in R/convenientScales.R
 \name{convenientScales}
 \alias{convenientScales}
-\title{Makes PMRecording object scales convenient.}
+\title{Makes PRecording object scales convenient.}
 \usage{
 convenientScales(object)
 }
 \arguments{
-\item{object}{a \link[=PMRecording]{PMRecording} object}
+\item{object}{a \link[=PRecording]{PRecording} object}
 }
 \value{
-a \link[=PMRecording]{PMRecording} object
+a \link[=PRecording]{PRecording} object
 }
 \description{
-This function converts scaling of a \link[=PMRecording]{PMRecording} or a \link[=PMCollection]{PMCollection} object and adjusts/adds SI prefixes
+This function converts scaling of a \link[=PRecording]{PRecording} or a \link[=PCollection]{PCollection} object and adjusts/adds SI prefixes
 }

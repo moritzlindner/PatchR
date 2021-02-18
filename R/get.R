@@ -1,10 +1,10 @@
 #' Accession methods
 #'
-#' These methods are used to access information from \linkS4class{PMRecording} and/or \linkS4class{PMCollection} objects
+#' These methods are used to access information from \linkS4class{PRecording} and/or \linkS4class{PCollection} objects
 #'
-#' @param object A \linkS4class{PMRecording} or \linkS4class{PMCollection}  object
-#' @param which A name of a valid Group in a \linkS4class{PMCollection} (for \code{getGroupMembers}). \cr A name or a vector of names of slot(s) in RecordingParams (for \code{getRecParam}). \cr A name or a vector of names of a column in the MetaData slot (for \code{getMetaData}).
-#' @details These methods can be used to access information stored in \linkS4class{PMRecording} and/or \linkS4class{PMCollection} objects. \cr \cr
+#' @param object A \linkS4class{PRecording} or \linkS4class{PCollection}  object
+#' @param which A name of a valid Group in a \linkS4class{PCollection} (for \code{getGroupMembers}). \cr A name or a vector of names of slot(s) in RecordingParams (for \code{getRecParam}). \cr A name or a vector of names of a column in the MetaData slot (for \code{getMetaData}).
+#' @details These methods can be used to access information stored in \linkS4class{PRecording} and/or \linkS4class{PCollection} objects. \cr \cr
 #' @return A numeric vector or a matrix (for \code{getMetaData}).
 #' @examples
 #' getRecParam(recording,c("Cs","Rs"))
@@ -12,7 +12,7 @@
 NULL
 
 #' ------------------
-#' @describeIn get Can be used on \linkS4class{PMRecording} and \linkS4class{PMCollection} objects and return the Sweep names.
+#' @describeIn get Can be used on \linkS4class{PRecording} and \linkS4class{PCollection} objects and return the Sweep names.
 #' @exportMethod getSweepNames
 setGeneric(name="getSweepNames",
            def=function(object)
@@ -21,20 +21,20 @@ setGeneric(name="getSweepNames",
            }
 )
 setMethod("getSweepNames",
-          "PMRecording",
+          "PRecording",
           function(object) {
             object@Sweeps
           }
 )
 setMethod("getSweepNames",
-          "PMCollection",
+          "PCollection",
           function(object) {
             getSweepNames(object@Series[[1]])
           }
 )
 
 #' ------------------
-#' @describeIn get Can be used on \linkS4class{PMRecording} and \linkS4class{PMCollection} objects and return the Trace names.
+#' @describeIn get Can be used on \linkS4class{PRecording} and \linkS4class{PCollection} objects and return the Trace names.
 #' @exportMethod getTraceNames
 setGeneric(name="getTraceNames",
            def=function(object)
@@ -43,19 +43,19 @@ setGeneric(name="getTraceNames",
            }
 )
 setMethod("getTraceNames",
-          "PMRecording",
+          "PRecording",
           function(object) {
             object@Traces
           }
 )
 setMethod("getTraceNames",
-          "PMRecordingParams",
+          "PRecordingParams",
           function(object) {
             object@Traces
           }
 )
 #' ------------------
-#' @describeIn get Can be used on \linkS4class{PMRecording} and \linkS4class{PMCollection} objects and returns a vector containing the times at which the individual sweeps were recorded.
+#' @describeIn get Can be used on \linkS4class{PRecording} and \linkS4class{PCollection} objects and returns a vector containing the times at which the individual sweeps were recorded.
 #' @exportMethod getTimeTrace
 setGeneric(name="getTimeTrace",
            def=function(object)
@@ -64,19 +64,19 @@ setGeneric(name="getTimeTrace",
            }
 )
 setMethod("getTimeTrace",
-          "PMRecording",
+          "PRecording",
           function(object) {
             object@TimeTrace
           }
 )
 setMethod("getTimeTrace",
-          "PMCollection",
+          "PCollection",
           function(object) {
             getTimeTrace(object@Series[[1]])
           }
 )
 #' ------------------
-#' @describeIn get Can be used on \linkS4class{PMRecording} and \linkS4class{PMCollection} objects and returns a vector containing the times at which the individual sweeps were recorded.
+#' @describeIn get Can be used on \linkS4class{PRecording} and \linkS4class{PCollection} objects and returns a vector containing the times at which the individual sweeps were recorded.
 #' @exportMethod getSweepTimes
 setGeneric(name="getSweepTimes",
            def=function(object)
@@ -85,19 +85,19 @@ setGeneric(name="getSweepTimes",
            }
 )
 setMethod("getSweepTimes",
-          "PMRecording",
+          "PRecording",
           function(object) {
             object@SweepTimes
           }
 )
 setMethod("getSweepTimes",
-          "PMCollection",
+          "PCollection",
           function(object) {
             getSweepTimes(object@Series[[1]])
           }
 )
 #' ------------------
-#' @describeIn get is a special case of \code{getRecParam} and can be used on \linkS4class{PMRecording} and \linkS4class{PMCollection} objects. It returns the C-slow value.
+#' @describeIn get is a special case of \code{getRecParam} and can be used on \linkS4class{PRecording} and \linkS4class{PCollection} objects. It returns the C-slow value.
 #' @exportMethod getCSlow
 setGeneric(name="getCSlow",
            def=function(object)
@@ -106,21 +106,21 @@ setGeneric(name="getCSlow",
            }
 )
 setMethod("getCSlow",
-          "PMRecording",
+          "PRecording",
           function(object) {
             object@RecordingParams@Cs
           }
 )
 #' @describeIn get
 setMethod("getCSlow",
-          "PMCollection",
+          "PCollection",
           function(object) {
             lapply(object,getCSlow)
           }
 )
 
 #' ------------------
-#' @describeIn get Can be used on \linkS4class{PMRecording} and \linkS4class{PMCollection} objects and returns any value stored in the RecordingParams slot.
+#' @describeIn get Can be used on \linkS4class{PRecording} and \linkS4class{PCollection} objects and returns any value stored in the RecordingParams slot.
 #' @exportMethod getRecParam
 setGeneric(name="getRecParam",
            def=function(object,
@@ -130,19 +130,19 @@ setGeneric(name="getRecParam",
            }
 )
 setMethod("getRecParam",
-          "PMRecording",
+          "PRecording",
           function(object,which) {
             object@RecordingParams[[which]]
           }
 )
 setMethod("getRecParam",
-          "PMRecordingParams",
+          "PRecordingParams",
           function(object,which) {
             object[[which]]
           }
 )
 setMethod("getRecParam",
-          "PMCollection",
+          "PCollection",
           function(object,which) {
             out<-lapply(object,function(x){unlist(lapply(paste0("x@RecordingParams@",which),function(y){eval(parse(text=y))}))})
             colnames(out)<-which
@@ -150,7 +150,7 @@ setMethod("getRecParam",
           }
 )
 #' ------------------
-#' @describeIn get get Can be used on \linkS4class{PMCollection} objects and returns the names of all PMRecordings belonging to the named Group.
+#' @describeIn get get Can be used on \linkS4class{PCollection} objects and returns the names of all PRecordings belonging to the named Group.
 #' @exportMethod getGroupMembers
 setGeneric(name="getGroupMembers",
            def=function(object,which)
@@ -159,13 +159,13 @@ setGeneric(name="getGroupMembers",
            }
 )
 setMethod("getGroupMembers",
-          "PMCollection",
+          "PCollection",
           function(object,which) {
             object@Names[object@Group %in% which]
           }
 )
 #' ------------------
-#' @describeIn get Can be used on \linkS4class{PMRecording} and \linkS4class{PMCollection} objects and returns one or more columns from the MetaData Slot.
+#' @describeIn get Can be used on \linkS4class{PRecording} and \linkS4class{PCollection} objects and returns one or more columns from the MetaData Slot.
 #' @exportMethod getMetaData
 setGeneric(name="getMetaData",
            def=function(object,which)
@@ -174,7 +174,7 @@ setGeneric(name="getMetaData",
            }
 )
 setMethod("getMetaData",
-          c("PMRecording"),
+          c("PRecording"),
           function(object,which=colnames(object@MetaData)) {
             out<-cbind(getSweepNames(object),as.data.frame(object@MetaData[,which]))
             colnames(out)<-c("Sweep",which)
@@ -183,7 +183,7 @@ setMethod("getMetaData",
           }
 )
 setMethod("getMetaData",
-          c("PMCollection"),
+          c("PCollection"),
           function(object,which=colnames(object@MetaData)) {
             out<-cbind(object@Names,object@Group,as.data.frame(object@MetaData[,which]))
             colnames(out)<-c("Series","Group",which)

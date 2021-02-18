@@ -1,9 +1,9 @@
-#' Makes PMRecording object scales convenient.
+#' Makes PRecording object scales convenient.
 #'
-#' This function converts scaling of a \link[=PMRecording]{PMRecording} or a \link[=PMCollection]{PMCollection} object and adjusts/adds SI prefixes
+#' This function converts scaling of a \link[=PRecording]{PRecording} or a \link[=PCollection]{PCollection} object and adjusts/adds SI prefixes
 #'
-#' @param object a \link[=PMRecording]{PMRecording} object
-#' @return a \link[=PMRecording]{PMRecording} object
+#' @param object a \link[=PRecording]{PRecording} object
+#' @return a \link[=PRecording]{PRecording} object
 #' @exportMethod convenientScales
 setGeneric(name="convenientScales",
            def=function(object)
@@ -42,7 +42,7 @@ convenientScalessi<-function(X){
 }
 
 setMethod("convenientScales",
-          "PMRecording",
+          "PRecording",
           function(object){
             for (i in 1:length(getTraceNames(object))){
               decimals<-seq(0,21,3)
@@ -53,7 +53,7 @@ setMethod("convenientScales",
           }
 )
 setMethod("convenientScales",
-          "PMCollection",
+          "PCollection",
           function(object){
             lapply(object,convenientScales,ReturnPMObject=T)
           }

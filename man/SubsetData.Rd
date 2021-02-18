@@ -2,7 +2,7 @@
 % Please edit documentation in R/SubsetData.R
 \name{SubsetData}
 \alias{SubsetData}
-\title{Subset a PMRecording or PMCollection object}
+\title{Subset a PRecording or PCollection object}
 \usage{
 SubsetData(
   X,
@@ -16,21 +16,21 @@ SubsetData(
 )
 }
 \arguments{
-\item{X}{a \link[=PMRecording]{PMRecording} or \link[=PMCollection]{PMCollection} Object}
+\item{X}{a \link[=PRecording]{PRecording} or \link[=PCollection]{PCollection} Object}
 
 \item{Traces, Sweeps}{List of Traces/Sweeps to keep}
 
 \item{Time}{either a range of time points to keep, or, if \code{TimeExclusive} is \code{TRUE}, then two particular time points}
 
-\item{Series}{Subset by Series name. Only for \link[=PMCollection]{PMCollection}.}
+\item{Series}{Subset by Series name. Only for \link[=PCollection]{PCollection}.}
 
-\item{Group}{Subset by Group name. Only for \link[=PMCollection]{PMCollection}.}
+\item{Group}{Subset by Group name. Only for \link[=PCollection]{PCollection}.}
 
 \item{TimeExclusive}{Keep only the two time points stated under Time, not the range}
 }
 \value{
-A \link[=PMRecording]{PMRecording} X
+A \link[=PRecording]{PRecording} X
 }
 \description{
-This function subsets \link[=PMRecording]{PMRecording} or \link[=PMCollection]{PMCollection} objects by Trace, Sweep or Time
+This function subsets \link[=PRecording]{PRecording} or \link[=PCollection]{PCollection} objects by Trace, Sweep or Time
 }

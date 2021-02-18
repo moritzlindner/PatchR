@@ -1,4 +1,4 @@
-validPMRecording<-function(object) {
+validPRecording<-function(object) {
   ret=0
   if (!(length(object@Traces) == length(object@Data))){
     ret<-ret+1
@@ -57,9 +57,9 @@ validPMRecording<-function(object) {
 }
 
 
-#' S4 class storing imported [Patch Master](https://www.heka.com/downloads/downloads_main.html#down_patchmaster)  Traces.
+#' S4 class storing imported ePhys Traces.
 #'
-#' This class stores imported [Patch Master](https://www.heka.com/downloads/downloads_main.html#down_patchmaster)  Traces. Currently only checked for time series. It is strictly validated to assure data consistency
+#' This class stores imported electrophysiology Traces. Currently only import procedures for HEKA's PatchMaster are implemented. It has some strict validitiy checks implemented to assure data consistency.
 #'
 #' \describe{
 #'    \item{Traces}{Character vector containing names of the Traces (=Monitors) imported form the dat file and any subsequently computed Trace. Computed Traces have the same dimensions as imported}
@@ -78,10 +78,11 @@ validPMRecording<-function(object) {
 #'
 #'    \item{MetaData}{matrix that can contain additional per-sweep Metadata. Per-time Metadata can be stored in the Data slot using the \link[=addTrace]{addTrace} method.}
 #'
-#'    \item{RecordingParams}{An item of class PMRecordingParams containing recording parameters for that trace.}
+#'    \item{RecordingParams}{An item of class PRecordingParams containing recording parameters for that trace.}
 #'  }
-#' @exportClass PMRecording
-PMRecording<-setClass(Class="PMRecording",
+#' @seealso \url{https://www.heka.com/downloads/downloads_main.html#down_patchmaster}
+#' @exportClass PRecording
+PRecording<-setClass(Class="PRecording",
                   slots =  list(Traces="character",
                                 Units="character",
                                 TimeTrace="numeric",
@@ -93,11 +94,11 @@ PMRecording<-setClass(Class="PMRecording",
                                 .MetaDataFx="list",
                                 Plots="list",
                                 #Computed="list",
-                                RecordingParams="PMRecordingParams"),
+                                RecordingParams="PRecordingParams"),
                   prototype=list(
                     MetaData = matrix(ncol=0,nrow=0),
                     .MetaDataFx = list(),
                     Plots = list()
                   ),
-                  validity = validPMRecording
+                  validity = validPRecording
 )

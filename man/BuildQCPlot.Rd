@@ -2,16 +2,16 @@
 % Please edit documentation in R/BuildCQPlot.R
 \name{BuildQCPlot}
 \alias{BuildQCPlot}
-\title{Visualize quality metrics for PMRecordings in PMCollection}
+\title{Visualize quality metrics for PRecordings in PCollection}
 \usage{
 BuildQCPlot(object)
 }
 \arguments{
-\item{object}{a \link[=PMCollection]{PMCollection} object object}
+\item{object}{a \link[=PCollection]{PCollection} object object}
 }
 \value{
-A \link[=PMCollection]{PMCollection} object
+A \link[=PCollection]{PCollection} object
 }
 \description{
-This function creates a basic visualization of quality-relevant recording parameters in the PMCollection These will be stored in the Plots slot and can be accessed using \link[=Inspect]{Inspect}(object,"QC_Metrics")
+This function creates a basic visualization of quality-relevant recording parameters in the PCollection These will be stored in the Plots slot and can be accessed using \link[=Inspect]{Inspect}(object,"QC_Metrics")
 }

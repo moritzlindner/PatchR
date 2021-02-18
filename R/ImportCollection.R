@@ -6,8 +6,8 @@
 #' @param filelist a data.frame with four columns: "FileName","Experiment","Series","Group". FileName can be absolute or relative to parent.dir. "Experiment","Series" as defined in PatchMaster file. Groups can be assigned via the Group variable
 #' @param traces which traces to import. default is \code{c(1,2)}
 #' @param type File Type. Currently not implemented. Only works with PatchMatster files.
-#' @return A \link[=PMCollection]{PMCollection} object
-#' @exportMethod dropPMRecording
+#' @return A \link[=PCollection]{PCollection} object
+#' @exportMethod dropPRecording
 ImportCollection<-function(parent.dir=NULL,
                  filelist=NULL,
                  traces=c(1, 2),
@@ -19,6 +19,6 @@ ImportCollection<-function(parent.dir=NULL,
   if(!is.null(parent.dir)){
     filelist$FileName<-paste0(filelist$FileName)
   }
-  Recordings<-apply(filelist,1,function(x){ImportPMRecording(x["FileName"],x["Experiment"],x["Series"],traces)})
-  newPMCollection(Recordings,filelist$Group)
+  Recordings<-apply(filelist,1,function(x){ImportPRecording(x["FileName"],x["Experiment"],x["Series"],traces)})
+  newPCollection(Recordings,filelist$Group)
 }

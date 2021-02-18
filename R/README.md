@@ -6,16 +6,16 @@ Moritz Lindner
 ## Installation
 
 ``` r
-remotes::install_github("moritzlindner/PatchMasteR")
+remotes::install_github("moritzlindner/PatchR")
 ```
 
 ## Description
 
-Core component of PatchMasteR is the PMRecording class, wich stores a
+Core component of PatchR is the PRecording class, wich stores a
 series imported from a Patchmaster \*.dat file. Several integrety checks
-are implemented into the PMRecording class to assure data integrity is
-maintained. Multiple recordings (PMRecording) objects can be stored and
-processed within the PMCollection class.
+are implemented into the PRecording class to assure data integrity is
+maintained. Multiple recordings (PRecording) objects can be stored and
+processed within the PCollection class.
 
 ## Examples
 
@@ -25,16 +25,16 @@ Import a PatchMaster \*.dat file, inspect visually and make an average
 over all sweeps
 
 ``` r
-library(PatchMasteR)
+library(PatchR)
 
 # import a PatchMaster file
-tmp<-ImportPMRecording("test.dat",series = 1,traces = c(1,2))
+tmp<-ImportPRecording("test.dat",series = 1,traces = c(1,2))
 
 # build a Plot superimposing all sweeps and inspect interactivley
 tmp<-BuildSeriesPlot(tmp)
 tmp<-InspectSeries(tmp, Trace = "I.mon")
 
-# apply any function to the PMRecording object, in this case, make mean over all sweeps
+# apply any function to the PRecording object, in this case, make mean over all sweeps
 tmp<-apply(tmp, "Sweep", mean, ReturnPMObject = T)
 
 # and return as data.frame
@@ -43,16 +43,16 @@ as.data.frame(tmp)
 
 ### Example 2:
 
-Create a PMCollection, perform a classical time series data extraction
-(in this case: from each stored PMRecording, take current trace “I-mon”,
+Create a PCollection, perform a classical time series data extraction
+(in this case: from each stored PRecording, take current trace “I-mon”,
 extract values between 1s and 1.19s from sweep 15 and average these),
 and add thesse as metadata.
 
 ``` r
-exp<-newPMCollection(list(tmp,tmp),Names=c("A","B"),Group=c("Generic1","Generic2"))
+exp<-newPCollection(list(tmp,tmp),Names=c("A","B"),Group=c("Generic1","Generic2"))
 
-AddMetaData(exp, #add as metadata to PMCollection
-            lapply(exp, # for each PMRecording stored in PMCollection
+AddMetaData(exp, #add as metadata to PCollection
+            lapply(exp, # for each PRecording stored in PCollection
                    function(x){
                      apply( # average over time
                        SubsetData(x, # extract values from I-mon trace, Sweep 15, between 1 and 1.19 s only 
@@ -68,7 +68,7 @@ AddMetaData(exp, #add as metadata to PMCollection
 exp@MetaData
 ```
 
-\[=newPMCollection\]{newPMCollection}
+\[=newPCollection\]{newPCollection}
 
 *The import functions have been adopted from the [ephys2
 package](https://github.com/tdanker/ephys2) from Timm Danker*

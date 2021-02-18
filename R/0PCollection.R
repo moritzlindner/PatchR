@@ -1,4 +1,4 @@
-validPMCollection<-function(object) {
+validPCollection<-function(object) {
   ret=0
   if (!(length(object@Series) == length(object@Names))){
     ret<-ret+1
@@ -38,31 +38,32 @@ validPMCollection<-function(object) {
 }
 
 
-#' S4 class storing imported [Patch Master](https://www.heka.com/downloads/downloads_main.html#down_patchmaster)  Traces.
+#' S4 class storing a collection of ePhys Treaces
 #'
-#' This class stores imported [Patch Master](https://www.heka.com/downloads/downloads_main.html#down_patchmaster)  Traces. Currently only checked for time series. It is strictly validated to assure data consistency
+#' This class stores a collection of \linkS4class{PRecording}s in a single object. Facilitates identical processing of related of recordings.
 #'
 #' \describe{
-#'    \item{Series}{A list containing individual PMRecording objects of identical dimensisons, ProtocolName, RecMode and trace names}
+#'    \item{Series}{A list containing individual PRecording objects of identical dimensisons, ProtocolName, RecMode and trace names}
 #'    \item{Names}{Name identifier for the individual Series. Unique.}
 #'    \item{Group}{Group identifier for the individual Series.}
-#'    \item{MetaData}{A matrix with metatdata, e.g. calculated summay stats of each PMRecording object. One row per entry in Series allowed}
+#'    \item{MetaData}{A matrix with metatdata, e.g. calculated summay stats of each PRecording object. One row per entry in Series allowed}
 #'    \item{Plots}{A slot to store ggplots}
 #'    \item{RecordingParams}{Stores the Recording parameters that must be identical for all entries in Series (ProtocolName, RecMode, Traces)}
 #'  }
-#' @exportClass PMCollection
-PMCollection<-setClass(Class="PMCollection",
+#' @seealso \linkS4class{PRecording}
+#' @exportClass PCollection
+PCollection<-setClass(Class="PCollection",
                   slots =  list(Series="list",
                                 Names="character",
                                 Group="factor",
                                 MetaData="matrix",
                                 .MetaDataFx="list",
                                 Plots="list",
-                                RecordingParams="PMRecordingParams"),
+                                RecordingParams="PRecordingParams"),
                   prototype=list(
                     MetaData = matrix(ncol=0,nrow=0),
                     .MetaDataFx = list(),
                     Plots = list()
                   ),
-                  validity = validPMCollection
+                  validity = validPCollection
 )

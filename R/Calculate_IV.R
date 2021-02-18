@@ -12,18 +12,18 @@ setGeneric(name="Calculate_IV",
            }
 )
 
-#' Caluclates IV from a PMRecording or PMCollection object
+#' Caluclates IV from a PRecording or PCollection object
 #'
-#' This function averages \link[=PMRecording]{PMRecording} objects by Trace, Sweep or Time. If object is a \link[=PMCollection]{PMCollection}. then does so for each Series stored in the object
+#' This function averages \link[=PRecording]{PRecording} objects by Trace, Sweep or Time. If object is a \link[=PCollection]{PCollection}. then does so for each Series stored in the object
 #'
-#' @param object a \link[=PMRecording]{PMRecording} object
+#' @param object a \link[=PRecording]{PRecording} object
 #' @param X_FROM,X_TO,x_D_FROM,X_D_TO Time points to perform averaging for IV prodcution
 #' @param ITrace,VTrace Name of the traces containig Current(I) and and Voltage(V)
-#' @param ReturnPMObject whether to return results as a \link[=PMRecording]{PMRecording}  with an additional, computed trace. If set to \code{FALSE}, will return a \link[=base::matrix]{base::matrix}. Default is \code{TRUE}.
-#' @return a matrix or PMRecording with IV \link[=base::matrix]{base::matrix} and \link[=ggplot2::ggplot]{ggplot2::ggplot} stored in the MetaData and Plot slot, resp.
+#' @param ReturnPMObject whether to return results as a \link[=PRecording]{PRecording}  with an additional, computed trace. If set to \code{FALSE}, will return a \link[=base::matrix]{base::matrix}. Default is \code{TRUE}.
+#' @return a matrix or PRecording with IV \link[=base::matrix]{base::matrix} and \link[=ggplot2::ggplot]{ggplot2::ggplot} stored in the MetaData and Plot slot, resp.
 #' @exportMethod Calculate_IV
 setMethod("Calculate_IV",
-          "PMRecording",
+          "PRecording",
           function(object,
                    X_FROM,
                    X_TO,
@@ -74,7 +74,7 @@ setMethod("Calculate_IV",
 
 #' @exportMethod Calculate_IV
 setMethod("Calculate_IV",
-          "PMCollection",
+          "PCollection",
           function(object,
                    X_FROM,
                    X_TO,

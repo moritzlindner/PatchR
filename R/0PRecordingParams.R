@@ -1,8 +1,8 @@
-#' S4 class storing Recording parameters for impoted [Patch Master](https://www.heka.com/downloads/downloads_main.html#down_patchmaster)  Traces.
-#'
-#' This class stores imported [Patch Master](https://www.heka.com/downloads/downloads_main.html#down_patchmaster)  Traces. Currently only tested for time series. It is strictly validated to assure data consistency
+# S4 class storing Recording parameters inside \linkS4class{PRecording} and A \linkS4class{PCollection} objects
+#
+# Usually not required to be manipulated by the user
 
-PMRecordingParams<-setClass(Class="PMRecordingParams",
+PRecordingParams<-setClass(Class="PRecordingParams",
                             slots= list(
                               Traces="character",
                               RecMode="character",

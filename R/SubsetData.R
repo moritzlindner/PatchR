@@ -1,14 +1,14 @@
-#' Subset a PMRecording or PMCollection object
+#' Subset a PRecording or PCollection object
 #'
-#' This function subsets \link[=PMRecording]{PMRecording} or \link[=PMCollection]{PMCollection} objects by Trace, Sweep or Time
+#' This function subsets \link[=PRecording]{PRecording} or \link[=PCollection]{PCollection} objects by Trace, Sweep or Time
 #'
-#' @param X a \link[=PMRecording]{PMRecording} or \link[=PMCollection]{PMCollection} Object
+#' @param X a \link[=PRecording]{PRecording} or \link[=PCollection]{PCollection} Object
 #' @param Traces,Sweeps List of Traces/Sweeps to keep
 #' @param Time either a range of time points to keep, or, if \code{TimeExclusive} is \code{TRUE}, then two particular time points
-#' @param Series Subset by Series name. Only for \link[=PMCollection]{PMCollection}.
-#' @param Group Subset by Group name. Only for \link[=PMCollection]{PMCollection}.
+#' @param Series Subset by Series name. Only for \link[=PCollection]{PCollection}.
+#' @param Group Subset by Group name. Only for \link[=PCollection]{PCollection}.
 #' @param TimeExclusive Keep only the two time points stated under Time, not the range
-#' @return A \link[=PMRecording]{PMRecording} X
+#' @return A \link[=PRecording]{PRecording} X
 #' @exportMethod SubsetData
 setGeneric(name="SubsetData",
            def=function(X,
@@ -24,7 +24,7 @@ setGeneric(name="SubsetData",
            }
 )
 setMethod("SubsetData",
-          "PMRecording",
+          "PRecording",
           function(X,
                    Traces=getTraceNames(X),
                    Sweeps=getSweepNames(X),
@@ -67,7 +67,7 @@ setMethod("SubsetData",
             for (i in Traces){
               DATA[[i]]<-as.matrix(X@Data[[i]][getTimeTrace(X) %in% Time,getSweepNames(X) %in% Sweeps])
             }
-            PMRecording(Traces=getTraceNames(X)[getTraceNames(X) %in% Traces],
+            PRecording(Traces=getTraceNames(X)[getTraceNames(X) %in% Traces],
                     Units=X@Units[getTraceNames(X) %in% Traces],
                     TimeTrace=getTimeTrace(X)[getTimeTrace(X) %in% Time],
                     TimeUnit=X@TimeUnit,
@@ -80,7 +80,7 @@ setMethod("SubsetData",
 )
 
 setMethod("SubsetData",
-          "PMCollection",
+          "PCollection",
           function(X,
                    Traces=getTraceNames(X@Series[[1]]),
                    Sweeps=getSweepNames(X@Series[[1]]),
@@ -95,7 +95,7 @@ setMethod("SubsetData",
             if (!is.null(Group)){
               warning("Plots droped for consistency.")
                 keep<-as.character(X@Group) %in% as.character(Group)
-                X<-PMCollection(
+                X<-PCollection(
                   Series=X@Series[keep],
                   Names=X@Names[keep],
                   Group=X@Group[keep],
@@ -109,7 +109,7 @@ setMethod("SubsetData",
               if(is.numeric(Series)){
                 md<-matrix(nrow=0,ncol=0)
                 try(md<-X@MetaData[Series,],silent=T)
-                X<-PMCollection(
+                X<-PCollection(
                   Series=X@Series[Series],
                   Names=X@Names[Series],
                   Group=X@Group[Series],
@@ -120,7 +120,7 @@ setMethod("SubsetData",
                 keep<-X@Names %in% Series
                 md<-matrix(nrow=0,ncol=0)
                 try(md<-X@MetaData[keep,],silent=T)
-                X<-PMCollection(
+                X<-PCollection(
                   Series=X@Series[keep],
                   Names=X@Names[keep],
                   Group=X@Group[keep],

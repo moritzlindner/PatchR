@@ -1,11 +1,11 @@
-#' Converts PMRecording or PMCollection into a long data frame
+#' Converts PRecording or PCollection into a long data frame
 #'
-#' Converts PMRecording or PMCollection into a data frame in a long representation, analog to tidyR's gather
+#' Converts PRecording or PCollection into a data frame in a long representation, analog to tidyR's gather
 #'
-#' @param x a \link[=PMRecording]{PMRecording} or \link[=PMCollection]{PMCollection}object
+#' @param x a \link[=PRecording]{PRecording} or \link[=PCollection]{PCollection}object
 #' @exportMethod as.data.frame
 setMethod("as.data.frame",
-          "PMRecording",
+          "PRecording",
           function(x,
                    ...){
             Traces<-rep(getTraceNames(x),
@@ -28,7 +28,7 @@ setMethod("as.data.frame",
 #' @import plyr
 #' @exportMethod as.data.frame
 setMethod("as.data.frame",
-          "PMCollection",
+          "PCollection",
           function(x,
                    ...){
             lst<-plyr::ldply(x@Series,as.data.frame)

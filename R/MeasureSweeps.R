@@ -1,6 +1,6 @@
 #' Measurement methods
 #'
-#' These methods perform measurements on \linkS4class{PMRecording} and \linkS4class{PMCollection} objects on a per-sweep basis. They are designed to efficiently collect data e.g. for time Series, dose-response or point statistics
+#' These methods perform measurements on \linkS4class{PRecording} and \linkS4class{PCollection} objects on a per-sweep basis. They are designed to efficiently collect data e.g. for time Series, dose-response or point statistics
 #'
 #' @inheritParams SubsetData
 #' @param Trace The name of the trace to perform measurements on
@@ -8,13 +8,13 @@
 #' @param RespTrace The name of the Trace that contains the Response
 #' @param label A label (if \code{Sweeps} has length 1) or a prefix
 #' @param FUN function to apply on sweep. Can be anything that woks with \link[=base::apply]{apply}. But will be usually \link[=base::mean]{mean}, \link[=base::max]{max}, \link[=base::min]{min}, or \link[=base::`-`]{`-`}.
-#' @param ReturnPMObject whether to return a PMCollection or a Matrix.
+#' @param ReturnPMObject whether to return a PCollection or a Matrix.
 #' @import dplyr tidyr
 #' @name Measure
 NULL
 
 #' @describeIn Measure This function performs the actual measurements. It subsets an object by \code{Trace} and \code{Sweeps}. If \code{FUN} is a binary operator, then applies it to the exact time points given in \code{Time}, else, it applies it to the range indicated by \code{Time}.
-#' @return MeasureSweeps: A \linkS4class{PMRecording} or \linkS4class{PMCollection}, respectiveley with an updated MetaData Slot or, if \code{ReturnPMObject=F} a matrix.
+#' @return MeasureSweeps: A \linkS4class{PRecording} or \linkS4class{PCollection}, respectiveley with an updated MetaData Slot or, if \code{ReturnPMObject=F} a matrix.
 #' @exportMethod MeasureSweeps
 setGeneric(name="MeasureSweeps",
            def=function(X,
@@ -30,7 +30,7 @@ setGeneric(name="MeasureSweeps",
 )
 
 setMethod("MeasureSweeps",
-          "PMRecording",
+          "PRecording",
           function(X,
                    Trace,
                    Sweeps=getSweepNames(X),
@@ -71,7 +71,7 @@ setMethod("MeasureSweeps",
 
 
 setMethod("MeasureSweeps",
-          "PMCollection",
+          "PCollection",
           function(X,
                    Trace,
                    Sweeps=getSweepNames(X),
@@ -130,7 +130,7 @@ setGeneric(name="MeasureStimResp",
            }
 )
 setMethod("MeasureStimResp",
-          "PMRecording",
+          "PRecording",
           function(X,
                    StimTrace="V-mon",
                    RespTrace="I-mon",
@@ -159,7 +159,7 @@ setMethod("MeasureStimResp",
 )
 
 setMethod("MeasureStimResp",
-          "PMCollection",
+          "PCollection",
           function(X,
                    StimTrace="V-mon",
                    RespTrace="I-mon",

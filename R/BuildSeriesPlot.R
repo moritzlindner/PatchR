@@ -2,8 +2,8 @@
 #'
 #' This function creats a basic visualization for each Trace in the object. These will be stored in the Plots slot
 #'
-#' @param object a \link[=PMRecording]{PMRecording} object object
-#' @return A \link[=PMRecording]{PMRecording} object
+#' @param object a \link[=PRecording]{PRecording} object object
+#' @return A \link[=PRecording]{PRecording} object
 #' @exportMethod BuildSeriesPlot
 setGeneric(name="BuildSeriesPlot",
            def=function(object)
@@ -13,7 +13,7 @@ setGeneric(name="BuildSeriesPlot",
 )
 
 setMethod("BuildSeriesPlot",
-          "PMRecording",
+          "PRecording",
           function(object){
             tmp.object<-downsample(object,npnts.out = 1000)
             tmp.object<-convenientScales(tmp.object)

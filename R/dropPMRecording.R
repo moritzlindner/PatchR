@@ -1,39 +1,39 @@
-setGeneric(name="dropPMRecording",
+setGeneric(name="dropPRecording",
            def=function(object,
-                        PMRecording=NULL,
+                        PRecording=NULL,
                         Group=NULL)
            {
-             standardGeneric("dropPMRecording")
+             standardGeneric("dropPRecording")
            }
 )
 
-#' Drops PMRecording(s) from PMCollection
+#' Drops PRecording(s) from PCollection
 #'
-#'  Drops PMRecording(s) from PMCollection
+#'  Drops PRecording(s) from PCollection
 #'
-#' @param object a PMCollection object
-#' @param PMRecording a name of a PMRecording object in the collection, or a list thereof
-#' @return A \link[=PMCollection]{PMCollection} object
-#' @exportMethod dropPMRecording
-setMethod("dropPMRecording",
-          "PMCollection",
+#' @param object a PCollection object
+#' @param PRecording a name of a PRecording object in the collection, or a list thereof
+#' @return A \link[=PCollection]{PCollection} object
+#' @exportMethod dropPRecording
+setMethod("dropPRecording",
+          "PCollection",
           function(object,
-                   PMRecording=NULL,
+                   PRecording=NULL,
                    Group=NULL)
           {
             warning("MetaData and Plots are dropped to assure conistency.")
-            if (!is.null(PMRecording) & !is.null(Group)){
-              stop("Only Group or PMRecording may be provided")
+            if (!is.null(PRecording) & !is.null(Group)){
+              stop("Only Group or PRecording may be provided")
             }
             if(!is.null(Group)){
-              PMRecording<-getGroupMembers(object,Group)
+              PRecording<-getGroupMembers(object,Group)
             }
-            Group<-object@Group[!(object@Names %in% PMRecording)]
+            Group<-object@Group[!(object@Names %in% PRecording)]
             Group<-droplevels(Group)
 
-            out<-PMCollection(
-              Series=object@Series[!(object@Names %in% PMRecording)],
-              Names=object@Names[!(object@Names %in% PMRecording)],
+            out<-PCollection(
+              Series=object@Series[!(object@Names %in% PRecording)],
+              Names=object@Names[!(object@Names %in% PRecording)],
               Group=Group,
               RecordingParams=object@RecordingParams
             )

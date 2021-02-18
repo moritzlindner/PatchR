@@ -8,7 +8,7 @@ setGeneric(name="Plot_Inspect",
            }
 )
 setMethod("Plot_Inspect",
-          "PMRecording",
+          "PRecording",
           definition=function(object,what="I.mon"){
             if (!is.null(object@Plots[[what]])){
               ggplotly(object@Plots[[what]])
@@ -20,7 +20,7 @@ setMethod("Plot_Inspect",
 
 #' @exportMethod Plot_Inspect
 setMethod("Plot_Inspect",
-          "PMCollection",
+          "PCollection",
           definition=function(object,what="I.mon"){
             if (!is.null(object@Plots[[what]])){
               ggplotly(object@Plots[[what]])

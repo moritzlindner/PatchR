@@ -1,12 +1,13 @@
 #' show
 #'
-#' Default mehtod show for PMRecording
+#' Default mehtod show for PRecording
 #' @importMethodsFrom methods show
 #' @exportMethod show
+NULL
 setMethod("show",
-          "PMRecording",
+          "PRecording",
           function(object) {
-            cat("An object of class PMRecording \n")
+            cat("An object of class PRecording \n")
             cat(object@RecordingParams@RecMode, "Experiment \n")
             cat("From", object@RecordingParams@Filename, "\n")
             cat("With", length(getTraceNames(object)), "Traces ,", length(getSweepNames(object)), "Sweeps and", length(getTimeTrace(object)), "Timepoints \n")
@@ -17,9 +18,9 @@ setMethod("show",
 
 #' @exportMethod show
 setMethod("show",
-          "PMCollection",
+          "PCollection",
           function(object) {
-            cat("An object of class PMCollection \n")
+            cat("An object of class PCollection \n")
             cat(object@RecordingParams@RecMode, "Experiment \n")
             cat("With", length(object@Series), " Series \n")
             cat("in", length(levels(object@Group)), " Groups \n")

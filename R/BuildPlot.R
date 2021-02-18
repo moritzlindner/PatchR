@@ -4,7 +4,7 @@
 #'
 #' @inheritParams MeasureStimResp
 #' @param Sweep Sweep to analyse for group comparison
-#' @return A \linkS4class{PMCollection} with an item added to the Plots slot if \code{ReturnPMObject=T} or a \link[=ggplot2::ggplot]{ggplot}.
+#' @return A \linkS4class{PCollection} with an item added to the Plots slot if \code{ReturnPMObject=T} or a \link[=ggplot2::ggplot]{ggplot}.
 #' @name Plots
 NULL
 
@@ -23,7 +23,7 @@ setGeneric(name="PlotDoseResp",
 )
 
 setMethod("PlotDoseResp",
-          "PMRecording",
+          "PRecording",
           function(X,
                    StimTrace="V-mon",
                    RespTrace="I-mon",
@@ -39,7 +39,7 @@ setMethod("PlotDoseResp",
           }
           )
 setMethod("PlotDoseResp",
-          "PMCollection",
+          "PCollection",
           function(X,
                    StimTrace="V-mon",
                    RespTrace="I-mon",
@@ -67,7 +67,7 @@ PlotDoseRespgeneric<-function(X,
                        Time,
                        fun)
 
-  if(class(X)[1]=="PMRecording"){
+  if(class(X)[1]=="PRecording"){
     StimUnit<-paste0(convenientScalessi(dat$Stimulus),X@Units[getTraceNames(X)==StimTrace])
     RespUnit<-paste0(convenientScalessi(dat$Response),X@Units[getTraceNames(X)==RespTrace])
   }else{
@@ -111,7 +111,7 @@ setGeneric(name="PlotTimeSeries",
            }
 )
 setMethod("PlotTimeSeries",
-          "PMRecording",
+          "PRecording",
           function(X,
                    RespTrace="I-mon",
                    Time,
@@ -125,7 +125,7 @@ setMethod("PlotTimeSeries",
           }
 )
 setMethod("PlotTimeSeries",
-          "PMCollection",
+          "PCollection",
           function(X,
                    RespTrace="I-mon",
                    Time,
@@ -148,7 +148,7 @@ PlotTimeSeriesgeneric<-function(X,
                        RespTrace=RespTrace,
                        Time=Time,
                        FUN=fun)
-  if(class(X)[1]=="PMRecording"){
+  if(class(X)[1]=="PRecording"){
     TimeUnit<-paste0(convenientScalessi(dat$StimTimes),X@TimeUnit)
     RespUnit<-paste0(convenientScalessi(dat$Response),X@Units[getTraceNames(X)==RespTrace])
   }else{
@@ -180,7 +180,7 @@ PlotTimeSeriesgeneric<-function(X,
   }
 }
 
-#' @describeIn Plots This method builds a boxplot for comparison between groups as stored in the \linkS4class{PMCollection}.
+#' @describeIn Plots This method builds a boxplot for comparison between groups as stored in the \linkS4class{PCollection}.
 #' @exportMethod PlotGroupComparison
 setGeneric(name="PlotGroupComparison",
            def=function(X,
@@ -194,7 +194,7 @@ setGeneric(name="PlotGroupComparison",
            }
 )
 setMethod("PlotGroupComparison",
-          "PMCollection",
+          "PCollection",
           function(X,
                    Sweep,
                    RespTrace="I-mon",
@@ -223,7 +223,7 @@ PlotGroupComparisongeneric<-function(X,
                        Time,
                        fun)
 
-  if(class(X)[1]=="PMRecording"){
+  if(class(X)[1]=="PRecording"){
     RespUnit<-paste0(convenientScalessi(dat$Response),X@Units[getTraceNames(X)==RespTrace])
   }else{
     RespUnit<-paste0(convenientScalessi(dat$Response),X@Series[[1]]@Units[getTraceNames(X@Series[[1]])==RespTrace])

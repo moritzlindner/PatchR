@@ -1,15 +1,15 @@
-#' apply function for PMRecording objects
+#' apply function for PRecording objects
 #'
-#' This is the PatchMasteR analog to "apply"
+#' This is the PatchR analog to "apply"
 #'
-#' @param X a \linkS4class{PMRecording}  object
+#' @param X a \linkS4class{PRecording}  object
 #' @param MARGIN a vector giving the subscripts which the function will be applied along. Understands "Time", "Sweep","Trace", or 1-3 resp.
 #' @param FUN the function to be applied
-#' @param ReturnPMObject whether to return results as a \linkS4class{PMRecording} with an additional, computed trace only works with \code{MARGIN=TRACE} or if applying \code{FUN} leaves dimensions unchanged. Default is \var{FALSE}, then returns a matrix.
-#' @return A \link[base::matrix]{matrix}  or \linkS4class{PMRecording}  object
+#' @param ReturnPMObject whether to return results as a \linkS4class{PRecording} with an additional, computed trace only works with \code{MARGIN=TRACE} or if applying \code{FUN} leaves dimensions unchanged. Default is \var{FALSE}, then returns a matrix.
+#' @return A \link[base::matrix]{matrix}  or \linkS4class{PRecording}  object
 #' @exportMethod apply
 setMethod("apply",
-          "PMRecording",
+          "PRecording",
           function(X,
                    MARGIN,
                    FUN,
@@ -47,7 +47,7 @@ setMethod("apply",
             if(isTRUE(all.equal(dim(out),dim(DAT)))){
               dimnames(out)<-dimnames(DAT)
               if(ReturnPMObject){
-                warning("Updating data in PMRecording!")
+                warning("Updating data in PRecording!")
                 out<-lapply(seq(dim(out)[3]), function(y) out[ , , y])
                 names(out)<-names(X@Data)
                 X@Data<-out

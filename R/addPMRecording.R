@@ -1,56 +1,56 @@
 
 
-#' Adds PMRecording to PMCollection
+#' Adds PRecording to PCollection
 #'
-#' Adds a \linkS4class{PMRecording} to existing \linkS4class{PMCollection}
+#' Adds a \linkS4class{PRecording} to existing \linkS4class{PCollection}
 #'
-#' @param object a \linkS4class{PMRecording} object
-#' @param PMRecording a PMRecording object, or list of PMRecording objects
-#' @param Names names for imported PMRecording. Standard is variable name given in PMRecording if single PMRecording, i
-#' @param Group Group variable or list thereof, of the same lenght as PMRecording
-#' @return A \linkS4class{PMCollection} object
-#' @exportMethod addPMRecording
-setGeneric(name="addPMRecording",
+#' @param object a \linkS4class{PRecording} object
+#' @param PRecording a PRecording object, or list of PRecording objects
+#' @param Names names for imported PRecording. Standard is variable name given in PRecording if single PRecording, i
+#' @param Group Group variable or list thereof, of the same lenght as PRecording
+#' @return A \linkS4class{PCollection} object
+#' @exportMethod addPRecording
+setGeneric(name="addPRecording",
            def=function(object,
-                        PMRecording,
-                        Names=if(is.list(PMRecording)){
-                          lapply(PMRecording,function(x) x@RecordingParams@Filename)
+                        PRecording,
+                        Names=if(is.list(PRecording)){
+                          lapply(PRecording,function(x) x@RecordingParams@Filename)
                         }else{
-                          PMRecording@RecordingParams@Filename
+                          PRecording@RecordingParams@Filename
                         },
                         Group)
            {
-             standardGeneric("addPMRecording")
+             standardGeneric("addPRecording")
            }
 )
-setMethod("addPMRecording",
-          "PMCollection",
+setMethod("addPRecording",
+          "PCollection",
           function(object,
-                   PMRecording,
-                   Names=if(is.list(PMRecording)){
-                     lapply(PMRecording,function(x) x@RecordingParams@Filename)
+                   PRecording,
+                   Names=if(is.list(PRecording)){
+                     lapply(PRecording,function(x) x@RecordingParams@Filename)
                      }else{
-                       PMRecording@RecordingParams@Filename
+                       PRecording@RecordingParams@Filename
                        },
                    Group="Generic")
             {
             warning("MetaData and Plots are dropped to assure conistency.")
 
-            if(length(Group)==1 & length(PMRecording)>1){
-              Group<-rep(Group,length(PMRecording))
+            if(length(Group)==1 & length(PRecording)>1){
+              Group<-rep(Group,length(PRecording))
             }
-            if(length(Group)!=length(PMRecording)){
+            if(length(Group)!=length(PRecording)){
               stop("Incorrect length of 'Group'")
             }
-            if(length(Names)!=length(PMRecording)){
+            if(length(Names)!=length(PRecording)){
               stop("Incorrect length of 'Names'")
             }
 
-            object@Series<-append(object@Series,PMRecording)
+            object@Series<-append(object@Series,PRecording)
             object@Names<-append(object@Names,Names)
             object@Group<-as.factor(c(as.character(object@Group),as.character(Group)))
 
-            out<-PMCollection(
+            out<-PCollection(
               Series=object@Series,
               Names=object@Names,
               Group=object@Group,

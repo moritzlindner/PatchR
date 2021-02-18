@@ -7,10 +7,10 @@
 BuildSeriesPlot(object)
 }
 \arguments{
-\item{object}{a \link[=PMRecording]{PMRecording} object object}
+\item{object}{a \link[=PRecording]{PRecording} object object}
 }
 \value{
-A \link[=PMRecording]{PMRecording} object
+A \link[=PRecording]{PRecording} object
 }
 \description{
 This function creats a basic visualization for each Trace in the object. These will be stored in the Plots slot

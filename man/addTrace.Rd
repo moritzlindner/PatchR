@@ -2,12 +2,12 @@
 % Please edit documentation in R/addTrace.R
 \name{addTrace}
 \alias{addTrace}
-\title{Add data (Trace) to PMRecording objects}
+\title{Add data (Trace) to PRecording objects}
 \usage{
 addTrace(object, Trace, Unit, Sweeps = colnames(mtx), isOrig = F, mtx)
 }
 \arguments{
-\item{object}{A \linkS4class{PMRecording} object}
+\item{object}{A \linkS4class{PRecording} object}
 
 \item{Trace}{Name of the new Trace}
 
@@ -16,8 +16,8 @@ addTrace(object, Trace, Unit, Sweeps = colnames(mtx), isOrig = F, mtx)
 \item{mtx}{Any object convertible into a matrix, that has the same dimension as data in the Data slot of \code{object}}
 }
 \value{
-A matrix or \linkS4class{PMRecording} object
+A matrix or \linkS4class{PRecording} object
 }
 \description{
-This function adds a new Trace (with data) from any object convertible into a matrix to a PMRecording object
+This function adds a new Trace (with data) from any object convertible into a matrix to a PRecording object
 }

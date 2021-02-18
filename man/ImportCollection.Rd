@@ -21,7 +21,7 @@ ImportCollection(
 \item{type}{File Type. Currently not implemented. Only works with PatchMatster files.}
 }
 \value{
-A \link[=PMCollection]{PMCollection} object
+A \link[=PCollection]{PCollection} object
 }
 \description{
 Imports a collection of PatchClamp recordings. I e those that be long to a the same experimental series.

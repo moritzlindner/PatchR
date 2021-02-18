@@ -1,9 +1,9 @@
-#' Visualize quality metrics for PMRecordings in PMCollection
+#' Visualize quality metrics for PRecordings in PCollection
 #'
-#' This function creates a basic visualization of quality-relevant recording parameters in the PMCollection These will be stored in the Plots slot and can be accessed using \link[=Inspect]{Inspect}(object,"QC_Metrics")
+#' This function creates a basic visualization of quality-relevant recording parameters in the PCollection These will be stored in the Plots slot and can be accessed using \link[=Inspect]{Inspect}(object,"QC_Metrics")
 #'
-#' @param object a \link[=PMCollection]{PMCollection} object object
-#' @return A \link[=PMCollection]{PMCollection} object
+#' @param object a \link[=PCollection]{PCollection} object object
+#' @return A \link[=PCollection]{PCollection} object
 #' @exportMethod BuildQCPlot
 setGeneric(name="BuildQCPlot",
            def=function(object)
@@ -13,7 +13,7 @@ setGeneric(name="BuildQCPlot",
 )
 
 setMethod("BuildQCPlot",
-          "PMCollection",
+          "PCollection",
           function(object){
             items<-c("Cs", "Rs")
 

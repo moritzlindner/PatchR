@@ -31,7 +31,7 @@ PlotGroupComparison(
 Plot_Inspect(object, what = "I.mon")
 }
 \arguments{
-\item{X}{a \link[=PMRecording]{PMRecording} or \link[=PMCollection]{PMCollection} Object}
+\item{X}{a \link[=PRecording]{PRecording} or \link[=PCollection]{PCollection} Object}
 
 \item{StimTrace}{The name of the Trace that contains the Stimulus}
 
@@ -39,14 +39,14 @@ Plot_Inspect(object, what = "I.mon")
 
 \item{Time}{either a range of time points to keep, or, if \code{TimeExclusive} is \code{TRUE}, then two particular time points}
 
-\item{ReturnPMObject}{whether to return a PMCollection or a Matrix.}
+\item{ReturnPMObject}{whether to return a PCollection or a Matrix.}
 
 \item{Sweep}{Sweep to analyse for group comparison}
 
 \item{what}{Specifies a plot to be plotted. any ggplot inside the Plots slot can be named}
 }
 \value{
-A \linkS4class{PMCollection} with an item added to the Plots slot if \code{ReturnPMObject=T} or a \link[=ggplot2::ggplot]{ggplot}.
+A \linkS4class{PCollection} with an item added to the Plots slot if \code{ReturnPMObject=T} or a \link[=ggplot2::ggplot]{ggplot}.
 }
 \description{
 These methods create "typical" ephsy graphs like dose-response curves, time-series or point statistics.
@@ -57,7 +57,7 @@ These methods create "typical" ephsy graphs like dose-response curves, time-seri
 
 \item \code{PlotTimeSeries}: This method builds a time Series plot
 
-\item \code{PlotGroupComparison}: This method builds a boxplot for comparison between groups as stored in the \linkS4class{PMCollection}.
+\item \code{PlotGroupComparison}: This method builds a boxplot for comparison between groups as stored in the \linkS4class{PCollection}.
 
 \item \code{Plot_Inspect}: This function plots an interactive \link[=plotly]{plotly} graph from a plot generated using a Build* method.
 }}

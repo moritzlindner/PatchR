@@ -8,17 +8,17 @@ setGeneric(name="downsample",
              standardGeneric("downsample")
            }
 )
-#' Donwsample a PMRecording object
+#' Donwsample a PRecording object
 #'
-#' Downsample \link[=PMRecording]{PMRecording} object along the time axis
+#' Downsample \link[=PRecording]{PRecording} object along the time axis
 #'
-#' @param object a \link[=PMRecording]{PMRecording} object
+#' @param object a \link[=PRecording]{PRecording} object
 #' @param npnts.out Number of points in output time axis, ignored if NULL
 #' @param sample.rate New sampling rate in 1/[object@TimeUnit]
-#' @return A matrix or \link[=PMRecording]{PMRecording} object
+#' @return A matrix or \link[=PRecording]{PRecording} object
 #' @exportMethod downsample
 setMethod("downsample",
-          "PMRecording",
+          "PRecording",
           function(object,
                    npnts.out=NULL,
                    sample.rate=NULL){
