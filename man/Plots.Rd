@@ -5,7 +5,7 @@
 \alias{DoseRespPlot}
 \alias{TimeSeriesPlot}
 \alias{GroupComparisonPlot}
-\title{TBC}
+\title{Plotting methods}
 \usage{
 DoseRespPlot(
   X,
@@ -44,7 +44,7 @@ GroupComparisonPlot(
 A \linkS4class{PMCollection} with an item added to the Plots slot if \code{ReturnPMObject=T} or a \link[=ggplot2::ggplot]{ggplot}.
 }
 \description{
-This function creates a basic visualization of quality-relevant recording parameters in the PMCollection These will be stored in the Plots slot and can be accessed using \link[=Inspect]{Inspect}(X,"QC_Metrics")
+These methods create "typical" ephsy graphs like dose-response curves, time-series or point statistics.
 }
 \section{Functions}{
 \itemize{

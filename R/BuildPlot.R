@@ -92,6 +92,7 @@ DoseRespPlotgeneric<-function(X,
     ylab(paste(RespTrace," [",RespUnit,"]"))
   if(ReturnPMObject){
     X@Plots[["DoseResp_Plot"]]<-out
+    X
   }else{
     out
   }
@@ -117,7 +118,6 @@ setMethod("TimeSeriesPlot",
                    fun=mean,
                    ReturnPMObject=T){
             DoseRespPlotgeneric(X,
-                                StimTrace,
                                 RespTrace,
                                 Time,
                                 fun,
@@ -132,7 +132,6 @@ setMethod("TimeSeriesPlot",
                    fun=mean,
                    ReturnPMObject=T){
             DoseRespPlotgeneric(X,
-                                StimTrace,
                                 RespTrace,
                                 Time,
                                 fun,
@@ -175,6 +174,7 @@ TimeSeriesPlotgeneric<-function(X,
     ylab(paste(RespTrace," [",RespUnit,"]"))
   if(ReturnPMObject){
     X@Plots[["Time_Plot"]]<-out
+    X
   }else{
     out
   }
@@ -203,7 +203,6 @@ setMethod("GroupComparisonPlot",
                    ReturnPMObject=T){
             GroupComparisonPlot(X,
                                 Sweep,
-                                StimTrace,
                                 RespTrace,
                                 Time,
                                 fun,
@@ -248,6 +247,7 @@ GroupComparisonPlotgeneric<-function(X,
     ylab(paste(RespTrace," [",RespUnit,"]"))
   if(ReturnPMObject){
     X@Plots[["GroupComparison_Plot"]]<-out
+    X
   }else{
     out
   }
