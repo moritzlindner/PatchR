@@ -68,11 +68,11 @@ DoseRespPlotgeneric<-function(X,
                        fun)
 
   if(class(X)[1]=="PMRecording"){
-    StimUnit<-paste0(convenientScalessi(dat$Stimulus),Units[getTraceNames(X)==StimTrace])
-    RespUnit<-paste0(convenientScalessi(dat$Response),Units[getTraceNames(X)==RespTrace])
+    StimUnit<-paste0(convenientScalessi(dat$Stimulus),X@Units[getTraceNames(X)==StimTrace])
+    RespUnit<-paste0(convenientScalessi(dat$Response),X@Units[getTraceNames(X)==RespTrace])
   }else{
-    StimUnit<-paste0(convenientScalessi(dat$Stimulus),Units[getTraceNames(X@Series[[1]])==StimTrace])
-    RespUnit<-paste0(convenientScalessi(dat$Response),Units[getTraceNames(X@Series[[1]])==RespTrace])
+    StimUnit<-paste0(convenientScalessi(dat$Stimulus),X@Series[[1]]@Units[getTraceNames(X@Series[[1]])==StimTrace])
+    RespUnit<-paste0(convenientScalessi(dat$Response),X@Series[[1]]@Units[getTraceNames(X@Series[[1]])==RespTrace])
   }
   dat$Stimulus<-convenientScalesvalue(dat$Stimulus)
   dat$Response<-convenientScalesvalue(dat$Response)
@@ -152,10 +152,10 @@ TimeSeriesPlotgeneric<-function(X,
 
   if(class(X)[1]=="PMRecording"){
     TimeUnit<-paste0(convenientScalessi(dat$StimTimes),X@TimeUnit)
-    RespUnit<-paste0(convenientScalessi(dat$Response),Units[getTraceNames(X)==RespTrace])
+    RespUnit<-paste0(convenientScalessi(dat$Response),X@Units[getTraceNames(X)==RespTrace])
   }else{
     TimeUnit<-paste0(convenientScalessi(dat$StimTimes),X@Series[[1]])
-    RespUnit<-paste0(convenientScalessi(dat$Response),Units[getTraceNames(X@Series[[1]])==RespTrace])
+    RespUnit<-paste0(convenientScalessi(dat$Response),X@Series[[1]]@Units[getTraceNames(X@Series[[1]])==RespTrace])
   }
   dat$StimTimes<-convenientScalesvalue(dat$StimTimes)
   dat$Response<-convenientScalesvalue(dat$Response)
@@ -196,6 +196,7 @@ setGeneric(name="GroupComparisonPlot",
 setMethod("GroupComparisonPlot",
           "PMCollection",
           function(X,
+                   Sweep,
                    RespTrace="I-mon",
                    Time,
                    fun=mean,
@@ -215,7 +216,7 @@ GroupComparisonPlotgeneric<-function(X,
                            RespTrace="I-mon",
                            Time,
                            fun=mean,
-                           ReturnPMObject=T){
+                           ReturnPMObject){
   X<-SubsetData(X,Sweeps=Sweep)
   dat<-MeasureStimResp(X,
                        StimTrace=RespTrace,
@@ -224,9 +225,9 @@ GroupComparisonPlotgeneric<-function(X,
                        fun)
 
   if(class(X)[1]=="PMRecording"){
-    RespUnit<-paste0(convenientScalessi(dat$Response),Units[getTraceNames(X)==RespTrace])
+    RespUnit<-paste0(convenientScalessi(dat$Response),X@Units[getTraceNames(X)==RespTrace])
   }else{
-    RespUnit<-paste0(convenientScalessi(dat$Response),Units[getTraceNames(X@Series[[1]])==RespTrace])
+    RespUnit<-paste0(convenientScalessi(dat$Response),X@Series[[1]]@Units[getTraceNames(X@Series[[1]])==RespTrace])
   }
   dat$Response<-convenientScalesvalue(dat$Response)
 

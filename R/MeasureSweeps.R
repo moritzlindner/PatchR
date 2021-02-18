@@ -152,7 +152,6 @@ setMethod("MeasureStimResp",
                                   FUN=FUN,
                                   ReturnPMObject=F)
             out<-as.data.frame(cbind(stim,getSweepTimes(X)-min(getSweepTimes(X)),resp))
-            print(head(out))
             out<-cbind<-cbind(getSweepNames(X),out)
             colnames(out)<-c("Name","Stimulus","StimTimes","Response")
             out
