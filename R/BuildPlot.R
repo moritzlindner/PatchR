@@ -1,6 +1,6 @@
-#' TBC
+#' Plotting methods
 #'
-#' This function creates a basic visualization of quality-relevant recording parameters in the PMCollection These will be stored in the Plots slot and can be accessed using \link[=Inspect]{Inspect}(X,"QC_Metrics")
+#' These methods create "typical" ephsy graphs like dose-response curves, time-series or point statistics.
 #'
 #' @inheritParams MeasureStimResp
 #' @param Sweep Sweep to analyse for group comparison
@@ -67,11 +67,15 @@ DoseRespPlotgeneric<-function(X,
                        Time,
                        fun)
 
+  if(class(X)[1]=="PMRecording"){
+    StimUnit<-paste0(convenientScalessi(dat$Stimulus),Units[getTraceNames(X)==StimTrace])
+    RespUnit<-paste0(convenientScalessi(dat$Response),Units[getTraceNames(X)==RespTrace])
+  }else{
+    StimUnit<-paste0(convenientScalessi(dat$Stimulus),Units[getTraceNames(X@Series[[1]])==StimTrace])
+    RespUnit<-paste0(convenientScalessi(dat$Response),Units[getTraceNames(X@Series[[1]])==RespTrace])
+  }
   dat$Stimulus<-convenientScalesvalue(dat$Stimulus)
   dat$Response<-convenientScalesvalue(dat$Response)
-
-  StimUnit<-paste0(convenientScalessi(dat$Stimulus),X@Units[getTraceNames(X)==StimTrace])
-  RespUnit<-paste0(convenientScalessi(dat$Response),X@Units[getTraceNames(X)==RespTrace])
 
   if(!("Group" %in% colnames(dat))){
     dat$Group<-"Genereic"
@@ -84,8 +88,8 @@ DoseRespPlotgeneric<-function(X,
     theme(legend.position = "bottom",
           text = element_text(size=8),
           strip.background = element_rect(fill = "light grey",colour = NULL, size=0))+
-    xlab(paste(StimTrace," [",X@Series[[1]]@Units[getTraceNames(X@Series[[1]])==StimTrace],"]"))+
-    ylab(paste(RespTrace," [",X@Series[[1]]@Units[getTraceNames(X@Series[[1]])==RespTrace],"]"))
+    xlab(paste(StimTrace," [",StimUnit,"]"))+
+    ylab(paste(RespTrace," [",RespUnit,"]"))
   if(ReturnPMObject){
     X@Plots[["DoseResp_Plot"]]<-out
   }else{
@@ -146,11 +150,15 @@ TimeSeriesPlotgeneric<-function(X,
                        Time,
                        fun)
 
+  if(class(X)[1]=="PMRecording"){
+    TimeUnit<-paste0(convenientScalessi(dat$StimTimes),X@TimeUnit)
+    RespUnit<-paste0(convenientScalessi(dat$Response),Units[getTraceNames(X)==RespTrace])
+  }else{
+    TimeUnit<-paste0(convenientScalessi(dat$StimTimes),X@Series[[1]])
+    RespUnit<-paste0(convenientScalessi(dat$Response),Units[getTraceNames(X@Series[[1]])==RespTrace])
+  }
   dat$StimTimes<-convenientScalesvalue(dat$StimTimes)
   dat$Response<-convenientScalesvalue(dat$Response)
-
-  TimeUnit<-paste0(convenientScalessi(dat$StimTimes),X@TimeUnit)
-  RespUnit<-paste0(convenientScalessi(dat$Response),X@Units[getTraceNames(X)==RespTrace])
 
   if(!("Group" %in% colnames(dat))){
     dat$Group<-"Genereic"
@@ -163,8 +171,8 @@ TimeSeriesPlotgeneric<-function(X,
     theme(legend.position = "bottom",
           text = element_text(size=8),
           strip.background = element_rect(fill = "light grey",colour = NULL, size=0))+
-    xlab(paste("Time [",X@Series[[1]]@Units[getTraceNames(X@Series[[1]])==StimTrace],"]"))+
-    ylab(paste(RespTrace," [",X@Series[[1]]@Units[getTraceNames(X@Series[[1]])==RespTrace],"]"))
+    xlab(paste("Time [",TimeUnit,"]"))+
+    ylab(paste(RespTrace," [",RespUnit,"]"))
   if(ReturnPMObject){
     X@Plots[["Time_Plot"]]<-out
   }else{
@@ -192,7 +200,7 @@ setMethod("GroupComparisonPlot",
                    Time,
                    fun=mean,
                    ReturnPMObject=T){
-            DoseRespPlotgeneric(X,
+            GroupComparisonPlot(X,
                                 Sweep,
                                 StimTrace,
                                 RespTrace,
@@ -215,9 +223,12 @@ GroupComparisonPlotgeneric<-function(X,
                        Time,
                        fun)
 
+  if(class(X)[1]=="PMRecording"){
+    RespUnit<-paste0(convenientScalessi(dat$Response),Units[getTraceNames(X)==RespTrace])
+  }else{
+    RespUnit<-paste0(convenientScalessi(dat$Response),Units[getTraceNames(X@Series[[1]])==RespTrace])
+  }
   dat$Response<-convenientScalesvalue(dat$Response)
-
-  RespUnit<-paste0(convenientScalessi(dat$Response),X@Units[getTraceNames(X)==RespTrace])
 
   if(!("Group" %in% colnames(dat))){
     dat$Group<-"Genereic"
@@ -233,7 +244,7 @@ GroupComparisonPlotgeneric<-function(X,
     theme(legend.position = "bottom",
           text = element_text(size=8),
           strip.background = element_rect(fill = "light grey",colour = NULL, size=0))+
-    ylab(paste(RespTrace," [",X@Series[[1]]@Units[getTraceNames(X@Series[[1]])==RespTrace],"]"))
+    ylab(paste(RespTrace," [",RespUnit,"]"))
   if(ReturnPMObject){
     X@Plots[["GroupComparison_Plot"]]<-out
   }else{
