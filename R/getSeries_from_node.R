@@ -1,7 +1,7 @@
 #' getSeries_from_node
 #'
 #' function inherited from ephys2 (/github/tdanker/ephys2/). Undocumented.
-#' @import stringr
+#' @importFrom stringr str_replace
 #' @noRd
 getSeries_from_node<-function (node, sweeps = 1:length(node), trace = 1, read_data = T,encoding=getOption("encoding"))
 {
@@ -12,7 +12,15 @@ getSeries_from_node<-function (node, sweeps = 1:length(node), trace = 1, read_da
   }
   message(encoding)
   con <- file(filename, "rb", encoding=encoding)
-  signature <- readChar(con, 4)
+  signature <- readChar(con, 8)
+  version <- readChar(con, 32)
+  message("File Version: ",version)
+  time <- readBin(con, "double")
+  time <- time- 1580970496.0 # JanFirst1990
+  if (time < 0.0){time<-time+4294967296} #HIGH_DWORD
+  time <- time+ 9561652096 #MAC_BASE
+  time<-as.Date(as.POSIXct(time, origin="1601-01-01"))
+  message("File Timestamp: ",time)
   if (signature == "DAT1") {
     mypul <- str_replace(filename, ".dat$",
                                   ".pul")
@@ -70,6 +78,8 @@ getSeries_from_node<-function (node, sweeps = 1:length(node), trace = 1, read_da
                  RSeal = RSeal,
                  Cs = Cs,
                  Rs = Rs,
+                 time = time,
+                 version = version,
                  XUnit = XUnit,
                  YUnit = YUnit,
                  tracename = attr(series[[1]],

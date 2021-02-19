@@ -5,22 +5,18 @@
 read.bundletree<-function (myfile, bundlename = ".pul", con = NA,encoding=getOption("encoding"))
 {
   finally_close_con = is.na(con)
-  message(encoding)
   if (is.na(con)) {
     con <- file(myfile, "rb", encoding=encoding)
   }
   seek(con, 0)
   signature <- readChar(con, 8)
   if (signature == "DAT2") {
-    version <- readChar(con, 32)
-    message("File Version: ",version)
-    time <- readBin(con, "double")
-    message("File Timestamp: ",as.character(time))
+    #version <- readChar(con, 32)
+    #time <- readBin(con, "double")
+    #message("File Timestamp: ",as.Date(as.POSIXct(time, origin="1601-01-01")))
+    seek(con, where = 48)
     nitems <- readBin(con, "int", size = 1)
-    liddle_endian <- readBin(con, "logical")
-    # try to read as binary
-    reserved <- readBin(con, 11)#readChar(con, 11)
-    message("reserved: ",reserved)
+    seek(con, where = 64)
     bundleitems <- do.call(rbind, (lapply(0:nitems, function(item) {
       start <- readBin(con, "int", size = 4)
       end <- readBin(con, "int", size = 4)

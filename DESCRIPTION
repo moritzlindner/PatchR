@@ -1,7 +1,7 @@
 Package: PatchR
 Type: Package
 Title: An environment for working with ephys (PatchClamp) recordings
-Version: 0.6.0
+Version: 0.7.0
 Author: person("Moritz", "Lindner", email = "moritz.lindne@ndcn.ox.ac.uk", role = c("aut", "cre"))
 Maintainer: Moritz Lindner <moritz.lindne@ndcn.ox.ac.uk>
 Description: An environment for working with ephys (PatchClamp) recordings. Currently import for HEKA's PatchMaster is implemented.

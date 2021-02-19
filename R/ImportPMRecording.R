@@ -32,7 +32,7 @@ ImportPRecording<-function(filename,
         Rs=imp$sweeps$Rs,
         Experiment=imp$sweeps$exp,
         Series=imp$sweeps$ser,
-        Created=Sys.time(), # FIXME this should better be the timestamp from the *.dat File
+        Created=imp$sweeps$time,
         Filename=imp$sweeps$filename)
 
       Data<-list()
