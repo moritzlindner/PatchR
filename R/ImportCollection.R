@@ -8,8 +8,8 @@
 #' @param type File Type. Currently not implemented. Only works with PatchMatster files.
 #' @param encoding file encoding to use, default is \code{getOption("encoding")}
 #' @return A \link[=PCollection]{PCollection} object
-#' @exportMethod dropPRecording
-ImportCollection<-function(parent.dir=NULL,
+#' @export ImportCollection
+ImportCollection<-function(parent.dir=getwd(),
                  filelist=NULL,
                  traces=c(1, 2),
                  type="PatchMaster",
@@ -17,10 +17,15 @@ ImportCollection<-function(parent.dir=NULL,
   if(!colnames(filelist)==c("FileName","Experiment","Series","Group")){
     stop("filelist provided not in correct format. Must have three columns, named 'FileName', 'Experiment', 'Series','Group'")
   }
-
-  if(!is.null(parent.dir)){
-    filelist$FileName<-paste0(filelist$FileName)
-  }
-  Recordings<-apply(filelist,1,function(x){ImportPRecording(x["FileName"],x["Experiment"],x["Series"],traces,encoding=encoding)})
+  parent.dir<-sub("/$","",parent.dir)
+  filelist$FileName<-paste0(parent.dir,"/",filelist$FileName)
+  Recordings<-apply(filelist,
+                    1,
+                    function(x){ImportPRecording(x["FileName"],
+                                                 as.numeric(x["Experiment"]),
+                                                 as.numeric(x["Series"]),
+                                                 traces,
+                                                 encoding=encoding)})
   newPCollection(Recordings,filelist$Group)
 }
+#

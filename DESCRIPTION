@@ -41,7 +41,7 @@ Collate:
     'getTrace_.R'
     'get_treeinfo.R'
     'lapply.R'
-    'newPMexperiment.R'
+    'newPCollection.R'
     'pm_load_nodes.R'
     'read.bundletree.R'
     'readAny.R'

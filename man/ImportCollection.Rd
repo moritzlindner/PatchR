@@ -5,7 +5,7 @@
 \title{Imports a collection of PatchClamp recordings}
 \usage{
 ImportCollection(
-  parent.dir = NULL,
+  parent.dir = getwd(),
   filelist = NULL,
   traces = c(1, 2),
   type = "PatchMaster",
