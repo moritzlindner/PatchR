@@ -10,6 +10,7 @@ getSeries_from_node<-function (node, sweeps = 1:length(node), trace = 1, read_da
   if (!file.exists(filename)) {
     filename <- paste("../", filename, sep = "")
   }
+  message(encoding)
   con <- file(filename, "rb", encoding=encoding)
   signature <- readChar(con, 4)
   if (signature == "DAT1") {

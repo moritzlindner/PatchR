@@ -32,14 +32,14 @@ setMethod("downsample",
               keep<-getTimeTrace(object)[seq(1,
                                              length(getTimeTrace(object)),
                                              round(length(getTimeTrace(object))/npnts.out))]
-              object<-SubsetData(object,Time=keep,TimeExclusive=T)
+              object<-getData(object,Time=keep,TimeExclusive=T)
             }
             if(!is.null(sample.rate)){
               donwsample.factor<-round(length(getTimeTrace(object))/max(getTimeTrace(object)))/sample.rate # current sample rate devided by target sample rate
               keep<-getTimeTrace(object)[seq(1,
                                              length(getTimeTrace(object)),
                                              donwsample.factor)]
-              object<-SubsetData(object,Time=keep,TimeExclusive=T)
+              object<-getData(object,Time=keep,TimeExclusive=T)
             }
             object
           }

@@ -5,11 +5,13 @@
 read.bundletree<-function (myfile, bundlename = ".pul", con = NA,encoding=getOption("encoding"))
 {
   finally_close_con = is.na(con)
+  message(encoding)
   if (is.na(con)) {
     con <- file(myfile, "rb", encoding=encoding)
   }
   seek(con, 0)
   signature <- readChar(con, 8)
+  message(signature)
   if (signature == "DAT2") {
     version <- readChar(con, 32)
     time <- readBin(con, "double")

@@ -19,7 +19,7 @@ MeasureSweeps(
 MeasureStimResp(X, StimTrace = "V-mon", RespTrace = "I-mon", Time, FUN = mean)
 }
 \arguments{
-\item{X}{a \link[=PRecording]{PRecording} or \link[=PCollection]{PCollection} Object}
+\item{X}{A \linkS4class{PRecording} or \linkS4class{PCollection} object}
 
 \item{Trace}{The name of the trace to perform measurements on}
 

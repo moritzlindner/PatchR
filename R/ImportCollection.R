@@ -2,7 +2,7 @@
 #'
 #' Imports a collection of PatchClamp recordings. I e those that be long to a the same experimental series.
 #'
-#' @param parent.dir parent directory where to search for FileNames from filelist
+#' @param parent.dir parent directory where to search for FileNames from \code{filelist}
 #' @param filelist a data.frame with four columns: "FileName","Experiment","Series","Group". FileName can be absolute or relative to parent.dir. "Experiment","Series" as defined in PatchMaster file. Groups can be assigned via the Group variable
 #' @param traces which traces to import. default is \code{c(1,2)}
 #' @param type File Type. Currently not implemented. Only works with PatchMatster files.

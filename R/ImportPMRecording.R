@@ -3,9 +3,9 @@
 #' This function imports Series from Patch Master *.dat files and creates PRecording objects
 #'
 #' @param filename path to a [Patch Master](https://www.heka.com/downloads/downloads_main.html#down_patchmaster) *.dat file.
-#' @param experiment Index of Experiment to import (1st order hirarchy in PM dat file).
-#' @param series Index of Series to import (2nd order hirarchy in PM dat file).
-#' @param traces Traces to import (indices). Must be vector of numerics of length > 0.
+#' @param experiment Index of Experiment to import (1st order hierarchy in PM dat file).
+#' @param series Index of Series to import (2nd order hierarchy in PM dat file).
+#' @param traces Traces to import (indices). Must be vector of numeric of length > 0.
 #' @param encoding file encoding to use, default is \code{getOption("encoding")}
 #' @return A \link[=PRecording]{PRecording} object
 #' @export

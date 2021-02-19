@@ -32,12 +32,12 @@ setMethod("Calculate_IV",
                    VTrace="V-mon",
                    x_D_FROM=NA,
                    X_D_TO=NA){
-            out<-SubsetData(object, Time=c(X_FROM,X_TO),nowarnings=T)
+            out<-getData(object, Time=c(X_FROM,X_TO),nowarnings=T)
             out<-convenientScales(out)
             out<-apply(object,1,mean)
 
             if(!is.na(X_D_TO)){
-              substract<-SubsetData(object, Time=c(x_D_FROM,X_D_TO))
+              substract<-getData(object, Time=c(x_D_FROM,X_D_TO))
               substract<-apply(object,1,mean)
               out[,"I.Substracted"]<-out[,ITrace]-substract[,ITrace]
             }

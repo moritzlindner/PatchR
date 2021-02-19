@@ -13,7 +13,7 @@ ImportCollection(
 )
 }
 \arguments{
-\item{parent.dir}{parent directory where to search for FileNames from filelist}
+\item{parent.dir}{parent directory where to search for FileNames from \code{filelist}}
 
 \item{filelist}{a data.frame with four columns: "FileName","Experiment","Series","Group". FileName can be absolute or relative to parent.dir. "Experiment","Series" as defined in PatchMaster file. Groups can be assigned via the Group variable}
 

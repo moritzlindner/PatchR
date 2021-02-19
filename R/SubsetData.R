@@ -1,16 +1,12 @@
-#' Subset a PRecording or PCollection object
-#'
-#' This function subsets \link[=PRecording]{PRecording} or \link[=PCollection]{PCollection} objects by Trace, Sweep or Time
-#'
-#' @param X a \link[=PRecording]{PRecording} or \link[=PCollection]{PCollection} Object
+#'@describeIn get This function subsets \linkS4class{PRecording} or \linkS4class{PCollection} objects by \var{Trace}, \var{Sweep} or \var{Time}. For  \linkS4class{PCollection} additionally by \var{Series} or \var{Group}
 #' @param Traces,Sweeps List of Traces/Sweeps to keep
 #' @param Time either a range of time points to keep, or, if \code{TimeExclusive} is \code{TRUE}, then two particular time points
-#' @param Series Subset by Series name. Only for \link[=PCollection]{PCollection}.
-#' @param Group Subset by Group name. Only for \link[=PCollection]{PCollection}.
+#' @param Series Subset by Series name. Only for  \linkS4class{PCollection} .
+#' @param Group Subset by Group name. Only for  \linkS4class{PCollection} .
 #' @param TimeExclusive Keep only the two time points stated under Time, not the range
-#' @return A \link[=PRecording]{PRecording} X
-#' @exportMethod SubsetData
-setGeneric(name="SubsetData",
+#' @return A \linkS4class{PRecording} or \linkS4class{PCollection} object
+#' @exportMethod getData
+setGeneric(name="getData",
            def=function(X,
                         Traces=getTraceNames(X),
                         Sweeps=getSweepNames(X),
@@ -20,10 +16,10 @@ setGeneric(name="SubsetData",
                         TimeExclusive=F,
                         nowarnings=F)
            {
-             standardGeneric("SubsetData")
+             standardGeneric("getData")
            }
 )
-setMethod("SubsetData",
+setMethod("getData",
           "PRecording",
           function(X,
                    Traces=getTraceNames(X),
@@ -79,7 +75,7 @@ setMethod("SubsetData",
           }
 )
 
-setMethod("SubsetData",
+setMethod("getData",
           "PCollection",
           function(X,
                    Traces=getTraceNames(X@Series[[1]]),
@@ -90,7 +86,7 @@ setMethod("SubsetData",
                    TimeExclusive=F,
                    nowarnings=F)
           {
-            X<-lapply(X,function(x) SubsetData(x,Traces,Sweeps,Time,TimeExclusive,nowarnings=T),ReturnPMObject=T)
+            X<-lapply(X,function(x) getData(x,Traces,Sweeps,Time,TimeExclusive,nowarnings=T),ReturnPMObject=T)
 
             if (!is.null(Group)){
               warning("Plots droped for consistency.")

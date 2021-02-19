@@ -2,7 +2,7 @@
 #'
 #' These methods perform measurements on \linkS4class{PRecording} and \linkS4class{PCollection} objects on a per-sweep basis. They are designed to efficiently collect data e.g. for time Series, dose-response or point statistics
 #'
-#' @inheritParams SubsetData
+#' @inheritParams getData
 #' @param Trace The name of the trace to perform measurements on
 #' @param StimTrace The name of the Trace that contains the Stimulus
 #' @param RespTrace The name of the Trace that contains the Response
@@ -47,7 +47,7 @@ setMethod("MeasureSweeps",
             }else{
               TimeExclusive=F
             }
-            out<-apply(SubsetData(X,
+            out<-apply(getData(X,
                                   Traces=Trace,
                                   Time=Time,
                                   Sweeps=Sweeps,
@@ -167,7 +167,7 @@ setMethod("MeasureStimResp",
                    Time,
                    FUN=mean){
 
-            stim<-t(MeasureSweeps(SubsetData(X,Series=X@Names[1]),
+            stim<-t(MeasureSweeps(getData(X,Series=X@Names[1]),
                                   Trace=StimTrace,
                                   Sweeps=getSweepNames(X),
                                   Time,

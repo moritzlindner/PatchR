@@ -216,7 +216,7 @@ PlotGroupComparisongeneric<-function(X,
                            Time,
                            fun=mean,
                            ReturnPMObject){
-  X<-SubsetData(X,Sweeps=Sweep)
+  X<-getData(X,Sweeps=Sweep)
   dat<-MeasureStimResp(X,
                        StimTrace=RespTrace,
                        RespTrace,

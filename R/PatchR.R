@@ -35,7 +35,7 @@
 #'
 #' @section Math, conversion and subsampling functions:
 #' * \link[=CurrentDensity]{CurrentDensity} (for \link[=PRecording]{PRecording} objects) \cr
-#' * \link[=SubsetData]{SubsetData} \cr
+#' * \link[=getData]{getData} \cr
 #' * \link[=CalculateIV]{CalculateIV} CHECK!!! \cr
 #' * \link[=apply]{apply} for \link[=PRecording]{PRecording} and \link[=lapply]{lapply} for \link[=PCollection]{PCollection} \cr
 #'

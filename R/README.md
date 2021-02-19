@@ -6,16 +6,23 @@ Moritz Lindner
 ## Installation
 
 ``` r
-remotes::install_github("moritzlindner/PatchR")
+if (!requireNamespace("remotes", quietly = TRUE)){
+  install.packages("remotes")
+}
+remotes::install_github("moritzlindner/PatchMasteR")
 ```
 
 ## Description
 
-Core component of PatchR is the PRecording class, wich stores a
-series imported from a Patchmaster \*.dat file. Several integrety checks
-are implemented into the PRecording class to assure data integrity is
+Core component of PatchR is the PRecording class, wich stores a series
+imported from a Patchmaster \*.dat file. Several integrety checks are
+implemented into the PRecording class to assure data integrity is
 maintained. Multiple recordings (PRecording) objects can be stored and
-processed within the PCollection class.
+processed within the PCollection class using mostly identical commands
+and synthax.
+
+Import procedures are currently implemented for HEKA’s PachtMaster file
+format.
 
 ## Examples
 
@@ -55,7 +62,7 @@ AddMetaData(exp, #add as metadata to PCollection
             lapply(exp, # for each PRecording stored in PCollection
                    function(x){
                      apply( # average over time
-                       SubsetData(x, # extract values from I-mon trace, Sweep 15, between 1 and 1.19 s only 
+                       getData(x, # extract values from I-mon trace, Sweep 15, between 1 and 1.19 s only 
                                   Traces="I-mon",
                                   Time =c(1,1.19),
                                   Sweeps=getSweepNames(x)[c(15)]),
@@ -67,8 +74,6 @@ AddMetaData(exp, #add as metadata to PCollection
 
 exp@MetaData
 ```
-
-\[=newPCollection\]{newPCollection}
 
 *The import functions have been adopted from the [ephys2
 package](https://github.com/tdanker/ephys2) from Timm Danker*

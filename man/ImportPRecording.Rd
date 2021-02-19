@@ -15,11 +15,11 @@ ImportPRecording(
 \arguments{
 \item{filename}{path to a [Patch Master](https://www.heka.com/downloads/downloads_main.html#down_patchmaster) *.dat file.}
 
-\item{experiment}{Index of Experiment to import (1st order hirarchy in PM dat file).}
+\item{experiment}{Index of Experiment to import (1st order hierarchy in PM dat file).}
 
-\item{series}{Index of Series to import (2nd order hirarchy in PM dat file).}
+\item{series}{Index of Series to import (2nd order hierarchy in PM dat file).}
 
-\item{traces}{Traces to import (indices). Must be vector of numerics of length > 0.}
+\item{traces}{Traces to import (indices). Must be vector of numeric of length > 0.}
 
 \item{encoding}{file encoding to use, default is \code{getOption("encoding")}}
 }

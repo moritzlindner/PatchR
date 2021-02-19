@@ -34,7 +34,7 @@ PlotGroupComparison(
 Plot_Inspect(object, what = "I.mon")
 }
 \arguments{
-\item{X}{a \link[=PRecording]{PRecording} or \link[=PCollection]{PCollection} Object}
+\item{X}{A \linkS4class{PRecording} or \linkS4class{PCollection} object}
 
 \item{StimTrace}{The name of the Trace that contains the Stimulus}
 
