@@ -56,9 +56,11 @@ getMetaData(X, which)
 \item{which}{A name of a valid Group in a \linkS4class{PCollection} (for \code{getGroupMembers}). \cr A name or a vector of names of slot(s) in RecordingParams (for \code{getRecParam}). \cr A name or a vector of names of a column in the MetaData slot (for \code{getMetaData}).}
 }
 \value{
-A \linkS4class{PRecording} or \linkS4class{PCollection} object
+A \linkS4class{PRecording} or \linkS4class{PCollection} object (for \code{getData})
 
-A numeric vector or a matrix (for \code{getMetaData}).
+A numeric vector.
+
+A numeric vector, a matrix (for \code{getMetaData}).
 }
 \description{
 These methods are used to access information from \linkS4class{PRecording} and/or \linkS4class{PCollection} objects
@@ -68,23 +70,23 @@ These methods can be used to access information stored in \linkS4class{PRecordin
 }
 \section{Functions}{
 \itemize{
-\item \code{getData}: This function subsets \linkS4class{PRecording} or \linkS4class{PCollection} objects by \var{Trace}, \var{Sweep} or \var{Time}. For  \linkS4class{PCollection} additionally by \var{Series} or \var{Group}
+\item \code{getData}: This function subsets objects by \var{Trace}, \var{Sweep} or \var{Time}. For  \linkS4class{PCollection} additionally by \var{Series} or \var{Group}
 
-\item \code{getSweepNames}: Can be used on \linkS4class{PRecording} and \linkS4class{PCollection} objects and return the Sweep names.
+\item \code{getSweepNames}: Returns the Sweep names.
 
-\item \code{getTraceNames}: Can be used on \linkS4class{PRecording} and \linkS4class{PCollection} objects and return the Trace names.
+\item \code{getTraceNames}: Return the Trace names.
 
-\item \code{getTimeTrace}: Can be used on \linkS4class{PRecording} and \linkS4class{PCollection} objects and returns a vector containing the times at which the individual sweeps were recorded.
+\item \code{getTimeTrace}: Returns a vector containing the times at which the individual sweeps were recorded.
 
-\item \code{getSweepTimes}: Can be used on \linkS4class{PRecording} and \linkS4class{PCollection} objects and returns a vector containing the times at which the individual sweeps were recorded.
+\item \code{getSweepTimes}: Returns a vector containing the times at which the individual sweeps were recorded.
 
-\item \code{getCSlow}: is a special case of \code{getRecParam} and can be used on \linkS4class{PRecording} and \linkS4class{PCollection} objects. It returns the C-slow value.
+\item \code{getCSlow}: This is a special case of \code{getRecParam} and returns the C-slow value.
 
-\item \code{getRecParam}: Can be used on \linkS4class{PRecording} and \linkS4class{PCollection} objects and returns any value stored in the RecordingParams slot.
+\item \code{getRecParam}: Returns any value stored in the RecordingParams slot.
 
-\item \code{getGroupMembers}: get Can be used on \linkS4class{PCollection} objects and returns the names of all PRecordings belonging to the named Group.
+\item \code{getGroupMembers}: get Can be used on \linkS4class{PCollection} objects only and returns the names of all PRecordings belonging to the named Group.
 
-\item \code{getMetaData}: Can be used on \linkS4class{PRecording} and \linkS4class{PCollection} objects and returns one or more columns from the MetaData Slot.
+\item \code{getMetaData}: Returns one or more columns from the MetaData Slot.
 }}
 
 \examples{

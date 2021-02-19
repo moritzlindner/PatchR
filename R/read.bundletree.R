@@ -11,10 +11,11 @@ read.bundletree<-function (myfile, bundlename = ".pul", con = NA,encoding=getOpt
   }
   seek(con, 0)
   signature <- readChar(con, 8)
-  message(signature)
   if (signature == "DAT2") {
     version <- readChar(con, 32)
+    message("File Version: ",version)
     time <- readBin(con, "double")
+    message("File Timestamp: ",as.character(time))
     nitems <- readBin(con, "int", size = 1)
     liddle_endian <- readBin(con, "logical")
     reserved <- readChar(con, 11)
