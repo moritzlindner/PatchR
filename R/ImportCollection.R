@@ -26,6 +26,6 @@ ImportCollection<-function(parent.dir=getwd(),
                                                  as.numeric(x["Series"]),
                                                  traces,
                                                  encoding=encoding)})
-  newPCollection(Recordings,filelist$Group)
+  newPCollection(Recordings,Group = filelist$Group)
 }
 #
