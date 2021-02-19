@@ -32,7 +32,7 @@ ImportPRecording<-function(filename,
         Rs=imp$sweeps$Rs,
         Experiment=imp$sweeps$exp,
         Series=imp$sweeps$ser,
-        Created=POSIXct(imp$sweeps$time),
+        Created=as.POSIXct(imp$sweeps$time),
         Filename=imp$sweeps$filename)
 
       Data<-list()
