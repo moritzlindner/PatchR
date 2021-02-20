@@ -1,5 +1,18 @@
+#' Accession methods
+#'
+#' These methods are used to access information from \linkS4class{PRecording} and/or \linkS4class{PCollection} objects
+#'
+#' @param X A \linkS4class{PRecording} or \linkS4class{PCollection} object
+#' @param which A name of a valid Group in a \linkS4class{PCollection} (for \code{GetGroupMembers}). \cr A name or a vector of names of slot(s) in RecordingParams (for \code{GetRecParam}). \cr A name or a vector of names of a column in the MetaData slot (for \code{GetMetaData}).
+#' @details These methods can be used to access information stored in \linkS4class{PRecording} and/or \linkS4class{PCollection} objects. \cr \cr
+#' @return A numeric vector.
+#' @examples
+#' GetRecParam(recording,c("Cs","Rs"))
+#' @name Get
+NULL
+
 #' ------------------
-#' @describeIn Get-methods Returns the Sweep names.
+#' @describeIn Get Returns the Sweep names.
 #' @exportMethod GetSweepNames
 setGeneric(name="GetSweepNames",
            def=function(X)
@@ -21,7 +34,7 @@ setMethod("GetSweepNames",
 )
 
 #' ------------------
-#' @describeIn Get-methods Return the Trace names.
+#' @describeIn Get Return the Trace names.
 #' @exportMethod GetTraceNames
 setGeneric(name="GetTraceNames",
            def=function(X)
@@ -42,7 +55,7 @@ setMethod("GetTraceNames",
           }
 )
 #' ------------------
-#' @describeIn Get-methods Returns a vector containing the times at which the individual sweeps were recorded.
+#' @describeIn Get Returns a vector containing the times at which the individual sweeps were recorded.
 #' @exportMethod GetTimeTrace
 setGeneric(name="GetTimeTrace",
            def=function(X)
@@ -63,7 +76,7 @@ setMethod("GetTimeTrace",
           }
 )
 #' ------------------
-#' @describeIn Get-methods Returns a vector containing the times at which the individual sweeps were recorded.
+#' @describeIn Get Returns a vector containing the times at which the individual sweeps were recorded.
 #' @exportMethod GetSweepTimes
 setGeneric(name="GetSweepTimes",
            def=function(X)
@@ -84,7 +97,7 @@ setMethod("GetSweepTimes",
           }
 )
 #' ------------------
-#' @describeIn Get-methods This is a special case of \code{GetRecParam} and returns the C-slow value.
+#' @describeIn Get This is a special case of \code{GetRecParam} and returns the C-slow value.
 #' @exportMethod GetCSlow
 setGeneric(name="GetCSlow",
            def=function(X)
@@ -98,7 +111,6 @@ setMethod("GetCSlow",
             X@RecordingParams@Cs
           }
 )
-#' @describeIn Get-methods
 setMethod("GetCSlow",
           "PCollection",
           function(X) {
@@ -107,7 +119,7 @@ setMethod("GetCSlow",
 )
 
 #' ------------------
-#' @describeIn Get-methods Returns any value stored in the RecordingParams slot.
+#' @describeIn Get Returns any value stored in the RecordingParams slot.
 #' @exportMethod GetRecParam
 setGeneric(name="GetRecParam",
            def=function(X,
@@ -137,7 +149,7 @@ setMethod("GetRecParam",
           }
 )
 #' ------------------
-#' @describeIn Get-methods Can be used on \linkS4class{PCollection} objects only and returns the names of all PRecordings belonging to the named Group.
+#' @describeIn Get Can be used on \linkS4class{PCollection} objects only and returns the names of all PRecordings belonging to the named Group.
 #' @exportMethod GetGroupMembers
 setGeneric(name="GetGroupMembers",
            def=function(X,which)
@@ -152,7 +164,7 @@ setMethod("GetGroupMembers",
           }
 )
 #' ------------------
-#' @describeIn Get-methods Returns one or more columns from the MetaData Slot.
+#' @describeIn Get Returns one or more columns from the MetaData Slot.
 #' @return For \code{GetMetaData} a \code{vector} of type \code{numeric}  or a \code{matrix}.
 #' @exportMethod GetMetaData
 setGeneric(name="GetMetaData",

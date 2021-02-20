@@ -5,10 +5,10 @@
 #' @inheritParams MeasureStimResp
 #' @param Sweep Sweep to analyse for group comparison
 #' @return A \linkS4class{PCollection} with an item added to the Plots slot if \code{ReturnPMObject=T} or a \link[=ggplot2::ggplot]{ggplot}.
-#' @name Plots
+#' @name Plot
 NULL
 
-#' @describeIn Plots This method builds a dose-response curve
+#' @describeIn Plot This method builds a dose-response curve
 #' @exportMethod PlotDoseResp
 setGeneric(name="PlotDoseResp",
            def=function(X,
@@ -98,7 +98,7 @@ PlotDoseRespgeneric<-function(X,
   }
 }
 
-#' @describeIn Plots This method builds a time Series plot
+#' @describeIn Plot This method builds a time Series plot
 #' @exportMethod PlotTimeSeries
 setGeneric(name="PlotTimeSeries",
            def=function(X,
@@ -180,7 +180,7 @@ PlotTimeSeriesgeneric<-function(X,
   }
 }
 
-#' @describeIn Plots This method builds a boxplot for comparison between groups as stored in the \linkS4class{PCollection}.
+#' @describeIn Plot This method builds a boxplot for comparison between groups as stored in the \linkS4class{PCollection}.
 #' @exportMethod PlotGroupComparison
 setGeneric(name="PlotGroupComparison",
            def=function(X,

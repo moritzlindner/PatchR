@@ -1,4 +1,4 @@
-#' @describeIn Plots This function creates a basic visualization of quality-relevant recording parameters in the PCollection
+#' @describeIn Plot This function creates a basic visualization of quality-relevant recording parameters in the PCollection
 #' @exportMethod PlotQC
 setGeneric(name="PlotQC",
            def=function(object)

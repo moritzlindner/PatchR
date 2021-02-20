@@ -1,7 +1,9 @@
 #' show
 #'
 #' Default mehtod show for PRecording
+#'
 #' @importMethodsFrom methods show
+#' @title show
 #' @exportMethod show
 NULL
 setMethod("show",

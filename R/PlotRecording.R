@@ -1,4 +1,4 @@
-#' @describeIn This function creates a basic visualization for each Trace in a single \linkS4class{PRecording} object.
+#' @describeIn Plots This function creates a basic visualization for each Trace in a single \linkS4class{PRecording} object.
 #' @exportMethod PlotRecording
 setGeneric(name="PlotRecording",
            def=function(object)

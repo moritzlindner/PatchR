@@ -37,7 +37,6 @@ validPCollection<-function(object) {
   if(ret==0) {TRUE} else {FALSE}
 }
 
-
 #' S4 class storing a collection of ePhys Treaces
 #'
 #' This class stores a collection of \linkS4class{PRecording}s in a single object. Facilitates identical processing of related of recordings.
@@ -50,7 +49,7 @@ validPCollection<-function(object) {
 #' @slot .MetaDataFx A list fo functions called to under \link[=AddMetaData]{AddMetaData()}
 #' @slot RecordingParams Stores the Recording parameters that must be identical for all entries in Series \var{ProtocolName}, \var{RecMode} and \var{TraceNames}.
 #' @seealso \linkS4class{PRecording}
-#' @include PatchR.R
+#' @include PatchR.R 0PRecordingParams.R
 #' @exportClass PCollection
 PCollection<-setClass(Class="PCollection",
                   slots =  list(Series="list",
