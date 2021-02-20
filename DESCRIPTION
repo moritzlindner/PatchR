@@ -21,6 +21,7 @@ Collate:
     'BuildSeriesPlot.R'
     'Calculate_IV.R'
     'CurrentDensity.R'
+    'Get-methods-desc.R'
     'Get-methods.R'
     'ImportCollection.R'
     'ImportPMRecording.R'
