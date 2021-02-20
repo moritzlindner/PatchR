@@ -1,6 +1,5 @@
 #' ------------------
 #' @describeIn Get-methods Returns the Sweep names.
-#' @keywords internal
 #' @exportMethod GetSweepNames
 setGeneric(name="GetSweepNames",
            def=function(X)
