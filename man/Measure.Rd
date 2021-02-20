@@ -9,7 +9,7 @@
 MeasureSweeps(
   X,
   Trace,
-  Sweeps = getSweepNames(X),
+  Sweeps = GetSweepNames(X),
   Time,
   label,
   FUN = mean,
@@ -19,8 +19,6 @@ MeasureSweeps(
 MeasureStimResp(X, StimTrace = "V-mon", RespTrace = "I-mon", Time, FUN = mean)
 }
 \arguments{
-\item{X}{A \linkS4class{PRecording} or \linkS4class{PCollection} object}
-
 \item{Trace}{The name of the trace to perform measurements on}
 
 \item{Sweeps}{List of Traces/Sweeps to keep}

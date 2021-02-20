@@ -9,8 +9,8 @@
 #' @param Names names for imported PRecording. Standard is variable name given in PRecording if single PRecording, i
 #' @param Group Group variable or list thereof, of the same lenght as PRecording
 #' @return A \linkS4class{PCollection} object
-#' @exportMethod addPRecording
-setGeneric(name="addPRecording",
+#' @exportMethod AddPRecording
+setGeneric(name="AddPRecording",
            def=function(object,
                         PRecording,
                         Names=if(is.list(PRecording)){
@@ -20,10 +20,10 @@ setGeneric(name="addPRecording",
                         },
                         Group)
            {
-             standardGeneric("addPRecording")
+             standardGeneric("AddPRecording")
            }
 )
-setMethod("addPRecording",
+setMethod("AddPRecording",
           "PCollection",
           function(object,
                    PRecording,

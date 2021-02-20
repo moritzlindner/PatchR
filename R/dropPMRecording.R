@@ -26,7 +26,7 @@ setMethod("dropPRecording",
               stop("Only Group or PRecording may be provided")
             }
             if(!is.null(Group)){
-              PRecording<-getGroupMembers(object,Group)
+              PRecording<-GetGroupMembers(object,Group)
             }
             Group<-object@Group[!(object@Names %in% PRecording)]
             Group<-droplevels(Group)

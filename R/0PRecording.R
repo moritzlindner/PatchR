@@ -76,7 +76,7 @@ validPRecording<-function(object) {
 #'
 #'    \item{Plots}{List that can contain any ggplot derived from the data. List item names that equal Traces are reserved.}
 #'
-#'    \item{MetaData}{matrix that can contain additional per-sweep Metadata. Per-time Metadata can be stored in the Data slot using the \link[=addTrace]{addTrace} method.}
+#'    \item{MetaData}{matrix that can contain additional per-sweep Metadata. Per-time Metadata can be stored in the Data slot using the \link[=AddTrace]{AddTrace} method.}
 #'
 #'    \item{RecordingParams}{An item of class PRecordingParams containing recording parameters for that trace.}
 #'  }

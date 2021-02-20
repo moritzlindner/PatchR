@@ -18,13 +18,13 @@ setMethod("CurrentDensity",
           "PRecording",
           function(object,
                    trace="I.mon"){
-            print(paste0("Capacitance in record: ",f2si(round(getCSlow(object),15)),"F"))
+            print(paste0("Capacitance in record: ",f2si(round(GetCSlow(object),15)),"F"))
 
-            object<-addTrace(object,
+            object<-AddTrace(object,
               Trace="curr.dens",
               Unit=paste0(object@Units[getChannels(object)==trace],"/F"),
-              Sweeps=getSweepNames(object),
-              mtx=objcet@Data[[trace]]/getCSlow(object))
+              Sweeps=GetSweepNames(object),
+              mtx=objcet@Data[[trace]]/GetCSlow(object))
 
             object
 

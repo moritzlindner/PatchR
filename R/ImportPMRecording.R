@@ -49,7 +49,7 @@ ImportPRecording<-function(filename,
                    RecordingParams=params
                    )
     }else{
-    out<-addTrace(object=out,
+    out<-AddTrace(object=out,
                     Trace=imp$sweeps$tracename,
                     Unit=imp$sweeps$YUnit,
                     mtx=imp$sweeps$y,

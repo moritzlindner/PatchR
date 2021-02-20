@@ -26,20 +26,20 @@ setMethod("downsample",
               stop("Cannnot subset by npnts.out and sample.rate")
             }
             if(!is.null(npnts.out)){
-              if(round(length(getTimeTrace(object))/npnts.out)!=length(getTimeTrace(object))/npnts.out){
+              if(round(length(GetTimeTrace(object))/npnts.out)!=length(GetTimeTrace(object))/npnts.out){
                 warning("No of Sample points is not a multiple of npnts.out.")
               }
-              keep<-getTimeTrace(object)[seq(1,
-                                             length(getTimeTrace(object)),
-                                             round(length(getTimeTrace(object))/npnts.out))]
-              object<-getData(object,Time=keep,TimeExclusive=T)
+              keep<-GetTimeTrace(object)[seq(1,
+                                             length(GetTimeTrace(object)),
+                                             round(length(GetTimeTrace(object))/npnts.out))]
+              object<-GetData(object,Time=keep,TimeExclusive=T)
             }
             if(!is.null(sample.rate)){
-              donwsample.factor<-round(length(getTimeTrace(object))/max(getTimeTrace(object)))/sample.rate # current sample rate devided by target sample rate
-              keep<-getTimeTrace(object)[seq(1,
-                                             length(getTimeTrace(object)),
+              donwsample.factor<-round(length(GetTimeTrace(object))/max(GetTimeTrace(object)))/sample.rate # current sample rate devided by target sample rate
+              keep<-GetTimeTrace(object)[seq(1,
+                                             length(GetTimeTrace(object)),
                                              donwsample.factor)]
-              object<-getData(object,Time=keep,TimeExclusive=T)
+              object<-GetData(object,Time=keep,TimeExclusive=T)
             }
             object
           }

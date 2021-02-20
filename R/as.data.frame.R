@@ -8,17 +8,17 @@ setMethod("as.data.frame",
           "PRecording",
           function(x,
                    ...){
-            Traces<-rep(getTraceNames(x),
-                        each=(length(getSweepNames(x))*length(getTimeTrace(x))))
-            sweeps<-type.convert(rep(rep(getSweepNames(x),
-                                         each=length(getTimeTrace(x))),times=length(getTraceNames(x))))
-            sweeps<-ordered(sweeps,levels=levels(getSweepNames(x)))
-            times<-rep(getTimeTrace(x),
-                       times=(length(getSweepNames(x))*length(getTraceNames(x))))
+            Traces<-rep(GetTraceNames(x),
+                        each=(length(GetSweepNames(x))*length(GetTimeTrace(x))))
+            sweeps<-type.convert(rep(rep(GetSweepNames(x),
+                                         each=length(GetTimeTrace(x))),times=length(GetTraceNames(x))))
+            sweeps<-ordered(sweeps,levels=levels(GetSweepNames(x)))
+            times<-rep(GetTimeTrace(x),
+                       times=(length(GetSweepNames(x))*length(GetTraceNames(x))))
 
             out<-data.frame("Traces"=Traces,"Sweeps"=sweeps,"Times"=times)
             values<-NULL
-            for (i in getTraceNames(x)){
+            for (i in GetTraceNames(x)){
               values<-c(values,unlist(apply(x@Data[[i]],2,function(x)x)))
             }
             cbind(out,values)

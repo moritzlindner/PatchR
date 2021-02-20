@@ -2,7 +2,7 @@
 #'
 #' These methods perform measurements on \linkS4class{PRecording} and \linkS4class{PCollection} objects on a per-sweep basis. They are designed to efficiently collect data e.g. for time Series, dose-response or point statistics
 #'
-#' @inheritParams getData
+#' @inheritParams GetData
 #' @param Trace The name of the trace to perform measurements on
 #' @param StimTrace The name of the Trace that contains the Stimulus
 #' @param RespTrace The name of the Trace that contains the Response
@@ -18,7 +18,7 @@ NULL
 setGeneric(name="MeasureSweeps",
            def=function(X,
                         Trace,
-                        Sweeps=getSweepNames(X),
+                        Sweeps=GetSweepNames(X),
                         Time,
                         label,
                         FUN=mean,
@@ -32,7 +32,7 @@ setMethod("MeasureSweeps",
           "PRecording",
           function(X,
                    Trace,
-                   Sweeps=getSweepNames(X),
+                   Sweeps=GetSweepNames(X),
                    Time,
                    label,
                    FUN=mean,
@@ -47,7 +47,7 @@ setMethod("MeasureSweeps",
             }else{
               TimeExclusive=F
             }
-            out<-apply(getData(X,
+            out<-apply(GetData(X,
                                   Traces=Trace,
                                   Time=Time,
                                   Sweeps=Sweeps,
@@ -73,7 +73,7 @@ setMethod("MeasureSweeps",
           "PCollection",
           function(X,
                    Trace,
-                   Sweeps=getSweepNames(X),
+                   Sweeps=GetSweepNames(X),
                    Time,
                    label,
                    FUN=mean,
@@ -95,7 +95,7 @@ setMethod("MeasureSweeps",
                            ReturnPMObject=T
             )
 
-            out<-lapply(X,function(x){getMetaData(x,label)[,2]})
+            out<-lapply(X,function(x){GetMetaData(x,label)[,2]})
 
             if(length(Sweeps)>1){
               label<-paste0(label,".",Sweeps)
@@ -138,20 +138,20 @@ setMethod("MeasureStimResp",
 
             stim<-MeasureSweeps(X,
                                   Trace=StimTrace,
-                                  Sweeps=getSweepNames(X),
+                                  Sweeps=GetSweepNames(X),
                                   Time,
                                   label="Stimulus",
                                   FUN=FUN,
                                   ReturnPMObject=F)
             resp<-MeasureSweeps(X,
                                   Trace=RespTrace,
-                                  Sweeps=getSweepNames(X),
+                                  Sweeps=GetSweepNames(X),
                                   Time,
                                   label="Response",
                                   FUN=FUN,
                                   ReturnPMObject=F)
-            out<-as.data.frame(cbind(stim,getSweepTimes(X)-min(getSweepTimes(X)),resp))
-            out<-cbind<-cbind(getSweepNames(X),out)
+            out<-as.data.frame(cbind(stim,GetSweepTimes(X)-min(GetSweepTimes(X)),resp))
+            out<-cbind<-cbind(GetSweepNames(X),out)
             colnames(out)<-c("Name","Stimulus","StimTimes","Response")
             out
           }
@@ -167,21 +167,21 @@ setMethod("MeasureStimResp",
                    Time,
                    FUN=mean){
 
-            stim<-t(MeasureSweeps(getData(X,Series=X@Names[1]),
+            stim<-t(MeasureSweeps(GetData(X,Series=X@Names[1]),
                                   Trace=StimTrace,
-                                  Sweeps=getSweepNames(X),
+                                  Sweeps=GetSweepNames(X),
                                   Time,
                                   label="Stimulus",
                                   FUN=FUN,
                                   ReturnPMObject=F))
             resp<-t(MeasureSweeps(X,
                                   Trace=RespTrace,
-                                  Sweeps=getSweepNames(X),
+                                  Sweeps=GetSweepNames(X),
                                   Time,
                                   label="Response",
                                   FUN=FUN,
                                   ReturnPMObject=F))
-            out<-as.data.frame(cbind(stim,getSweepTimes(X)-min(getSweepTimes(X)),resp))
+            out<-as.data.frame(cbind(stim,GetSweepTimes(X)-min(GetSweepTimes(X)),resp))
             colnames(out)<-c("Stimulus","StimTimes",X@Names)
             out<-pivot_longer(out,X@Names)
             colnames(out)<-c("Stimulus","StimTimes","Name","Response")

@@ -1,25 +1,34 @@
+
+#' Adds metadata to a \linkS4class{PRecording} or \linkS4class{PCollection} object
+#'
+#' This function adds metadata to a PCollection object by filling the MetaData slot. The function calling \code{AddMetaData} is stored in the \var{.MetaDataFx} slot.
+#'
+#' @param object A \linkS4class{PRecording} or \linkS4class{PCollection} object.
+#' @param values The values to be added. Can be anything convertible into a \var{matrix}.
+#' @param title The title(s) for the metadata column(s).
+#' @return A \linkS4class{PRecording} or \linkS4class{PCollection}   object, respectively
+#' @details
+#' \strong{The MetaData slot} \cr
+#'  In a \linkS4class{PRecording} object the MetaData slot is a \var{matrix} with each row corresponding to a sweep. \cr
+#'  In a \linkS4class{PCollection} object the MetaData slot is a \var{matrix} with each row corresponding to a \linkS4class{PRecording} stored in the \linkS4class{PCollection}. \cr
+#'  Column names must be unique.
+#' @seealso \linkS4class{PRecording}, \linkS4class{PCollection}, \link[PatchR::apply]{apply()}, \link[PatchR::lapply]{lapply()}, \link[base::as.matrix]{as.matrix()}
+#' @exportMethod AddMetaData
 setGeneric(name="AddMetaData",
            def=function(object,
                         values,
-                        title=colnames(values))
+                        title=colnames(values),
+                        Verbose=T)
            {
              standardGeneric("AddMetaData")
            }
 )
-#' Adds metadata to an PCollection object
-#'
-#' This function adds metadata to an PCollection object. The MetaData slot is a matrix with one row per sweep in PRecording and one row per Series in PCollections. The calling function is stored in the .MetaDataFx slot.
-#'
-#' @param object A \link[=PRecording]{PRecording} or \link[=PCollection]{PCollection} object
-#' @param values to be added
-#' @param title title for metadata column(s).
-#' @return A \link[=PRecording]{PRecording} or \link[=PCollection]{PCollection}  object, respectively
-#' @exportMethod AddMetaData
 setMethod("AddMetaData",
           "PRecording",
           function(object,
                    values,
-                   title=colnames(values)){
+                   title=colnames(values),
+                   Verbose=T){
 
             if(any(duplicated(title))){
               stop("Duplicate MetaData names not allowed")
@@ -29,7 +38,7 @@ setMethod("AddMetaData",
             }
             values<-as.matrix(values)
             colnames(values)<-title
-            message("Adding metadata column(s) ",title)
+            if(Verbose){message("Adding metadata column(s) ",title)}
             if(all(dim(object@MetaData)==0)){
               object@MetaData<-values
               colnames(object@MetaData)<-as.vector(title)
@@ -50,7 +59,8 @@ setMethod("AddMetaData",
           "PCollection",
           function(object,
                    values,
-                   title=colnames(values)){
+                   title=colnames(values),
+                   Verbose=T){
 
             if(any(duplicated(title))){
               stop("Duplicate MetaData names not allowed")
@@ -61,7 +71,7 @@ setMethod("AddMetaData",
 
             values<-as.matrix(values)
             colnames(values)<-title
-            message("Adding metadata column(s) ",title)
+            if(Verbose){message("Adding metadata column(s) ",title)}
             if(all(dim(object@MetaData)==0)){
               object@MetaData<-values
               object@.MetaDataFx[[1]]<-sys.calls()[[1]]

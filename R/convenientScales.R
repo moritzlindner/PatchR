@@ -44,10 +44,10 @@ convenientScalessi<-function(X){
 setMethod("convenientScales",
           "PRecording",
           function(object){
-            for (i in 1:length(getTraceNames(object))){
+            for (i in 1:length(GetTraceNames(object))){
               decimals<-seq(0,21,3)
               object@Units[[i]]<-gsub("[^a-zA-Z]", "", si(10^-convenientScalesdecimals(X),object@Units[[i]]))
-              object@Data[[getTraceNames(object)[i]]]<-convenientScalesvalue(object@Data[[getTraceNames(object)[i]]])
+              object@Data[[GetTraceNames(object)[i]]]<-convenientScalesvalue(object@Data[[GetTraceNames(object)[i]]])
             }
             object
           }

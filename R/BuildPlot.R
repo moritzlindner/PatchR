@@ -68,11 +68,11 @@ PlotDoseRespgeneric<-function(X,
                        fun)
 
   if(class(X)[1]=="PRecording"){
-    StimUnit<-paste0(convenientScalessi(dat$Stimulus),X@Units[getTraceNames(X)==StimTrace])
-    RespUnit<-paste0(convenientScalessi(dat$Response),X@Units[getTraceNames(X)==RespTrace])
+    StimUnit<-paste0(convenientScalessi(dat$Stimulus),X@Units[GetTraceNames(X)==StimTrace])
+    RespUnit<-paste0(convenientScalessi(dat$Response),X@Units[GetTraceNames(X)==RespTrace])
   }else{
-    StimUnit<-paste0(convenientScalessi(dat$Stimulus),X@Series[[1]]@Units[getTraceNames(X@Series[[1]])==StimTrace])
-    RespUnit<-paste0(convenientScalessi(dat$Response),X@Series[[1]]@Units[getTraceNames(X@Series[[1]])==RespTrace])
+    StimUnit<-paste0(convenientScalessi(dat$Stimulus),X@Series[[1]]@Units[GetTraceNames(X@Series[[1]])==StimTrace])
+    RespUnit<-paste0(convenientScalessi(dat$Response),X@Series[[1]]@Units[GetTraceNames(X@Series[[1]])==RespTrace])
   }
   dat$Stimulus<-convenientScalesvalue(dat$Stimulus)
   dat$Response<-convenientScalesvalue(dat$Response)
@@ -150,10 +150,10 @@ PlotTimeSeriesgeneric<-function(X,
                        FUN=fun)
   if(class(X)[1]=="PRecording"){
     TimeUnit<-paste0(convenientScalessi(dat$StimTimes),X@TimeUnit)
-    RespUnit<-paste0(convenientScalessi(dat$Response),X@Units[getTraceNames(X)==RespTrace])
+    RespUnit<-paste0(convenientScalessi(dat$Response),X@Units[GetTraceNames(X)==RespTrace])
   }else{
     TimeUnit<-paste0(convenientScalessi(dat$StimTimes),X@Series[[1]]@TimeUnit)
-    RespUnit<-paste0(convenientScalessi(dat$Response),X@Series[[1]]@Units[getTraceNames(X@Series[[1]])==RespTrace])
+    RespUnit<-paste0(convenientScalessi(dat$Response),X@Series[[1]]@Units[GetTraceNames(X@Series[[1]])==RespTrace])
 
   }
   dat$StimTimes<-convenientScalesvalue(dat$StimTimes)
@@ -216,7 +216,7 @@ PlotGroupComparisongeneric<-function(X,
                            Time,
                            fun=mean,
                            ReturnPMObject){
-  X<-getData(X,Sweeps=Sweep)
+  X<-GetData(X,Sweeps=Sweep)
   dat<-MeasureStimResp(X,
                        StimTrace=RespTrace,
                        RespTrace,
@@ -224,9 +224,9 @@ PlotGroupComparisongeneric<-function(X,
                        fun)
 
   if(class(X)[1]=="PRecording"){
-    RespUnit<-paste0(convenientScalessi(dat$Response),X@Units[getTraceNames(X)==RespTrace])
+    RespUnit<-paste0(convenientScalessi(dat$Response),X@Units[GetTraceNames(X)==RespTrace])
   }else{
-    RespUnit<-paste0(convenientScalessi(dat$Response),X@Series[[1]]@Units[getTraceNames(X@Series[[1]])==RespTrace])
+    RespUnit<-paste0(convenientScalessi(dat$Response),X@Series[[1]]@Units[GetTraceNames(X@Series[[1]])==RespTrace])
   }
   dat$Response<-convenientScalesvalue(dat$Response)
 

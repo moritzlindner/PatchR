@@ -18,9 +18,9 @@ validPCollection<-function(object) {
       stop("MetaData incompatible to items in Series")
     }
   }
-  if (!all(unlist(lapply(object@Series,function(x) getTraceNames(x@RecordingParams))) %in% getTraceNames(object@RecordingParams))){
+  if (!all(unlist(lapply(object@Series,function(x) GetTraceNames(x@RecordingParams))) %in% GetTraceNames(object@RecordingParams))){
     ret<-ret+1
-    print(getTraceNames(object@RecordingParams))
+    print(GetTraceNames(object@RecordingParams))
     stop("Unequal trace names")
   }
 
@@ -42,14 +42,13 @@ validPCollection<-function(object) {
 #'
 #' This class stores a collection of \linkS4class{PRecording}s in a single object. Facilitates identical processing of related of recordings.
 #'
-#' \describe{
-#'    \item{Series}{A list containing individual PRecording objects of identical dimensisons, ProtocolName, RecMode and trace names}
-#'    \item{Names}{Name identifier for the individual Series. Unique.}
-#'    \item{Group}{Group identifier for the individual Series.}
-#'    \item{MetaData}{A matrix with metatdata, e.g. calculated summay stats of each PRecording object. One row per entry in Series allowed}
-#'    \item{Plots}{A slot to store ggplots}
-#'    \item{RecordingParams}{Stores the Recording parameters that must be identical for all entries in Series (ProtocolName, RecMode, Traces)}
-#'  }
+#' @slot Series A list containing individual \linkS4class{PRecording} objects of identical dimensions, \var{ProtocolName}, \var{RecMode} and \var{TraceNames}.
+#' @slot Names A \var{vector} of type \code{character} as unique identifier for the individual PRecording objects stored in the collection.
+#' @slot Group A \var{vector} of type \code{logical} as Group identifier for the individual Series.
+#' @slot Metadata A \var{matrix} with each row corresponding to a \linkS4class{PRecording} stored in the \linkS4class{PCollection}. Column names must be unique.
+#' @slot Plots A slot to store ggplots
+#' @slot .MetaDataFx A list fo functions called to under \link[=AddMetaData]{AddMetaData()}
+#' @slot RecordingParams Stores the Recording parameters that must be identical for all entries in Series \var{ProtocolName}, \var{RecMode} and \var{TraceNames}.
 #' @seealso \linkS4class{PRecording}
 #' @include PatchR.R
 #' @exportClass PCollection

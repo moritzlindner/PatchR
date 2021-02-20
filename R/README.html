@@ -235,10 +235,10 @@ AddMetaData(exp, #add as metadata to PCollection
             lapply(exp, # for each PRecording stored in PCollection
                    function(x){
                      apply( # average over time
-                       getData(x, # extract values from I-mon trace, Sweep 15, between 1 and 1.19 s only 
+                       GetData(x, # extract values from I-mon trace, Sweep 15, between 1 and 1.19 s only 
                                   Traces=&quot;I-mon&quot;,
                                   Time =c(1,1.19),
-                                  Sweeps=getSweepNames(x)[c(15)]),
+                                  Sweeps=GetSweepNames(x)[c(15)]),
                        &quot;Time&quot;,
                        mean)
                      }

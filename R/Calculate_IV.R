@@ -32,12 +32,12 @@ setMethod("Calculate_IV",
                    VTrace="V-mon",
                    x_D_FROM=NA,
                    X_D_TO=NA){
-            out<-getData(object, Time=c(X_FROM,X_TO),nowarnings=T)
+            out<-GetData(object, Time=c(X_FROM,X_TO),nowarnings=T)
             out<-convenientScales(out)
             out<-apply(object,1,mean)
 
             if(!is.na(X_D_TO)){
-              substract<-getData(object, Time=c(x_D_FROM,X_D_TO))
+              substract<-GetData(object, Time=c(x_D_FROM,X_D_TO))
               substract<-apply(object,1,mean)
               out[,"I.Substracted"]<-out[,ITrace]-substract[,ITrace]
             }
@@ -53,8 +53,8 @@ setMethod("Calculate_IV",
                 theme_classic()+
                 theme(legend.position = "none",
                       text = element_text(size=8))+
-                xlab(paste("Voltage [",object@Units[getTraceNames(object)==VTrace],"]"))+
-                ylab(paste("Current [",object@Units[getTraceNames(object)==ITrace],"]"))
+                xlab(paste("Voltage [",object@Units[GetTraceNames(object)==VTrace],"]"))+
+                ylab(paste("Current [",object@Units[GetTraceNames(object)==ITrace],"]"))
 
               if(!is.na(X_D_TO)){
                 object@Plots[["IV.Substracted"]]<-ggplot(as.data.frame(out))+
@@ -62,8 +62,8 @@ setMethod("Calculate_IV",
                   theme_classic()+
                   theme(legend.position = "none",
                         text = element_text(size=8))+
-                  xlab(paste("Voltage [",object@Units[getTraceNames(object)==VTrace],"]"))+
-                  ylab(paste("Current [",object@Units[getTraceNames(object)=="I.Substracted"],"]"))
+                  xlab(paste("Voltage [",object@Units[GetTraceNames(object)==VTrace],"]"))+
+                  ylab(paste("Current [",object@Units[GetTraceNames(object)=="I.Substracted"],"]"))
               }
 
               out<-object

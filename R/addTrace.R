@@ -7,8 +7,8 @@
 #' @param Sweeps Names of the sweeps added. Must be the same as sweep names in \code{object}. Data will be sorted accoding to order of Sweeps in \code{object} Default is \code{colnames(object)}
 #' @param mtx Any object convertible into a matrix, that has the same dimension as data in the Data slot of \code{object}
 #' @return A matrix or \linkS4class{PRecording} object
-#' @exportMethod addTrace
-setGeneric(name="addTrace",
+#' @exportMethod AddTrace
+setGeneric(name="AddTrace",
            def=function(object,
                         Trace,
                         Unit,
@@ -16,10 +16,10 @@ setGeneric(name="addTrace",
                         isOrig=F,
                         mtx)
            {
-             standardGeneric("addTrace")
+             standardGeneric("AddTrace")
            }
 )
-setMethod("addTrace",
+setMethod("AddTrace",
           "PRecording",
           function(object,
                    Trace,
@@ -32,21 +32,21 @@ setMethod("addTrace",
               stop(paste(deparse(substitute(object)), "is not a valid PRecording"))
             }
 
-            if(all(getSweepNames(object) %in% Sweeps) && length(getSweepNames(object))== length(Sweeps)){
+            if(all(GetSweepNames(object) %in% Sweeps) && length(GetSweepNames(object))== length(Sweeps)){
               if(!is.ordered(Sweeps)){
-                Sweeps<-ordered(Sweeps,levels=getSweepNames(object))
+                Sweeps<-ordered(Sweeps,levels=GetSweepNames(object))
               }
             }else{
               print("Sweep definitions do not match.")
             }
 
             if(!(Trace %in% object@Traces)){
-              if(dim(object@Data[[1]])[1] == dim(mtx)[1] && getSweepNames(object) == Sweeps){
+              if(dim(object@Data[[1]])[1] == dim(mtx)[1] && GetSweepNames(object) == Sweeps){
                 object@Data[[Trace]]<-as.matrix(mtx)
-                object@Traces<-c(getTraceNames(object),Trace)
+                object@Traces<-c(GetTraceNames(object),Trace)
                 object@Units<-c(object@Units,Unit)
                 if(isOrig){
-                  object@RecordingParams@Traces<-c(getTraceNames(object@RecordingParams),Trace)
+                  object@RecordingParams@Traces<-c(GetTraceNames(object@RecordingParams),Trace)
                 }
               }else{
                 stop("Data dimension mismatch")

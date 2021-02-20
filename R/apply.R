@@ -55,19 +55,19 @@ setMethod("apply",
               }
             }else{
               if(MARGIN==1){
-                colnames(out)<-getTraceNames(X)
-                rownames(out)<-getSweepNames(X)
+                colnames(out)<-GetTraceNames(X)
+                rownames(out)<-GetSweepNames(X)
               }
               if(MARGIN==2){
                 out<-cbind(X@TimeTrace,out)
-                colnames(out)<-c(paste0("Time [",X@TimeUnit,"]"),getTraceNames(X))
+                colnames(out)<-c(paste0("Time [",X@TimeUnit,"]"),GetTraceNames(X))
               }
               if(MARGIN==3){
                 if(!ReturnPMObject){
                   out<-cbind(X@TimeTrace,out)
-                  colnames(out)<-c(paste0("Time [",X@TimeUnit,"]"),getSweepNames(X))
+                  colnames(out)<-c(paste0("Time [",X@TimeUnit,"]"),GetSweepNames(X))
                 }else{
-                  X<-addTrace(object=X,Trace=as.character(substitute(mean))[1],Unit="NA",mtx=out )
+                  X<-AddTrace(object=X,Trace=as.character(substitute(mean))[1],Unit="NA",mtx=out )
                   out<-X
                 }
               }
