@@ -36,7 +36,7 @@ GetMetaData(X, which)
 \value{
 A numeric vector.
 
-A numeric vector, a matrix (for \code{GetMetaData}).
+For \code{GetMetaData} a \code{vector} of type \code{numeric}  or a \code{matrix}.
 }
 \description{
 These methods are used to access information from \linkS4class{PRecording} and/or \linkS4class{PCollection} objects
@@ -66,4 +66,3 @@ These methods can be used to access information stored in \linkS4class{PRecordin
 \examples{
 GetRecParam(recording,c("Cs","Rs"))
 }
-\keyword{internal}

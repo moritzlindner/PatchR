@@ -153,7 +153,7 @@ setMethod("GetGroupMembers",
 )
 #' ------------------
 #' @describeIn Get-methods Returns one or more columns from the MetaData Slot.
-#' @return A numeric vector, a matrix (for \code{GetMetaData}).
+#' @return For \code{GetMetaData} a \code{vector} of type \code{numeric}  or a \code{matrix}.
 #' @exportMethod GetMetaData
 setGeneric(name="GetMetaData",
            def=function(X,which)
