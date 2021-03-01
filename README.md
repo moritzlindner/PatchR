@@ -10,11 +10,14 @@ remotes::install_github("moritzlindner/PatchMasteR")
 ```
 
 ## Description
-Core component of PatchR is the PRecording class, wich stores a series imported from a Patchmaster *.dat file. Several integrety checks are implemented into the PRecording class to assure data integrity is maintained.
-Multiple recordings (PRecording) objects can be stored and processed within the PCollection class using mostly identical commands and synthax.
+Core component of PatchR is the PRecording class, which stores a series imported from a Patchmaster *.dat file. Several integrity checks are implemented into the PRecording class to assure data integrity is maintained.
+Multiple recordings (PRecording) objects can be stored and processed within the PCollection class using mostly identical commands and syntax.
 
 Import procedures are currently implemented for HEKA's PachtMaster file format.
 
+## Examples
+
+### Example 1:
 
 
 ```{r Example1, eval=FALSE, include=T}

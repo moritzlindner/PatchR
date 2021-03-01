@@ -29,14 +29,20 @@ Import procedures are currently implemented for HEKA's PachtMaster file format. 
 * \link[=as.data.frame]{as.data.frame} \cr
 }
 
+\section{Measurement functions}{
+
+* \link[=Measure]{Measure} \cr
+* \link[=MeasureStimResp]{MeasureStimResp} \cr
+* \link[=MeasureSweeps]{MeasureSweeps} \cr
+}
+
 \section{Visuaization functions}{
 
 * \link[=PlotStimResp]{PlotStimResp} \cr
 * \link[=PlotGroupComparison]{PlotGroupComparison} (for \link[=PCollection]{PCollection} objects) \cr
 * \link[=PlotQC]{PlotRecording} (for \link[=PCollection]{PCollection} objects) \cr
 * \link[=PlotRecording]{PlotRecording} (for \link[=PRecording]{PRecording} objects) \cr
-* \link[=Plot_Inspect]{Plot_Inspect} (for \link[=PRecording]{PRecording} and \link[=PCollection]{PCollection} oojects) \cr
-*visualize time series
+* \link[=Plot_Inspect]{Plot_Inspect} (for \link[=PRecording]{PRecording} and \link[=PCollection]{PCollection} objects) \cr
 }
 
 \section{Math, conversion and subsampling functions}{
@@ -49,6 +55,7 @@ Import procedures are currently implemented for HEKA's PachtMaster file format. 
 
 \examples{
 \donttest{
+# Example 1
 # import a PatchMaster file
 tmp<-ImportPRecording("test.dat",series = 1,traces = c(1,2))
 
