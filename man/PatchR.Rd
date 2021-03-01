@@ -31,7 +31,7 @@ Import procedures are currently implemented for HEKA's PachtMaster file format. 
 
 \section{Visuaization functions}{
 
-* \link[=PlotDoseResp]{PlotDoseResp} \cr
+* \link[=PlotStimResp]{PlotStimResp} \cr
 * \link[=PlotGroupComparison]{PlotGroupComparison} (for \link[=PCollection]{PCollection} objects) \cr
 * \link[=PlotQC]{PlotRecording} (for \link[=PCollection]{PCollection} objects) \cr
 * \link[=PlotRecording]{PlotRecording} (for \link[=PRecording]{PRecording} objects) \cr

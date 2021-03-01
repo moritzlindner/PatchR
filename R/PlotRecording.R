@@ -11,7 +11,7 @@ setMethod("PlotRecording",
           "PRecording",
           function(object){
             tmp.object<-downsample(object,npnts.out = 1000)
-            tmp.object<-convenientScales(tmp.object)
+            tmp.object<-ConvenientScales(tmp.object)
             dat<-as.data.frame(tmp.object)
             return(dat)
             for (i in tmp.object@Traces)

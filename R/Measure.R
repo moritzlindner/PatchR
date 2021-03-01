@@ -1,6 +1,6 @@
 #' Measurement methods
 #'
-#' These methods perform measurements on \linkS4class{PRecording} and \linkS4class{PCollection} objects on a per-sweep basis. They are designed to efficiently collect data e.g. for time Series, dose-response or point statistics
+#' These methods perform measurements on \linkS4class{PRecording} and \linkS4class{PCollection} objects on a per-sweep basis. They are designed to efficiently collect data e.g. for time series, dose-response or point statistics
 #'
 #' @inheritParams GetData
 #' @param Trace The name of the trace to perform measurements on

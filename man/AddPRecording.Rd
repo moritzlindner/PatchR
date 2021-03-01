@@ -13,13 +13,13 @@ AddPRecording(
 )
 }
 \arguments{
-\item{object}{a \linkS4class{PRecording} object}
+\item{object}{A \linkS4class{PRecording} object}
 
-\item{PRecording}{a PRecording object, or list of PRecording objects}
+\item{PRecording}{a \var{PRecording}  object, or \var{list} of \var{PRecording} objects.}
 
-\item{Names}{names for imported PRecording. Standard is variable name given in PRecording if single PRecording, i}
+\item{Names}{Vames for imported a \var{PRecording}. Standard is File name stored in the added a \var{PRecording}(s).}
 
-\item{Group}{Group variable or list thereof, of the same lenght as PRecording}
+\item{Group}{Group variable or list thereof, of the same length as \var{PRecording}}
 }
 \value{
 A \linkS4class{PCollection} object

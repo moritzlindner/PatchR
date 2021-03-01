@@ -2,7 +2,7 @@
 % Please edit documentation in R/AddMetaData.R
 \name{AddMetaData}
 \alias{AddMetaData}
-\title{Adds metadata to a \linkS4class{PRecording} or \linkS4class{PCollection} object}
+\title{Adds metadata to a PRecording or PCollection object}
 \usage{
 AddMetaData(object, values, title = colnames(values), Verbose = T)
 }
@@ -14,17 +14,17 @@ AddMetaData(object, values, title = colnames(values), Verbose = T)
 \item{title}{The title(s) for the metadata column(s).}
 }
 \value{
-A \linkS4class{PRecording} or \linkS4class{PCollection}   object, respectively
+A \linkS4class{PRecording} or \linkS4class{PCollection} object, respectively.
 }
 \description{
-This function adds metadata to a PCollection object by filling the MetaData slot. The function calling \code{AddMetaData} is stored in the \var{.MetaDataFx} slot.
+This function adds metadata to a \linkS4class{PRecording} or \linkS4class{PCollection} object by filling the \var{MetaData} slot. The function calling \code{AddMetaData} is stored in the \var{.MetaDataFx} slot.
 }
 \details{
 \strong{The MetaData slot} \cr
- In a \linkS4class{PRecording} object the MetaData slot is a \var{matrix} with each row corresponding to a sweep. \cr
- In a \linkS4class{PCollection} object the MetaData slot is a \var{matrix} with each row corresponding to a \linkS4class{PRecording} stored in the \linkS4class{PCollection}. \cr
+ In a \var{PRecording} object the \var{MetaData} slot is a \var{matrix} with each row corresponding to a sweep. \cr
+ In a \var{PCollection} object the \var{MetaData} slot is a \var{matrix} with each row corresponding to a \var{PRecording} stored in the object.
  Column names must be unique.
 }
 \seealso{
-\linkS4class{PRecording}, \linkS4class{PCollection}, \link[PatchR::apply]{apply()}, \link[PatchR::lapply]{lapply()}, \link[base::as.matrix]{as.matrix()}
+\linkS4class{PRecording}, \linkS4class{PCollection}, \link[=PatchR::apply]{apply()}, \link[=PatchR::lapply]{lapply()}, \link[=base::as.matrix]{as.matrix()}
 }

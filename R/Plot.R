@@ -9,8 +9,8 @@
 NULL
 
 #' @describeIn Plot This method builds a dose-response curve
-#' @exportMethod PlotDoseResp
-setGeneric(name="PlotDoseResp",
+#' @exportMethod PlotStimResp
+setGeneric(name="PlotStimResp",
            def=function(X,
                         StimTrace="V-mon",
                         RespTrace="I-mon",
@@ -18,11 +18,11 @@ setGeneric(name="PlotDoseResp",
                         fun=mean,
                         ReturnPMObject=T)
            {
-             standardGeneric("PlotDoseResp")
+             standardGeneric("PlotStimResp")
            }
 )
 
-setMethod("PlotDoseResp",
+setMethod("PlotStimResp",
           "PRecording",
           function(X,
                    StimTrace="V-mon",
@@ -30,7 +30,7 @@ setMethod("PlotDoseResp",
                    Time,
                    fun=mean,
                    ReturnPMObject=T){
-            PlotDoseRespgeneric(X,
+            PlotStimRespgeneric(X,
                                StimTrace,
                                RespTrace,
                                Time,
@@ -38,7 +38,7 @@ setMethod("PlotDoseResp",
                                ReturnPMObject)
           }
           )
-setMethod("PlotDoseResp",
+setMethod("PlotStimResp",
           "PCollection",
           function(X,
                    StimTrace="V-mon",
@@ -46,7 +46,7 @@ setMethod("PlotDoseResp",
                    Time,
                    fun=mean,
                    ReturnPMObject=T){
-            PlotDoseRespgeneric(X,
+            PlotStimRespgeneric(X,
                                StimTrace,
                                RespTrace,
                                Time,
@@ -55,7 +55,7 @@ setMethod("PlotDoseResp",
           }
           )
 
-PlotDoseRespgeneric<-function(X,
+PlotStimRespgeneric<-function(X,
                              StimTrace="V-mon",
                              RespTrace="I-mon",
                              Time,
@@ -68,14 +68,14 @@ PlotDoseRespgeneric<-function(X,
                        fun)
 
   if(class(X)[1]=="PRecording"){
-    StimUnit<-paste0(convenientScalessi(dat$Stimulus),X@Units[GetTraceNames(X)==StimTrace])
-    RespUnit<-paste0(convenientScalessi(dat$Response),X@Units[GetTraceNames(X)==RespTrace])
+    StimUnit<-paste0(ConvenientScalessi(dat$Stimulus),X@Units[GetTraceNames(X)==StimTrace])
+    RespUnit<-paste0(ConvenientScalessi(dat$Response),X@Units[GetTraceNames(X)==RespTrace])
   }else{
-    StimUnit<-paste0(convenientScalessi(dat$Stimulus),X@Series[[1]]@Units[GetTraceNames(X@Series[[1]])==StimTrace])
-    RespUnit<-paste0(convenientScalessi(dat$Response),X@Series[[1]]@Units[GetTraceNames(X@Series[[1]])==RespTrace])
+    StimUnit<-paste0(ConvenientScalessi(dat$Stimulus),X@Series[[1]]@Units[GetTraceNames(X@Series[[1]])==StimTrace])
+    RespUnit<-paste0(ConvenientScalessi(dat$Response),X@Series[[1]]@Units[GetTraceNames(X@Series[[1]])==RespTrace])
   }
-  dat$Stimulus<-convenientScalesvalue(dat$Stimulus)
-  dat$Response<-convenientScalesvalue(dat$Response)
+  dat$Stimulus<-ConvenientScalesvalue(dat$Stimulus)
+  dat$Response<-ConvenientScalesvalue(dat$Response)
 
   if(!("Group" %in% colnames(dat))){
     dat$Group<-"Genereic"
@@ -149,15 +149,15 @@ PlotTimeSeriesgeneric<-function(X,
                        Time=Time,
                        FUN=fun)
   if(class(X)[1]=="PRecording"){
-    TimeUnit<-paste0(convenientScalessi(dat$StimTimes),X@TimeUnit)
-    RespUnit<-paste0(convenientScalessi(dat$Response),X@Units[GetTraceNames(X)==RespTrace])
+    TimeUnit<-paste0(ConvenientScalessi(dat$StimTimes),X@TimeUnit)
+    RespUnit<-paste0(ConvenientScalessi(dat$Response),X@Units[GetTraceNames(X)==RespTrace])
   }else{
-    TimeUnit<-paste0(convenientScalessi(dat$StimTimes),X@Series[[1]]@TimeUnit)
-    RespUnit<-paste0(convenientScalessi(dat$Response),X@Series[[1]]@Units[GetTraceNames(X@Series[[1]])==RespTrace])
+    TimeUnit<-paste0(ConvenientScalessi(dat$StimTimes),X@Series[[1]]@TimeUnit)
+    RespUnit<-paste0(ConvenientScalessi(dat$Response),X@Series[[1]]@Units[GetTraceNames(X@Series[[1]])==RespTrace])
 
   }
-  dat$StimTimes<-convenientScalesvalue(dat$StimTimes)
-  dat$Response<-convenientScalesvalue(dat$Response)
+  dat$StimTimes<-ConvenientScalesvalue(dat$StimTimes)
+  dat$Response<-ConvenientScalesvalue(dat$Response)
 
   if(!("Group" %in% colnames(dat))){
     dat$Group<-"Genereic"
@@ -224,11 +224,11 @@ PlotGroupComparisongeneric<-function(X,
                        fun)
 
   if(class(X)[1]=="PRecording"){
-    RespUnit<-paste0(convenientScalessi(dat$Response),X@Units[GetTraceNames(X)==RespTrace])
+    RespUnit<-paste0(ConvenientScalessi(dat$Response),X@Units[GetTraceNames(X)==RespTrace])
   }else{
-    RespUnit<-paste0(convenientScalessi(dat$Response),X@Series[[1]]@Units[GetTraceNames(X@Series[[1]])==RespTrace])
+    RespUnit<-paste0(ConvenientScalessi(dat$Response),X@Series[[1]]@Units[GetTraceNames(X@Series[[1]])==RespTrace])
   }
-  dat$Response<-convenientScalesvalue(dat$Response)
+  dat$Response<-ConvenientScalesvalue(dat$Response)
 
   if(!("Group" %in% colnames(dat))){
     dat$Group<-"Genereic"

@@ -28,5 +28,5 @@ Calculate_IV(
 a matrix or PRecording with IV \link[=base::matrix]{base::matrix} and \link[=ggplot2::ggplot]{ggplot2::ggplot} stored in the MetaData and Plot slot, resp.
 }
 \description{
-This function averages \link[=PRecording]{PRecording} objects by Trace, Sweep or Time. If object is a \link[=PCollection]{PCollection}. then does so for each Series stored in the object
+This function is outdated. Please use \link[=PlotStimResp]{PlotStimResp} instead. This function averages \link[=PRecording]{PRecording} objects by Trace, Sweep or Time. If object is a \link[=PCollection]{PCollection}. then does so for each Series stored in the object
 }

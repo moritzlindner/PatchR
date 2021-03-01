@@ -1,11 +1,12 @@
 #' Add data (Trace) to PRecording objects
 #'
-#' This function adds a new Trace (with data) from any object convertible into a matrix to a PRecording object
+#' This function adds a new Trace (with data) from any object convertible into a matrix to a \linkS4class{PRecording} object.
 #'
 #' @param object A \linkS4class{PRecording} object
 #' @param Trace Name of the new Trace
-#' @param Sweeps Names of the sweeps added. Must be the same as sweep names in \code{object}. Data will be sorted accoding to order of Sweeps in \code{object} Default is \code{colnames(object)}
-#' @param mtx Any object convertible into a matrix, that has the same dimension as data in the Data slot of \code{object}
+#' @param Sweeps Names of the sweeps added. Must be the same as sweep names in \var{object}. Data will be sorted accoding to order of Sweeps in \var{object} Default is \code{colnames(object)}
+#' @param mtx Any object convertible into a \var{matrix}, that has the same dimension as data in the Data slot of \var{object}
+#' @seealso \linkS4class{PRecording}, \linkS4class{PCollection}, \link[=base::as.matrix]{as.matrix()}
 #' @return A matrix or \linkS4class{PRecording} object
 #' @exportMethod AddTrace
 setGeneric(name="AddTrace",

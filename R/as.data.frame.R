@@ -1,8 +1,10 @@
 #' Converts PRecording or PCollection into a long data frame
 #'
-#' Converts PRecording or PCollection into a data frame in a long representation, analog to tidyR's gather
+#' Converts \linkS4class[=PRecording]{PRecording} or \linkS4class[=PCollection]{PCollection}  into a data frame in a long representation, analog to tidyR's gather or
 #'
-#' @param x a \link[=PRecording]{PRecording} or \link[=PCollection]{PCollection}object
+#' @param x a \var{PRecording} or \var{PCollection} object.
+#' @return A \var{data.frame}.
+#' @seealso \link[=base::as.data.frame]{as.data.frame()},\link[=tidyr::gather]{gather()},\link[=tidyr::pivot_longer]{pivot_longer()}
 #' @exportMethod as.data.frame
 setMethod("as.data.frame",
           "PRecording",

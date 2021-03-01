@@ -2,13 +2,13 @@
 % Please edit documentation in R/BuildPlot.R, R/PlotQC.R
 \name{Plot}
 \alias{Plot}
-\alias{PlotDoseResp}
+\alias{PlotStimResp}
 \alias{PlotTimeSeries}
 \alias{PlotGroupComparison}
 \alias{PlotQC}
 \title{Plotting methods}
 \usage{
-PlotDoseResp(
+PlotStimResp(
   X,
   StimTrace = "V-mon",
   RespTrace = "I-mon",
@@ -49,7 +49,7 @@ These methods create "typical" ephsy graphs like dose-response curves, time-seri
 }
 \section{Functions}{
 \itemize{
-\item \code{PlotDoseResp}: This method builds a dose-response curve
+\item \code{PlotStimResp}: This method builds a dose-response curve
 
 \item \code{PlotTimeSeries}: This method builds a time Series plot
 

@@ -7,17 +7,20 @@
 \S4method{apply}{PRecording}(X, MARGIN, FUN, ReturnPMObject = F, Verbose = T)
 }
 \arguments{
-\item{X}{a \linkS4class{PRecording}  object}
+\item{X}{A \linkS4class{PRecording}  object}
 
-\item{MARGIN}{a vector giving the subscripts which the function will be applied along. Understands "Time", "Sweep","Trace", or 1-3 resp.}
+\item{MARGIN}{A vector giving the subscripts which the function will be applied along. Understands "\code{Time"}", "\code{Sweep"}","\code{Trace"}", or \code{1-3"} resp.}
 
-\item{FUN}{the function to be applied}
+\item{FUN}{The function to be applied}
 
-\item{ReturnPMObject}{whether to return results as a \linkS4class{PRecording} with an additional, computed trace only works with \code{MARGIN=TRACE} or if applying \code{FUN} leaves dimensions unchanged. Default is \var{FALSE}, then returns a matrix.}
+\item{ReturnPMObject}{Whether to return results as a \linkS4class{PRecording} with an additional, computed trace only works with \code{MARGIN="Trace"} or if applying \code{FUN} leaves dimensions unchanged. Default is \var{FALSE}, then returns a matrix.}
 }
 \value{
-A \link[base::matrix]{matrix}  or \linkS4class{PRecording}  object
+A \link[base::matrix]{matrix}  or \linkS4class{PRecording} object.
 }
 \description{
 This is the PatchR analog to "apply"
+}
+\seealso{
+\link[=base::apply]{base::apply()}, \link[=PatchR::lapply]{PatchR::lapply()}
 }

@@ -7,8 +7,14 @@
 \S4method{as.data.frame}{PRecording}(x, row.names = NULL, optional = FALSE, ...)
 }
 \arguments{
-\item{x}{a \link[=PRecording]{PRecording} or \link[=PCollection]{PCollection}object}
+\item{x}{a \var{PRecording} or \var{PCollection} object.}
+}
+\value{
+A \var{data.frame}.
 }
 \description{
-Converts PRecording or PCollection into a data frame in a long representation, analog to tidyR's gather
+Converts \linkS4class[=PRecording]{PRecording} or \linkS4class[=PCollection]{PCollection}  into a data frame in a long representation, analog to tidyR's gather or
+}
+\seealso{
+\link[=base::as.data.frame]{as.data.frame()},\link[=tidyr::gather]{gather()},\link[=tidyr::pivot_longer]{pivot_longer()}
 }

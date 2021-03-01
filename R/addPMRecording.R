@@ -4,10 +4,10 @@
 #'
 #' Adds a \linkS4class{PRecording} to existing \linkS4class{PCollection}
 #'
-#' @param object a \linkS4class{PRecording} object
-#' @param PRecording a PRecording object, or list of PRecording objects
-#' @param Names names for imported PRecording. Standard is variable name given in PRecording if single PRecording, i
-#' @param Group Group variable or list thereof, of the same lenght as PRecording
+#' @param object A \linkS4class{PRecording} object
+#' @param PRecording a \var{PRecording}  object, or \var{list} of \var{PRecording} objects.
+#' @param Names Vames for imported a \var{PRecording}. Standard is File name stored in the added a \var{PRecording}(s).
+#' @param Group Group variable or list thereof, of the same length as \var{PRecording}
 #' @return A \linkS4class{PCollection} object
 #' @exportMethod AddPRecording
 setGeneric(name="AddPRecording",

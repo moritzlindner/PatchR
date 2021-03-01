@@ -1,6 +1,6 @@
 #' OUTDATED. Caluclates IV from a PRecording or PCollection object
 #'
-#' This function averages \link[=PRecording]{PRecording} objects by Trace, Sweep or Time. If object is a \link[=PCollection]{PCollection}. then does so for each Series stored in the object
+#' This function is outdated. Please use \link[=PlotStimResp]{PlotStimResp} instead. This function averages \link[=PRecording]{PRecording} objects by Trace, Sweep or Time. If object is a \link[=PCollection]{PCollection}. then does so for each Series stored in the object
 #'
 #' @param object a \link[=PRecording]{PRecording} object
 #' @param X_FROM,X_TO,x_D_FROM,X_D_TO Time points to perform averaging for IV prodcution
@@ -32,7 +32,7 @@ setMethod("Calculate_IV",
                    x_D_FROM=NA,
                    X_D_TO=NA){
             out<-GetData(object, Time=c(X_FROM,X_TO),nowarnings=T)
-            out<-convenientScales(out)
+            out<-ConvenientScales(out)
             out<-apply(object,1,mean)
 
             if(!is.na(X_D_TO)){

@@ -11,13 +11,16 @@ AddTrace(object, Trace, Unit, Sweeps = colnames(mtx), isOrig = F, mtx)
 
 \item{Trace}{Name of the new Trace}
 
-\item{Sweeps}{Names of the sweeps added. Must be the same as sweep names in \code{object}. Data will be sorted accoding to order of Sweeps in \code{object} Default is \code{colnames(object)}}
+\item{Sweeps}{Names of the sweeps added. Must be the same as sweep names in \var{object}. Data will be sorted accoding to order of Sweeps in \var{object} Default is \code{colnames(object)}}
 
-\item{mtx}{Any object convertible into a matrix, that has the same dimension as data in the Data slot of \code{object}}
+\item{mtx}{Any object convertible into a \var{matrix}, that has the same dimension as data in the Data slot of \var{object}}
 }
 \value{
 A matrix or \linkS4class{PRecording} object
 }
 \description{
-This function adds a new Trace (with data) from any object convertible into a matrix to a PRecording object
+This function adds a new Trace (with data) from any object convertible into a matrix to a \linkS4class{PRecording} object.
+}
+\seealso{
+\linkS4class{PRecording}, \linkS4class{PCollection}, \link[=base::as.matrix]{as.matrix()}
 }
