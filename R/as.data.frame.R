@@ -4,7 +4,7 @@
 #'
 #' @param x a \var{PRecording} or \var{PCollection} object.
 #' @return A \var{data.frame}.
-#' @seealso \link[=base::as.data.frame]{as.data.frame()},\link[=tidyr::gather]{gather()},\link[=tidyr::pivot_longer]{pivot_longer()}
+#' @seealso \link[base::as.data.frame]{as.data.frame()},\link[tidyr::gather]{gather()},\link[tidyr::pivot_longer]{pivot_longer()}
 #' @exportMethod as.data.frame
 setMethod("as.data.frame",
           "PRecording",
