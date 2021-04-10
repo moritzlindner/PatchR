@@ -6,7 +6,7 @@
 if (!requireNamespace("remotes", quietly = TRUE)){
   install.packages("remotes")
 }
-remotes::install_github("moritzlindner/PatchMasteR")
+remotes::install_github("moritzlindner/PatchR")
 ```
 
 ## Description
