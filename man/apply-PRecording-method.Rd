@@ -9,7 +9,7 @@
 \arguments{
 \item{X}{A \linkS4class{PRecording}  object}
 
-\item{MARGIN}{A vector giving the subscripts which the function will be applied along. Understands "\code{Time"}", "\code{Sweep"}","\code{Trace"}", or \code{1-3"} resp.}
+\item{MARGIN}{A vector giving the subscripts which the function will be applied along. Understands \code{Time}, \code{Sweep},\code{Trace}, or \code{1-3} resp.}
 
 \item{FUN}{The function to be applied}
 
@@ -19,7 +19,7 @@
 A \link[base::matrix]{matrix}  or \linkS4class{PRecording} object.
 }
 \description{
-This is the PatchR analog to "apply"
+This is the PatchR analog to \code{apply}
 }
 \seealso{
 \link[=base::apply]{base::apply()}, \link[=PatchR::lapply]{PatchR::lapply()}

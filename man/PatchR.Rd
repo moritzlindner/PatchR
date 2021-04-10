@@ -54,7 +54,7 @@ Import procedures are currently implemented for HEKA's PachtMaster file format. 
 }
 
 \examples{
-\donttest{
+\dontrun{
 # Example 1
 # import a PatchMaster file
 tmp<-ImportPRecording("test.dat",series = 1,traces = c(1,2))

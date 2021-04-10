@@ -42,7 +42,7 @@
 #' * \link[=apply]{apply} for \link[=PRecording]{PRecording} and \link[=lapply]{lapply} for \link[=PCollection]{PCollection} \cr
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Example 1
 #' # import a PatchMaster file
 #' tmp<-ImportPRecording("test.dat",series = 1,traces = c(1,2))

@@ -1,9 +1,9 @@
 #' apply function for PRecording objects
 #'
-#' This is the PatchR analog to "apply"
+#' This is the PatchR analog to \code{apply}
 #'
 #' @param X A \linkS4class{PRecording}  object
-#' @param MARGIN A vector giving the subscripts which the function will be applied along. Understands "\code{Time"}", "\code{Sweep"}","\code{Trace"}", or \code{1-3"} resp.
+#' @param MARGIN A vector giving the subscripts which the function will be applied along. Understands \code{Time}, \code{Sweep},\code{Trace}, or \code{1-3} resp.
 #' @param FUN The function to be applied
 #' @param ReturnPMObject Whether to return results as a \linkS4class{PRecording} with an additional, computed trace only works with \code{MARGIN="Trace"} or if applying \code{FUN} leaves dimensions unchanged. Default is \var{FALSE}, then returns a matrix.
 #' @seealso \link[=base::apply]{base::apply()}, \link[=PatchR::lapply]{PatchR::lapply()}
