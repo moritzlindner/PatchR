@@ -116,7 +116,7 @@ setMethod("MeasureSweeps",
 )
 
 #' @describeIn Measure This is a convenience method providing easy to process data.frames for generation of time series and dose-response curves
-#' @return MeasureStimResp: A a \link[=base::data.frame]{data.frame} with five columns: "Name","Group","Stimulus","StimTimes","Response"
+#' @return MeasureStimResp: A a \link[=base:data.frame]{data.frame} with five columns: "Name","Group","Stimulus","StimTimes","Response"
 #' @exportMethod MeasureStimResp
 setGeneric(name="MeasureStimResp",
            def=function(X,

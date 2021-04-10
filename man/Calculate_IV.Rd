@@ -20,12 +20,12 @@ Calculate_IV(
 
 \item{X_FROM, X_TO, x_D_FROM, X_D_TO}{Time points to perform averaging for IV prodcution}
 
-\item{ReturnPMObject}{whether to return results as a \link[=PRecording]{PRecording}  with an additional, computed trace. If set to \code{FALSE}, will return a \link[=base::matrix]{base::matrix}. Default is \code{TRUE}.}
+\item{ReturnPMObject}{whether to return results as a \link[=PRecording]{PRecording}  with an additional, computed trace. If set to \code{FALSE}, will return a \link[base:matrix]{base::matrix}. Default is \code{TRUE}.}
 
 \item{ITrace, VTrace}{Name of the traces containig Current(I) and and Voltage(V)}
 }
 \value{
-a matrix or PRecording with IV \link[=base::matrix]{base::matrix} and \link[=ggplot2::ggplot]{ggplot2::ggplot} stored in the MetaData and Plot slot, resp.
+a matrix or PRecording with IV \link[base:matrix]{base::matrix} and \link[ggplot2:ggplot]{ggplot2::ggplot} stored in the MetaData and Plot slot, resp.
 }
 \description{
 This function is outdated. Please use \link[=PlotStimResp]{PlotStimResp} instead. This function averages \link[=PRecording]{PRecording} objects by Trace, Sweep or Time. If object is a \link[=PCollection]{PCollection}. then does so for each Series stored in the object

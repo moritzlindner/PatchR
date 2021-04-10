@@ -38,7 +38,7 @@ MeasureStimResp(X, StimTrace = "V-mon", RespTrace = "I-mon", Time, FUN = mean)
 \value{
 MeasureSweeps: A \linkS4class{PRecording} or \linkS4class{PCollection}, respectiveley with an updated MetaData Slot or, if \code{ReturnPMObject=F} a matrix.
 
-MeasureStimResp: A a \link[=base::data.frame]{data.frame} with five columns: "Name","Group","Stimulus","StimTimes","Response"
+MeasureStimResp: A a \link[=base:data.frame]{data.frame} with five columns: "Name","Group","Stimulus","StimTimes","Response"
 }
 \description{
 These methods perform measurements on \linkS4class{PRecording} and \linkS4class{PCollection} objects on a per-sweep basis. They are designed to efficiently collect data e.g. for time series, dose-response or point statistics

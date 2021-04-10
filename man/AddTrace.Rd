@@ -22,5 +22,5 @@ A matrix or \linkS4class{PRecording} object
 This function adds a new Trace (with data) from any object convertible into a matrix to a \linkS4class{PRecording} object.
 }
 \seealso{
-\linkS4class{PRecording}, \linkS4class{PCollection}, \link[=base::as.matrix]{as.matrix()}
+\linkS4class{PRecording}, \linkS4class{PCollection}, \link[=base:as.matrix]{as.matrix()}
 }

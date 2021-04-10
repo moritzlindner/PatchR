@@ -5,8 +5,8 @@
 #' @param object a \link[=PRecording]{PRecording} object
 #' @param X_FROM,X_TO,x_D_FROM,X_D_TO Time points to perform averaging for IV prodcution
 #' @param ITrace,VTrace Name of the traces containig Current(I) and and Voltage(V)
-#' @param ReturnPMObject whether to return results as a \link[=PRecording]{PRecording}  with an additional, computed trace. If set to \code{FALSE}, will return a \link[=base::matrix]{base::matrix}. Default is \code{TRUE}.
-#' @return a matrix or PRecording with IV \link[=base::matrix]{base::matrix} and \link[=ggplot2::ggplot]{ggplot2::ggplot} stored in the MetaData and Plot slot, resp.
+#' @param ReturnPMObject whether to return results as a \link[=PRecording]{PRecording}  with an additional, computed trace. If set to \code{FALSE}, will return a \link[base:matrix]{base::matrix}. Default is \code{TRUE}.
+#' @return a matrix or PRecording with IV \link[base:matrix]{base::matrix} and \link[ggplot2:ggplot]{ggplot2::ggplot} stored in the MetaData and Plot slot, resp.
 #' @exportMethod Calculate_IV
 setGeneric(name="Calculate_IV",
            def=function(object,

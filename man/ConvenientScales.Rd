@@ -16,5 +16,5 @@ A \linkS4class{PRecording} or \linkS4class{PCollection} object
 This function converts scaling of a \linkS4class{PRecording} or \linkS4class{PCollection} object and adds SI prefixes. Caution: Currently not check is performed if Unit carries already a SI prefix.
 }
 \seealso{
-\link[=sitools::f2si]{sitools::f2si()}
+\link[=sitools:f2si]{sitools:f2si()}
 }

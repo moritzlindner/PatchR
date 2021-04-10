@@ -4,7 +4,7 @@
 #'
 #' @inheritParams Get
 #' @return A \linkS4class{PRecording} or \linkS4class{PCollection} object
-#' @seealso \link[=sitools::f2si]{sitools::f2si()}
+#' @seealso \link[=sitools:f2si]{sitools:f2si()}
 #' @exportMethod ConvenientScales
 setGeneric(name="ConvenientScales",
            def=function(X)

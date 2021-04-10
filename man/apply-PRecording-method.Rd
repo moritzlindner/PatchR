@@ -16,11 +16,11 @@
 \item{ReturnPMObject}{Whether to return results as a \linkS4class{PRecording} with an additional, computed trace only works with \code{MARGIN="Trace"} or if applying \code{FUN} leaves dimensions unchanged. Default is \var{FALSE}, then returns a matrix.}
 }
 \value{
-A \link[base::matrix]{matrix}  or \linkS4class{PRecording} object.
+A \link[base:matrix]{matrix}  or \linkS4class{PRecording} object.
 }
 \description{
 This is the PatchR analog to \code{apply}
 }
 \seealso{
-\link[=base::apply]{base::apply()}, \link[=PatchR::lapply]{PatchR::lapply()}
+\link[base:apply]{base::apply()}, \link[PatchR:lapply]{PatchR::lapply()}
 }
