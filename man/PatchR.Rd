@@ -15,7 +15,7 @@ Import procedures are currently implemented for HEKA's PachtMaster file format. 
 * \link[=AddTrace]{AddTrace} (for \link[=PRecording]{PRecording} objects) \cr
 * \link[=newPCollection]{newPCollection} (for \link[=PCollection]{PCollection} objects) \cr
 * \link[=AddPRecording]{AddPRecording} (for \link[=PCollection]{PCollection} objects) \cr
-* \link[=DropPRecording]{AddPRecording} (for \link[=PCollection]{PCollection} objects) \cr
+* \link[=DropPRecording]{DropPRecording} (for \link[=PCollection]{PCollection} objects) \cr
 }
 
 \section{Accession functions}{
@@ -72,7 +72,7 @@ as.data.frame(tmp)
 # Example 2
 
 exp<-newPCollection(list(tmp,tmp),Names=c("A","B"),Group=c("Generic1","Generic2"))
-AddMetaData(exp, #add as metadata to PCollection
+tmp<-AddMetaData(exp, #add as metadata to PCollection
             lapply(exp, # for each PRecording stored in PCollection
                    function(x){
                       apply( # average over time

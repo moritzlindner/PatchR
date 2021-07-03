@@ -47,7 +47,7 @@ setMethod("ConvenientScales",
           function(X){
             for (i in 1:length(GetTraceNames(X))){
               decimals<-seq(0,21,3)
-              X@Units[[i]]<-gsub("[^a-zA-Z]", "", si(10^-ConvenientScalesdecimals(X),X@Units[[i]]))
+              X@Units[[i]]<-gsub("[^a-zA-Z]", "", f2si(10^-ConvenientScalesdecimals(X),X@Units[[i]]))
               X@Data[[GetTraceNames(X)[i]]]<-ConvenientScalesvalue(X@Data[[GetTraceNames(X)[i]]])
             }
             X

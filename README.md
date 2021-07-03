@@ -43,7 +43,7 @@ Create a PCollection, perform a classical time series data extraction (in this c
 
 exp<-newPCollection(list(tmp,tmp),Names=c("A","B"),Group=c("Generic1","Generic2"))
 
-AddMetaData(exp, #add as metadata to PCollection
+exp<-AddMetaData(exp, #add as metadata to PCollection
             lapply(exp, # for each PRecording stored in PCollection
                    function(x){
                      apply( # average over time
