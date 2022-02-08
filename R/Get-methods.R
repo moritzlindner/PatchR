@@ -133,7 +133,7 @@ setGeneric(name="GetRecParam",
 setMethod("GetRecParam",
           "PRecording",
           function(X,which) {
-            X@RecordingParams[[which]]
+            slot(X@RecordingParams,which)
           }
 )
 setMethod("GetRecParam",
