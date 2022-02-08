@@ -44,7 +44,7 @@ validPCollection<-function(object) {
 #' @slot Series A list containing individual \linkS4class{PRecording} objects of identical dimensions, \var{ProtocolName}, \var{RecMode} and \var{TraceNames}.
 #' @slot Names A \var{vector} of type \code{character} as unique identifier for the individual PRecording objects stored in the collection.
 #' @slot Group A \var{vector} of type \code{logical} as Group identifier for the individual Series.
-#' @slot Metadata A \var{matrix} with each row corresponding to a \linkS4class{PRecording} stored in the \linkS4class{PCollection}. Column names must be unique.
+#' @slot MetaData A \var{matrix} with each row corresponding to a \linkS4class{PRecording} stored in the \linkS4class{PCollection}. Column names must be unique.
 #' @slot Plots A slot to store ggplots
 #' @slot .MetaDataFx A list fo functions called to under \link[=AddMetaData]{AddMetaData()}
 #' @slot RecordingParams Stores the Recording parameters that must be identical for all entries in Series \var{ProtocolName}, \var{RecMode} and \var{TraceNames}.

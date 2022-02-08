@@ -14,6 +14,8 @@
 \item{FUN}{The function to be applied}
 
 \item{ReturnPMObject}{Whether to return results as a \linkS4class{PRecording} with an additional, computed trace only works with \code{MARGIN="Trace"} or if applying \code{FUN} leaves dimensions unchanged. Default is \var{FALSE}, then returns a matrix.}
+
+\item{Verbose}{Print what function is doing.}
 }
 \value{
 A \link[base:matrix]{matrix}  or \linkS4class{PRecording} object.

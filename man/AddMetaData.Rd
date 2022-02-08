@@ -12,6 +12,8 @@ AddMetaData(object, values, title = colnames(values), Verbose = T)
 \item{values}{The values to be added. Can be anything convertible into a \var{matrix}.}
 
 \item{title}{The title(s) for the metadata column(s).}
+
+\item{Verbose}{should the names/titles of the columns added be printed?}
 }
 \value{
 A \linkS4class{PRecording} or \linkS4class{PCollection} object, respectively.
@@ -26,5 +28,5 @@ This function adds metadata to a \linkS4class{PRecording} or \linkS4class{PColle
  Column names must be unique.
 }
 \seealso{
-\linkS4class{PRecording}, \linkS4class{PCollection}, \href{../../PatchR/html/apply-PRecording-method.html}{apply()}, \href{../../PatchR/html/lapply-PCollection-method}{lapply()}, \link[base:as.matrix()]{base::as.matrix()}
+\linkS4class{PRecording}, \linkS4class{PCollection}, \href{../../PatchR/html/apply-PRecording-method.html}{apply()}, \href{../../PatchR/html/lapply-PCollection-method.html}{lapply()}, \link[base:as.matrix()]{base::as.matrix()}
 }

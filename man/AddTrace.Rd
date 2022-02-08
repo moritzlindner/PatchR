@@ -9,9 +9,13 @@ AddTrace(object, Trace, Unit, Sweeps = colnames(mtx), isOrig = F, mtx)
 \arguments{
 \item{object}{A \linkS4class{PRecording} object}
 
-\item{Trace}{Name of the new Trace}
+\item{Trace}{Name of the new trace}
+
+\item{Unit}{The SI unit of the trace}
 
 \item{Sweeps}{Names of the sweeps added. Must be the same as sweep names in \var{object}. Data will be sorted accoding to order of Sweeps in \var{object} Default is \code{colnames(object)}}
+
+\item{isOrig}{if TRUE, marks added trace as an original recording.}
 
 \item{mtx}{Any object convertible into a \var{matrix}, that has the same dimension as data in the Data slot of \var{object}}
 }

@@ -17,7 +17,7 @@ This class stores a collection of \linkS4class{PRecording}s in a single object. 
 
 \item{\code{Group}}{A \var{vector} of type \code{logical} as Group identifier for the individual Series.}
 
-\item{\code{Metadata}}{A \var{matrix} with each row corresponding to a \linkS4class{PRecording} stored in the \linkS4class{PCollection}. Column names must be unique.}
+\item{\code{MetaData}}{A \var{matrix} with each row corresponding to a \linkS4class{PRecording} stored in the \linkS4class{PCollection}. Column names must be unique.}
 
 \item{\code{Plots}}{A slot to store ggplots}
 

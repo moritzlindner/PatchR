@@ -27,14 +27,13 @@
 #' * \link[=Measure]{Measure} \cr
 #' * \link[=MeasureStimResp]{MeasureStimResp} \cr
 #' * \link[=MeasureSweeps]{MeasureSweeps} \cr
-#' @inherit Measure name
 #'
 #' @section Visuaization functions:
 #' * \link[=PlotStimResp]{PlotStimResp} \cr
 #' * \link[=PlotGroupComparison]{PlotGroupComparison} (for \link[=PCollection]{PCollection} objects) \cr
 #' * \link[=PlotQC]{PlotRecording} (for \link[=PCollection]{PCollection} objects) \cr
 #' * \link[=PlotRecording]{PlotRecording} (for \link[=PRecording]{PRecording} objects) \cr
-#' * \link[=Plot_Inspect]{Plot_Inspect} (for \link[=PRecording]{PRecording} and \link[=PCollection]{PCollection} objects) \cr
+#' * \link[=Inspect]{Inspect} (for \link[=PRecording]{PRecording} and \link[=PCollection]{PCollection} objects) \cr
 #'
 #' @section Math, conversion and subsampling functions:
 #' * \link[=CurrentDensity]{CurrentDensity} (for \link[=PRecording]{PRecording} objects) \cr
@@ -80,7 +79,7 @@
 #' }
 #'
 #'
-#' @author \link[www.lindnerlab.de]{Moritz Lindner}
+#' @author \href{https://www.lindnerlab.de}{Moritz Lindner}
 #'
 #' @docType package
 #' @name PatchR

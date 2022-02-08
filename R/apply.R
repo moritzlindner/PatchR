@@ -6,6 +6,7 @@
 #' @param MARGIN A vector giving the subscripts which the function will be applied along. Understands \code{Time}, \code{Sweep},\code{Trace}, or \code{1-3} resp.
 #' @param FUN The function to be applied
 #' @param ReturnPMObject Whether to return results as a \linkS4class{PRecording} with an additional, computed trace only works with \code{MARGIN="Trace"} or if applying \code{FUN} leaves dimensions unchanged. Default is \var{FALSE}, then returns a matrix.
+#' @param Verbose Print what function is doing.
 #' @seealso \link[base:apply]{base::apply()}, \link[PatchR:lapply]{PatchR::lapply()}
 #' @return A \link[base:matrix]{matrix}  or \linkS4class{PRecording} object.
 #' @exportMethod apply

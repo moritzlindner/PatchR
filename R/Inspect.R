@@ -1,30 +1,30 @@
 #' @describeIn Plot This function plots an interactive \link[=plotly]{plotly} graph from a plot generated using a Plot* method.
 #' @param what Specifies a plot to be plotted. any ggplot inside the Plots slot can be named
 #' @importFrom plotly ggplotly
-#' @exportMethod Plot_Inspect
-setGeneric(name="Plot_Inspect",
-           def=function(object,what="I.mon")
+#' @exportMethod Inspect
+setGeneric(name="Inspect",
+           def=function(X,what="I.mon")
            {
-             standardGeneric("Plot_Inspect")
+             standardGeneric("Inspect")
            }
 )
-setMethod("Plot_Inspect",
+setMethod("Inspect",
           "PRecording",
-          definition=function(object,what="I.mon"){
-            if (!is.null(object@Plots[[what]])){
-              ggplotly(object@Plots[[what]])
+          definition=function(X,what="I.mon"){
+            if (!is.null(X@Plots[[what]])){
+              ggplotly(X@Plots[[what]])
             }else{
               warning(paste("Use Build* first to generate ", what))
             }
           }
 )
 
-#' @exportMethod Plot_Inspect
-setMethod("Plot_Inspect",
+#' @exportMethod Inspect
+setMethod("Inspect",
           "PCollection",
-          definition=function(object,what="I.mon"){
-            if (!is.null(object@Plots[[what]])){
-              ggplotly(object@Plots[[what]])
+          definition=function(X,what="I.mon"){
+            if (!is.null(X@Plots[[what]])){
+              ggplotly(X@Plots[[what]])
             }else{
               warning(paste("Use Build* first to generate ", what))
             }

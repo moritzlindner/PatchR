@@ -43,7 +43,7 @@ Import procedures are currently implemented for HEKA's PachtMaster file format. 
 * \link[=PlotGroupComparison]{PlotGroupComparison} (for \link[=PCollection]{PCollection} objects) \cr
 * \link[=PlotQC]{PlotRecording} (for \link[=PCollection]{PCollection} objects) \cr
 * \link[=PlotRecording]{PlotRecording} (for \link[=PRecording]{PRecording} objects) \cr
-* \link[=Plot_Inspect]{Plot_Inspect} (for \link[=PRecording]{PRecording} and \link[=PCollection]{PCollection} objects) \cr
+* \link[=Inspect]{Inspect} (for \link[=PRecording]{PRecording} and \link[=PCollection]{PCollection} objects) \cr
 }
 
 \section{Math, conversion and subsampling functions}{
@@ -94,5 +94,5 @@ exp@MetaData
 
 }
 \author{
-\link[www.lindnerlab.de]{Moritz Lindner}
+\href{https://www.lindnerlab.de}{Moritz Lindner}
 }
