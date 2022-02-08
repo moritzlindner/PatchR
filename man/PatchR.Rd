@@ -27,7 +27,7 @@ Import procedures are currently implemented for HEKA's PachtMaster file format. 
 * \link[=GetMetaData]{GetMetaData} \cr
 * \link[=GetRecParam]{GetRecParam} \cr
 * \link[=GetData]{GetData} \cr
-* \link[=as.data.frame]{as.data.frame} \cr
+* \href{../../PatchR/html/as.data.frame-PRecording-method.html}{as.data.frame()} \cr
 }
 
 \section{Measurement functions}{
@@ -51,7 +51,7 @@ Import procedures are currently implemented for HEKA's PachtMaster file format. 
 * \link[=CurrentDensity]{CurrentDensity} (for \link[=PRecording]{PRecording} objects) \cr
 * \link[=GetData]{GetData} \cr
 * \link[=CalculateIV]{CalculateIV} - Outdated \cr
-* \link[=apply]{apply} for \link[=PRecording]{PRecording} and \link[=lapply]{lapply} for \link[=PCollection]{PCollection} \cr
+* \href{../../PatchR/html/apply-PRecording-method.html}{apply()} for \link[=PRecording]{PRecording} and \link[=lapply]{lapply} for \link[=PCollection]{PCollection} \cr
 }
 
 \examples{

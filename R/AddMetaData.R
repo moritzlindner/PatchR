@@ -12,7 +12,7 @@
 #'  In a \var{PRecording} object the \var{MetaData} slot is a \var{matrix} with each row corresponding to a sweep. \cr
 #'  In a \var{PCollection} object the \var{MetaData} slot is a \var{matrix} with each row corresponding to a \var{PRecording} stored in the object.
 #'  Column names must be unique.
-#' @seealso \linkS4class{PRecording}, \linkS4class{PCollection}, \href{../../PatchR/html/apply-PRecording-method.html}{apply()}, \link[lapply-PCollection-method]{lapply()}, \link[base:as.matrix()]{base::as.matrix()}
+#' @seealso \linkS4class{PRecording}, \linkS4class{PCollection}, \href{../../PatchR/html/apply-PRecording-method.html}{apply()}, \href{../../PatchR/html/lapply-PCollection-method}{lapply()}, \link[base:as.matrix()]{base::as.matrix()}
 #' @exportMethod AddMetaData
 setGeneric(name="AddMetaData",
            def=function(object,

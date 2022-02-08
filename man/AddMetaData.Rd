@@ -26,5 +26,5 @@ This function adds metadata to a \linkS4class{PRecording} or \linkS4class{PColle
  Column names must be unique.
 }
 \seealso{
-\linkS4class{PRecording}, \linkS4class{PCollection}, \href{../../PatchR/html/apply-PRecording-method.html}{apply()}, \link[lapply-PCollection-method]{lapply()}, \link[base:as.matrix()]{base::as.matrix()}
+\linkS4class{PRecording}, \linkS4class{PCollection}, \href{../../PatchR/html/apply-PRecording-method.html}{apply()}, \href{../../PatchR/html/lapply-PCollection-method}{lapply()}, \link[base:as.matrix()]{base::as.matrix()}
 }
