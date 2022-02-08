@@ -94,5 +94,5 @@ exp@MetaData
 
 }
 \author{
-\link[https://www.uni-marburg.de/en/fb20/departments/physiology/research/dominik-oliver-lab/research2/retinal-physiology-and-gene-therapy]{Moritz Lindner}
+\link[www.lindnerlab.de]{Moritz Lindner}
 }
