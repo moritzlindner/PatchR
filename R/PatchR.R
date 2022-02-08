@@ -20,6 +20,7 @@
 #' * \link[=GetTraceNames]{GetTraceNames} \cr
 #' * \link[=GetMetaData]{GetMetaData} \cr
 #' * \link[=GetRecParam]{GetRecParam} \cr
+#' * \link[=GetData]{GetData} \cr
 #' * \link[=as.data.frame]{as.data.frame} \cr
 #'
 #' @section Measurement functions:
@@ -79,7 +80,7 @@
 #' }
 #'
 #'
-#' @author \link[https://www.uni-marburg.de/en/fb20/departments/physiology/research/dominik-oliver-lab/research2/retinal-physiology-and-gene-therapy]{Moritz Lindner}
+#' @author \link[www.lindnerlab.de]{Moritz Lindner}
 #'
 #' @docType package
 #' @name PatchR

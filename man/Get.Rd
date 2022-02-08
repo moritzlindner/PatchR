@@ -64,5 +64,7 @@ These methods can be used to access information stored in \linkS4class{PRecordin
 }}
 
 \examples{
+\dontrun{
 GetRecParam(recording,c("Cs","Rs"))
+}
 }

@@ -7,7 +7,9 @@
 #' @details These methods can be used to access information stored in \linkS4class{PRecording} and/or \linkS4class{PCollection} objects. \cr \cr
 #' @return A numeric vector.
 #' @examples
+#' \dontrun{
 #' GetRecParam(recording,c("Cs","Rs"))
+#' }
 #' @name Get
 NULL
 

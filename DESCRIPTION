@@ -1,7 +1,7 @@
 Package: PatchR
 Type: Package
 Title: An environment for working with ephys (PatchClamp) recordings
-Version: 0.9.0
+Version: 0.9.2
 Author: person("Moritz", "Lindner", email = "moritz.lindne@ndcn.ox.ac.uk", role = c("aut", "cre"))
 Maintainer: Moritz Lindner <moritz.lindne@ndcn.ox.ac.uk>
 Description: An environment for working with ephys (PatchClamp) recordings. Currently import for HEKA's PatchMaster is implemented.
@@ -9,7 +9,7 @@ License: GPL-3
 Depends: ggplot2,plotly,proto,sitools,stringr,methods,dplyr,ggpubr,plyr,tidyr
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Collate: 
     '0PRecordingParams.R'
     'PatchR.R'
@@ -19,6 +19,7 @@ Collate:
     'Calculate_IV.R'
     'CurrentDensity.R'
     'Get-methods.R'
+    'GetData.R'
     'ImportCollection.R'
     'ImportPMRecording.R'
     'Inspect.R'
@@ -26,7 +27,6 @@ Collate:
     'Plot.R'
     'PlotQC.R'
     'PlotRecording.R'
-    'SubsetData.R'
     'addPMRecording.R'
     'addTrace.R'
     'add_atributes.R'
