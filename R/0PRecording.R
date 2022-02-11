@@ -17,13 +17,13 @@ validPRecording<-function(object) {
     print("Data not in matrix format")
   }
   if( length(object@Data)>1){
-    s<-var(unlist(lapply(object@Data,function(x){dim(x)[1]})))
+    s<-stats::var(unlist(lapply(object@Data,function(x){dim(x)[1]})))
     s[is.na(s)] <- 0
     if (!(s==0)){
       ret+1
       print("Traces have unequal dimensions")
     }
-    s<-var(unlist(lapply(object@Data,function(x){dim(x)[2]})))
+    s<-stats::var(unlist(lapply(object@Data,function(x){dim(x)[2]})))
     s[is.na(s)] <- 0
     if (!(s==0)){
       ret<-ret+1
@@ -82,7 +82,7 @@ validPRecording<-function(object) {
 #'  }
 #' @seealso \url{https://www.heka.com/downloads/downloads_main.html#down_patchmaster}
 #' @exportClass PRecording
-PRecording<-setClass(Class="PRecording",
+PRecording<-methods::setClass(Class="PRecording",
                   slots =  list(Traces="character",
                                 Units="character",
                                 TimeTrace="numeric",

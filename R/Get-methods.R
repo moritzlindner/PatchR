@@ -22,12 +22,15 @@ setGeneric(name="GetSweepNames",
              standardGeneric("GetSweepNames")
            }
 )
+
+#' @describeIn Get Method for PRecording
 setMethod("GetSweepNames",
           "PRecording",
           function(X) {
             X@Sweeps
           }
 )
+#' @describeIn Get Method for PCollection
 setMethod("GetSweepNames",
           "PCollection",
           function(X) {
@@ -44,12 +47,14 @@ setGeneric(name="GetTraceNames",
              standardGeneric("GetTraceNames")
            }
 )
+#' @describeIn Get Method for PRecording
 setMethod("GetTraceNames",
           "PRecording",
           function(X) {
             X@Traces
           }
 )
+#' @describeIn Get Method for PRecordingParams
 setMethod("GetTraceNames",
           "PRecordingParams",
           function(X) {
@@ -65,12 +70,14 @@ setGeneric(name="GetTimeTrace",
              standardGeneric("GetTimeTrace")
            }
 )
+#' @describeIn Get Method for PRecording
 setMethod("GetTimeTrace",
           "PRecording",
           function(X) {
             X@TimeTrace
           }
 )
+#' @describeIn Get Method for PCollection
 setMethod("GetTimeTrace",
           "PCollection",
           function(X) {
@@ -86,12 +93,14 @@ setGeneric(name="GetSweepTimes",
              standardGeneric("GetSweepTimes")
            }
 )
+#' @describeIn Get Method for PRecording
 setMethod("GetSweepTimes",
           "PRecording",
           function(X) {
             X@SweepTimes
           }
 )
+#' @describeIn Get Method for PCollection
 setMethod("GetSweepTimes",
           "PCollection",
           function(X) {
@@ -107,12 +116,14 @@ setGeneric(name="GetCSlow",
              standardGeneric("GetCSlow")
            }
 )
+#' @describeIn Get Method for PRecording
 setMethod("GetCSlow",
           "PRecording",
           function(X) {
             X@RecordingParams@Cs
           }
 )
+#' @describeIn Get Method for PCollection
 setMethod("GetCSlow",
           "PCollection",
           function(X) {
@@ -130,18 +141,21 @@ setGeneric(name="GetRecParam",
              standardGeneric("GetRecParam")
            }
 )
+#' @describeIn Get Method for PRecording
 setMethod("GetRecParam",
           "PRecording",
           function(X,which) {
-            slot(X@RecordingParams,which)
+            methods::slot(X@RecordingParams,which)
           }
 )
+#' @describeIn Get Method for PRecordingParams
 setMethod("GetRecParam",
           "PRecordingParams",
           function(X,which) {
             X[[which]]
           }
 )
+#' @describeIn Get Method for PCollection
 setMethod("GetRecParam",
           "PCollection",
           function(X,which) {
@@ -159,6 +173,7 @@ setGeneric(name="GetGroupMembers",
              standardGeneric("GetGroupMembers")
            }
 )
+#' @describeIn Get Method for PCollection
 setMethod("GetGroupMembers",
           "PCollection",
           function(X,which) {
@@ -175,6 +190,7 @@ setGeneric(name="GetMetaData",
              standardGeneric("GetMetaData")
            }
 )
+#' @describeIn Get Method for PRecording
 setMethod("GetMetaData",
           "PRecording",
           function(X,which=colnames(X@MetaData)) {
@@ -184,6 +200,7 @@ setMethod("GetMetaData",
             out
           }
 )
+#' @describeIn Get Method for PCollection
 setMethod("GetMetaData",
           "PCollection",
           function(X,which=colnames(X@MetaData)) {

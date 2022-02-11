@@ -5,6 +5,7 @@
 #' @inheritParams Get
 #' @param Trace Name of trace containing current data to normalize to cell capacity.
 #' @return A \linkS4class{PRecording} or \linkS4class{PCollection} object.
+#' @name CurrentDensity
 #' @exportMethod CurrentDensity
 setGeneric(name="CurrentDensity",
 def=function(X,
@@ -13,6 +14,8 @@ def=function(X,
   standardGeneric("CurrentDensity")
 }
 )
+
+#' @describeIn CurrentDensity Method for PRecording
 setMethod("CurrentDensity",
           "PRecording",
           function(X,
@@ -21,7 +24,7 @@ setMethod("CurrentDensity",
 
             X<-AddTrace(X,
               Trace="curr.dens",
-              Unit=paste0(X@Units[getChannels(X)==Trace],"/F"),
+              Unit=paste0(X@Units[GetTraceNames(X)==Trace],"/F"),
               Sweeps=GetSweepNames(X),
               mtx=objcet@Data[[Trace]]/GetCSlow(X))
 
@@ -29,6 +32,7 @@ setMethod("CurrentDensity",
             }
           )
 
+#' @describeIn CurrentDensity Method for PCollection
 setMethod("CurrentDensity",
           "PCollection",
           function(X,

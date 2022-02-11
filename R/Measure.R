@@ -3,12 +3,12 @@
 #' These methods perform measurements on \linkS4class{PRecording} and \linkS4class{PCollection} objects on a per-sweep basis. They are designed to efficiently collect data e.g. for time series, dose-response or point statistics
 #'
 #' @inheritParams GetData
-#' @param Trace The name of the trace to perform measurements on
-#' @param StimTrace The name of the Trace that contains the Stimulus
-#' @param RespTrace The name of the Trace that contains the Response
+#' @param Trace The name of the \code{Trace} to perform measurements on
+#' @param StimTrace The name of the \code{Trace} that contains the Stimulus
+#' @param RespTrace The name of the \code{Trace} that contains the Response
 #' @param label A label (if \code{Sweeps} has length 1) or a prefix
-#' @param FUN function to apply on sweep. Can be anything that woks with \link[=base::apply]{apply}. But will be usually \link[=base::mean]{mean}, \link[=base::max]{max}, \link[=base::min]{min}, or \link[=base::`-`]{`-`}.
-#' @param ReturnPMObject whether to return a PCollection or a Matrix.
+#' @param FUN function to apply on sweep. Can be anything that woks with \link[base:apply]{apply()}. But will be usually be \link[base:mean]{mean()}, \link[base:max]{max()}, \link[base:min]{min()}, or \link[base:Arithmetic]{`-`}.
+#' @param ReturnPMObject whether to return a \linkS4class{PRecording}/\linkS4class{PCollection} or a matrix.
 #' @name Measure
 NULL
 
@@ -28,6 +28,7 @@ setGeneric(name="MeasureSweeps",
            }
 )
 
+#' @describeIn Measure Method for PRecording
 setMethod("MeasureSweeps",
           "PRecording",
           function(X,
@@ -68,7 +69,7 @@ setMethod("MeasureSweeps",
           }
 )
 
-
+#' @describeIn Measure Method for PCollection
 setMethod("MeasureSweeps",
           "PCollection",
           function(X,
@@ -116,7 +117,7 @@ setMethod("MeasureSweeps",
 )
 
 #' @describeIn Measure This is a convenience method providing easy to process data.frames for generation of time series and dose-response curves
-#' @return MeasureStimResp: A a \link[=base:data.frame]{data.frame} with five columns: "Name","Group","Stimulus","StimTimes","Response"
+#' @return MeasureStimResp: A a \link[base:data.frame]{data.frame} with five columns: "Name","Group","Stimulus","StimTimes","Response"
 #' @exportMethod MeasureStimResp
 setGeneric(name="MeasureStimResp",
            def=function(X,
@@ -128,6 +129,8 @@ setGeneric(name="MeasureStimResp",
              standardGeneric("MeasureStimResp")
            }
 )
+
+#' @describeIn Measure Method for PRecording
 setMethod("MeasureStimResp",
           "PRecording",
           function(X,
@@ -157,6 +160,7 @@ setMethod("MeasureStimResp",
           }
 )
 
+#' @describeIn Measure Method for PCollection
 #' @importFrom tidyr pivot_longer
 #' @importFrom dplyr left_join
 setMethod("MeasureStimResp",

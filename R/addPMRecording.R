@@ -4,14 +4,15 @@
 #'
 #' Adds a \linkS4class{PRecording} to existing \linkS4class{PCollection}
 #'
-#' @param object A \linkS4class{PRecording} object
+#' @param X A \linkS4class{PRecording} object
 #' @param PRecording a \var{PRecording}  object, or \var{list} of \var{PRecording} objects.
 #' @param Names Vames for imported a \var{PRecording}. Standard is File name stored in the added a \var{PRecording}(s).
 #' @param Group Group variable or list thereof, of the same length as \var{PRecording}
 #' @return A \linkS4class{PCollection} object
+#' @name AddPRecording
 #' @exportMethod AddPRecording
 setGeneric(name="AddPRecording",
-           def=function(object,
+           def=function(X,
                         PRecording,
                         Names=if(is.list(PRecording)){
                           lapply(PRecording,function(x) x@RecordingParams@Filename)
@@ -23,9 +24,11 @@ setGeneric(name="AddPRecording",
              standardGeneric("AddPRecording")
            }
 )
+
+#' @describeIn AddPRecording Method for PCollection
 setMethod("AddPRecording",
           "PCollection",
-          function(object,
+          function(X,
                    PRecording,
                    Names=if(is.list(PRecording)){
                      lapply(PRecording,function(x) x@RecordingParams@Filename)
@@ -46,15 +49,15 @@ setMethod("AddPRecording",
               stop("Incorrect length of 'Names'")
             }
 
-            object@Series<-append(object@Series,PRecording)
-            object@Names<-append(object@Names,Names)
-            object@Group<-as.factor(c(as.character(object@Group),as.character(Group)))
+            X@Series<-append(X@Series,PRecording)
+            X@Names<-append(X@Names,Names)
+            X@Group<-as.factor(c(as.character(X@Group),as.character(Group)))
 
             out<-PCollection(
-              Series=object@Series,
-              Names=object@Names,
-              Group=object@Group,
-              RecordingParams=object@RecordingParams
+              Series=X@Series,
+              Names=X@Names,
+              Group=X@Group,
+              RecordingParams=X@RecordingParams
             )
             out
           }

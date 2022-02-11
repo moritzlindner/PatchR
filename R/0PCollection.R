@@ -37,7 +37,7 @@ validPCollection<-function(object) {
   if(ret==0) {TRUE} else {FALSE}
 }
 
-#' S4 class storing a collection of ePhys Treaces
+#' An S4 class storing a collection of ePhys Treaces
 #'
 #' This class stores a collection of \linkS4class{PRecording}s in a single object. Facilitates identical processing of related of recordings.
 #'
@@ -51,7 +51,7 @@ validPCollection<-function(object) {
 #' @seealso \linkS4class{PRecording}
 #' @include PatchR.R 0PRecordingParams.R
 #' @exportClass PCollection
-PCollection<-setClass(Class="PCollection",
+PCollection<-methods::setClass(Class="PCollection",
                   slots =  list(Series="list",
                                 Names="character",
                                 Group="factor",

@@ -13,7 +13,8 @@
 #'  In a \var{PRecording} object the \var{MetaData} slot is a \var{matrix} with each row corresponding to a sweep. \cr
 #'  In a \var{PCollection} object the \var{MetaData} slot is a \var{matrix} with each row corresponding to a \var{PRecording} stored in the object.
 #'  Column names must be unique.
-#' @seealso \linkS4class{PRecording}, \linkS4class{PCollection}, \href{../../PatchR/html/apply-PRecording-method.html}{apply()}, \href{../../PatchR/html/lapply-PCollection-method.html}{lapply()}, \link[base:as.matrix()]{base::as.matrix()}
+#' @seealso \linkS4class{PRecording}, \linkS4class{PCollection}, \href{../../PatchR/html/apply-PRecording-method.html}{apply()}, \href{../../PatchR/html/lapply-PCollection-method.html}{lapply()}, \link[base:as.matrix]{as.matrix()}
+#' @name AddMetaData
 #' @exportMethod AddMetaData
 setGeneric(name="AddMetaData",
            def=function(object,
@@ -24,6 +25,8 @@ setGeneric(name="AddMetaData",
              standardGeneric("AddMetaData")
            }
 )
+
+#' @describeIn AddMetaData Method for PRecording
 setMethod("AddMetaData",
           "PRecording",
           function(object,
@@ -47,14 +50,14 @@ setMethod("AddMetaData",
               colnames(object@MetaData)<-cbind(rownames(object@MetaData),title)
             }
 
-            if(!PatchR:::validPRecording(object)){
+            if(!validPRecording(object)){
               stop(paste("Adding Metadata to PRecording", deparse(substitute(object)), "failed. incorrect dimensison"))
             }
             object
           }
 )
 
-
+#' @describeIn AddMetaData Method for PCollection
 #' @exportMethod AddMetaData
 setMethod("AddMetaData",
           "PCollection",
@@ -81,7 +84,7 @@ setMethod("AddMetaData",
               object@.MetaDataFx<-append(object@.MetaDataFx,sys.calls()[[1]])
             }
 
-            if(!PatchR:::validPCollection(object)){
+            if(!validPCollection(object)){
               stop(paste("Adding Metadata to PCollection", deparse(substitute(object)), "failed. incorrect dimensison"))
             }
             object

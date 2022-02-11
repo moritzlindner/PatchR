@@ -4,7 +4,8 @@
 #'
 #' @inheritParams Get
 #' @return A \linkS4class{PRecording} or \linkS4class{PCollection} object
-#' @seealso \link[=sitools:f2si]{sitools:f2si()}
+#' @seealso \link[sitools:f2si]{sitools::f2si()}
+#' @name ConvenientScales
 #' @exportMethod ConvenientScales
 setGeneric(name="ConvenientScales",
            def=function(X)
@@ -19,11 +20,11 @@ ConvenientScalesdecimals<-function(X){
   decimals[
     which.min(
       abs(
-        decimals-median(
+        decimals-stats::median(
           as.numeric(
-            str_sub(
+            stringr::str_sub(
               format(X,scientific=T),
-              (str_locate(format(X,scientific=T),
+              (stringr::str_locate(format(X,scientific=T),
                           "e[\\+\\-]"))
               [,2]
             )
@@ -39,9 +40,10 @@ ConvenientScalesvalue<-function(X){
 }
 #' @importFrom sitools f2si
 ConvenientScalessi<-function(X){
-  gsub("[^a-zA-Z]","",f2si(10^ConvenientScalesdecimals(X)))
+  gsub("[^a-zA-Z]","",sitools::f2si(10^ConvenientScalesdecimals(X)))
 }
 
+#' @describeIn ConvenientScales Method for PRecording
 setMethod("ConvenientScales",
           "PRecording",
           function(X){
@@ -53,6 +55,7 @@ setMethod("ConvenientScales",
             X
           }
 )
+#' @describeIn ConvenientScales Method for PCollection
 setMethod("ConvenientScales",
           "PCollection",
           function(X){

@@ -13,7 +13,7 @@ setMethod("lapply",
             dat<-lapply(X@Series,FUN)
             if(ReturnPMObject){
               X@Series<-dat
-               if(!PatchR:::validPCollection(X)){
+               if(!validPCollection(X)){
                  stop(paste("Applying to PCollection", deparse(substitute(object)), "failed. No valid PCollection object returned"))
                }
               return(X)

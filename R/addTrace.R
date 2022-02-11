@@ -8,8 +8,9 @@
 #' @param Sweeps Names of the sweeps added. Must be the same as sweep names in \var{object}. Data will be sorted accoding to order of Sweeps in \var{object} Default is \code{colnames(object)}
 #' @param mtx Any object convertible into a \var{matrix}, that has the same dimension as data in the Data slot of \var{object}
 #' @param isOrig if TRUE, marks added trace as an original recording.
-#' @seealso \linkS4class{PRecording}, \linkS4class{PCollection}, \link[=base:as.matrix]{as.matrix()}
+#' @seealso \linkS4class{PRecording}, \linkS4class{PCollection}, \link[base:as.matrix]{as.matrix()}
 #' @return A matrix or \linkS4class{PRecording} object
+#' @name AddTrace
 #' @exportMethod AddTrace
 setGeneric(name="AddTrace",
            def=function(object,
@@ -22,6 +23,8 @@ setGeneric(name="AddTrace",
              standardGeneric("AddTrace")
            }
 )
+
+#' @describeIn AddTrace Method for PRecording
 setMethod("AddTrace",
           "PRecording",
           function(object,
@@ -31,7 +34,7 @@ setMethod("AddTrace",
                    isOrig=F,
                    mtx)
           {
-            if(!PatchR:::validPRecording(object)){
+            if(!validPRecording(object)){
               stop(paste(deparse(substitute(object)), "is not a valid PRecording"))
             }
 
@@ -57,7 +60,7 @@ setMethod("AddTrace",
             }else{
               stop(paste("Trace",Trace,"already in",deparse(substitute(object))))
             }
-            if(!PatchR:::validPRecording(object)){
+            if(!validPRecording(object)){
               stop(paste("updating PRecording", deparse(substitute(object)), "failed."))
             }
             object

@@ -1,29 +1,30 @@
 #' @describeIn Plot This function creates a basic visualization of quality-relevant recording parameters in the PCollection
 #' @exportMethod PlotQC
 setGeneric(name="PlotQC",
-           def=function(object)
+           def=function(X)
            {
              standardGeneric("PlotQC")
            }
 )
 
+#' @describeIn Plot Method for PCollection
 setMethod("PlotQC",
           "PCollection",
-          function(object){
+          function(X){
             items<-c("Cs", "Rs")
 
-            dat<-cbind(object@Names,object@Group,as.data.frame(GetRecParam(object,items)))
+            dat<-cbind(X@Names,X@Group,as.data.frame(GetRecParam(X,items)))
             colnames(dat)<-c("Name","Group",items)
 
             dat[,"Cs"]<-dat[,"Cs"]/sitools::pico
             dat[,"Rs"]<-dat[,"Rs"]/sitools::mega
-            object@Plots[["QC_Metrics"]]<-ggplot(dat,aes(x=Cs,y=Rs,fill=Group,group=Name))+geom_point(position = "jitter")+
-              theme_classic()+
-              theme(legend.position = "none",
+            X@Plots[["QC_Metrics"]]<-ggplot2::ggplot(dat,aes_string(x="Cs",y="Rs",fill="Group",group="Name"))+geom_point(position = "jitter")+
+              ggplot2::theme_classic()+
+              ggplot2::theme(legend.position = "none",
                     text = element_text(size=8),
-                    strip.background = element_rect(fill = "light grey",colour = NULL, size=0))+
-              xlab(paste("Cs [pF]"))+
-              ylab(paste("Rs [MOhm]"))
-            return(object)
+                    strip.background = ggplot2::element_rect(fill = "light grey",colour = NULL, size=0))+
+              ggplot2::xlab(paste("Cs [pF]"))+
+              ggplot2::ylab(paste("Rs [MOhm]"))
+            return(X)
           }
 )

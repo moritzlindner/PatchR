@@ -5,14 +5,19 @@
 #' @param x a \var{PRecording} or \var{PCollection} object.
 #' @return A \var{data.frame}.
 #' @seealso \link[base:as.data.frame]{as.data.frame()},\link[tidyr:gather]{gather()},\link[tidyr:pivot_longer]{pivot_longer()}
+#' @inherit base::as.data.frame
+#' @name as.data.frame
 #' @exportMethod as.data.frame
+NULL
+
+#' @describeIn as.data.frame Method for PRecording
 setMethod("as.data.frame",
           "PRecording",
           function(x,
                    ...){
             Traces<-rep(GetTraceNames(x),
                         each=(length(GetSweepNames(x))*length(GetTimeTrace(x))))
-            sweeps<-type.convert(rep(rep(GetSweepNames(x),
+            sweeps<-utils::type.convert(rep(rep(GetSweepNames(x),
                                          each=length(GetTimeTrace(x))),times=length(GetTraceNames(x))))
             sweeps<-ordered(sweeps,levels=levels(GetSweepNames(x)))
             times<-rep(GetTimeTrace(x),
@@ -28,6 +33,7 @@ setMethod("as.data.frame",
 )
 
 #' @importFrom plyr ldply
+#' @describeIn as.data.frame Method for PCollection
 #' @exportMethod as.data.frame
 setMethod("as.data.frame",
           "PCollection",

@@ -4,9 +4,12 @@
 #'
 #' @importMethodsFrom methods show
 #' @title show
+#' @param object An S4 object of type PRecording or PCollection
 #' @exportMethod show
 #' @name show
 NULL
+
+#' @describeIn show Method for PRecording
 setMethod("show",
           "PRecording",
           function(object) {
@@ -18,7 +21,7 @@ setMethod("show",
             cat("Imported on", as.character(as.Date(object@RecordingParams@Created)), "\n")
           }
 )
-
+#' @describeIn show Method for PCollection
 #' @exportMethod show
 setMethod("show",
           "PCollection",

@@ -20,6 +20,8 @@ setGeneric(name="GetData",
              standardGeneric("GetData")
            }
 )
+
+#' @describeIn Get Method for PRecording
 setMethod("GetData",
           "PRecording",
           function(X,
@@ -76,6 +78,7 @@ setMethod("GetData",
           }
 )
 
+#' @describeIn Get Method for PCollection
 setMethod("GetData",
           "PCollection",
           function(X,

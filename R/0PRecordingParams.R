@@ -2,7 +2,7 @@
 #
 # Usually not required to be manipulated by the user
 
-PRecordingParams<-setClass(Class="PRecordingParams",
+PRecordingParams<-methods::setClass(Class="PRecordingParams",
                             slots= list(
                               Traces="character",
                               RecMode="character",

@@ -6,6 +6,7 @@
 #' @param npnts.out Number of points in output time axis, ignored if NULL
 #' @param sample.rate New sampling rate in 1/[X@TimeUnit]
 #' @return A matrix or \link[=PRecording]{PRecording} object
+#' @name downsample
 #' @exportMethod downsample
 setGeneric(name="downsample",
            def=function(X,
@@ -15,6 +16,8 @@ setGeneric(name="downsample",
              standardGeneric("downsample")
            }
 )
+
+#' @describeIn downsample Method for PRecording
 setMethod("downsample",
           "PRecording",
           function(X,

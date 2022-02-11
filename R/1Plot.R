@@ -4,7 +4,8 @@
 #'
 #' @inheritParams MeasureStimResp
 #' @param Sweep Sweep to analyse for group comparison
-#' @return A \linkS4class{PCollection} with an item added to the Plots slot if \code{ReturnPMObject=T} or a \link[=ggplot2::ggplot]{ggplot}.
+#' @param fun Function to apply on graph for stimulus response plotting
+#' @return A \linkS4class{PCollection} with an item added to the Plots slot if \code{ReturnPMObject=T} or a \link[ggplot2:ggplot]{ggplot}.
 #' @name Plot
 NULL
 
@@ -22,6 +23,7 @@ setGeneric(name="PlotStimResp",
            }
 )
 
+#' @describeIn Plot Method for PRecording
 setMethod("PlotStimResp",
           "PRecording",
           function(X,
@@ -37,7 +39,8 @@ setMethod("PlotStimResp",
                                fun,
                                ReturnPMObject)
           }
-          )
+)
+#' @describeIn Plot Method for PCollection
 setMethod("PlotStimResp",
           "PCollection",
           function(X,
@@ -55,6 +58,8 @@ setMethod("PlotStimResp",
           }
           )
 
+
+#' @noRd
 PlotStimRespgeneric<-function(X,
                              StimTrace="V-mon",
                              RespTrace="I-mon",
@@ -80,16 +85,16 @@ PlotStimRespgeneric<-function(X,
   if(!("Group" %in% colnames(dat))){
     dat$Group<-"Genereic"
   }
-  out<-ggplot(dat,aes(y=Response,x=Stimulus,colour=Group))+
-    stat_summary(fun = mean, geom="line")+
-    stat_summary(fun = mean, geom="point")+
-    stat_summary(fun.data = mean_se, geom="errorbar")+
-    theme_classic()+
-    theme(legend.position = "bottom",
+  out<-ggplot2::ggplot(dat,ggplot2::aes_string(y="Response",x="Stimulus",colour="Group"))+
+    ggplot2::stat_summary(fun = mean, geom="line")+
+    ggplot2::stat_summary(fun = mean, geom="point")+
+    ggplot2::stat_summary(fun.data = mean_se, geom="errorbar")+
+    ggplot2::theme_classic()+
+    ggplot2::theme(legend.position = "bottom",
           text = element_text(size=8),
-          strip.background = element_rect(fill = "light grey",colour = NULL, size=0))+
-    xlab(paste(StimTrace," [",StimUnit,"]"))+
-    ylab(paste(RespTrace," [",RespUnit,"]"))
+          strip.background = ggplot2::element_rect(fill = "light grey",colour = NULL, size=0))+
+    ggplot2::xlab(paste(StimTrace," [",StimUnit,"]"))+
+    ggplot2::ylab(paste(RespTrace," [",RespUnit,"]"))
   if(ReturnPMObject){
     X@Plots[["DoseResp_Plot"]]<-out
     X
@@ -110,6 +115,8 @@ setGeneric(name="PlotTimeSeries",
              standardGeneric("PlotTimeSeries")
            }
 )
+
+#' @describeIn Plot Method for PRecording
 setMethod("PlotTimeSeries",
           "PRecording",
           function(X,
@@ -124,6 +131,7 @@ setMethod("PlotTimeSeries",
                                 ReturnPMObject)
           }
 )
+#' @describeIn Plot Method for PCollection
 setMethod("PlotTimeSeries",
           "PCollection",
           function(X,
@@ -162,16 +170,16 @@ PlotTimeSeriesgeneric<-function(X,
   if(!("Group" %in% colnames(dat))){
     dat$Group<-"Genereic"
   }
-  out<-ggplot(dat,aes(y=Response,x=StimTimes,colour=Group))+
-    stat_summary(fun = mean, geom="line")+
-    stat_summary(fun = mean, geom="point")+
-    stat_summary(fun.data = mean_se, geom="errorbar")+
-    theme_classic()+
-    theme(legend.position = "bottom",
+  out<-ggplot2::ggplot(dat,ggplot2::aes_string(y="Response",x="StimTimes",colour="Group"))+
+    ggplot2::stat_summary(fun = mean, geom="line")+
+    ggplot2::stat_summary(fun = mean, geom="point")+
+    ggplot2::stat_summary(fun.data = mean_se, geom="errorbar")+
+    ggplot2::theme_classic()+
+    ggplot2::theme(legend.position = "bottom",
           text = element_text(size=8),
-          strip.background = element_rect(fill = "light grey",colour = NULL, size=0))+
-    xlab(paste("Time [",TimeUnit,"]"))+
-    ylab(paste(RespTrace," [",RespUnit,"]"))
+          strip.background = ggplot2::element_rect(fill = "light grey",colour = NULL, size=0))+
+    ggplot2::xlab(paste("Time [",TimeUnit,"]"))+
+    ggplot2::ylab(paste(RespTrace," [",RespUnit,"]"))
   if(ReturnPMObject){
     X@Plots[["Time_Plot"]]<-out
     X
@@ -193,6 +201,7 @@ setGeneric(name="PlotGroupComparison",
              standardGeneric("PlotGroupComparison")
            }
 )
+#' @describeIn Plot Method for PCollection
 setMethod("PlotGroupComparison",
           "PCollection",
           function(X,
@@ -239,15 +248,15 @@ PlotGroupComparisongeneric<-function(X,
   message("Group comparison")
   print(compare_means(Response ~ Group,dat))
 
-  out<-ggplot(dat,aes(y=Response,x=Group))+
-    geom_boxplot()+
-    geom_point(position = "jitter")+
-    stat_compare_means()+
-    theme_classic()+
-    theme(legend.position = "bottom",
+  out<-ggplot(dat,ggplot2::aes_string(y="Response",x="Group"))+
+    ggplot2::geom_boxplot()+
+    ggplot2::geom_point(position = "jitter")+
+    ggpubr::stat_compare_means()+
+    ggplot2::theme_classic()+
+    ggplot2::theme(legend.position = "bottom",
           text = element_text(size=8),
-          strip.background = element_rect(fill = "light grey",colour = NULL, size=0))+
-    ylab(paste(RespTrace," [",RespUnit,"]"))
+          strip.background = ggplot2::element_rect(fill = "light grey",colour = NULL, size=0))+
+    ggplot2::ylab(paste(RespTrace," [",RespUnit,"]"))
   if(ReturnPMObject){
     X@Plots[["GroupComparison_Plot"]]<-out
     X

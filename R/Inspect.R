@@ -8,23 +8,24 @@ setGeneric(name="Inspect",
              standardGeneric("Inspect")
            }
 )
+#' @describeIn Plot Method for PRecording
 setMethod("Inspect",
           "PRecording",
           definition=function(X,what="I.mon"){
             if (!is.null(X@Plots[[what]])){
-              ggplotly(X@Plots[[what]])
+              plotly::ggplotly(X@Plots[[what]])
             }else{
               warning(paste("Use Build* first to generate ", what))
             }
           }
 )
-
+#' @describeIn Plot Method for PCollection
 #' @exportMethod Inspect
 setMethod("Inspect",
           "PCollection",
           definition=function(X,what="I.mon"){
             if (!is.null(X@Plots[[what]])){
-              ggplotly(X@Plots[[what]])
+              plotly::ggplotly(X@Plots[[what]])
             }else{
               warning(paste("Use Build* first to generate ", what))
             }

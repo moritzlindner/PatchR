@@ -2,10 +2,34 @@
 % Please edit documentation in R/Calculate_IV.R
 \name{Calculate_IV}
 \alias{Calculate_IV}
+\alias{Calculate_IV,PRecording-method}
+\alias{Calculate_IV,PCollection-method}
 \title{OUTDATED. Caluclates IV from a PRecording or PCollection object}
 \usage{
 Calculate_IV(
-  object,
+  X,
+  X_FROM,
+  X_TO,
+  ReturnPMObject = T,
+  ITrace = "I-mon",
+  VTrace = "V-mon",
+  x_D_FROM = NA,
+  X_D_TO = NA
+)
+
+\S4method{Calculate_IV}{PRecording}(
+  X,
+  X_FROM,
+  X_TO,
+  ReturnPMObject = T,
+  ITrace = "I-mon",
+  VTrace = "V-mon",
+  x_D_FROM = NA,
+  X_D_TO = NA
+)
+
+\S4method{Calculate_IV}{PCollection}(
+  X,
   X_FROM,
   X_TO,
   ReturnPMObject = T,
@@ -16,7 +40,7 @@ Calculate_IV(
 )
 }
 \arguments{
-\item{object}{a \link[=PRecording]{PRecording} object}
+\item{X}{a \link[=PRecording]{PRecording} object}
 
 \item{X_FROM, X_TO, x_D_FROM, X_D_TO}{Time points to perform averaging for IV prodcution}
 
@@ -28,5 +52,12 @@ Calculate_IV(
 a matrix or PRecording with IV \link[base:matrix]{base::matrix} and \link[ggplot2:ggplot]{ggplot2::ggplot} stored in the MetaData and Plot slot, resp.
 }
 \description{
-This function is outdated. Please use \link[=PlotStimResp]{PlotStimResp} instead. This function averages \link[=PRecording]{PRecording} objects by Trace, Sweep or Time. If object is a \link[=PCollection]{PCollection}. then does so for each Series stored in the object
+This function is outdated. Please use \link[=PlotStimResp]{PlotStimResp} instead. This function averages \link[=PRecording]{PRecording} objects by Trace, Sweep or Time. If X is a \link[=PCollection]{PCollection}. then does so for each Series stored in the X
 }
+\section{Functions}{
+\itemize{
+\item \code{Calculate_IV,PRecording-method}: Method for PRecording
+
+\item \code{Calculate_IV,PCollection-method}: Method for PCollection
+}}
+

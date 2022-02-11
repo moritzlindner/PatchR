@@ -2,18 +2,27 @@
 % Please edit documentation in R/addPMRecording.R
 \name{AddPRecording}
 \alias{AddPRecording}
+\alias{AddPRecording,PCollection-method}
 \title{Adds PRecording to PCollection}
 \usage{
 AddPRecording(
-  object,
+  X,
   PRecording,
   Names = if (is.list(PRecording)) {     lapply(PRecording, function(x)
     x@RecordingParams@Filename) } else {     PRecording@RecordingParams@Filename },
   Group
 )
+
+\S4method{AddPRecording}{PCollection}(
+  X,
+  PRecording,
+  Names = if (is.list(PRecording)) {     lapply(PRecording, function(x)
+    x@RecordingParams@Filename) } else {     PRecording@RecordingParams@Filename },
+  Group = "Generic"
+)
 }
 \arguments{
-\item{object}{A \linkS4class{PRecording} object}
+\item{X}{A \linkS4class{PRecording} object}
 
 \item{PRecording}{a \var{PRecording}  object, or \var{list} of \var{PRecording} objects.}
 
@@ -27,3 +36,8 @@ A \linkS4class{PCollection} object
 \description{
 Adds a \linkS4class{PRecording} to existing \linkS4class{PCollection}
 }
+\section{Functions}{
+\itemize{
+\item \code{AddPRecording,PCollection-method}: Method for PCollection
+}}
+

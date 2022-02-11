@@ -24,5 +24,5 @@ A \link[base:matrix]{matrix}  or \linkS4class{PRecording} object.
 This is the PatchR analog to \code{apply}
 }
 \seealso{
-\link[base:apply]{base::apply()}, \link[PatchR:lapply]{PatchR::lapply()}
+\link[base:apply]{base::apply()}
 }

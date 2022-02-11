@@ -2,9 +2,12 @@
 % Please edit documentation in R/dropPMRecording.R
 \name{DropPRecording}
 \alias{DropPRecording}
+\alias{DropPRecording,PCollection-method}
 \title{Drops PRecording(s) from PCollection}
 \usage{
 DropPRecording(object, PRecording = NULL, Group = NULL)
+
+\S4method{DropPRecording}{PCollection}(object, PRecording = NULL, Group = NULL)
 }
 \arguments{
 \item{object}{a PCollection object}
@@ -19,3 +22,8 @@ A \linkS4class{PCollection} object
 \description{
 Drops PRecording(s) from PCollection
 }
+\section{Functions}{
+\itemize{
+\item \code{DropPRecording,PCollection-method}: Method for PCollection
+}}
+

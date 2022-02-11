@@ -50,8 +50,8 @@ Import procedures are currently implemented for HEKA's PachtMaster file format. 
 
 * \link[=CurrentDensity]{CurrentDensity} (for \link[=PRecording]{PRecording} objects) \cr
 * \link[=GetData]{GetData} \cr
-* \link[=CalculateIV]{CalculateIV} - Outdated \cr
-* \href{../../PatchR/html/apply-PRecording-method.html}{apply()} for \link[=PRecording]{PRecording} and \link[=lapply]{lapply} for \link[=PCollection]{PCollection} \cr
+* \link[=Calculate_IV]{Calculate_IV} - Outdated \cr
+* \href{../../PatchR/html/apply-PRecording-method.html}{apply()} for \link[=PRecording]{PRecording} and \href{../../PatchR/html/apply-PRecording-method.html}{lapply()} for \link[=PCollection]{PCollection} \cr
 }
 
 \examples{
@@ -77,7 +77,9 @@ AddMetaData(exp, #add as metadata to PCollection
             lapply(exp, # for each PRecording stored in PCollection
                    function(x){
                       apply( # average over time
-                            getData(x, # extract values from I-mon trace, Sweep 15, between 1 and 1.19 s only
+                            getData(x,
+                            # extract values from I-mon trace,
+                            # Sweep 15, between 1 and 1.19 s only
                                     Traces="I-mon",
                                     Time =c(1,1.19),
                                     Sweeps=getSweepNames(x)[c(15)]),

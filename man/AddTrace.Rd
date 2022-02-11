@@ -2,9 +2,12 @@
 % Please edit documentation in R/addTrace.R
 \name{AddTrace}
 \alias{AddTrace}
+\alias{AddTrace,PRecording-method}
 \title{Add data (Trace) to PRecording objects}
 \usage{
 AddTrace(object, Trace, Unit, Sweeps = colnames(mtx), isOrig = F, mtx)
+
+\S4method{AddTrace}{PRecording}(object, Trace, Unit, Sweeps = colnames(mtx), isOrig = F, mtx)
 }
 \arguments{
 \item{object}{A \linkS4class{PRecording} object}
@@ -25,6 +28,11 @@ A matrix or \linkS4class{PRecording} object
 \description{
 This function adds a new Trace (with data) from any object convertible into a matrix to a \linkS4class{PRecording} object.
 }
+\section{Functions}{
+\itemize{
+\item \code{AddTrace,PRecording-method}: Method for PRecording
+}}
+
 \seealso{
-\linkS4class{PRecording}, \linkS4class{PCollection}, \link[=base:as.matrix]{as.matrix()}
+\linkS4class{PRecording}, \linkS4class{PCollection}, \link[base:as.matrix]{as.matrix()}
 }

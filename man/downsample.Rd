@@ -2,9 +2,12 @@
 % Please edit documentation in R/downsample.R
 \name{downsample}
 \alias{downsample}
+\alias{downsample,PRecording-method}
 \title{Donwsample a PRecording object}
 \usage{
 downsample(X, npnts.out = NULL, sample.rate = NULL)
+
+\S4method{downsample}{PRecording}(X, npnts.out = NULL, sample.rate = NULL)
 }
 \arguments{
 \item{X}{A \linkS4class{PRecording} or \linkS4class{PCollection} object}
@@ -19,3 +22,8 @@ A matrix or \link[=PRecording]{PRecording} object
 \description{
 Downsample \link[=PRecording]{PRecording} object along the time axis
 }
+\section{Functions}{
+\itemize{
+\item \code{downsample,PRecording-method}: Method for PRecording
+}}
+

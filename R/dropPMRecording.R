@@ -7,6 +7,7 @@
 #' @param PRecording A name of a \linkS4class{PRecording} object in the collection, or a list thereof
 #' @param Group A name of A group in the\linkS4class{PRecording} object Drops all \linkS4class{PRecording} belonging to that group. Alternative to \var{PRecording}.
 #' @return A \linkS4class{PCollection} object
+#' @name DropPRecording
 #' @exportMethod DropPRecording
 setGeneric(name="DropPRecording",
            def=function(object,
@@ -16,7 +17,7 @@ setGeneric(name="DropPRecording",
              standardGeneric("DropPRecording")
            }
 )
-
+#' @describeIn DropPRecording Method for PCollection
 setMethod("DropPRecording",
           "PCollection",
           function(object,

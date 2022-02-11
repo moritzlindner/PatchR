@@ -4,7 +4,7 @@
 \name{PCollection-class}
 \alias{PCollection-class}
 \alias{PCollection}
-\title{S4 class storing a collection of ePhys Treaces}
+\title{An S4 class storing a collection of ePhys Treaces}
 \description{
 This class stores a collection of \linkS4class{PRecording}s in a single object. Facilitates identical processing of related of recordings.
 }
