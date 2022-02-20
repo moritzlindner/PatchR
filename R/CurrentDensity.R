@@ -1,5 +1,6 @@
-#' Normalizes current traces to cell capacity
+#' (OK) Normalizes current traces to cell capacity
 #'
+#' `r lifecycle::badge("stable")` \cr
 #' This function normalizes current traces to cell capacity and adds it as a new Trace
 #'
 #' @inheritParams Get
@@ -15,28 +16,30 @@ def=function(X,
 }
 )
 
-#' @describeIn CurrentDensity Method for PRecording
+#' @noRd
 setMethod("CurrentDensity",
           "PRecording",
           function(X,
                    Trace="I.mon"){
-            print(paste0("Capacitance in record: ",f2si(round(GetCSlow(X),15)),"F"))
+            if("curr.dens" %in% GetTraceNames(X)){
+              stop("Current Density already computed.")
+            }
 
             X<-AddTrace(X,
+                        mtx=X@Data[[Trace]]/GetCSlow(X),
               Trace="curr.dens",
               Unit=paste0(X@Units[GetTraceNames(X)==Trace],"/F"),
-              Sweeps=GetSweepNames(X),
-              mtx=objcet@Data[[Trace]]/GetCSlow(X))
+              Sweeps=GetSweepNames(X))
 
             X
             }
           )
 
-#' @describeIn CurrentDensity Method for PCollection
+#' @noRd
 setMethod("CurrentDensity",
           "PCollection",
           function(X,
                    Trace="I.mon"){
-            lapply(X,function(y){CurrentDensity(y,Trace)},ReturnPMObject=T)
+            lapply(X,function(y){CurrentDensity(y,Trace)},ReturnPMobject=T)
           }
 )

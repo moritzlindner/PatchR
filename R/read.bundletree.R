@@ -11,9 +11,6 @@ read.bundletree<-function (myfile, bundlename = ".pul", con = NA,encoding=getOpt
   seek(con, 0)
   signature <- readChar(con, 8)
   if (signature == "DAT2") {
-    #version <- readChar(con, 32)
-    #time <- readBin(con, "double")
-    #message("File Timestamp: ",as.Date(as.POSIXct(time, origin="1601-01-01")))
     seek(con, where = 48)
     nitems <- readBin(con, "int", size = 1)
     seek(con, where = 64)

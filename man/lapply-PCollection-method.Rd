@@ -4,18 +4,19 @@
 \alias{lapply,PCollection-method}
 \title{apply function for PCollection objects}
 \usage{
-\S4method{lapply}{PCollection}(X, FUN, ReturnPMObject = F)
+\S4method{lapply}{PCollection}(X, FUN, ReturnPMobject = F)
 }
 \arguments{
 \item{X}{a \linkS4class{PCollection} object}
 
 \item{FUN}{the function to be applied}
 
-\item{ReturnPMObject}{whether to return results as a \linkS4class{PCollection}  Default is \var{FALSE}, then returns a list}
+\item{ReturnPMobject}{whether to return results as a \linkS4class{PCollection}  Default is \var{FALSE}, then returns a list}
 }
 \value{
 A \linkS4class{PCollection} object
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}} \cr
 This is the PatchMastR analog to "lapply" for PCollection objects
 }

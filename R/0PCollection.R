@@ -37,8 +37,9 @@ validPCollection<-function(object) {
   if(ret==0) {TRUE} else {FALSE}
 }
 
-#' An S4 class storing a collection of ePhys Treaces
+#' (OK) An S4 class storing a collection of ePhys Treaces
 #'
+#' `r lifecycle::badge("stable")` \cr
 #' This class stores a collection of \linkS4class{PRecording}s in a single object. Facilitates identical processing of related of recordings.
 #'
 #' @slot Series A list containing individual \linkS4class{PRecording} objects of identical dimensions, \var{ProtocolName}, \var{RecMode} and \var{TraceNames}.

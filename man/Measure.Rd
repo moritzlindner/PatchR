@@ -6,8 +6,6 @@
 \alias{MeasureSweeps,PRecording-method}
 \alias{MeasureSweeps,PCollection-method}
 \alias{MeasureStimResp}
-\alias{MeasureStimResp,PRecording-method}
-\alias{MeasureStimResp,PCollection-method}
 \title{Measurement methods}
 \usage{
 MeasureSweeps(
@@ -17,7 +15,7 @@ MeasureSweeps(
   Time,
   label,
   FUN = mean,
-  ReturnPMObject = T
+  ReturnPMobject = T
 )
 
 \S4method{MeasureSweeps}{PRecording}(
@@ -27,7 +25,7 @@ MeasureSweeps(
   Time,
   label,
   FUN = mean,
-  ReturnPMObject = T
+  ReturnPMobject = T
 )
 
 \S4method{MeasureSweeps}{PCollection}(
@@ -37,40 +35,37 @@ MeasureSweeps(
   Time,
   label,
   FUN = mean,
-  ReturnPMObject = T
+  ReturnPMobject = T
 )
 
 MeasureStimResp(X, StimTrace = "V-mon", RespTrace = "I-mon", Time, FUN = mean)
-
-\S4method{MeasureStimResp}{PRecording}(X, StimTrace = "V-mon", RespTrace = "I-mon", Time, FUN = mean)
-
-\S4method{MeasureStimResp}{PCollection}(X, StimTrace = "V-mon", RespTrace = "I-mon", Time, FUN = mean)
 }
 \arguments{
 \item{X}{A \linkS4class{PRecording} or \linkS4class{PCollection} object}
 
-\item{Trace}{The name of the \code{Trace} to perform measurements on}
+\item{Trace}{The name of the \code{trace} to perform measurements on}
 
-\item{Sweeps}{List of Traces/Sweeps to keep}
+\item{Sweeps}{List of traces/sweeps to keep}
 
 \item{Time}{either a range of time points to keep, or, if \code{TimeExclusive} is \code{TRUE}, then two particular time points}
 
 \item{label}{A label (if \code{Sweeps} has length 1) or a prefix}
 
-\item{FUN}{function to apply on sweep. Can be anything that woks with \link[base:apply]{apply()}. But will be usually be \link[base:mean]{mean()}, \link[base:max]{max()}, \link[base:min]{min()}, or \link[base:Arithmetic]{`-`}.}
+\item{FUN}{function to apply on sweep. Can be anything that woks with \link[base:apply]{apply()}. But will be usually be \link[base:mean]{mean()}, \link[base:max]{max()}, \link[base:min]{min()}, or \link[base:Arithmetic]{\code{-}}.}
 
-\item{ReturnPMObject}{whether to return a \linkS4class{PRecording}/\linkS4class{PCollection} or a matrix.}
+\item{ReturnPMobject}{whether to return a \linkS4class{PRecording}/\linkS4class{PCollection} or a matrix.}
 
-\item{StimTrace}{The name of the \code{Trace} that contains the Stimulus}
+\item{StimTrace}{The name of the \code{trace} that contains the stimulus}
 
-\item{RespTrace}{The name of the \code{Trace} that contains the Response}
+\item{RespTrace}{The name of the \code{trace} that contains the response}
 }
 \value{
-MeasureSweeps: A \linkS4class{PRecording} or \linkS4class{PCollection}, respectiveley with an updated MetaData Slot or, if \code{ReturnPMObject=F} a matrix.
+MeasureSweeps: A \linkS4class{PRecording} or \linkS4class{PCollection}, respectiveley with an updated MetaData Slot or, if \code{ReturnPMobject=F} a matrix.
 
 MeasureStimResp: A a \link[base:data.frame]{data.frame} with five columns: "Name","Group","Stimulus","StimTimes","Response"
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} \cr
 These methods perform measurements on \linkS4class{PRecording} and \linkS4class{PCollection} objects on a per-sweep basis. They are designed to efficiently collect data e.g. for time series, dose-response or point statistics
 }
 \section{Functions}{
@@ -82,9 +77,5 @@ These methods perform measurements on \linkS4class{PRecording} and \linkS4class{
 \item \code{MeasureSweeps,PCollection-method}: Method for PCollection
 
 \item \code{MeasureStimResp}: This is a convenience method providing easy to process data.frames for generation of time series and dose-response curves
-
-\item \code{MeasureStimResp,PRecording-method}: Method for PRecording
-
-\item \code{MeasureStimResp,PCollection-method}: Method for PCollection
 }}
 

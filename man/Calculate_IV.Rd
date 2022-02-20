@@ -2,37 +2,13 @@
 % Please edit documentation in R/Calculate_IV.R
 \name{Calculate_IV}
 \alias{Calculate_IV}
-\alias{Calculate_IV,PRecording-method}
-\alias{Calculate_IV,PCollection-method}
-\title{OUTDATED. Caluclates IV from a PRecording or PCollection object}
+\title{DEPRECATED}
 \usage{
 Calculate_IV(
   X,
   X_FROM,
   X_TO,
-  ReturnPMObject = T,
-  ITrace = "I-mon",
-  VTrace = "V-mon",
-  x_D_FROM = NA,
-  X_D_TO = NA
-)
-
-\S4method{Calculate_IV}{PRecording}(
-  X,
-  X_FROM,
-  X_TO,
-  ReturnPMObject = T,
-  ITrace = "I-mon",
-  VTrace = "V-mon",
-  x_D_FROM = NA,
-  X_D_TO = NA
-)
-
-\S4method{Calculate_IV}{PCollection}(
-  X,
-  X_FROM,
-  X_TO,
-  ReturnPMObject = T,
+  ReturnPMobject = T,
   ITrace = "I-mon",
   VTrace = "V-mon",
   x_D_FROM = NA,
@@ -44,7 +20,7 @@ Calculate_IV(
 
 \item{X_FROM, X_TO, x_D_FROM, X_D_TO}{Time points to perform averaging for IV prodcution}
 
-\item{ReturnPMObject}{whether to return results as a \link[=PRecording]{PRecording}  with an additional, computed trace. If set to \code{FALSE}, will return a \link[base:matrix]{base::matrix}. Default is \code{TRUE}.}
+\item{ReturnPMobject}{whether to return results as a \link[=PRecording]{PRecording}  with an additional, computed trace. If set to \code{FALSE}, will return a \link[base:matrix]{base::matrix}. Default is \code{TRUE}.}
 
 \item{ITrace, VTrace}{Name of the traces containig Current(I) and and Voltage(V)}
 }
@@ -52,12 +28,6 @@ Calculate_IV(
 a matrix or PRecording with IV \link[base:matrix]{base::matrix} and \link[ggplot2:ggplot]{ggplot2::ggplot} stored in the MetaData and Plot slot, resp.
 }
 \description{
-This function is outdated. Please use \link[=PlotStimResp]{PlotStimResp} instead. This function averages \link[=PRecording]{PRecording} objects by Trace, Sweep or Time. If X is a \link[=PCollection]{PCollection}. then does so for each Series stored in the X
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} \cr
+This function is deprecated. Please use \link[=BuildStimRespPlot]{BuildStimRespPlot} instead. \cr This function averages \link[=PRecording]{PRecording} objects by Trace, Sweep or Time. If X is a \link[=PCollection]{PCollection}. then does so for each Series stored in the X
 }
-\section{Functions}{
-\itemize{
-\item \code{Calculate_IV,PRecording-method}: Method for PRecording
-
-\item \code{Calculate_IV,PCollection-method}: Method for PCollection
-}}
-

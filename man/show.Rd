@@ -2,27 +2,10 @@
 % Please edit documentation in R/show.R
 \name{show}
 \alias{show}
-\alias{show,PRecording-method}
-\alias{show,PCollection-method}
-\title{show}
-\usage{
-\S4method{show}{PRecording}(object)
-
-\S4method{show}{PCollection}(object)
-}
+\title{(OK) Show}
 \arguments{
 \item{object}{An S4 object of type PRecording or PCollection}
 }
 \description{
-show
-}
-\details{
 Default method show for PRecording
 }
-\section{Methods (by class)}{
-\itemize{
-\item \code{PRecording}: Method for PRecording
-
-\item \code{PCollection}: Method for PCollection
-}}
-

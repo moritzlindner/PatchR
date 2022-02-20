@@ -1,11 +1,12 @@
-#' OUTDATED. Caluclates IV from a PRecording or PCollection object
+#' DEPRECATED
 #'
-#' This function is outdated. Please use \link[=PlotStimResp]{PlotStimResp} instead. This function averages \link[=PRecording]{PRecording} objects by Trace, Sweep or Time. If X is a \link[=PCollection]{PCollection}. then does so for each Series stored in the X
+#' `r lifecycle::badge("deprecated")` \cr
+#' This function is deprecated. Please use \link[=BuildStimRespPlot]{BuildStimRespPlot} instead. \cr This function averages \link[=PRecording]{PRecording} objects by Trace, Sweep or Time. If X is a \link[=PCollection]{PCollection}. then does so for each Series stored in the X
 #'
 #' @param X a \link[=PRecording]{PRecording} object
 #' @param X_FROM,X_TO,x_D_FROM,X_D_TO Time points to perform averaging for IV prodcution
 #' @param ITrace,VTrace Name of the traces containig Current(I) and and Voltage(V)
-#' @param ReturnPMObject whether to return results as a \link[=PRecording]{PRecording}  with an additional, computed trace. If set to \code{FALSE}, will return a \link[base:matrix]{base::matrix}. Default is \code{TRUE}.
+#' @param ReturnPMobject whether to return results as a \link[=PRecording]{PRecording}  with an additional, computed trace. If set to \code{FALSE}, will return a \link[base:matrix]{base::matrix}. Default is \code{TRUE}.
 #' @return a matrix or PRecording with IV \link[base:matrix]{base::matrix} and \link[ggplot2:ggplot]{ggplot2::ggplot} stored in the MetaData and Plot slot, resp.
 #' @name Calculate_IV
 #' @exportMethod Calculate_IV
@@ -13,7 +14,7 @@ setGeneric(name="Calculate_IV",
            def=function(X,
                         X_FROM,
                         X_TO,
-                        ReturnPMObject=T,
+                        ReturnPMobject=T,
                         ITrace="I-mon",
                         VTrace="V-mon",
                         x_D_FROM=NA,
@@ -23,17 +24,17 @@ setGeneric(name="Calculate_IV",
            }
 )
 
-#' @describeIn Calculate_IV Method for PRecording
 setMethod("Calculate_IV",
           "PRecording",
           function(X,
                    X_FROM,
                    X_TO,
-                   ReturnPMObject=T,
+                   ReturnPMobject=T,
                    ITrace="I-mon",
                    VTrace="V-mon",
                    x_D_FROM=NA,
                    X_D_TO=NA){
+            deprecate_warn("0.9.0", "PatchR::Calculate_IV()", "BuildStimRespPlot()")
             out<-GetData(X, Time=c(X_FROM,X_TO),nowarnings=T)
             out<-ConvenientScales(out)
             out<-apply(X,1,mean)
@@ -43,7 +44,7 @@ setMethod("Calculate_IV",
               substract<-apply(X,1,mean)
               out[,"I.Substracted"]<-out[,ITrace]-substract[,ITrace]
             }
-            if(ReturnPMObject){
+            if(ReturnPMobject){
               X<-AddMetaData(X,out)
 
               out<-as.data.frame(out)
@@ -74,17 +75,16 @@ setMethod("Calculate_IV",
           }
 )
 
-#' @describeIn Calculate_IV Method for PCollection
 setMethod("Calculate_IV",
           "PCollection",
           function(X,
                    X_FROM,
                    X_TO,
-                   ReturnPMObject=T,
+                   ReturnPMobject=T,
                    ITrace="I-mon",
                    VTrace="V-mon",
                    x_D_FROM=NA,
                    X_D_TO=NA){
-            lapply(X,function(x){Calculate_IV(X,X_FROM,X_TO,ReturnPMObject,ITrace="I-mon",VTrace="V-mon",x_D_FROM,X_D_TO)})
+            lapply(X,function(x){Calculate_IV(X,X_FROM,X_TO,ReturnPMobject,ITrace="I-mon",VTrace="V-mon",x_D_FROM,X_D_TO)})
           }
 )

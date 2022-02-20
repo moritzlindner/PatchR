@@ -1,5 +1,6 @@
-#' Makes PRecording object scales convenient.
+#' (OK) Makes PRecording object scales convenient.
 #'
+#' `r lifecycle::badge("stable")` \cr
 #' This function converts scaling of a \linkS4class{PRecording} or \linkS4class{PCollection} object and adds SI prefixes. Caution: Currently not check is performed if Unit carries already a SI prefix.
 #'
 #' @inheritParams Get
@@ -15,6 +16,7 @@ setGeneric(name="ConvenientScales",
 )
 
 #' @importFrom stringr str_sub str_locate
+#' @importFrom stats median
 ConvenientScalesdecimals<-function(X){
   decimals<-seq(-21,21,3)
   decimals[
@@ -43,22 +45,21 @@ ConvenientScalessi<-function(X){
   gsub("[^a-zA-Z]","",sitools::f2si(10^ConvenientScalesdecimals(X)))
 }
 
-#' @describeIn ConvenientScales Method for PRecording
+
 setMethod("ConvenientScales",
           "PRecording",
           function(X){
             for (i in 1:length(GetTraceNames(X))){
-              decimals<-seq(0,21,3)
-              X@Units[[i]]<-gsub("[^a-zA-Z]", "", f2si(10^-ConvenientScalesdecimals(X),X@Units[[i]]))
+              X@Units[[i]]<-gsub("[^a-zA-Z]", "", sitools::f2si(10^ConvenientScalesdecimals(X@Data[[GetTraceNames(X)[i]]]),X@Units[[i]]))
               X@Data[[GetTraceNames(X)[i]]]<-ConvenientScalesvalue(X@Data[[GetTraceNames(X)[i]]])
             }
             X
           }
 )
-#' @describeIn ConvenientScales Method for PCollection
+
 setMethod("ConvenientScales",
           "PCollection",
           function(X){
-            lapply(X,ConvenientScales,ReturnPMObject=T)
+            lapply(X,ConvenientScales,ReturnPMobject=T)
           }
 )

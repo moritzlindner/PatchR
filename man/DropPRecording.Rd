@@ -2,28 +2,21 @@
 % Please edit documentation in R/dropPMRecording.R
 \name{DropPRecording}
 \alias{DropPRecording}
-\alias{DropPRecording,PCollection-method}
-\title{Drops PRecording(s) from PCollection}
+\title{(OK) Drops Recording(s) from PCollection}
 \usage{
-DropPRecording(object, PRecording = NULL, Group = NULL)
-
-\S4method{DropPRecording}{PCollection}(object, PRecording = NULL, Group = NULL)
+DropPRecording(X, Recording = NULL, Group = NULL)
 }
 \arguments{
-\item{object}{a PCollection object}
+\item{X}{a PCollection X}
 
-\item{PRecording}{A name of a \linkS4class{PRecording} object in the collection, or a list thereof}
+\item{Recording}{A name of a \linkS4class{PRecording} in the collection, or a list thereof}
 
-\item{Group}{A name of A group in the\linkS4class{PRecording} object Drops all \linkS4class{PRecording} belonging to that group. Alternative to \var{PRecording}.}
+\item{Group}{A name of A group in the\linkS4class{PCollection}. Drops all \linkS4class{PRecording} belonging to that group. Either Recording or Group need to be given}
 }
 \value{
-A \linkS4class{PCollection} object
+A \linkS4class{PCollection} X
 }
 \description{
-Drops PRecording(s) from PCollection
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}} \cr
+Drops Recording(s) from PCollection
 }
-\section{Functions}{
-\itemize{
-\item \code{DropPRecording,PCollection-method}: Method for PCollection
-}}
-

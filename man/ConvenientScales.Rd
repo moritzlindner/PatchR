@@ -2,15 +2,9 @@
 % Please edit documentation in R/convenientScales.R
 \name{ConvenientScales}
 \alias{ConvenientScales}
-\alias{ConvenientScales,PRecording-method}
-\alias{ConvenientScales,PCollection-method}
-\title{Makes PRecording object scales convenient.}
+\title{(OK) Makes PRecording object scales convenient.}
 \usage{
 ConvenientScales(X)
-
-\S4method{ConvenientScales}{PRecording}(X)
-
-\S4method{ConvenientScales}{PCollection}(X)
 }
 \arguments{
 \item{X}{A \linkS4class{PRecording} or \linkS4class{PCollection} object}
@@ -19,15 +13,9 @@ ConvenientScales(X)
 A \linkS4class{PRecording} or \linkS4class{PCollection} object
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}} \cr
 This function converts scaling of a \linkS4class{PRecording} or \linkS4class{PCollection} object and adds SI prefixes. Caution: Currently not check is performed if Unit carries already a SI prefix.
 }
-\section{Functions}{
-\itemize{
-\item \code{ConvenientScales,PRecording-method}: Method for PRecording
-
-\item \code{ConvenientScales,PCollection-method}: Method for PCollection
-}}
-
 \seealso{
 \link[sitools:f2si]{sitools::f2si()}
 }

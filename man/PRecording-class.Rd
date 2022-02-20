@@ -4,30 +4,31 @@
 \name{PRecording-class}
 \alias{PRecording-class}
 \alias{PRecording}
-\title{S4 class storing imported ePhys Traces.}
+\title{(OK) S4 class storing imported ePhys Traces.}
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}} \cr
 This class stores imported electrophysiology Traces. Currently only import procedures for HEKA's PatchMaster are implemented. It has some strict validitiy checks implemented to assure data consistency.
 }
 \details{
 \describe{
-   \item{Traces}{Character vector containing names of the Traces (=Monitors) imported form the dat file and any subsequently computed Trace. Computed Traces have the same dimensions as imported}
+\item{Traces}{Character vector containing names of the Traces (=Monitors) imported form the dat file and any subsequently computed Trace. Computed Traces have the same dimensions as imported}
 
-   \item{Units}{Character vector containing the SI units for data stored in corresponding Trace. Order as in Traces.}
+\item{Units}{Character vector containing the SI units for data stored in corresponding Trace. Order as in Traces.}
 
-   \item{TimeTrace}{Numeric vector containing the time points of the recording.}
+\item{TimeTrace}{Numeric vector containing the time points of the recording.}
 
-   \item{Sweeps}{Ordered vector containing the names of the sweeps.}
+\item{Sweeps}{Ordered vector containing the names of the sweeps.}
 
-   \item{SweepTimes}{Numeric vector containing start times corresponding to Sweeps}
+\item{SweepTimes}{Numeric vector containing start times corresponding to Sweeps}
 
-   \item{Data}{List of matrices. One list item per Trace. Matrix rows correspond to TimeTrace, columns to Sweeps}
+\item{Data}{List of matrices. One list item per Trace. Matrix rows correspond to TimeTrace, columns to Sweeps}
 
-   \item{Plots}{List that can contain any ggplot derived from the data. List item names that equal Traces are reserved.}
+\item{Plots}{List that can contain any ggplot derived from the data. List item names that equal Traces are reserved.}
 
-   \item{MetaData}{matrix that can contain additional per-sweep Metadata. Per-time Metadata can be stored in the Data slot using the \link[=AddTrace]{AddTrace} method.}
+\item{MetaData}{matrix that can contain additional per-sweep Metadata. Per-time Metadata can be stored in the Data slot using the \link[=AddTrace]{AddTrace} method.}
 
-   \item{RecordingParams}{An item of class PRecordingParams containing recording parameters for that trace.}
- }
+\item{RecordingParams}{An item of class PRecordingParams containing recording parameters for that trace.}
+}
 }
 \seealso{
 \url{https://www.heka.com/downloads/downloads_main.html#down_patchmaster}

@@ -4,7 +4,7 @@
 \alias{apply,PRecording-method}
 \title{apply function for PRecording objects}
 \usage{
-\S4method{apply}{PRecording}(X, MARGIN, FUN, ReturnPMObject = F, Verbose = T)
+\S4method{apply}{PRecording}(X, MARGIN, FUN, ReturnPMobject = F, Verbose = T)
 }
 \arguments{
 \item{X}{A \linkS4class{PRecording}  object}
@@ -13,7 +13,7 @@
 
 \item{FUN}{The function to be applied}
 
-\item{ReturnPMObject}{Whether to return results as a \linkS4class{PRecording} with an additional, computed trace only works with \code{MARGIN="Trace"} or if applying \code{FUN} leaves dimensions unchanged. Default is \var{FALSE}, then returns a matrix.}
+\item{ReturnPMobject}{Whether to return results as a \linkS4class{PRecording} with an additional, computed trace only works with \code{MARGIN="Trace"} or if applying \code{FUN} leaves dimensions unchanged. Default is \var{FALSE}, then returns a matrix.}
 
 \item{Verbose}{Print what function is doing.}
 }
@@ -21,6 +21,7 @@
 A \link[base:matrix]{matrix}  or \linkS4class{PRecording} object.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} \cr
 This is the PatchR analog to \code{apply}
 }
 \seealso{

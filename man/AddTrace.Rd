@@ -2,37 +2,30 @@
 % Please edit documentation in R/addTrace.R
 \name{AddTrace}
 \alias{AddTrace}
-\alias{AddTrace,PRecording-method}
-\title{Add data (Trace) to PRecording objects}
+\title{(OK) Add data (Trace) to PRecording objects}
 \usage{
-AddTrace(object, Trace, Unit, Sweeps = colnames(mtx), isOrig = F, mtx)
-
-\S4method{AddTrace}{PRecording}(object, Trace, Unit, Sweeps = colnames(mtx), isOrig = F, mtx)
+AddTrace(X, mtx, Trace, Unit, Sweeps = colnames(mtx), isOrig = F)
 }
 \arguments{
-\item{object}{A \linkS4class{PRecording} object}
+\item{X}{A \linkS4class{PRecording} object}
+
+\item{mtx}{Any X convertible into a \var{matrix}, that has the same dimension as data in the Data slot of \var{X}}
 
 \item{Trace}{Name of the new trace}
 
 \item{Unit}{The SI unit of the trace}
 
-\item{Sweeps}{Names of the sweeps added. Must be the same as sweep names in \var{object}. Data will be sorted accoding to order of Sweeps in \var{object} Default is \code{colnames(object)}}
+\item{Sweeps}{Names of the sweeps added. Must be the same as sweep names in \var{X}. Data will be sorted accoding to order of Sweeps in \var{X} Default is \code{colnames(X)}}
 
 \item{isOrig}{if TRUE, marks added trace as an original recording.}
-
-\item{mtx}{Any object convertible into a \var{matrix}, that has the same dimension as data in the Data slot of \var{object}}
 }
 \value{
-A matrix or \linkS4class{PRecording} object
+A matrix or \linkS4class{PRecording} X
 }
 \description{
-This function adds a new Trace (with data) from any object convertible into a matrix to a \linkS4class{PRecording} object.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}} \cr
+This function adds a new Trace (with data) from any object convertible into a matrix to a \linkS4class{PRecording} X.
 }
-\section{Functions}{
-\itemize{
-\item \code{AddTrace,PRecording-method}: Method for PRecording
-}}
-
 \seealso{
 \linkS4class{PRecording}, \linkS4class{PCollection}, \link[base:as.matrix]{as.matrix()}
 }

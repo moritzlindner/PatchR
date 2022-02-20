@@ -1,6 +1,6 @@
-#' Imports a collection of PatchClamp recordings
+#' (UPD PCLAMP) Imports a collection of PatchClamp recordings
 #'
-#' Imports a collection of PatchClamp recordings. I e those that be long to a the same experimental series.
+#' Imports a collection of PatchClamp recordings. All files in one condition must be acquired using the same recording protocol. i.e. number of traces, data points per sweep, number of sweeps, etc must be identical.
 #'
 #' @param parent.dir parent directory where to search for FileNames from \code{filelist}
 #' @param filelist a data.frame with four columns: "FileName","Experiment","Series","Group". FileName can be absolute or relative to parent.dir. "Experiment","Series" as defined in PatchMaster file. Groups can be assigned via the Group variable

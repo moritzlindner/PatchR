@@ -9,13 +9,15 @@ PRecordingParams<-methods::setClass(Class="PRecordingParams",
                               ProtocolName="character",
                               RPip="numeric",
                               RSeal="numeric",
-                              Urest="numeric",
+                              URest="numeric",
                               Cs="numeric",
                               Rs="numeric",
                               Experiment="character",
                               Series="character",
                               Created="POSIXct",
-                              Filename="character"
+                              Filename="character",
+                              Type="character",
+                              Version="character"
                             ),
                             prototype = list(
                               "Created" = Sys.time()

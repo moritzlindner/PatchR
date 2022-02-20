@@ -2,7 +2,7 @@
 % Please edit documentation in R/ImportCollection.R
 \name{ImportCollection}
 \alias{ImportCollection}
-\title{Imports a collection of PatchClamp recordings}
+\title{(UPD PCLAMP) Imports a collection of PatchClamp recordings}
 \usage{
 ImportCollection(
   parent.dir = getwd(),
@@ -27,5 +27,5 @@ ImportCollection(
 A \link[=PCollection]{PCollection} object
 }
 \description{
-Imports a collection of PatchClamp recordings. I e those that be long to a the same experimental series.
+Imports a collection of PatchClamp recordings. All files in one condition must be acquired using the same recording protocol. i.e. number of traces, data points per sweep, number of sweeps, etc must be identical.
 }

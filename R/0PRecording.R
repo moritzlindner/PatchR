@@ -57,8 +57,9 @@ validPRecording<-function(object) {
 }
 
 
-#' S4 class storing imported ePhys Traces.
+#' (OK) S4 class storing imported ePhys Traces.
 #'
+#' `r lifecycle::badge("stable")` \cr
 #' This class stores imported electrophysiology Traces. Currently only import procedures for HEKA's PatchMaster are implemented. It has some strict validitiy checks implemented to assure data consistency.
 #'
 #' \describe{

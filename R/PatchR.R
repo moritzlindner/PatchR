@@ -4,16 +4,19 @@
 #' Multiple recordings (PRecording) objects can be stored and processed within the PCollection class using mostly identical commands and synthax. \cr
 #' Import procedures are currently implemented for HEKA's PachtMaster file format. \cr
 #'
+#'
 #' @import ggplot2
 #'
-#' @section Import and creation functions:
+#' @section File operations:
 #' * \link[=ImportPRecording]{ImportPRecording} (for \link[=PRecording]{PRecording} objects) \cr
 #' * \link[=AddTrace]{AddTrace} (for \link[=PRecording]{PRecording} objects) \cr
 #' * \link[=newPCollection]{newPCollection} (for \link[=PCollection]{PCollection} objects) \cr
 #' * \link[=AddPRecording]{AddPRecording} (for \link[=PCollection]{PCollection} objects) \cr
 #' * \link[=DropPRecording]{AddPRecording} (for \link[=PCollection]{PCollection} objects) \cr
+#' * \link[=Load]{Load} (for \link[=PRecording]{PRecording} and \link[=PCollection]{PCollection} objects)  \cr
+#' * \link[=Load]{Save} (for \link[=PRecording]{PRecording} and \link[=PCollection]{PCollection} objects)  \cr
 #'
-#' @section Accession functions:
+#' #' @section Accession functions:
 #' * \link[=GetCSlow]{GetCSlow} \cr
 #' * \link[=GetSweepNames]{GetSweepNames} \cr
 #' * \link[=GetTimeTrace]{GetTimeTrace} \cr
@@ -29,10 +32,10 @@
 #' * \link[=MeasureSweeps]{MeasureSweeps} \cr
 #'
 #' @section Visuaization functions:
-#' * \link[=PlotStimResp]{PlotStimResp} \cr
-#' * \link[=PlotGroupComparison]{PlotGroupComparison} (for \link[=PCollection]{PCollection} objects) \cr
-#' * \link[=PlotQC]{PlotRecording} (for \link[=PCollection]{PCollection} objects) \cr
-#' * \link[=PlotRecording]{PlotRecording} (for \link[=PRecording]{PRecording} objects) \cr
+#' * \link[=BuildStimRespPlot]{BuildStimRespPlot} \cr
+#' * \link[=BuildGroupComparisonPlot]{BuildGroupComparisonPlot} (for \link[=PCollection]{PCollection} objects) \cr
+#' * \link[=PlotQC]{BuildRecordingPlot} (for \link[=PCollection]{PCollection} objects) \cr
+#' * \link[=BuildRecordingPlot]{BuildRecordingPlot} (for \link[=PRecording]{PRecording} objects) \cr
 #' * \link[=Inspect]{Inspect} (for \link[=PRecording]{PRecording} and \link[=PCollection]{PCollection} objects) \cr
 #'
 #' @section Math, conversion and subsampling functions:
@@ -41,6 +44,7 @@
 #' * \link[=Calculate_IV]{Calculate_IV} - Outdated \cr
 #' * \href{../../PatchR/html/apply-PRecording-method.html}{apply()} for \link[=PRecording]{PRecording} and \href{../../PatchR/html/apply-PRecording-method.html}{lapply()} for \link[=PCollection]{PCollection} \cr
 #'
+#'
 #' @examples
 #' \dontrun{
 #' # Example 1
@@ -48,11 +52,11 @@
 #' tmp<-ImportPRecording("test.dat",series = 1,traces = c(1,2))
 #'
 #' # build a Plot superimposing all sweeps and inspect interactivley
-#' tmp<-PlotRecording(tmp)
+#' tmp<-BuildRecordingPlot(tmp)
 #' tmp<-InspectSeries(tmp, Trace = "I.mon")
 #'
 #' # apply any function to the PRecording object, in this case, make mean over all sweeps
-#' tmp<-apply(tmp, "Sweep", mean, ReturnPMObject = T)
+#' tmp<-apply(tmp, "Sweep", mean, ReturnPMobject = T)
 #'
 #' # and return as data.frame
 #' as.data.frame(tmp)
@@ -84,6 +88,6 @@
 #' @author \href{https://www.lindnerlab.de}{Moritz Lindner}
 #'
 #' @docType package
-#' @name PatchR
+#' @name .Overview
 NULL
 #> NULL

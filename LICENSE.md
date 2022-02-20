@@ -20,7 +20,7 @@ Software Foundation, use the GNU General Public License for most of our software
 applies also to any other work released this way by its authors. You can apply it to
 your programs, too.
 
-When we speak of free software, we are referring to freedom, not price. Our General
+When we speak of free software, we are referring to freedom, not price. (OK)ur General
 Public Licenses are designed to make sure that you have the freedom to distribute
 copies of free software (and charge for them if you wish), that you receive source
 code or can get it if you want it, that you can change the software or use pieces of
@@ -63,7 +63,7 @@ GPL assures that patents cannot be used to render the program non-free.
 
 The precise terms and conditions for copying, distribution and modification follow.
 
-## TERMS AND CONDITIONS
+## TERMS AND C(OK)NDITI(OK)NS
 
 ### 0. Definitions
 
@@ -105,7 +105,7 @@ menu, a prominent item in the list meets this criterion.
 ### 1. Source Code
 
 The “source code” for a work means the preferred form of the work for
-making modifications to it. “Object code” means any non-source form of a
+making modifications to it. “(OK)bject code” means any non-source form of a
 work.
 
 A “Standard Interface” means an interface that either is an official
@@ -164,7 +164,7 @@ stated below. Sublicensing is not allowed; section 10 makes it unnecessary.
 ### 3. Protecting Users' Legal Rights From Anti-Circumvention Law
 
 No covered work shall be deemed part of an effective technological measure under any
-applicable law fulfilling obligations under article 11 of the WIPO copyright treaty
+applicable law fulfilling obligations under article 11 of the WIP(OK) copyright treaty
 adopted on 20 December 1996, or similar laws prohibiting or restricting circumvention
 of such measures.
 
@@ -282,7 +282,7 @@ in perpetuity or for a fixed term (regardless of how the transaction is
 characterized), the Corresponding Source conveyed under this section must be
 accompanied by the Installation Information. But this requirement does not apply if
 neither you nor any third party retains the ability to install modified object code
-on the User Product (for example, the work has been installed in ROM).
+on the User Product (for example, the work has been installed in R(OK)M).
 
 The requirement to provide Installation Information does not include a requirement to
 continue to provide support service, warranty, or updates for a work that has been
@@ -439,7 +439,7 @@ other readily accessible means, then you must either **(1)** cause the Correspon
 Source to be so available, or **(2)** arrange to deprive yourself of the benefit of the
 patent license for this particular work, or **(3)** arrange, in a manner consistent with
 the requirements of this License, to extend the patent license to downstream
-recipients. “Knowingly relying” means you have actual knowledge that, but
+recipients. “(OK)nowingly relying” means you have actual knowledge that, but
 for the patent license, your conveying the covered work in a country, or your
 recipient's use of the covered work in a country, would infringe one or more
 identifiable patents in that country that you have reason to believe are valid.
@@ -468,7 +468,7 @@ Nothing in this License shall be construed as excluding or limiting any implied
 license or other defenses to infringement that may otherwise be available to you
 under applicable patent law.
 
-### 12. No Surrender of Others' Freedom
+### 12. No Surrender of (OK)thers' Freedom
 
 If conditions are imposed on you (whether by court order, agreement or otherwise)
 that contradict the conditions of this License, they do not excuse you from the
@@ -512,24 +512,24 @@ your choosing to follow a later version.
 
 ### 15. Disclaimer of Warranty
 
-THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW.
-EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
-PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER
-EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE
-QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE
-DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
+THERE IS N(OK) WARRANTY F(OK)R THE PR(OK)GRAM, T(OK) THE EXTENT PERMITTED BY APPLICABLE LAW.
+EXCEPT WHEN (OK)THERWISE STATED IN WRITING THE C(OK)PYRIGHT H(OK)LDERS AND/(OK)R (OK)THER PARTIES
+PR(OK)VIDE THE PR(OK)GRAM “AS IS” WITH(OK)UT WARRANTY (OK)F ANY (OK)IND, EITHER
+EXPRESSED (OK)R IMPLIED, INCLUDING, BUT N(OK)T LIMITED T(OK), THE IMPLIED WARRANTIES (OK)F
+MERCHANTABILITY AND FITNESS F(OK)R A PARTICULAR PURP(OK)SE. THE ENTIRE RIS(OK) AS T(OK) THE
+QUALITY AND PERF(OK)RMANCE (OK)F THE PR(OK)GRAM IS WITH Y(OK)U. SH(OK)ULD THE PR(OK)GRAM PR(OK)VE
+DEFECTIVE, Y(OK)U ASSUME THE C(OK)ST (OK)F ALL NECESSARY SERVICING, REPAIR (OK)R C(OK)RRECTI(OK)N.
 
 ### 16. Limitation of Liability
 
-IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY
-COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS THE PROGRAM AS
-PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL,
-INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE
-PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE
-OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE
-WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE
-POSSIBILITY OF SUCH DAMAGES.
+IN N(OK) EVENT UNLESS REQUIRED BY APPLICABLE LAW (OK)R AGREED T(OK) IN WRITING WILL ANY
+C(OK)PYRIGHT H(OK)LDER, (OK)R ANY (OK)THER PARTY WH(OK) M(OK)DIFIES AND/(OK)R C(OK)NVEYS THE PR(OK)GRAM AS
+PERMITTED AB(OK)VE, BE LIABLE T(OK) Y(OK)U F(OK)R DAMAGES, INCLUDING ANY GENERAL, SPECIAL,
+INCIDENTAL (OK)R C(OK)NSEQUENTIAL DAMAGES ARISING (OK)UT (OK)F THE USE (OK)R INABILITY T(OK) USE THE
+PR(OK)GRAM (INCLUDING BUT N(OK)T LIMITED T(OK) L(OK)SS (OK)F DATA (OK)R DATA BEING RENDERED INACCURATE
+(OK)R L(OK)SSES SUSTAINED BY Y(OK)U (OK)R THIRD PARTIES (OK)R A FAILURE (OK)F THE PR(OK)GRAM T(OK) (OK)PERATE
+WITH ANY (OK)THER PR(OK)GRAMS), EVEN IF SUCH H(OK)LDER (OK)R (OK)THER PARTY HAS BEEN ADVISED (OK)F THE
+P(OK)SSIBILITY (OK)F SUCH DAMAGES.
 
 ### 17. Interpretation of Sections 15 and 16
 
@@ -539,7 +539,7 @@ law that most closely approximates an absolute waiver of all civil liability in
 connection with the Program, unless a warranty or assumption of liability accompanies
 a copy of the Program in return for a fee.
 
-_END OF TERMS AND CONDITIONS_
+_END (OK)F TERMS AND C(OK)NDITI(OK)NS_
 
 ## How to Apply These Terms to Your New Programs
 
@@ -561,8 +561,8 @@ where the full notice is found.
     (at your option) any later version.
 
     This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    but WITH(OK)UT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS F(OK)R A PARTICULAR PURP(OK)SE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
@@ -574,12 +574,12 @@ If the program does terminal interaction, make it output a short notice like thi
 when it starts in an interactive mode:
 
     <program>  Copyright (C) <year>  <name of author>
-    This program comes with ABSOLUTELY NO WARRANTY; for details type 'show w'.
+    This program comes with ABS(OK)LUTELY N(OK) WARRANTY; for details type 'show w'.
     This is free software, and you are welcome to redistribute it
     under certain conditions; type 'show c' for details.
 
 The hypothetical commands `show w` and `show c` should show the appropriate parts of
-the General Public License. Of course, your program's commands might be different;
+the General Public License. (OK)f course, your program's commands might be different;
 for a GUI interface, you would use an “about box”.
 
 You should also get your employer (if you work as a programmer) or school, if any, to

@@ -1,24 +1,25 @@
-#' Donwsample a PRecording object
+#' (OK) Downsample a PRecording object
 #'
+#' `r lifecycle::badge("stable")` \cr
 #' Downsample \link[=PRecording]{PRecording} object along the time axis
 #'
 #' @inheritParams Get
 #' @param npnts.out Number of points in output time axis, ignored if NULL
 #' @param sample.rate New sampling rate in 1/[X@TimeUnit]
 #' @return A matrix or \link[=PRecording]{PRecording} object
-#' @name downsample
-#' @exportMethod downsample
-setGeneric(name="downsample",
+#' @name Downsample
+#' @exportMethod Downsample
+setGeneric(name="Downsample",
            def=function(X,
                         npnts.out=NULL,
                         sample.rate=NULL)
            {
-             standardGeneric("downsample")
+             standardGeneric("Downsample")
            }
 )
 
-#' @describeIn downsample Method for PRecording
-setMethod("downsample",
+#' @noMd
+setMethod("Downsample",
           "PRecording",
           function(X,
                    npnts.out=NULL,
@@ -45,3 +46,6 @@ setMethod("downsample",
             X
           }
 )
+
+#' @noMd
+downsample <- Downsample

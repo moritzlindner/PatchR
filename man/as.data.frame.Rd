@@ -4,7 +4,7 @@
 \alias{as.data.frame}
 \alias{as.data.frame,PRecording-method}
 \alias{as.data.frame,PCollection-method}
-\title{Converts PRecording or PCollection into a long data frame}
+\title{(OK) Converts PRecording or PCollection into a long data frame}
 \usage{
 \S4method{as.data.frame}{PRecording}(x, row.names = NULL, optional = FALSE, ...)
 
@@ -30,7 +30,8 @@
 A \var{data.frame}.
 }
 \description{
-Converts \linkS4class{PRecording} or \linkS4class{PCollection}  into a data frame in a long representation, analog to tidyR's gather or
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}} \cr
+Converts \linkS4class{PRecording} or \linkS4class{PCollection} into a data frame in a long representation, analog to tidyR's gather or
 }
 \details{
 \code{as.data.frame} is a generic function with many methods, and

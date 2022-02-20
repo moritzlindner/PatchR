@@ -1,9 +1,10 @@
-#' Accession methods
+#' (OK) Accession methods
 #'
+#' `r lifecycle::badge("stable")` \cr
 #' These methods are used to access information from \linkS4class{PRecording} and/or \linkS4class{PCollection} objects
 #'
 #' @param X A \linkS4class{PRecording} or \linkS4class{PCollection} object
-#' @param which A name of a valid Group in a \linkS4class{PCollection} (for \code{GetGroupMembers}). \cr A name or a vector of names of slot(s) in RecordingParams (for \code{GetRecParam}). \cr A name or a vector of names of a column in the MetaData slot (for \code{GetMetaData}).
+#' @param which 1) A name of a valid Group in a \linkS4class{PCollection} (for \code{GetGroupMembers}). \cr 2) A name or a vector of names of slot(s) in RecordingParams (for \code{GetRecParam}). \cr or 3) A name or a vector of names of a column in the MetaData slot (for \code{GetMetaData}).
 #' @details These methods can be used to access information stored in \linkS4class{PRecording} and/or \linkS4class{PCollection} objects. \cr \cr
 #' @return A numeric vector.
 #' @examples
@@ -23,14 +24,15 @@ setGeneric(name="GetSweepNames",
            }
 )
 
-#' @describeIn Get Method for PRecording
+#' @noMd
 setMethod("GetSweepNames",
           "PRecording",
           function(X) {
             X@Sweeps
           }
 )
-#' @describeIn Get Method for PCollection
+
+#' @noMd
 setMethod("GetSweepNames",
           "PCollection",
           function(X) {
@@ -47,14 +49,14 @@ setGeneric(name="GetTraceNames",
              standardGeneric("GetTraceNames")
            }
 )
-#' @describeIn Get Method for PRecording
+#' @noMd
 setMethod("GetTraceNames",
           "PRecording",
           function(X) {
             X@Traces
           }
 )
-#' @describeIn Get Method for PRecordingParams
+#' @noMd
 setMethod("GetTraceNames",
           "PRecordingParams",
           function(X) {
@@ -70,14 +72,14 @@ setGeneric(name="GetTimeTrace",
              standardGeneric("GetTimeTrace")
            }
 )
-#' @describeIn Get Method for PRecording
+#' @noMd
 setMethod("GetTimeTrace",
           "PRecording",
           function(X) {
             X@TimeTrace
           }
 )
-#' @describeIn Get Method for PCollection
+#' @noMd
 setMethod("GetTimeTrace",
           "PCollection",
           function(X) {
@@ -93,14 +95,14 @@ setGeneric(name="GetSweepTimes",
              standardGeneric("GetSweepTimes")
            }
 )
-#' @describeIn Get Method for PRecording
+#' @noMd
 setMethod("GetSweepTimes",
           "PRecording",
           function(X) {
             X@SweepTimes
           }
 )
-#' @describeIn Get Method for PCollection
+#' @noMd
 setMethod("GetSweepTimes",
           "PCollection",
           function(X) {
@@ -116,14 +118,14 @@ setGeneric(name="GetCSlow",
              standardGeneric("GetCSlow")
            }
 )
-#' @describeIn Get Method for PRecording
+#' @noMd
 setMethod("GetCSlow",
           "PRecording",
           function(X) {
             X@RecordingParams@Cs
           }
 )
-#' @describeIn Get Method for PCollection
+#' @noMd
 setMethod("GetCSlow",
           "PCollection",
           function(X) {
@@ -141,21 +143,21 @@ setGeneric(name="GetRecParam",
              standardGeneric("GetRecParam")
            }
 )
-#' @describeIn Get Method for PRecording
+#' @noMd
 setMethod("GetRecParam",
           "PRecording",
           function(X,which) {
             methods::slot(X@RecordingParams,which)
           }
 )
-#' @describeIn Get Method for PRecordingParams
+#' @noMd
 setMethod("GetRecParam",
           "PRecordingParams",
           function(X,which) {
             X[[which]]
           }
 )
-#' @describeIn Get Method for PCollection
+#' @noMd
 setMethod("GetRecParam",
           "PCollection",
           function(X,which) {
@@ -173,11 +175,55 @@ setGeneric(name="GetGroupMembers",
              standardGeneric("GetGroupMembers")
            }
 )
-#' @describeIn Get Method for PCollection
+#' @noMd
 setMethod("GetGroupMembers",
           "PCollection",
           function(X,which) {
             X@Names[X@Group %in% which]
+          }
+)
+#' ------------------
+#' @describeIn Get Can be used on \linkS4class{PCollection} objects only and returns the names of all groups.
+#' @exportMethod GetGroupNames
+setGeneric(name="GetGroupNames",
+           def=function(X)
+           {
+             standardGeneric("GetGroupNames")
+           }
+)
+#' @noMd
+setMethod("GetGroupNames",
+          "PCollection",
+          function(X) {
+            levels(X@Group)
+          }
+)
+#' ------------------
+#' @describeIn Get Can be used on \linkS4class{PCollection} objects only and returns the names of all series
+#' @exportMethod GetSeriesNames
+setGeneric(name="GetSeriesNames",
+           def=function(X)
+           {
+             standardGeneric("GetSeriesNames")
+           }
+)
+#' @noMd
+setMethod("GetSeriesNames",
+          "PCollection",
+          function(X) {
+            snames<-NULL
+            for (i in 1:length(X@Series)){
+              snames[i]<-GetRecParam(X@Series[[i]], "Filename")
+            }
+            snames
+          }
+)
+
+#' @noMd
+setMethod("names",
+          "PCollection",
+          function(x) {
+            GetSeriesNames(x)
           }
 )
 #' ------------------
@@ -190,7 +236,7 @@ setGeneric(name="GetMetaData",
              standardGeneric("GetMetaData")
            }
 )
-#' @describeIn Get Method for PRecording
+#' @noMd
 setMethod("GetMetaData",
           "PRecording",
           function(X,which=colnames(X@MetaData)) {
@@ -200,7 +246,7 @@ setMethod("GetMetaData",
             out
           }
 )
-#' @describeIn Get Method for PCollection
+#' @noMd
 setMethod("GetMetaData",
           "PCollection",
           function(X,which=colnames(X@MetaData)) {

@@ -1,12 +1,26 @@
 Package: PatchR
 Type: Package
 Title: An environment for working with ephys (PatchClamp) recordings
-Version: 0.10.0
+Version: 0.11.0
 Author: person("Moritz", "Lindner", email = "moritz@lindnerlab.de", role = c("aut", "cre"))
 Maintainer: Moritz Lindner <moritz@lindnerlab.de>
-Description: An environment for working with ephys (PatchClamp) recordings. Currently import for HEKA's PatchMaster is implemented.
+Description: An environment for working with ephys (PatchClamp) recordings. Currently import for HE(OK)A's PatchMaster is implemented.
 License: GPL (>= 3)
-Imports: ggplot2,plotly,proto,sitools,stringr,methods,dplyr,ggpubr,plyr,tidyr,stats,utils
+Imports: 
+    ggplot2,
+    plotly,
+    proto,
+    sitools,
+    stringr,
+    methods,
+    dplyr,
+    ggpubr,
+    plyr,
+    tidyr,
+    stats,
+    utils,
+    hdf5r,
+    lifecycle
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.2
@@ -17,17 +31,21 @@ Collate:
     '0PRecording.R'
     '1Plot.R'
     'AddMetaData.R'
+    'BuildQCPlot.R'
+    'BuildRecordingPlot.R'
     'Calculate_IV.R'
     'CurrentDensity.R'
     'Get-methods.R'
     'GetData.R'
     'ImportCollection.R'
-    'ImportPMRecording.R'
+    'ImportPRecording.R'
     'Inspect.R'
+    'Load.R'
     'Measure.R'
-    'PlotQC.R'
-    'PlotRecording.R'
-    'addPMRecording.R'
+    'PatchR-data.R'
+    'PatchR-package.R'
+    'Save.R'
+    'addPRecording.R'
     'addTrace.R'
     'add_atributes.R'
     'apply.R'
@@ -41,9 +59,11 @@ Collate:
     'getTrace_.R'
     'get_treeinfo.R'
     'lapply.R'
+    'length.R'
     'newPCollection.R'
     'pm_load_nodes.R'
     'read.bundletree.R'
     'readAny.R'
     'readlabel.R'
     'show.R'
+Roxygen: list(markdown = TRUE)

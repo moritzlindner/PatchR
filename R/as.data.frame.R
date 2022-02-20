@@ -1,6 +1,7 @@
-#' Converts PRecording or PCollection into a long data frame
+#' (OK) Converts PRecording or PCollection into a long data frame
 #'
-#' Converts \linkS4class{PRecording} or \linkS4class{PCollection}  into a data frame in a long representation, analog to tidyR's gather or
+#' `r lifecycle::badge("stable")` \cr
+#' Converts \linkS4class{PRecording} or \linkS4class{PCollection} into a data frame in a long representation, analog to tidyR's gather or
 #'
 #' @param x a \var{PRecording} or \var{PCollection} object.
 #' @return A \var{data.frame}.

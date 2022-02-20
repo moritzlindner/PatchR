@@ -1,44 +1,45 @@
 
-#' Drops PRecording(s) from PCollection
+#' (OK) Drops Recording(s) from PCollection
 #'
-#'  Drops PRecording(s) from PCollection
+#' `r lifecycle::badge("stable")` \cr
+#' Drops Recording(s) from PCollection
 #'
-#' @param object a PCollection object
-#' @param PRecording A name of a \linkS4class{PRecording} object in the collection, or a list thereof
-#' @param Group A name of A group in the\linkS4class{PRecording} object Drops all \linkS4class{PRecording} belonging to that group. Alternative to \var{PRecording}.
-#' @return A \linkS4class{PCollection} object
+#' @param X a PCollection X
+#' @param Recording A name of a \linkS4class{PRecording} in the collection, or a list thereof
+#' @param Group A name of A group in the\linkS4class{PCollection}. Drops all \linkS4class{PRecording} belonging to that group. Either Recording or Group need to be given
+#' @return A \linkS4class{PCollection} X
 #' @name DropPRecording
 #' @exportMethod DropPRecording
 setGeneric(name="DropPRecording",
-           def=function(object,
-                        PRecording=NULL,
+           def=function(X,
+                        Recording=NULL,
                         Group=NULL)
            {
              standardGeneric("DropPRecording")
            }
 )
-#' @describeIn DropPRecording Method for PCollection
+#' @noMd
 setMethod("DropPRecording",
           "PCollection",
-          function(object,
-                   PRecording=NULL,
+          function(X,
+                   Recording=NULL,
                    Group=NULL)
           {
             warning("MetaData and Plots are dropped to assure conistency.")
-            if (!is.null(PRecording) & !is.null(Group)){
-              stop("Only Group or PRecording may be provided")
+            if (!is.null(Recording) & !is.null(Group)){
+              stop("Only Group or Recording may be provided")
             }
             if(!is.null(Group)){
-              PRecording<-GetGroupMembers(object,Group)
+              Recording<-GetGroupMembers(X,Group)
             }
-            Group<-object@Group[!(object@Names %in% PRecording)]
+            Group<-X@Group[!(X@Names %in% Recording)]
             Group<-droplevels(Group)
 
             out<-PCollection(
-              Series=object@Series[!(object@Names %in% PRecording)],
-              Names=object@Names[!(object@Names %in% PRecording)],
+              Series=X@Series[!(X@Names %in% Recording)],
+              Names=X@Names[!(X@Names %in% Recording)],
               Group=Group,
-              RecordingParams=object@RecordingParams
+              RecordingParams=X@RecordingParams
             )
             out
           }

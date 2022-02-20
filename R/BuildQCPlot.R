@@ -1,16 +1,18 @@
 #' @describeIn Plot This function creates a basic visualization of quality-relevant recording parameters in the PCollection
-#' @exportMethod PlotQC
-setGeneric(name="PlotQC",
-           def=function(X)
+#' @exportMethod BuildQCPlot
+setGeneric(name="BuildQCPlot",
+           def=function(X,
+                        ReturnPMobject = T)
            {
-             standardGeneric("PlotQC")
+             standardGeneric("BuildQCPlot")
            }
 )
 
-#' @describeIn Plot Method for PCollection
-setMethod("PlotQC",
+#' @noRd
+setMethod("BuildQCPlot",
           "PCollection",
-          function(X){
+          function(X,
+                   ReturnPMobject = T){
             items<-c("Cs", "Rs")
 
             dat<-cbind(X@Names,X@Group,as.data.frame(GetRecParam(X,items)))
@@ -18,13 +20,20 @@ setMethod("PlotQC",
 
             dat[,"Cs"]<-dat[,"Cs"]/sitools::pico
             dat[,"Rs"]<-dat[,"Rs"]/sitools::mega
-            X@Plots[["QC_Metrics"]]<-ggplot2::ggplot(dat,aes_string(x="Cs",y="Rs",fill="Group",group="Name"))+geom_point(position = "jitter")+
+            out<-ggplot2::ggplot(dat,aes_string(x="Cs",y="Rs",fill="Group",group="Name"))+geom_point(position = "jitter")+
               ggplot2::theme_classic()+
               ggplot2::theme(legend.position = "none",
                     text = element_text(size=8),
                     strip.background = ggplot2::element_rect(fill = "light grey",colour = NULL, size=0))+
               ggplot2::xlab(paste("Cs [pF]"))+
               ggplot2::ylab(paste("Rs [MOhm]"))
-            return(X)
+
+
+            if (ReturnPMobject) {
+              X@Plots[["QCPlot"]] <- out
+              X
+            } else{
+              out
+            }
           }
 )

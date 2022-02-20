@@ -1,6 +1,7 @@
 
 #' Adds metadata to a PRecording or PCollection object
 #'
+#' `r lifecycle::badge("stable")` \cr
 #' This function adds metadata to a \linkS4class{PRecording} or \linkS4class{PCollection} object by filling the \var{MetaData} slot. The function calling \code{AddMetaData} is stored in the \var{.MetaDataFx} slot.
 #'
 #' @param object A \linkS4class{PRecording} or \linkS4class{PCollection} object.

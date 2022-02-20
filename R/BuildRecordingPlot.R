@@ -1,21 +1,21 @@
 #' @describeIn Plot This function creates a basic visualization for each Trace in a single \linkS4class{PRecording} object.
-#' @exportMethod PlotRecording
-setGeneric(name="PlotRecording",
+#' @exportMethod BuildRecordingPlot
+setGeneric(name="BuildRecordingPlot",
            def=function(X)
            {
-             standardGeneric("PlotRecording")
+             standardGeneric("BuildRecordingPlot")
            }
 )
 
-#' @describeIn Plot Method for PRecording
-setMethod("PlotRecording",
+#' @noMd
+setMethod("BuildRecordingPlot",
           "PRecording",
           function(X){
             tmp.X<-downsample(X,npnts.out = 1000)
             tmp.X<-ConvenientScales(tmp.X)
             dat<-as.data.frame(tmp.X)
             dat$Sweeps<-as.numeric(dat$Sweeps)
-            return(dat)
+            #return(dat)
             for (i in tmp.X@Traces)
             {
               X@Plots[[i]]<-ggplot2::ggplot(dat[dat$Traces==i,])+

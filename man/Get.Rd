@@ -3,81 +3,38 @@
 \name{Get}
 \alias{Get}
 \alias{GetSweepNames}
-\alias{GetSweepNames,PRecording-method}
-\alias{GetSweepNames,PCollection-method}
 \alias{GetTraceNames}
-\alias{GetTraceNames,PRecording-method}
-\alias{GetTraceNames,PRecordingParams-method}
 \alias{GetTimeTrace}
-\alias{GetTimeTrace,PRecording-method}
-\alias{GetTimeTrace,PCollection-method}
 \alias{GetSweepTimes}
-\alias{GetSweepTimes,PRecording-method}
-\alias{GetSweepTimes,PCollection-method}
 \alias{GetCSlow}
-\alias{GetCSlow,PRecording-method}
-\alias{GetCSlow,PCollection-method}
 \alias{GetRecParam}
-\alias{GetRecParam,PRecording-method}
-\alias{GetRecParam,PRecordingParams-method}
-\alias{GetRecParam,PCollection-method}
 \alias{GetGroupMembers}
-\alias{GetGroupMembers,PCollection-method}
+\alias{GetGroupNames}
+\alias{GetSeriesNames}
 \alias{GetMetaData}
-\alias{GetMetaData,PRecording-method}
-\alias{GetMetaData,PCollection-method}
 \alias{GetData}
-\alias{GetData,PRecording-method}
-\alias{GetData,PCollection-method}
-\title{Accession methods}
+\alias{Subset}
+\title{(OK) Accession methods}
 \usage{
 GetSweepNames(X)
 
-\S4method{GetSweepNames}{PRecording}(X)
-
-\S4method{GetSweepNames}{PCollection}(X)
-
 GetTraceNames(X)
-
-\S4method{GetTraceNames}{PRecording}(X)
-
-\S4method{GetTraceNames}{PRecordingParams}(X)
 
 GetTimeTrace(X)
 
-\S4method{GetTimeTrace}{PRecording}(X)
-
-\S4method{GetTimeTrace}{PCollection}(X)
-
 GetSweepTimes(X)
-
-\S4method{GetSweepTimes}{PRecording}(X)
-
-\S4method{GetSweepTimes}{PCollection}(X)
 
 GetCSlow(X)
 
-\S4method{GetCSlow}{PRecording}(X)
-
-\S4method{GetCSlow}{PCollection}(X)
-
 GetRecParam(X, which)
-
-\S4method{GetRecParam}{PRecording}(X, which)
-
-\S4method{GetRecParam}{PRecordingParams}(X, which)
-
-\S4method{GetRecParam}{PCollection}(X, which)
 
 GetGroupMembers(X, which)
 
-\S4method{GetGroupMembers}{PCollection}(X, which)
+GetGroupNames(X)
+
+GetSeriesNames(X)
 
 GetMetaData(X, which)
-
-\S4method{GetMetaData}{PRecording}(X, which = colnames(X@MetaData))
-
-\S4method{GetMetaData}{PCollection}(X, which = colnames(X@MetaData))
 
 GetData(
   X,
@@ -90,20 +47,11 @@ GetData(
   nowarnings = F
 )
 
-\S4method{GetData}{PRecording}(
+Subset(
   X,
   Traces = GetTraceNames(X),
   Sweeps = GetSweepNames(X),
   Time = range(GetTimeTrace(X)),
-  TimeExclusive = F,
-  nowarnings = F
-)
-
-\S4method{GetData}{PCollection}(
-  X,
-  Traces = GetTraceNames(X@Series[[1]]),
-  Sweeps = GetSweepNames(X@Series[[1]]),
-  Time = range(GetTimeTrace(X@Series[[1]])),
   Series = NULL,
   Group = NULL,
   TimeExclusive = F,
@@ -113,13 +61,15 @@ GetData(
 \arguments{
 \item{X}{A \linkS4class{PRecording} or \linkS4class{PCollection} object}
 
-\item{which}{A name of a valid Group in a \linkS4class{PCollection} (for \code{GetGroupMembers}). \cr A name or a vector of names of slot(s) in RecordingParams (for \code{GetRecParam}). \cr A name or a vector of names of a column in the MetaData slot (for \code{GetMetaData}).}
+\item{which}{\enumerate{
+\item A name of a valid Group in a \linkS4class{PCollection} (for \code{GetGroupMembers}). \cr 2) A name or a vector of names of slot(s) in RecordingParams (for \code{GetRecParam}). \cr or 3) A name or a vector of names of a column in the MetaData slot (for \code{GetMetaData}).
+}}
 
-\item{Traces, Sweeps}{List of Traces/Sweeps to keep}
+\item{Traces, Sweeps}{List of traces/sweeps to keep}
 
 \item{Time}{either a range of time points to keep, or, if \code{TimeExclusive} is \code{TRUE}, then two particular time points}
 
-\item{Series}{Subset by Series name. Only for  \linkS4class{PCollection} .}
+\item{Series}{Subset by series/recordings. Understands names (= file names of the recordings) or indices or by logical indexing. Only for \linkS4class{PCollection} .}
 
 \item{Group}{Subset by Group name. Only for  \linkS4class{PCollection} .}
 
@@ -135,6 +85,7 @@ For \code{GetMetaData} a \code{vector} of type \code{numeric}  or a \code{matrix
 A \linkS4class{PRecording} or \linkS4class{PCollection} object (for \code{GetData})
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}} \cr
 These methods are used to access information from \linkS4class{PRecording} and/or \linkS4class{PCollection} objects
 }
 \details{
@@ -144,57 +95,27 @@ These methods can be used to access information stored in \linkS4class{PRecordin
 \itemize{
 \item \code{GetSweepNames}: Returns the Sweep names.
 
-\item \code{GetSweepNames,PRecording-method}: Method for PRecording
-
-\item \code{GetSweepNames,PCollection-method}: Method for PCollection
-
 \item \code{GetTraceNames}: Return the Trace names.
-
-\item \code{GetTraceNames,PRecording-method}: Method for PRecording
-
-\item \code{GetTraceNames,PRecordingParams-method}: Method for PRecordingParams
 
 \item \code{GetTimeTrace}: Returns a vector containing the times at which the individual sweeps were recorded.
 
-\item \code{GetTimeTrace,PRecording-method}: Method for PRecording
-
-\item \code{GetTimeTrace,PCollection-method}: Method for PCollection
-
 \item \code{GetSweepTimes}: Returns a vector containing the times at which the individual sweeps were recorded.
-
-\item \code{GetSweepTimes,PRecording-method}: Method for PRecording
-
-\item \code{GetSweepTimes,PCollection-method}: Method for PCollection
 
 \item \code{GetCSlow}: This is a special case of \code{GetRecParam} and returns the C-slow value.
 
-\item \code{GetCSlow,PRecording-method}: Method for PRecording
-
-\item \code{GetCSlow,PCollection-method}: Method for PCollection
-
 \item \code{GetRecParam}: Returns any value stored in the RecordingParams slot.
-
-\item \code{GetRecParam,PRecording-method}: Method for PRecording
-
-\item \code{GetRecParam,PRecordingParams-method}: Method for PRecordingParams
-
-\item \code{GetRecParam,PCollection-method}: Method for PCollection
 
 \item \code{GetGroupMembers}: Can be used on \linkS4class{PCollection} objects only and returns the names of all PRecordings belonging to the named Group.
 
-\item \code{GetGroupMembers,PCollection-method}: Method for PCollection
+\item \code{GetGroupNames}: Can be used on \linkS4class{PCollection} objects only and returns the names of all groups.
+
+\item \code{GetSeriesNames}: Can be used on \linkS4class{PCollection} objects only and returns the names of all series
 
 \item \code{GetMetaData}: Returns one or more columns from the MetaData Slot.
 
-\item \code{GetMetaData,PRecording-method}: Method for PRecording
-
-\item \code{GetMetaData,PCollection-method}: Method for PCollection
-
 \item \code{GetData}: This function subsets objects by \var{Trace}, \var{Sweep} or \var{Time}. For  \linkS4class{PCollection} additionally by \var{Series} or \var{Group}
 
-\item \code{GetData,PRecording-method}: Method for PRecording
-
-\item \code{GetData,PCollection-method}: Method for PCollection
+\item \code{Subset}: Subset is an alias of Getdata
 }}
 
 \examples{

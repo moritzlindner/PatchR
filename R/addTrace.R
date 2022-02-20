@@ -1,68 +1,69 @@
-#' Add data (Trace) to PRecording objects
+#' (OK) Add data (Trace) to PRecording objects
 #'
-#' This function adds a new Trace (with data) from any object convertible into a matrix to a \linkS4class{PRecording} object.
+#' `r lifecycle::badge("stable")` \cr
+#' This function adds a new Trace (with data) from any object convertible into a matrix to a \linkS4class{PRecording} X.
 #'
-#' @param object A \linkS4class{PRecording} object
+#' @param X A \linkS4class{PRecording} object
 #' @param Trace Name of the new trace
 #' @param Unit The SI unit of the trace
-#' @param Sweeps Names of the sweeps added. Must be the same as sweep names in \var{object}. Data will be sorted accoding to order of Sweeps in \var{object} Default is \code{colnames(object)}
-#' @param mtx Any object convertible into a \var{matrix}, that has the same dimension as data in the Data slot of \var{object}
+#' @param Sweeps Names of the sweeps added. Must be the same as sweep names in \var{X}. Data will be sorted accoding to order of Sweeps in \var{X} Default is \code{colnames(X)}
+#' @param mtx Any X convertible into a \var{matrix}, that has the same dimension as data in the Data slot of \var{X}
 #' @param isOrig if TRUE, marks added trace as an original recording.
 #' @seealso \linkS4class{PRecording}, \linkS4class{PCollection}, \link[base:as.matrix]{as.matrix()}
-#' @return A matrix or \linkS4class{PRecording} object
+#' @return A matrix or \linkS4class{PRecording} X
 #' @name AddTrace
 #' @exportMethod AddTrace
 setGeneric(name="AddTrace",
-           def=function(object,
+           def=function(X,
+                        mtx,
                         Trace,
                         Unit,
                         Sweeps=colnames(mtx),
-                        isOrig=F,
-                        mtx)
+                        isOrig=F)
            {
              standardGeneric("AddTrace")
            }
 )
 
-#' @describeIn AddTrace Method for PRecording
+#' @noRd
 setMethod("AddTrace",
           "PRecording",
-          function(object,
+          function(X,
+                   mtx,
                    Trace,
                    Unit,
                    Sweeps=colnames(mtx),
-                   isOrig=F,
-                   mtx)
+                   isOrig=F)
           {
-            if(!validPRecording(object)){
-              stop(paste(deparse(substitute(object)), "is not a valid PRecording"))
+            if(!validPRecording(X)){
+              stop(paste(deparse(substitute(X)), "is not a valid PRecording"))
             }
 
-            if(all(GetSweepNames(object) %in% Sweeps) && length(GetSweepNames(object))== length(Sweeps)){
+            if(all(GetSweepNames(X) %in% Sweeps) && length(GetSweepNames(X))== length(Sweeps)){
               if(!is.ordered(Sweeps)){
-                Sweeps<-ordered(Sweeps,levels=GetSweepNames(object))
+                Sweeps<-ordered(Sweeps,levels=GetSweepNames(X))
               }
             }else{
-              print("Sweep definitions do not match.")
+              message("Sweep definitions do not match.")
             }
 
-            if(!(Trace %in% object@Traces)){
-              if(dim(object@Data[[1]])[1] == dim(mtx)[1] && GetSweepNames(object) == Sweeps){
-                object@Data[[Trace]]<-as.matrix(mtx)
-                object@Traces<-c(GetTraceNames(object),Trace)
-                object@Units<-c(object@Units,Unit)
+            if(!(Trace %in% X@Traces)){
+              if(dim(X@Data[[1]])[1] == dim(mtx)[1] && GetSweepNames(X) == Sweeps){
+                X@Data[[Trace]]<-as.matrix(mtx)
+                X@Traces<-c(GetTraceNames(X),Trace)
+                X@Units<-c(X@Units,Unit)
                 if(isOrig){
-                  object@RecordingParams@Traces<-c(GetTraceNames(object@RecordingParams),Trace)
+                  X@RecordingParams@Traces<-c(GetTraceNames(X@RecordingParams),Trace)
                 }
               }else{
                 stop("Data dimension mismatch")
               }
             }else{
-              stop(paste("Trace",Trace,"already in",deparse(substitute(object))))
+              stop(paste("Trace",Trace,"already in",deparse(substitute(X))))
             }
-            if(!validPRecording(object)){
-              stop(paste("updating PRecording", deparse(substitute(object)), "failed."))
+            if(!validPRecording(X)){
+              stop(paste("updating PRecording", deparse(substitute(X)), "failed."))
             }
-            object
+            X
           }
 )
