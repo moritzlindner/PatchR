@@ -94,7 +94,11 @@ Inspect(SampleData,"StimRespPlot")
  # Build a time series. Average is taken from RespTrace between 0.8s and 1s for
  # each sweep and is plotted against the timestamp of the sweep. The graph
  # (ggplot) is returned directly.
-BuildTimeSeriesPlot(SampleData, RespTrace = "I-mon", Time = c(0.8,1), fun = mean, ReturnPObject = FALSE)
+BuildTimeSeriesPlot(SampleData,
+   RespTrace = "I-mon",
+   Time = c(0.8,1),
+   fun = mean,
+   ReturnPObject = FALSE)
 }
 \seealso{
 \link[=Inspect]{Inspect}, \link[=Measure]{Measure}, \link[=GetPlot]{GetPlot}, \link[=GetPlotNames]{GetPlotNames}
