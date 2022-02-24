@@ -2,23 +2,14 @@
 % Please edit documentation in R/length.R
 \name{length}
 \alias{length}
-\alias{length,PRecording-method}
-\title{(OK) Length of an object}
-\usage{
-\S4method{length}{PRecording}(x)
-}
+\title{Length of an object}
 \arguments{
 \item{x}{a \var{PRecording} or \var{PCollection} object.}
 }
 \value{
-The number of Series/Recordings in a \linkS4class{PCollection} or the number of Sweeps from a \linkS4class{PRecording} as a one-dimensional \var{numeric} vector.
+The number of recordings in a \linkS4class{PCollection} or the number of sweeps from a \linkS4class{PRecording} as a one-dimensional \var{numeric} vector.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}} \cr
-returns the number of Series/Recordings in a \linkS4class{PCollection} or the number of Sweeps from a \linkS4class{PRecording}
+Returns the number of recordings in a \linkS4class{PCollection} or the number of sweeps from a \linkS4class{PRecording}
 }
-\section{Functions}{
-\itemize{
-\item \code{length,PRecording-method}: Method for PRecording
-}}
-

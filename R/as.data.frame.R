@@ -1,12 +1,16 @@
-#' (OK) Converts PRecording or PCollection into a long data frame
+#' Converts PRecording or PCollection into a long data frame
 #'
 #' `r lifecycle::badge("stable")` \cr
-#' Converts \linkS4class{PRecording} or \linkS4class{PCollection} into a data frame in a long representation, analog to tidyR's gather or
+#' Converts \linkS4class{PRecording} or \linkS4class{PCollection} into a data frame in a long representation, analog to tidyR's \link[tidyr:gather]{gather()}/\link[tidyr:pivot_longer]{pivot_longer()}.
 #'
-#' @param x a \var{PRecording} or \var{PCollection} object.
-#' @return A \var{data.frame}.
-#' @seealso \link[base:as.data.frame]{as.data.frame()},\link[tidyr:gather]{gather()},\link[tidyr:pivot_longer]{pivot_longer()}
-#' @inherit base::as.data.frame
+#' @param x A \var{PRecording} or \var{PCollection} object.
+#' @param row.names,optional,... Unused.
+#' @return A \code{data.frame}.
+#' @seealso \link[base:as.data.frame]{as.data.frame()}, \link[tidyr:gather]{gather()}, \link[tidyr:pivot_longer]{pivot_longer()}
+#' @examples
+#' data(PRecording)
+#' # Subset SampleData to only keep three time points and convert into data.frame
+#' as.data.frame(GetData(SampleData,Time = c(0.4,0.8,1.2),TimeExclusive = T))
 #' @name as.data.frame
 #' @exportMethod as.data.frame
 NULL
@@ -34,15 +38,14 @@ setMethod("as.data.frame",
 )
 
 #' @importFrom plyr ldply
-#' @describeIn as.data.frame Method for PCollection
 #' @exportMethod as.data.frame
 setMethod("as.data.frame",
           "PCollection",
           function(x,
                    ...){
-            lst<-ldply(x@Series,as.data.frame)
-            nms<-rep(x@Names,each=dim(as.data.frame(x@Series[[1]]))[1])
-            grp<-rep(x@Group,each=dim(as.data.frame(x@Series[[1]]))[1])
+            lst<-ldply(x@Recordings,as.data.frame)
+            nms<-rep(x@Names,each=dim(as.data.frame(x@Recordings[[1]]))[1])
+            grp<-rep(x@Group,each=dim(as.data.frame(x@Recordings[[1]]))[1])
 
             cbind(grp,nms,lst)
           }

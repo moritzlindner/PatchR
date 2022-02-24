@@ -1,16 +1,21 @@
-#' (OK) Generates a new PCollection from a single PRecording
+#' Generates a new PCollection from PRecording(s)
 #'
 #' `r lifecycle::badge("stable")` \cr
-#' Generates a new \linkS4class{PCollection} from a single \linkS4class{PRecording}
+#' Generates a new \linkS4class{PCollection} from one single or a list of \linkS4class{PRecording}(s)
 #'
-#' @param PRecording a PRecording object, or list of PRecording objects
-#' @param Names Names of the PRecording, character vector w same number of entires as PRecording
-#' @param Group Group variable or list thereof, of the same lenght as PRecording
+#' @param PRecording a \linkS4class{PRecording} object, or list of PRecording objects
+#' @param Names Name(s) of the \linkS4class{PCollection}. A character vector with the same number of entries as \var{PRecording}
+#' @param Group Group assignments for the \linkS4class{PRecording}s. A character vector length 1 (all same group) or of the same length as \var{PRecording}
+#' @examples
+#' data(PRecording)
+#' SampleData
+#' tmp<-NewPCollection(SampleData)
+#' tmp
 #' @return A \linkS4class{PCollection}object
 #' @export
 NewPCollection <- function(PRecording,
                            Names = NULL,
-                           Group = "Generic") {
+                           Group = "Ungrouped") {
   Exps <- list()
   if (!is.list(PRecording)) {
     Exps[[1]] <- PRecording
@@ -49,7 +54,7 @@ NewPCollection <- function(PRecording,
       )
   }
   out <- PCollection(
-    Series = Exps,
+    Recordings = Exps,
     Names = Names,
     Group = as.factor(Group),
     RecordingParams = params

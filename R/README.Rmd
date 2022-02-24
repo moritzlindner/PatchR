@@ -37,7 +37,7 @@ tmp<-BuildRecordingPlot(tmp)
 tmp<-InspectSeries(tmp, Trace = "I.mon")
 
 # apply any function to the PRecording object, in this case, make mean over all sweeps
-tmp<-apply(tmp, "Sweep", mean, ReturnPMobject = T)
+tmp<-apply(tmp, "Sweep", mean, ReturnPObject = T)
 
 # and return as data.frame
 as.data.frame(tmp)

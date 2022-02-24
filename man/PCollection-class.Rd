@@ -4,7 +4,7 @@
 \name{PCollection-class}
 \alias{PCollection-class}
 \alias{PCollection}
-\title{(OK) An S4 class storing a collection of ePhys Treaces}
+\title{An S4 class storing a collection of ePhys Treaces}
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}} \cr
 This class stores a collection of \linkS4class{PRecording}s in a single object. Facilitates identical processing of related of recordings.
@@ -12,11 +12,11 @@ This class stores a collection of \linkS4class{PRecording}s in a single object. 
 \section{Slots}{
 
 \describe{
-\item{\code{Series}}{A list containing individual \linkS4class{PRecording} objects of identical dimensions, \var{ProtocolName}, \var{RecMode} and \var{TraceNames}.}
+\item{\code{Recordings}}{A list containing individual \linkS4class{PRecording} objects of identical dimensions, \var{ProtocolName}, \var{RecMode} and \var{TraceNames}.}
 
 \item{\code{Names}}{A \var{vector} of type \code{character} as unique identifier for the individual PRecording objects stored in the collection.}
 
-\item{\code{Group}}{A \var{vector} of type \code{logical} as Group identifier for the individual Series.}
+\item{\code{Group}}{A \var{vector} of type \code{logical} as Group identifier for the individual recordings.}
 
 \item{\code{MetaData}}{A \var{matrix} with each row corresponding to a \linkS4class{PRecording} stored in the \linkS4class{PCollection}. Column names must be unique.}
 
@@ -24,7 +24,7 @@ This class stores a collection of \linkS4class{PRecording}s in a single object. 
 
 \item{\code{.MetaDataFx}}{A list fo functions called to under \link[=AddMetaData]{AddMetaData()}}
 
-\item{\code{RecordingParams}}{Stores the Recording parameters that must be identical for all entries in Series \var{ProtocolName}, \var{RecMode} and \var{TraceNames}.}
+\item{\code{RecordingParams}}{Stores the Recording parameters that must be identical for all entries in \var{Recordings}  (\var{ProtocolName}, \var{RecMode} and \var{TraceNames}).}
 }}
 
 \seealso{

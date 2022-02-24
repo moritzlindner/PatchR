@@ -2,68 +2,68 @@ validPRecording<-function(object) {
   ret=0
   if (!(length(object@Traces) == length(object@Data))){
     ret<-ret+1
-    print("Monitor name list incompatible to items in Data")
+    stop("Trace name list incompatible to items in Data")
   }
   if (!(length(object@Traces) == length(object@Units))){
     ret<-ret+1
-    print("Monitor name list incompatible to items in Units")
+    stop("Trace name list incompatible to items in Units")
   }
   if (!(length(object@Data)>0)){
     ret<-ret+1
-    print("No data added")
+    stop("No data added")
   }
   if (!(all(unlist(lapply(object@Data,function(x){is.matrix(x)}))))){
     ret<-ret+1
-    print("Data not in matrix format")
+    stop("Data not in matrix format")
   }
   if( length(object@Data)>1){
     s<-stats::var(unlist(lapply(object@Data,function(x){dim(x)[1]})))
     s[is.na(s)] <- 0
     if (!(s==0)){
       ret+1
-      print("Traces have unequal dimensions")
+      stop("Traces have unequal dimensions")
     }
     s<-stats::var(unlist(lapply(object@Data,function(x){dim(x)[2]})))
     s[is.na(s)] <- 0
     if (!(s==0)){
       ret<-ret+1
-      print("Traces have unequal dimensions")
+      stop("Traces have unequal dimensions")
     }
   }
   if (!(length(object@TimeTrace) == dim(object@Data[[1]])[1])){
     ret<-ret+1
-    print("Time trace inconsitent to data")
+    stop("Time trace inconsitent to data")
   }
   if (!(length(object@Sweeps) == dim(object@Data[[1]])[2])){
     ret+1
-    print("Sweep names inconsitent to Data")
+    stop("Sweep names inconsitent to Data")
   }
   if (!(length(object@Sweeps) == length(object@SweepTimes))){
     ret<-ret+1
-    print("incompatible sweep ids and timing data")
+    stop("incompatible sweep ids and timing data")
 
   }
   if (!(all(object@RecordingParams@Traces %in% object@Traces))){
     ret<-ret+1
-    print("Incompatible Trace list")
+    stop("Incompatible Trace list")
   }
   if(!all(dim(object@MetaData)==0)){
     if (!(dim(object@MetaData)[1] == length(object@Sweeps))){
       ret<-ret+1
-      print("MetaData has not the same length as there are Sweeps")
+      stop("MetaData has not the same length as there are Sweeps")
     }
   }
   if(ret==0) {TRUE} else {FALSE}
 }
 
 
-#' (OK) S4 class storing imported ePhys Traces.
+#' S4 class storing imported ePhys Traces.
 #'
 #' `r lifecycle::badge("stable")` \cr
-#' This class stores imported electrophysiology Traces. Currently only import procedures for HEKA's PatchMaster are implemented. It has some strict validitiy checks implemented to assure data consistency.
+#' This class stores (usually sweep-oriented) electrophysiology data. Currently only import procedures for HEKA's PatchMaster .dat and Axon's .abd files are implemented. It has some strict validity checks implemented to assure data consistency.
 #'
 #' \describe{
-#'    \item{Traces}{Character vector containing names of the Traces (=Monitors) imported form the dat file and any subsequently computed Trace. Computed Traces have the same dimensions as imported}
+#'    \item{Traces}{Character vector containing names of the Traces (=Channels) imported form the dat file and any subsequently computed Trace. Computed Traces have the same dimensions as imported}
 #'
 #'    \item{Units}{Character vector containing the SI units for data stored in corresponding Trace. Order as in Traces.}
 #'
@@ -82,8 +82,9 @@ validPRecording<-function(object) {
 #'    \item{RecordingParams}{An item of class PRecordingParams containing recording parameters for that trace.}
 #'  }
 #' @seealso \url{https://www.heka.com/downloads/downloads_main.html#down_patchmaster}
+#' @importFrom methods setClass new
 #' @exportClass PRecording
-PRecording<-methods::setClass(Class="PRecording",
+PRecording<-setClass(Class="PRecording",
                   slots =  list(Traces="character",
                                 Units="character",
                                 TimeTrace="numeric",

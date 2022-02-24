@@ -4,14 +4,14 @@
 \name{PRecording-class}
 \alias{PRecording-class}
 \alias{PRecording}
-\title{(OK) S4 class storing imported ePhys Traces.}
+\title{S4 class storing imported ePhys Traces.}
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}} \cr
-This class stores imported electrophysiology Traces. Currently only import procedures for HEKA's PatchMaster are implemented. It has some strict validitiy checks implemented to assure data consistency.
+This class stores (usually sweep-oriented) electrophysiology data. Currently only import procedures for HEKA's PatchMaster .dat and Axon's .abd files are implemented. It has some strict validity checks implemented to assure data consistency.
 }
 \details{
 \describe{
-\item{Traces}{Character vector containing names of the Traces (=Monitors) imported form the dat file and any subsequently computed Trace. Computed Traces have the same dimensions as imported}
+\item{Traces}{Character vector containing names of the Traces (=Channels) imported form the dat file and any subsequently computed Trace. Computed Traces have the same dimensions as imported}
 
 \item{Units}{Character vector containing the SI units for data stored in corresponding Trace. Order as in Traces.}
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/Load.R
 \name{Load}
 \alias{Load}
-\title{(OK) Load HDF5 files containing PRecording or PCollection}
+\title{Load HDF5 files containing PRecording or PCollection}
 \usage{
 Load(filename)
 }
@@ -10,12 +10,20 @@ Load(filename)
 \item{filename}{Path to the file to be loaded.}
 }
 \value{
-A\linkS4class{PCollection} or \linkS4class{PCollection} object.
+A \linkS4class{PRecording} or \linkS4class{PCollection} object.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}} \cr
-This function loads HDF5 files containing \linkS4class{PCollection} or \linkS4class{PCollection} data.
+This function loads HDF5 files containing \linkS4class{PRecording} or \linkS4class{PCollection} data.
+}
+\examples{
+fn<-tempfile()
+Save(SampleData,fn)
+object.size(SampleData)
+rm(SampleData)
+SampleData<-Load(fn)
+object.size(SampleData)
 }
 \seealso{
-Save
+\link[=Save]{Save}, \link[=PRecording]{PRecording}, \link[=PCollection]{PCollection} objects
 }

@@ -1,13 +1,20 @@
-#' (OK) Adds PRecording to PCollection
+#' Adds PRecording to PCollection
 #'
 #' `r lifecycle::badge("stable")` \cr
-#' Adds a \linkS4class{PRecording} to existing \linkS4class{PCollection}
+#' Adds a \linkS4class{PRecording} to an existing \linkS4class{PCollection}
 #'
 #' @param X A \linkS4class{PRecording} object
 #' @param PRecording a \var{PRecording}  object, or \var{list} of \var{PRecording} objects.
-#' @param Names Vames for imported a \var{PRecording}. Standard is File name stored in the added a \var{PRecording}(s).
+#' @param Names Name(s) for imported \var{PRecording}(s). Standard is the source file name as stored in the added a \var{PRecording}(s).
 #' @param Group Group variable or list thereof, of the same length as \var{PRecording}
 #' @return A \linkS4class{PCollection} object
+#' @examples
+#' # create a PCollection for testing
+#' SampleCollection<-NewPCollection(SampleData,Names="A")
+#' SampleCollection
+#' # now add a PRecording
+#' SampleCollection<-AddPRecording(SampleCollection, SampleData)
+#' SampleCollection
 #' @name AddPRecording
 #' @exportMethod AddPRecording
 setGeneric(
@@ -39,7 +46,7 @@ setMethod("AddPRecording",
                    },
                    Group = "Generic")
           {
-            warning("MetaData and Plots are dropped to assure conistency.")
+            warning("MetaData and Plots droped for consistency.")
 
             if(is.list(Group)){
               if (is.list(PRecording)){
@@ -64,13 +71,13 @@ setMethod("AddPRecording",
               }
             }
 
-            X@Series <- append(X@Series, PRecording)
+            X@Recordings <- append(X@Recordings, PRecording)
             X@Names <- append(X@Names, Names)
             X@Group <-
               as.factor(c(as.character(X@Group), as.character(Group)))
 
             out <- PCollection(
-              Series = X@Series,
+              Recordings = X@Recordings,
               Names = X@Names,
               Group = X@Group,
               RecordingParams = X@RecordingParams

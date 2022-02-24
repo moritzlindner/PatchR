@@ -8,7 +8,7 @@ Calculate_IV(
   X,
   X_FROM,
   X_TO,
-  ReturnPMobject = T,
+  ReturnPObject = T,
   ITrace = "I-mon",
   VTrace = "V-mon",
   x_D_FROM = NA,
@@ -20,14 +20,14 @@ Calculate_IV(
 
 \item{X_FROM, X_TO, x_D_FROM, X_D_TO}{Time points to perform averaging for IV prodcution}
 
-\item{ReturnPMobject}{whether to return results as a \link[=PRecording]{PRecording}  with an additional, computed trace. If set to \code{FALSE}, will return a \link[base:matrix]{base::matrix}. Default is \code{TRUE}.}
+\item{ReturnPObject}{whether to return results as a \link[=PRecording]{PRecording}  with an additional, computed trace. If set to \code{FALSE}, will return a \link[base:matrix]{base::matrix}. Default is \code{TRUE}.}
 
-\item{ITrace, VTrace}{Name of the traces containig Current(I) and and Voltage(V)}
+\item{ITrace, VTrace}{Name of the traces/channels containig Current(I) and and Voltage(V)}
 }
 \value{
 a matrix or PRecording with IV \link[base:matrix]{base::matrix} and \link[ggplot2:ggplot]{ggplot2::ggplot} stored in the MetaData and Plot slot, resp.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} \cr
-This function is deprecated. Please use \link[=BuildStimRespPlot]{BuildStimRespPlot} instead. \cr This function averages \link[=PRecording]{PRecording} objects by Trace, Sweep or Time. If X is a \link[=PCollection]{PCollection}. then does so for each Series stored in the X
+This function is deprecated. Please use \link[=BuildStimRespPlot]{BuildStimRespPlot} instead. \cr This function averages \link[=PRecording]{PRecording} objects by Trace, Sweep or Time. If X is a \link[=PCollection]{PCollection}. then does so for each recording stored in the object.
 }

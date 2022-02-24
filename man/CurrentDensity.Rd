@@ -2,19 +2,19 @@
 % Please edit documentation in R/CurrentDensity.R
 \name{CurrentDensity}
 \alias{CurrentDensity}
-\title{(OK) Normalizes current traces to cell capacity}
+\title{Normalizes current traces to cell capacity}
 \usage{
 CurrentDensity(X, Trace = "I.mon")
 }
 \arguments{
 \item{X}{A \linkS4class{PRecording} or \linkS4class{PCollection} object}
 
-\item{Trace}{Name of trace containing current data to normalize to cell capacity.}
+\item{Trace}{Name of trace/channel containing current data to normalize to cell capacity.}
 }
 \value{
 A \linkS4class{PRecording} or \linkS4class{PCollection} object.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}} \cr
-This function normalizes current traces to cell capacity and adds it as a new Trace
+This function normalizes current traces/channels to cell capacity and adds it as a new Trace
 }

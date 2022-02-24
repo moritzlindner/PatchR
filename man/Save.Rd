@@ -2,7 +2,7 @@
 % Please edit documentation in R/Save.R
 \name{Save}
 \alias{Save}
-\title{(OK) Saves PRecording or PCollection objects to HDF5 files}
+\title{Saves PRecording or PCollection objects to HDF5 files}
 \usage{
 Save(X, filename, overwrite = F)
 }
@@ -19,4 +19,15 @@ Does not return any values.
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}} \cr
 This function saves \linkS4class{PCollection} or \linkS4class{PCollection} objects into HDF5 files.
+}
+\examples{
+fn<-tempfile()
+Save(SampleData,fn)
+object.size(SampleData)
+rm(SampleData)
+SampleData<-Load(fn)
+object.size(SampleData)
+}
+\seealso{
+\link[=Load]{Load}, \link[=PRecording]{PRecording}, \link[=PCollection]{PCollection} objects)
 }

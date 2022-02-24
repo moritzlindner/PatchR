@@ -2,7 +2,7 @@
 % Please edit documentation in R/addPRecording.R
 \name{AddPRecording}
 \alias{AddPRecording}
-\title{(OK) Adds PRecording to PCollection}
+\title{Adds PRecording to PCollection}
 \usage{
 AddPRecording(
   X,
@@ -17,7 +17,7 @@ AddPRecording(
 
 \item{PRecording}{a \var{PRecording}  object, or \var{list} of \var{PRecording} objects.}
 
-\item{Names}{Vames for imported a \var{PRecording}. Standard is File name stored in the added a \var{PRecording}(s).}
+\item{Names}{Name(s) for imported \var{PRecording}(s). Standard is the source file name as stored in the added a \var{PRecording}(s).}
 
 \item{Group}{Group variable or list thereof, of the same length as \var{PRecording}}
 }
@@ -26,5 +26,13 @@ A \linkS4class{PCollection} object
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}} \cr
-Adds a \linkS4class{PRecording} to existing \linkS4class{PCollection}
+Adds a \linkS4class{PRecording} to an existing \linkS4class{PCollection}
+}
+\examples{
+# create a PCollection for testing
+SampleCollection<-NewPCollection(SampleData,Names="A")
+SampleCollection
+# now add a PRecording
+SampleCollection<-AddPRecording(SampleCollection, SampleData)
+SampleCollection
 }

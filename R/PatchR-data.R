@@ -1,6 +1,6 @@
 #' IV Protocol data
 #'
-#' This data set contains data from three traces from an IV recording protocol.
+#' This data set contains data from two channels (I-mon and V-mon) and three sweeps obtained using an IV recording protocol.
 #'
 #' @docType data
 #'
@@ -13,7 +13,7 @@
 #' @keywords datasets
 #'
 #' @examples
-#' rec<-Load(data(PRecording))
-#' rec<-BuildRecordingPlot(rec)
-#' Inspect(rec, what = "I-mon")
-"PRecording"
+#' data(PRecording)
+#' SampleData<-BuildRecordingPlot(SampleData)
+#' Inspect(SampleData, what = "I-mon")
+"SampleData"

@@ -1,24 +1,41 @@
-#' (OK) Plotting methods
+#' Plotting methods
 #'
 #' `r lifecycle::badge("stable")` \cr
-#' These methods create "typical" ephsy graphs like dose-response curves, time-series or point statistics.
+#' These methods create "typical" electrophysiology graphs, like stimulus-response curves, time-series or point statistics.
 #'
 #' @inheritParams MeasureStimResp
 #' @param Sweep Sweep to analyse for group comparison
 #' @param fun Function to apply on graph for stimulus response plotting
-#' @return A \linkS4class{PCollection} with an item added to the Plots slot if \code{ReturnPMobject=T} or a \link[ggplot2:ggplot]{ggplot}.
+#' @return A \linkS4class{PCollection} with an item added to the Plots slot if \code{ReturnPObject=T} or a \link[ggplot2:ggplot]{ggplot}.
+#' @seealso  \link[=Inspect]{Inspect}, \link[=Measure]{Measure}, \link[=GetPlot]{GetPlot}, \link[=GetPlotNames]{GetPlotNames}
 #' @examples
-#' \dontrun{
-#' # return ggplot
-#' BuildTimeSeriesPlot(aPRecording, RespTrace = "I-mon", Time = c(0.8,1), fun = mean, ReturnPMobject = F)
-#' # return PRecording
-#' aPRecording<-BuildTimeSeriesPlot(aPRecording, RespTrace = "I-mon", Time = c(0.8,1), fun = mean, ReturnPMobject = T)
-#' Inspect(aPRecording,"TimeSeriesPlot")
-#' }
+#' # Build a stimulus response curve from a single recording. Here, a current
+#' # response, averaged from 0.8-1s of the trace is used. A PRecording object with
+#' # an updated slot Plots is returned.
+#' data(PRecording)
+#' SampleData<-BuildStimRespPlot(
+#'   SampleData,
+#'   StimTrace = "V-mon",
+#'   RespTrace = "I-mon",
+#'   Time = c(0.8,1),
+#'   fun = mean,
+#'   ReturnPObject = TRUE
+#' )
+#' # Interactively analyse graph
+#' Inspect(SampleData,"StimRespPlot")
+#'
+#'  # Build a time series. Average is taken from RespTrace between 0.8s and 1s for
+#'  # each sweep and is plotted against the timestamp of the sweep. The graph
+#'  # (ggplot) is returned directly.
+#' BuildTimeSeriesPlot(SampleData,
+#'    RespTrace = "I-mon",
+#'    Time = c(0.8,1),
+#'    fun = mean,
+#'    ReturnPObject = FALSE)
 #' @name Plot
 NULL
 
-#' @describeIn Plot This method builds a dose-response curve
+#' @describeIn Plot This method builds a stimulus-response curve
 #' @exportMethod BuildStimRespPlot
 setGeneric(
   name = "BuildStimRespPlot",
@@ -27,7 +44,7 @@ setGeneric(
                  RespTrace = "I-mon",
                  Time,
                  fun = mean,
-                 ReturnPMobject = T)
+                 ReturnPObject = T)
   {
     standardGeneric("BuildStimRespPlot")
   }
@@ -41,13 +58,13 @@ setMethod("BuildStimRespPlot",
                    RespTrace = "I-mon",
                    Time,
                    fun = mean,
-                   ReturnPMobject = T) {
+                   ReturnPObject = T) {
             BuildStimRespPlotgeneric(X,
                                      StimTrace,
                                      RespTrace,
                                      Time,
                                      fun,
-                                     ReturnPMobject)
+                                     ReturnPObject)
           })
 
 #' @noRd
@@ -58,23 +75,24 @@ setMethod("BuildStimRespPlot",
                    RespTrace = "I-mon",
                    Time,
                    fun = mean,
-                   ReturnPMobject = T) {
+                   ReturnPObject = T) {
             BuildStimRespPlotgeneric(X,
                                      StimTrace,
                                      RespTrace,
                                      Time,
                                      fun,
-                                     ReturnPMobject)
+                                     ReturnPObject)
           })
 
 
+#' @importFrom ggplot2 ggplot geom_line aes_string theme_classic theme element_text xlab ylab stat_summary element_rect
 #' @noRd
 BuildStimRespPlotgeneric <- function(X,
                                      StimTrace = "V-mon",
                                      RespTrace = "I-mon",
                                      Time,
                                      fun = mean,
-                                     ReturnPMobject = T) {
+                                     ReturnPObject = T) {
   dat <- MeasureStimResp(X,
                          StimTrace,
                          RespTrace,
@@ -88,11 +106,11 @@ BuildStimRespPlotgeneric <- function(X,
       paste0(ConvenientScalessi(dat$Response), X@Units[GetTraceNames(X) == RespTrace])
   } else{
     StimUnit <-
-      paste0(ConvenientScalessi(dat$Stimulus), X@Series[[1]]@Units[GetTraceNames(X@Series[[1]]) ==
-                                                                     StimTrace])
+      paste0(ConvenientScalessi(dat$Stimulus), X@Recordings[[1]]@Units[GetTraceNames(X@Recordings[[1]]) ==
+                                                                         StimTrace])
     RespUnit <-
-      paste0(ConvenientScalessi(dat$Response), X@Series[[1]]@Units[GetTraceNames(X@Series[[1]]) ==
-                                                                     RespTrace])
+      paste0(ConvenientScalessi(dat$Response), X@Recordings[[1]]@Units[GetTraceNames(X@Recordings[[1]]) ==
+                                                                         RespTrace])
   }
   dat$Stimulus <- ConvenientScalesvalue(dat$Stimulus)
   dat$Response <- ConvenientScalesvalue(dat$Response)
@@ -101,29 +119,29 @@ BuildStimRespPlotgeneric <- function(X,
     dat$Group <- "Genereic"
   }
   out <-
-    ggplot2::ggplot(dat,
-                    ggplot2::aes_string(y = "Response", x = "Stimulus", colour = "Group")) +
-    ggplot2::stat_summary(fun = mean, geom = "line") +
-    ggplot2::stat_summary(fun = mean, geom = "point") +
-    ggplot2::stat_summary(fun.data = mean_se, geom = "errorbar") +
-    ggplot2::theme_classic() +
-    ggplot2::theme(
+    ggplot(dat,
+           aes_string(y = "Response", x = "Stimulus", colour = "Group")) +
+    stat_summary(fun = mean, geom = "line") +
+    stat_summary(fun = mean, geom = "point") +
+    stat_summary(fun.data = mean_se, geom = "errorbar") +
+    theme_classic() +
+    theme(
       legend.position = "bottom",
       text = element_text(size = 8),
-      strip.background = ggplot2::element_rect(
+      strip.background = element_rect(
         fill = "light grey",
         colour = NULL,
         size = 0
       )
     ) +
-    ggplot2::xlab(paste(StimTrace, " [", StimUnit, "]")) +
-    ggplot2::ylab(paste(RespTrace, " [", RespUnit, "]"))
+    xlab(paste(StimTrace, " [", StimUnit, "]")) +
+    ylab(paste(RespTrace, " [", RespUnit, "]"))
 
   if (length(unique(dat$group)) == 1) {
-    out <- out + ggplot2::theme(legend.position = "none")
+    out <- out + theme(legend.position = "none")
   }
 
-  if (ReturnPMobject) {
+  if (ReturnPObject == T) {
     X@Plots[["StimRespPlot"]] <- out
     X
   } else{
@@ -140,7 +158,7 @@ setGeneric(
                  RespTrace = "I-mon",
                  Time,
                  fun = mean,
-                 ReturnPMobject = T)
+                 ReturnPObject = T)
   {
     standardGeneric("BuildTimeSeriesPlot")
   }
@@ -153,12 +171,12 @@ setMethod("BuildTimeSeriesPlot",
                    RespTrace = "I-mon",
                    Time,
                    fun = mean,
-                   ReturnPMobject = T) {
+                   ReturnPObject = T) {
             BuildTimeSeriesPlotgeneric(X,
                                        RespTrace,
                                        Time,
                                        fun,
-                                       ReturnPMobject)
+                                       ReturnPObject)
           })
 #' @noRd
 setMethod("BuildTimeSeriesPlot",
@@ -167,21 +185,22 @@ setMethod("BuildTimeSeriesPlot",
                    RespTrace = "I-mon",
                    Time,
                    fun = mean,
-                   ReturnPMobject = T) {
+                   ReturnPObject = T) {
             BuildTimeSeriesPlotgeneric(
               X = X,
               RespTrace = RespTrace,
               Time = Time,
               fun = fun,
-              ReturnPMobject = ReturnPMobject
+              ReturnPObject = ReturnPObject
             )
           })
+#' @importFrom ggplot2 ggplot geom_line aes_string theme_classic theme element_text xlab ylab stat_summary element_rect
 #' @noRd
 BuildTimeSeriesPlotgeneric <- function(X,
                                        RespTrace,
                                        Time,
                                        fun,
-                                       ReturnPMobject) {
+                                       ReturnPObject) {
   dat <- MeasureStimResp(
     X = X,
     StimTrace = RespTrace,
@@ -195,10 +214,11 @@ BuildTimeSeriesPlotgeneric <- function(X,
       paste0(ConvenientScalessi(dat$Response), X@Units[GetTraceNames(X) == RespTrace])
   } else{
     TimeUnit <-
-      paste0(ConvenientScalessi(dat$StimTimes), X@Series[[1]]@TimeUnit)
+      paste0(ConvenientScalessi(dat$StimTimes),
+             X@Recordings[[1]]@TimeUnit)
     RespUnit <-
-      paste0(ConvenientScalessi(dat$Response), X@Series[[1]]@Units[GetTraceNames(X@Series[[1]]) ==
-                                                                     RespTrace])
+      paste0(ConvenientScalessi(dat$Response), X@Recordings[[1]]@Units[GetTraceNames(X@Recordings[[1]]) ==
+                                                                         RespTrace])
 
   }
   dat$StimTimes <- ConvenientScalesvalue(dat$StimTimes)
@@ -208,29 +228,29 @@ BuildTimeSeriesPlotgeneric <- function(X,
     dat$Group <- "Genereic"
   }
   out <-
-    ggplot2::ggplot(dat,
-                    ggplot2::aes_string(y = "Response", x = "StimTimes", colour = "Group")) +
-    ggplot2::stat_summary(fun = mean, geom = "line") +
-    ggplot2::stat_summary(fun = mean, geom = "point") +
-    ggplot2::stat_summary(fun.data = mean_se, geom = "errorbar") +
-    ggplot2::theme_classic() +
-    ggplot2::theme(
+    ggplot(dat,
+           aes_string(y = "Response", x = "StimTimes", colour = "Group")) +
+    stat_summary(fun = mean, geom = "line") +
+    stat_summary(fun = mean, geom = "point") +
+    stat_summary(fun.data = mean_se, geom = "errorbar") +
+    theme_classic() +
+    theme(
       legend.position = "bottom",
       text = element_text(size = 8),
-      strip.background = ggplot2::element_rect(
+      strip.background = element_rect(
         fill = "light grey",
         colour = NULL,
         size = 0
       )
     ) +
-    ggplot2::xlab(paste("Time [", TimeUnit, "]")) +
-    ggplot2::ylab(paste(RespTrace, " [", RespUnit, "]"))
+    xlab(paste("Time [", TimeUnit, "]")) +
+    ylab(paste(RespTrace, " [", RespUnit, "]"))
 
   if (length(unique(dat$group)) == 1) {
-    out <- out + ggplot2::theme(legend.position = "none")
+    out <- out + theme(legend.position = "none")
   }
 
-  if (ReturnPMobject) {
+  if (ReturnPObject == T) {
     X@Plots[["TimeSeriesPlot"]] <- out
     X
   } else{
@@ -247,7 +267,7 @@ setGeneric(
                  RespTrace = "I-mon",
                  Time,
                  fun = mean,
-                 ReturnPMobject = T)
+                 ReturnPObject = T)
   {
     standardGeneric("BuildGroupComparisonPlot")
   }
@@ -260,65 +280,66 @@ setMethod("BuildGroupComparisonPlot",
                    RespTrace = "I-mon",
                    Time,
                    fun = mean,
-                   ReturnPMobject = T) {
+                   ReturnPObject = T) {
             BuildGroupComparisonPlotgeneric(X,
                                             Sweep,
                                             RespTrace,
                                             Time,
                                             fun,
-                                            ReturnPMobject)
+                                            ReturnPObject)
           })
-#' @noRd
+#' @importFrom ggplot2 ggplot geom_line geom_point geom_boxplot aes_string theme_classic theme element_text xlab ylab stat_summary element_rect
 #' @importFrom ggpubr stat_compare_means desc_statby compare_means
+#' @importFrom knitr kable
+#' @noRd
 BuildGroupComparisonPlotgeneric <- function(X,
                                             Sweep,
                                             RespTrace = "I-mon",
                                             Time,
                                             fun = mean,
-                                            ReturnPMobject) {
-  X.tmp <- GetData(X, Sweeps = Sweep)
+                                            ReturnPObject) {
+  X.tmp <- GetData(X, Sweeps = Sweep, nowarnings = T)
   dat <- MeasureStimResp(X.tmp,
                          StimTrace = RespTrace,
                          RespTrace,
                          Time,
                          fun)
-
   if (class(X.tmp)[1] == "PRecording") {
     RespUnit <-
       paste0(ConvenientScalessi(dat$Response), X.tmp@Units[GetTraceNames(X.tmp) == RespTrace])
   } else{
     RespUnit <-
-      paste0(ConvenientScalessi(dat$Response), X.tmp@Series[[1]]@Units[GetTraceNames(X.tmp@Series[[1]]) ==
-                                                                         RespTrace])
+      paste0(ConvenientScalessi(dat$Response),
+             X.tmp@Recordings[[1]]@Units[GetTraceNames(X.tmp@Recordings[[1]]) ==
+                                           RespTrace])
   }
   dat$Response <- ConvenientScalesvalue(dat$Response)
 
   if (!("Group" %in% colnames(dat))) {
     dat$Group <- "Genereic"
   }
-
   message("Summary statistics")
-  cat(desc_statby(dat, "Response", "Group"))
+  kable(desc_statby(dat, "Response", "Group"))
   message("Group comparison")
-  cat(compare_means(Response ~ Group, dat))
+  kable(compare_means(Response ~ Group, dat))
 
   out <-
-    ggplot(dat, ggplot2::aes_string(y = "Response", x = "Group")) +
-    ggplot2::geom_boxplot() +
-    ggplot2::geom_point(position = "jitter") +
-    ggpubr::stat_compare_means() +
-    ggplot2::theme_classic() +
-    ggplot2::theme(
+    ggplot(dat, aes_string(y = "Response", x = "Group")) +
+    geom_boxplot() +
+    geom_point(position = "jitter") +
+    stat_compare_means() +
+    theme_classic() +
+    theme(
       legend.position = "bottom",
       text = element_text(size = 8),
-      strip.background = ggplot2::element_rect(
+      strip.background = element_rect(
         fill = "light grey",
         colour = NULL,
         size = 0
       )
     ) +
-    ggplot2::ylab(paste(RespTrace, " [", RespUnit, "]"))
-  if (ReturnPMobject) {
+    ylab(paste(RespTrace, " [", RespUnit, "]"))
+  if (ReturnPObject == T) {
     X@Plots[["GroupComparisonPlot"]] <- out
     X
   } else{

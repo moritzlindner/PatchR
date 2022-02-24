@@ -10,11 +10,13 @@
 \alias{GetRecParam}
 \alias{GetGroupMembers}
 \alias{GetGroupNames}
-\alias{GetSeriesNames}
+\alias{GetRecordingNames}
 \alias{GetMetaData}
+\alias{GetPlotNames}
+\alias{GetPlot}
 \alias{GetData}
 \alias{Subset}
-\title{(OK) Accession methods}
+\title{Accession methods}
 \usage{
 GetSweepNames(X)
 
@@ -32,16 +34,20 @@ GetGroupMembers(X, which)
 
 GetGroupNames(X)
 
-GetSeriesNames(X)
+GetRecordingNames(X)
 
-GetMetaData(X, which)
+GetMetaData(X, which = colnames(X@MetaData))
+
+GetPlotNames(X)
+
+GetPlot(X, which = colnames(X@MetaData))
 
 GetData(
   X,
   Traces = GetTraceNames(X),
   Sweeps = GetSweepNames(X),
   Time = range(GetTimeTrace(X)),
-  Series = NULL,
+  Recordings = NULL,
   Group = NULL,
   TimeExclusive = F,
   nowarnings = F
@@ -52,7 +58,7 @@ Subset(
   Traces = GetTraceNames(X),
   Sweeps = GetSweepNames(X),
   Time = range(GetTimeTrace(X)),
-  Series = NULL,
+  Recordings = NULL,
   Group = NULL,
   TimeExclusive = F,
   nowarnings = F
@@ -65,11 +71,11 @@ Subset(
 \item A name of a valid Group in a \linkS4class{PCollection} (for \code{GetGroupMembers}). \cr 2) A name or a vector of names of slot(s) in RecordingParams (for \code{GetRecParam}). \cr or 3) A name or a vector of names of a column in the MetaData slot (for \code{GetMetaData}).
 }}
 
-\item{Traces, Sweeps}{List of traces/sweeps to keep}
+\item{Traces, Sweeps}{List of traces/channels or sweeps to keep}
 
 \item{Time}{either a range of time points to keep, or, if \code{TimeExclusive} is \code{TRUE}, then two particular time points}
 
-\item{Series}{Subset by series/recordings. Understands names (= file names of the recordings) or indices or by logical indexing. Only for \linkS4class{PCollection} .}
+\item{Recordings}{Subset by series/recordings. Understands names (= file names of the recordings) or indices or by logical indexing. Only for \linkS4class{PCollection} .}
 
 \item{Group}{Subset by Group name. Only for  \linkS4class{PCollection} .}
 
@@ -81,6 +87,10 @@ Subset(
 A numeric vector.
 
 For \code{GetMetaData} a \code{vector} of type \code{numeric}  or a \code{matrix}.
+
+For \code{GetPlotNames} a \code{vector} of type \code{character}.
+
+For \code{GetPlot} a \link[=ggplot2]{ggplot}.
 
 A \linkS4class{PRecording} or \linkS4class{PCollection} object (for \code{GetData})
 }
@@ -109,17 +119,16 @@ These methods can be used to access information stored in \linkS4class{PRecordin
 
 \item \code{GetGroupNames}: Can be used on \linkS4class{PCollection} objects only and returns the names of all groups.
 
-\item \code{GetSeriesNames}: Can be used on \linkS4class{PCollection} objects only and returns the names of all series
+\item \code{GetRecordingNames}: Can be used on \linkS4class{PCollection} objects only and returns the names of all recordings.
 
 \item \code{GetMetaData}: Returns one or more columns from the MetaData Slot.
 
-\item \code{GetData}: This function subsets objects by \var{Trace}, \var{Sweep} or \var{Time}. For  \linkS4class{PCollection} additionally by \var{Series} or \var{Group}
+\item \code{GetPlotNames}: Returns the names of the plots stored in the Plots Slot.
+
+\item \code{GetPlot}: Returns a plot from the Plots slot.
+
+\item \code{GetData}: This function subsets objects by \var{Trace}, \var{Sweep} or \var{Time}. For  \linkS4class{PCollection} additionally by \var{Recordings} or \var{Group}
 
 \item \code{Subset}: Subset is an alias of Getdata
 }}
 
-\examples{
-\dontrun{
-GetRecParam(recording,c("Cs","Rs"))
-}
-}

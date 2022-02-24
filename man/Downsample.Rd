@@ -2,7 +2,7 @@
 % Please edit documentation in R/downsample.R
 \name{Downsample}
 \alias{Downsample}
-\title{(OK) Downsample a PRecording object}
+\title{Downsample a PRecording object}
 \usage{
 Downsample(X, npnts.out = NULL, sample.rate = NULL)
 }
@@ -11,7 +11,7 @@ Downsample(X, npnts.out = NULL, sample.rate = NULL)
 
 \item{npnts.out}{Number of points in output time axis, ignored if NULL}
 
-\item{sample.rate}{New sampling rate in 1/\link{X@TimeUnit}}
+\item{sample.rate}{New sampling rate}
 }
 \value{
 A matrix or \link[=PRecording]{PRecording} object

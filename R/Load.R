@@ -1,15 +1,23 @@
-#' (OK) Load HDF5 files containing PRecording or PCollection
+#' Load HDF5 files containing PRecording or PCollection
 #'
 #' `r lifecycle::badge("stable")` \cr
-#' This function loads HDF5 files containing \linkS4class{PCollection} or \linkS4class{PCollection} data.
+#' This function loads HDF5 files containing \linkS4class{PRecording} or \linkS4class{PCollection} data.
 
 #' @param filename Path to the file to be loaded.
-#' @return A\linkS4class{PCollection} or \linkS4class{PCollection} object.
-#' @seealso Save
-#' @importFrom hdf5r h5attr
+#' @return A \linkS4class{PRecording} or \linkS4class{PCollection} object.
+#' @importFrom hdf5r h5attr H5File
+#' @importFrom utils compareVersion packageDescription
+#' @examples
+#' fn<-tempfile()
+#' Save(SampleData,fn)
+#' object.size(SampleData)
+#' rm(SampleData)
+#' SampleData<-Load(fn)
+#' object.size(SampleData)
+#' @seealso \link[=Save]{Save}, \link[=PRecording]{PRecording}, \link[=PCollection]{PCollection} objects
 #' @export
 Load <- function(filename) {
-  file <- hdf5r::H5File$new(filename, mode = "r")
+  file <- H5File$new(filename, mode = "r")
   message(paste("Loading", file$attr_open("Type")$read(), "from", filename))
   message(
     paste(
@@ -32,16 +40,16 @@ Load <- function(filename) {
   if (file$attr_open("Type")$read() == "PCollection") {
     # if is a PCollection
 
-    Series <- file$open("Series")
+    Recordings <- file$open("Recordings")
     SER_LIST <- list()
-    for (i in Series$names) {
-      message("Loading series ", as.character(as.numeric(i)), " of ",as.character(max(as.numeric(Series$names))))
-      SER_LIST[as.numeric(i)] <- Load.Recording(Series$open(i))
+    for (i in Recordings$names) {
+      message("Loading recording ", as.character(as.numeric(i)), " of ",as.character(max(as.numeric(Recordings$names))))
+      SER_LIST[as.numeric(i)] <- Load.Recording(Recordings$open(i))
     }
     params <- Load.RecordingParams(file$open("RecordingParams"))
 
     X <- PCollection(
-      Series = SER_LIST,
+      Recordings = SER_LIST,
       Names = file$open("Names")$read(),
       Group = as.factor(file$open("Group")$read()),
       RecordingParams = params
@@ -69,6 +77,16 @@ Load.RecordingParams <- function(RecordingParams) {
     },
     Series =  if (RecordingParams$open("Series")$dims > 0) {
       RecordingParams$open("Series")$read()
+    } else{
+      ""
+    },
+    Type = if (RecordingParams$open("Type")$dims > 0) {
+      RecordingParams$open("Type")$read()
+    } else{
+      ""
+    },
+    Version = if (RecordingParams$open("Version")$dims > 0) {
+      RecordingParams$open("Version")$read()
     } else{
       ""
     },
@@ -106,12 +124,9 @@ Load.Recording <- function(con) {
 
 Load.Metadata <- function(con, Pobject) {
   if ("MetaData" %in% con$names){
-    Pobject@MetaData <- con$open("MetaData")$read()
+    Pobject@MetaData <- as.matrix(con$open("MetaData")$read())
     colnames(Pobject@MetaData) <-
       con$open("MetaData")$attr_open("colnames")$read()
-    rownames(Pobject@MetaData) <-
-      con$open("MetaData")$attr_open("rownames")$read()
-
     MetaDataFx <- con$open(".MetaDataFx")
     Pobject@.MetaDataFx <- list()
     for (i in MetaDataFx$names) {

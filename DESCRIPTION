@@ -1,10 +1,10 @@
 Package: PatchR
 Type: Package
 Title: An environment for working with ephys (PatchClamp) recordings
-Version: 0.11.0
+Version: 1.0.0
 Author: person("Moritz", "Lindner", email = "moritz@lindnerlab.de", role = c("aut", "cre"))
 Maintainer: Moritz Lindner <moritz@lindnerlab.de>
-Description: An environment for working with ephys (PatchClamp) recordings. Currently import for HE(OK)A's PatchMaster is implemented.
+Description: An environment for working with ephys (PatchClamp) recordings. Currently import for HEKA's PatchMaster DAT and Axon's ABF files is implemented.
 License: GPL (>= 3)
 Imports: 
     ggplot2,
@@ -20,13 +20,14 @@ Imports:
     stats,
     utils,
     hdf5r,
+    readABF,
+    knitr,
     lifecycle
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.2
 Collate: 
     '0PRecordingParams.R'
-    'PatchR.R'
     '0PCollection.R'
     '0PRecording.R'
     '1Plot.R'

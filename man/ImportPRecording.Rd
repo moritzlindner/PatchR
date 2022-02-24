@@ -2,7 +2,7 @@
 % Please edit documentation in R/ImportPRecording.R
 \name{ImportPRecording}
 \alias{ImportPRecording}
-\title{\link{UPD - pCLAMP} Import Series from Patch Master *.dat file into a PRecording object}
+\title{Import electrophysiology recordings}
 \usage{
 ImportPRecording(
   filename,
@@ -14,21 +14,31 @@ ImportPRecording(
 )
 }
 \arguments{
-\item{filename}{path to a \href{https://www.heka.com/downloads/downloads_main.html#down_patchmaster}{Patch Master} *.dat file.}
+\item{filename}{Path to file. Currently only \href{https://www.heka.com/downloads/downloads_main.html#down_patchmaster}{Patch Master .dat} and \href{https://swharden.com/pyabf/abf2-file-format/}{Axon Binary (.abf)} files are supported.}
 
-\item{experiment}{Index of Experiment to import (1st order hierarchy in PM dat file).}
+\item{experiment}{Index of the experiment to import. Only required if \var{filename} is a PatchMaster file. The experiment is the 1st order hierarchy in PatchMaster file tree. Default is \code{1}.}
 
-\item{series}{Index of Series to import (2nd order hierarchy in PM dat file).}
+\item{series}{Index of the series to import Only required if \var{filename} is a PatchMaster file. The series is the 2nd order hierarchy in PatchMaster file tree. Default is \code{1}.}
 
-\item{traces}{Traces to import (indices). Must be vector of numeric of length > 0.}
+\item{traces}{Index or indices of Traces/channels to import. The trace is the 3rd order hierarchy in PatchMaster file tree. Must be vector of numeric of length > 0. Default is \code{c(1,2)}.}
 
 \item{encoding}{File encoding to use, default is \code{getOption("encoding")}}
 
-\item{filetype}{The type of the file to be imported. Currently only \href{https://www.heka.com/downloads/downloads_main.html#down_patchmaster}{Patch Master} *.dat files are supported.}
+\item{filetype}{The type of the file to be imported. Accepted values are 'PatchMaster' or 'ABF' If left blank (default), it will be guessed from the file extension.}
 }
 \value{
-A \link[=PRecording]{PRecording} object
+A \linkS4class{PRecording} object
 }
 \description{
-This function imports Series from Patch Master *.dat files and creates PRecording objects
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}} \cr
+This function imports electrophysiology recordings from PatchMaster *.dat files ("Series") or Axon's ABF files and creates a PRecording object. Support for WinWCP files is thought in future.
+}
+\examples{
+\dontrun{
+# import a PatchMaster file
+tmp<-ImportPRecording("test.dat",series = 1,traces = c(1,2))
+}
+}
+\seealso{
+\linkS4class{PRecording}
 }

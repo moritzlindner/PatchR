@@ -2,20 +2,20 @@
 % Please edit documentation in R/addTrace.R
 \name{AddTrace}
 \alias{AddTrace}
-\title{(OK) Add data (Trace) to PRecording objects}
+\title{Add a trace/channel to PRecording objects}
 \usage{
 AddTrace(X, mtx, Trace, Unit, Sweeps = colnames(mtx), isOrig = F)
 }
 \arguments{
 \item{X}{A \linkS4class{PRecording} object}
 
-\item{mtx}{Any X convertible into a \var{matrix}, that has the same dimension as data in the Data slot of \var{X}}
+\item{mtx}{Any object convertible into a \var{matrix}. Rows are sampling points, columns are sweeps. Number of sampling points and sweeps must match the traces already present in \var{X}}
 
 \item{Trace}{Name of the new trace}
 
-\item{Unit}{The SI unit of the trace}
+\item{Unit}{The unit of the trace}
 
-\item{Sweeps}{Names of the sweeps added. Must be the same as sweep names in \var{X}. Data will be sorted accoding to order of Sweeps in \var{X} Default is \code{colnames(X)}}
+\item{Sweeps}{Names of the sweeps added. Must match the sweep names in \var{X}. Data in \var{Trace} will be sorted according to the order of sweeps in \var{X} before adding. Default is \code{colnames(X)}}
 
 \item{isOrig}{if TRUE, marks added trace as an original recording.}
 }
@@ -24,7 +24,7 @@ A matrix or \linkS4class{PRecording} X
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}} \cr
-This function adds a new Trace (with data) from any object convertible into a matrix to a \linkS4class{PRecording} X.
+This function adds a new trace /channel from any object convertible into a matrix to an existing \linkS4class{PRecording} X.
 }
 \seealso{
 \linkS4class{PRecording}, \linkS4class{PCollection}, \link[base:as.matrix]{as.matrix()}

@@ -1,7 +1,7 @@
-#' @describeIn Get This function subsets objects by \var{Trace}, \var{Sweep} or \var{Time}. For  \linkS4class{PCollection} additionally by \var{Series} or \var{Group}
-#' @param Traces,Sweeps List of traces/sweeps to keep
+#' @describeIn Get This function subsets objects by \var{Trace}, \var{Sweep} or \var{Time}. For  \linkS4class{PCollection} additionally by \var{Recordings} or \var{Group}
+#' @param Traces,Sweeps List of traces/channels or sweeps to keep
 #' @param Time either a range of time points to keep, or, if \code{TimeExclusive} is \code{TRUE}, then two particular time points
-#' @param Series Subset by series/recordings. Understands names (= file names of the recordings) or indices or by logical indexing. Only for \linkS4class{PCollection} .
+#' @param Recordings Subset by series/recordings. Understands names (= file names of the recordings) or indices or by logical indexing. Only for \linkS4class{PCollection} .
 #' @param Group Subset by Group name. Only for  \linkS4class{PCollection} .
 #' @param TimeExclusive Keep only the two time points stated under Time, not the range
 #' @param nowarnings Supress warning messages.
@@ -13,7 +13,7 @@ setGeneric(
                  Traces = GetTraceNames(X),
                  Sweeps = GetSweepNames(X),
                  Time = range(GetTimeTrace(X)),
-                 Series = NULL,
+                 Recordings = NULL,
                  Group = NULL,
                  TimeExclusive = F,
                  nowarnings = F)
@@ -32,12 +32,12 @@ setMethod("GetData",
                    nowarnings = F)
           {
             if (!nowarnings) {
-              if (!(length(X@Plots)==0 & all(dim(X@MetaData)==0)))
+              if (!(length(X@Plots) == 0 & all(dim(X@MetaData) == 0)))
               {
                 warning("Subsetting clears all metadata and plotting slots for data consistency!")
               }
             }
-            if (all.equal(Traces, GetTraceNames(X)) != TRUE) {
+            if (isFALSE(all.equal(Traces, GetTraceNames(X)))) {
               if (!nowarnings) {
                 cat("Only keep Traces:", Traces, "\n")
               }
@@ -45,7 +45,7 @@ setMethod("GetData",
                 stop("Traces to subset not in X")
               }
             }
-            if (all.equal(Sweeps, GetSweepNames(X)) != TRUE) {
+            if (isFALSE(all.equal(Sweeps, GetSweepNames(X)))) {
               if (!nowarnings) {
                 cat("Only keep Sweeps: ", Sweeps, "\n")
               }
@@ -53,7 +53,7 @@ setMethod("GetData",
                 stop("Traces to subset not in X")
               }
             }
-            if (all.equal(Time, range(GetTimeTrace(X))) != TRUE) {
+            if (isFALSE(all.equal(Time, range(GetTimeTrace(X))))) {
               if (!TimeExclusive) {
                 if (!nowarnings) {
                   cat("Only keep Times: ", Time[1], " to ", Time[2], "\n")
@@ -102,24 +102,26 @@ setMethod("GetData",
 setMethod("GetData",
           "PCollection",
           function(X,
-                   Traces = GetTraceNames(X@Series[[1]]),
-                   Sweeps = GetSweepNames(X@Series[[1]]),
-                   Time = range(GetTimeTrace(X@Series[[1]])),
-                   Series = GetSeriesNames(X),
+                   Traces = GetTraceNames(X),
+                   Sweeps = GetSweepNames(X),
+                   Time = range(GetTimeTrace(X)),
+                   Recordings = GetRecordingNames(X),
                    Group = GetGroupNames(X),
                    TimeExclusive = F,
                    nowarnings = F)
           {
             X <-
               lapply(X, function(x)
-                GetData(x, Traces, Sweeps, Time, TimeExclusive, nowarnings = nowarnings), ReturnPMobject =
+                GetData(x, Traces, Sweeps, Time, TimeExclusive, nowarnings = nowarnings), ReturnPObject =
                   T)
 
             if (all.equal(Group, GetGroupNames(X)) != TRUE) {
-              warning("Plots droped for consistency.")
+              if (!nowarnings) {
+                warning("Plots dropped for consistency.")
+              }
               keep <- as.character(X@Group) %in% as.character(Group)
               X <- PCollection(
-                Series = X@Series[keep],
+                Recordings = X@Recordings[keep],
                 Names = X@Names[keep],
                 Group = X@Group[keep],
                 MetaData = X@MetaData[keep],
@@ -127,27 +129,29 @@ setMethod("GetData",
               )
             }
 
-            if (all.equal(Series, GetSeriesNames(X)) != TRUE) {
-              warning("Plots droped for consistency.")
-              if (is.character(Series)) {
-                keep <- GetSeriesNames(X) %in% Series
+            if (all.equal(Recordings, GetRecordingNames(X)) != TRUE) {
+              if (!nowarnings) {
+                warning("Plots dropped for consistency.")
               }
-              if (is.numeric(Series)) {
-                keep <- logical(length(X@Series))
-                keep[Series] <- TRUE
+              if (is.character(Recordings)) {
+                keep <- GetRecordingNames(X) %in% Recordings
+              }
+              if (is.numeric(Recordings)) {
+                keep <- logical(length(X@Recordings))
+                keep[Recordings] <- TRUE
               }
               md <- matrix(nrow = 0, ncol = 0)
               if (sum(keep) > 1) {
                 try(md <- X@MetaData[keep, ], silent = T)
                 X <- PCollection(
-                  Series = X@Series[keep],
+                  Recordings = X@Recordings[keep],
                   Names = X@Names[keep],
                   Group = X@Group[keep],
                   MetaData = md,
                   RecordingParams = X@RecordingParams
                 )
               } else{
-                X <- X@Series[[which(keep)]]
+                X <- X@Recordings[[which(keep)]]
               }
             }
             X

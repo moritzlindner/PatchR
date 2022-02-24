@@ -4,6 +4,8 @@
 #' @noRd
 read.bundletree<-function (myfile, bundlename = ".pul", con = NA,encoding=getOption("encoding"))
 {
+  name<-""
+  rm(name)
   finally_close_con = is.na(con)
   if (is.na(con)) {
     con <- file(myfile, "rb", encoding=encoding)

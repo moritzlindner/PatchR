@@ -1,7 +1,7 @@
 #' (OK) Makes PRecording object scales convenient.
 #'
-#' `r lifecycle::badge("stable")` \cr
-#' This function converts scaling of a \linkS4class{PRecording} or \linkS4class{PCollection} object and adds SI prefixes. Caution: Currently not check is performed if Unit carries already a SI prefix.
+#' `r lifecycle::badge("experimental")` \cr
+#' This function converts scaling of a \linkS4class{PRecording} or \linkS4class{PCollection} object and adds SI prefixes. Caution: Currently no check is performed if a unit already carriesa SI prefix.
 #'
 #' @inheritParams Get
 #' @return A \linkS4class{PRecording} or \linkS4class{PCollection} object
@@ -60,6 +60,6 @@ setMethod("ConvenientScales",
 setMethod("ConvenientScales",
           "PCollection",
           function(X){
-            lapply(X,ConvenientScales,ReturnPMobject=T)
+            lapply(X,ConvenientScales,ReturnPObject=T)
           }
 )

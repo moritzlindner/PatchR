@@ -1,9 +1,9 @@
-#' (OK) Show
+#' Show
 #'
-#' Default method show for PRecording
+#' Default method \code{show} for \link[=PRecording]{PRecording} and \link[=PCollection]{PCollection} objects.
 #'
 #' @importMethodsFrom methods show
-#' @param object An S4 object of type PRecording or PCollection
+#' @param object An S4 object of type \link[=PRecording]{PRecording} or \link[=PCollection]{PCollection}
 #' @exportMethod show
 #' @name show
 NULL
@@ -18,7 +18,7 @@ setMethod("show",
             cat(
               "With",
               length(GetTraceNames(object)),
-              "Traces ,",
+              "Traces/Channels ,",
               length(GetSweepNames(object)),
               "Sweeps and",
               length(GetTimeTrace(object)),
@@ -26,17 +26,17 @@ setMethod("show",
             )
             cat(
               "RSeal: ",
-              ConvenientScalesvalue(rec@RecordingParams@RSeal),
-              ConvenientScalessi(rec@RecordingParams@RSeal),
+              ConvenientScalesvalue(object@RecordingParams@RSeal),
+              ConvenientScalessi(object@RecordingParams@RSeal),
               ", Rs: ",
-              ConvenientScalesvalue(rec@RecordingParams@Rs),
-              ConvenientScalessi(rec@RecordingParams@Rs),
+              ConvenientScalesvalue(object@RecordingParams@Rs),
+              ConvenientScalessi(object@RecordingParams@Rs),
               ", Cs: ",
-              ConvenientScalesvalue(rec@RecordingParams@Cs),
-              ConvenientScalessi(rec@RecordingParams@Cs),
+              ConvenientScalesvalue(object@RecordingParams@Cs),
+              ConvenientScalessi(object@RecordingParams@Cs),
               ", URest: ",
-              ConvenientScalesvalue(rec@RecordingParams@URest),
-              ConvenientScalessi(rec@RecordingParams@URest),
+              ConvenientScalesvalue(object@RecordingParams@URest),
+              ConvenientScalessi(object@RecordingParams@URest),
               "\n"
             )
             cat("Protocol is ", object@RecordingParams@ProtocolName, "\n")
@@ -49,7 +49,7 @@ setMethod("show",
           function(object) {
             cat("An object of class PCollection \n")
             cat(object@RecordingParams@RecMode, "Experiment \n")
-            cat("With", length(object@Series), " Series \n")
+            cat("With", length(object@Recordings), " Recordings \n")
             cat("in", length(levels(object@Group)), " Groups \n")
             cat("Protocol is ", object@RecordingParams@ProtocolName, "\n")
           })

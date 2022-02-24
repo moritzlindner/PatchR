@@ -1,11 +1,11 @@
-#' (OK) Downsample a PRecording object
+#' Downsample a PRecording object
 #'
 #' `r lifecycle::badge("stable")` \cr
 #' Downsample \link[=PRecording]{PRecording} object along the time axis
 #'
 #' @inheritParams Get
 #' @param npnts.out Number of points in output time axis, ignored if NULL
-#' @param sample.rate New sampling rate in 1/[X@TimeUnit]
+#' @param sample.rate New sampling rate
 #' @return A matrix or \link[=PRecording]{PRecording} object
 #' @name Downsample
 #' @exportMethod Downsample

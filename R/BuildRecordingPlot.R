@@ -15,7 +15,6 @@ setMethod("BuildRecordingPlot",
             tmp.X<-ConvenientScales(tmp.X)
             dat<-as.data.frame(tmp.X)
             dat$Sweeps<-as.numeric(dat$Sweeps)
-            #return(dat)
             for (i in tmp.X@Traces)
             {
               X@Plots[[i]]<-ggplot2::ggplot(dat[dat$Traces==i,])+

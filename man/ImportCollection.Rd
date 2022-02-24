@@ -2,30 +2,41 @@
 % Please edit documentation in R/ImportCollection.R
 \name{ImportCollection}
 \alias{ImportCollection}
-\title{(UPD PCLAMP) Imports a collection of PatchClamp recordings}
+\title{Imports a collection of electrophysiology recordings}
 \usage{
 ImportCollection(
-  parent.dir = getwd(),
   filelist = NULL,
   traces = c(1, 2),
-  type = "PatchMaster",
+  parent.dir = "",
+  filetype = NULL,
   encoding = getOption("encoding")
 )
 }
 \arguments{
-\item{parent.dir}{parent directory where to search for FileNames from \code{filelist}}
+\item{filelist}{A data.frame. If importing from \href{https://www.heka.com/downloads/downloads_main.html#down_patchmaster}{Patch Master .dat} files, it must contain the following three columns: "FileName","Experiment","Series". FileName can be an absolute path or relative to \var{parent.dir}. "Experiment","Series" correspond to the second and third order hierarchy in the PatchMaster file tree. If importing from \href{https://swharden.com/pyabf/abf2-file-format/}{Axon Binary (.abf)} files, a single column "FileName" is sufficient. An optional column is "Group" and can be used to assign the individual recordings into groups}
 
-\item{filelist}{a data.frame with four columns: "FileName","Experiment","Series","Group". FileName can be absolute or relative to parent.dir. "Experiment","Series" as defined in PatchMaster file. Groups can be assigned via the Group variable}
+\item{traces}{Index or indices of Traces/channels to import. The trace is the 3rd order hierarchy in PatchMaster file tree. Must be vector of numeric of length > 0. Default is \code{c(1,2)}.}
 
-\item{traces}{which traces to import. default is \code{c(1,2)}}
+\item{parent.dir}{Parent directory where to search for FileNames from \code{filelist}. Optional if no full path is provided in \var{filelist}.}
 
-\item{type}{File Type. Currently not implemented. Only works with PatchMatster files.}
+\item{filetype}{The type of the files to be imported. Accepted values are 'PatchMaster' or 'ABF' If left blank (default), it will be guessed from the extension of the first file in list}
 
-\item{encoding}{file encoding to use, default is \code{getOption("encoding")}}
+\item{encoding}{File encoding to use, default is \code{getOption("encoding")}}
 }
 \value{
-A \link[=PCollection]{PCollection} object
+A \linkS4class{PCollection} object
 }
 \description{
-Imports a collection of PatchClamp recordings. All files in one condition must be acquired using the same recording protocol. i.e. number of traces, data points per sweep, number of sweeps, etc must be identical.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}} \cr
+Imports a collection of electrophysiology recordings. All files in one condition must be acquired using the same recording protocol. I.e. the number of traces/channels, data points per sweep and number of sweeps must be identical.
+}
+\examples{
+\dontrun{
+rec.df<-data.frame("/path/to/file.dat",1,1)
+colnames(rec.df)<-c(("FileName","Experiment","Series"))
+tmp<-ImportCollection(rec.df,traces = c(1,2))
+}
+}
+\seealso{
+\linkS4class{PRecording}, \link[=ImportPRecording]{ImportPRecording}
 }

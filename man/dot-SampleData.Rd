@@ -3,20 +3,20 @@
 \docType{data}
 \name{.SampleData}
 \alias{.SampleData}
-\alias{PRecording}
+\alias{SampleData}
 \title{IV Protocol data}
 \format{
-An object of class \code{"PRecording"}; see \code{\link[PRecording]{PRecording}}.
+An object of class \code{"PRecording"}; see \link[=PRecording]{PRecording}.
 }
 \usage{
 data(PRecording)
 }
 \description{
-This dataset contains data from three traces from an IV recording protocol.
+This data set contains data from two channels (I-mon and V-mon) and three sweeps obtained using an IV recording protocol.
 }
 \examples{
-rec<-Load(data(PRecording))
-rec<-BuildRecordingPlot(rec)
-Inspect(rec, what = "I-mon")
+data(PRecording)
+SampleData<-BuildRecordingPlot(SampleData)
+Inspect(SampleData, what = "I-mon")
 }
 \keyword{datasets}

@@ -2,7 +2,7 @@
 #' @exportMethod BuildQCPlot
 setGeneric(name="BuildQCPlot",
            def=function(X,
-                        ReturnPMobject = T)
+                        ReturnPObject = T)
            {
              standardGeneric("BuildQCPlot")
            }
@@ -12,7 +12,7 @@ setGeneric(name="BuildQCPlot",
 setMethod("BuildQCPlot",
           "PCollection",
           function(X,
-                   ReturnPMobject = T){
+                   ReturnPObject = T){
             items<-c("Cs", "Rs")
 
             dat<-cbind(X@Names,X@Group,as.data.frame(GetRecParam(X,items)))
@@ -29,7 +29,7 @@ setMethod("BuildQCPlot",
               ggplot2::ylab(paste("Rs [MOhm]"))
 
 
-            if (ReturnPMobject) {
+            if (ReturnPObject) {
               X@Plots[["QCPlot"]] <- out
               X
             } else{

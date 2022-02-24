@@ -2,21 +2,27 @@
 % Please edit documentation in R/newPCollection.R
 \name{NewPCollection}
 \alias{NewPCollection}
-\title{(OK) Generates a new PCollection from a single PRecording}
+\title{Generates a new PCollection from PRecording(s)}
 \usage{
-NewPCollection(PRecording, Names = NULL, Group = "Generic")
+NewPCollection(PRecording, Names = NULL, Group = "Ungrouped")
 }
 \arguments{
-\item{PRecording}{a PRecording object, or list of PRecording objects}
+\item{PRecording}{a \linkS4class{PRecording} object, or list of PRecording objects}
 
-\item{Names}{Names of the PRecording, character vector w same number of entires as PRecording}
+\item{Names}{Name(s) of the \linkS4class{PCollection}. A character vector with the same number of entries as \var{PRecording}}
 
-\item{Group}{Group variable or list thereof, of the same lenght as PRecording}
+\item{Group}{Group assignments for the \linkS4class{PRecording}s. A character vector length 1 (all same group) or of the same length as \var{PRecording}}
 }
 \value{
 A \linkS4class{PCollection}object
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}} \cr
-Generates a new \linkS4class{PCollection} from a single \linkS4class{PRecording}
+Generates a new \linkS4class{PCollection} from one single or a list of \linkS4class{PRecording}(s)
+}
+\examples{
+data(PRecording)
+SampleData
+tmp<-NewPCollection(SampleData)
+tmp
 }

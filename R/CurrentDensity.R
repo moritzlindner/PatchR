@@ -1,10 +1,10 @@
-#' (OK) Normalizes current traces to cell capacity
+#' Normalizes current traces to cell capacity
 #'
 #' `r lifecycle::badge("stable")` \cr
-#' This function normalizes current traces to cell capacity and adds it as a new Trace
+#' This function normalizes current traces/channels to cell capacity and adds it as a new Trace
 #'
 #' @inheritParams Get
-#' @param Trace Name of trace containing current data to normalize to cell capacity.
+#' @param Trace Name of trace/channel containing current data to normalize to cell capacity.
 #' @return A \linkS4class{PRecording} or \linkS4class{PCollection} object.
 #' @name CurrentDensity
 #' @exportMethod CurrentDensity
@@ -40,6 +40,6 @@ setMethod("CurrentDensity",
           "PCollection",
           function(X,
                    Trace="I.mon"){
-            lapply(X,function(y){CurrentDensity(y,Trace)},ReturnPMobject=T)
+            lapply(X,function(y){CurrentDensity(y,Trace)},ReturnPObject=T)
           }
 )

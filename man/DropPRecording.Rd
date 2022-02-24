@@ -2,21 +2,31 @@
 % Please edit documentation in R/dropPMRecording.R
 \name{DropPRecording}
 \alias{DropPRecording}
-\title{(OK) Drops Recording(s) from PCollection}
+\title{Drops recording(s) from PCollection}
 \usage{
 DropPRecording(X, Recording = NULL, Group = NULL)
 }
 \arguments{
-\item{X}{a PCollection X}
+\item{X}{A PCollection object}
 
-\item{Recording}{A name of a \linkS4class{PRecording} in the collection, or a list thereof}
+\item{Recording}{A name of a \linkS4class{PRecording} in the collection, or a list thereof. If provided, drops that/those \linkS4class{PRecording}(s).}
 
-\item{Group}{A name of A group in the\linkS4class{PCollection}. Drops all \linkS4class{PRecording} belonging to that group. Either Recording or Group need to be given}
+\item{Group}{A name of a group in the\linkS4class{PCollection}. If provided, drops all \linkS4class{PRecording} belonging to that group. Either recording or group need to be given.}
 }
 \value{
-A \linkS4class{PCollection} X
+A \linkS4class{PCollection} object
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}} \cr
-Drops Recording(s) from PCollection
+Drops recording(s) from PCollection
+}
+\examples{
+data("PRecording")
+# first create a PCollection for testing
+SampleCollection<-NewPCollection(SampleData,Names="A")
+SampleCollection<-AddPRecording(SampleCollection, SampleData)
+SampleCollection
+# now drop the first Recording stored in it
+SampleCollection<-DropPRecording(SampleCollection, GetRecordingNames(SampleCollection)[1])
+SampleCollection
 }

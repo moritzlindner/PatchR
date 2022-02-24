@@ -1,14 +1,23 @@
 
-#' (OK) Drops Recording(s) from PCollection
+#' Drops recording(s) from PCollection
 #'
 #' `r lifecycle::badge("stable")` \cr
-#' Drops Recording(s) from PCollection
+#' Drops recording(s) from PCollection
 #'
-#' @param X a PCollection X
-#' @param Recording A name of a \linkS4class{PRecording} in the collection, or a list thereof
-#' @param Group A name of A group in the\linkS4class{PCollection}. Drops all \linkS4class{PRecording} belonging to that group. Either Recording or Group need to be given
-#' @return A \linkS4class{PCollection} X
+#' @param X A PCollection object
+#' @param Recording A name of a \linkS4class{PRecording} in the collection, or a list thereof. If provided, drops that/those \linkS4class{PRecording}(s).
+#' @param Group A name of a group in the\linkS4class{PCollection}. If provided, drops all \linkS4class{PRecording} belonging to that group. Either recording or group need to be given.
+#' @return A \linkS4class{PCollection} object
 #' @name DropPRecording
+#' @examples
+#' data("PRecording")
+#' # first create a PCollection for testing
+#' SampleCollection<-NewPCollection(SampleData,Names="A")
+#' SampleCollection<-AddPRecording(SampleCollection, SampleData)
+#' SampleCollection
+#' # now drop the first Recording stored in it
+#' SampleCollection<-DropPRecording(SampleCollection, GetRecordingNames(SampleCollection)[1])
+#' SampleCollection
 #' @exportMethod DropPRecording
 setGeneric(name="DropPRecording",
            def=function(X,
@@ -25,7 +34,7 @@ setMethod("DropPRecording",
                    Recording=NULL,
                    Group=NULL)
           {
-            warning("MetaData and Plots are dropped to assure conistency.")
+            warning("MetaData and Plots droped for consistency..")
             if (!is.null(Recording) & !is.null(Group)){
               stop("Only Group or Recording may be provided")
             }
@@ -36,7 +45,7 @@ setMethod("DropPRecording",
             Group<-droplevels(Group)
 
             out<-PCollection(
-              Series=X@Series[!(X@Names %in% Recording)],
+              Recordings=X@Recordings[!(X@Names %in% Recording)],
               Names=X@Names[!(X@Names %in% Recording)],
               Group=Group,
               RecordingParams=X@RecordingParams

@@ -1,4 +1,4 @@
-#' (OK) Saves PRecording or PCollection objects to HDF5 files
+#' Saves PRecording or PCollection objects to HDF5 files
 #'
 #' `r lifecycle::badge("stable")` \cr
 #'This function saves \linkS4class{PCollection} or \linkS4class{PCollection} objects into HDF5 files.
@@ -6,6 +6,14 @@
 #' @param filename Path to the file data should be written to.
 #' @param overwrite Should existing files be overwritten?
 #' @return Does not return any values.
+#' @examples
+#' fn<-tempfile()
+#' Save(SampleData,fn)
+#' object.size(SampleData)
+#' rm(SampleData)
+#' SampleData<-Load(fn)
+#' object.size(SampleData)
+#' @seealso \link[=Load]{Load}, \link[=PRecording]{PRecording}, \link[=PCollection]{PCollection} objects)
 #' @exportMethod Save
 setGeneric(
   name = "Save",
@@ -30,7 +38,7 @@ setMethod("Save",
                 warning(paste("File", filename, "already exists. Overwriting."))
               }
               file <-
-                Save.Recording(hdf5r::H5File$new(filename, mode = "w"), X)
+                Save.Recording(H5File$new(filename, mode = "w"), X)
               file$create_attr("Type", "PRecording")
               file$create_attr("Created", format(Sys.time()))
               file$create_attr("Version", packageDescription("PatchR")$Version)
@@ -51,7 +59,7 @@ setMethod("Save",
               if (file.exists(filename)) {
                 warning(paste("File", filename, "already exists. Overwriting."))
               }
-              file <- hdf5r::H5File$new(filename, mode = "w")
+              file <- H5File$new(filename, mode = "w")
               tryCatch({
                 message("Writing recording parameters...")
                 RecordingParams <-
@@ -61,14 +69,14 @@ setMethod("Save",
                 file[["Names"]] <- X@Names
                 file[["Group"]] <- as.character(X@Group)
                 file<-Save.Metadata(file, X)
-                # write each Series
-                SER_SLOT <- file$create_group("Series")
+                # write each Recordings
+                SER_SLOT <- file$create_group("Recordings")
                 for (i in 1:length(X)) {
-                  message(paste("Writing series data", i, "-", names(X)[i]))
-                  suppressWarnings(Series <-
+                  message(paste("Writing recording data", i, "-", names(X)[i]))
+                  suppressWarnings(Recordings <-
                                      Save.Recording(
                                        SER_SLOT$create_group(as.character(i)),
-                                       GetData(X, Series = i)
+                                       GetData(X, Recordings = i)
                                      ))
                 }
                 message("Writing timestamp and version info...")
@@ -92,37 +100,38 @@ setMethod("Save",
             }
           })
 
-#' @importFrom hdf5r h5types H5S
-#' @importFrom methods slot
+#' @importFrom hdf5r H5File h5types H5S
+#' @importFrom methods slot slotNames
 Save.RecordingParams <- function (con, PRecordingParams) {
   for (j in slotNames(PRecordingParams)) {
-    warning(j)
-    if (j %in% c("Created", "Experiment", "ProtocolName", "FileName")) {
-      con$create_dataset(name=j,
-                         robj=as.character(methods::slot(PRecordingParams, j)),
-                         dtype = hdf5r::h5types$char,
-                         space = hdf5r::H5S$new(
-                           "simple",
-                           dims = length(methods::slot(PRecordingParams, j)),
-                           maxdims = Inf),
-                         chunk_dims = 1024
-      )
-    } else{
-      con[[j]] <- slot(PRecordingParams, j)
-    }
+    suppressWarnings(
+      if (j %in% c("Created", "Experiment", "ProtocolName", "FileName")) {
+        con$create_dataset(name=j,
+                           robj=as.character(slot(PRecordingParams, j)),
+                           dtype = h5types$char,
+                           space = H5S$new(
+                             "simple",
+                             dims = length(slot(PRecordingParams, j)),
+                             maxdims = Inf),
+                           chunk_dims = 1024
+        )
+      } else{
+        con[[j]] <- slot(PRecordingParams, j)
+      }
+    )
   }
   con
 }
 
-#' @importFrom hdf5r h5attr
+#' @importFrom hdf5r H5File h5attr `h5attr<-`
 Save.Metadata <- function(con,Pobject){
   if (max(dim(Pobject@MetaData))>0){
-    con$create_dataset(name = "MetaData",Pobject@MetaData,gzip_level = 9)
-    hdf5r::h5attr(con[["MetaData"]], "colnames") <- as.character(colnames(Pobject@MetaData))
-    hdf5r::h5attr(con[["MetaData"]], "rownames") <- as.character(rownames(Pobject@MetaData))
-
+    MetaData<-GetMetaData(Pobject)
+    con$create_dataset(name = "MetaData",MetaData,gzip_level = 9)
+    h5attr(con[["MetaData"]], "colnames") <- as.character(colnames(MetaData))
+    h5attr(con[["MetaData"]], "rownames") <- as.character(rownames(MetaData))
     FXs <- con$create_group(".MetaDataFx")
-    MetaDataFx<-lapply(collection@.MetaDataFx,as.character)
+    MetaDataFx<-lapply(Pobject@.MetaDataFx,as.character)
     for (i in 1:length(MetaDataFx)){
       FXs[[as.character(i)]]<-MetaDataFx[[i]]
     }
@@ -130,7 +139,7 @@ Save.Metadata <- function(con,Pobject){
   con
 }
 
-#' @importFrom hdf5r h5attr
+#' @importFrom hdf5r H5File h5attr `h5attr<-`
 Save.Recording <- function (con, PRecording) {
   con[["Traces"]] <- PRecording@Traces
   con[["Units"]] <- PRecording@Units
@@ -141,10 +150,8 @@ Save.Recording <- function (con, PRecording) {
   Data <- con$create_group("Data")
   for (i in names(PRecording@Data)) {
     Data$create_dataset(i,PRecording@Data[[i]],gzip_level = 9)
-    #Data[[i]] <- PRecording@Data[[i]]
-    hdf5r::h5attr(Data[[i]], "colnames") <- colnames(PRecording@Data[[i]])
+    h5attr(Data[[i]], "colnames") <- colnames(PRecording@Data[[i]])
   }
-
   con<-Save.Metadata(con, PRecording)
 
   RecordingParams <-

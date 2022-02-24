@@ -4,14 +4,14 @@
 \alias{lapply,PCollection-method}
 \title{apply function for PCollection objects}
 \usage{
-\S4method{lapply}{PCollection}(X, FUN, ReturnPMobject = F)
+\S4method{lapply}{PCollection}(X, FUN, ReturnPObject = F)
 }
 \arguments{
 \item{X}{a \linkS4class{PCollection} object}
 
 \item{FUN}{the function to be applied}
 
-\item{ReturnPMobject}{whether to return results as a \linkS4class{PCollection}  Default is \var{FALSE}, then returns a list}
+\item{ReturnPObject}{whether to return results as a \linkS4class{PCollection}  Default is \var{FALSE}, then returns a list}
 }
 \value{
 A \linkS4class{PCollection} object

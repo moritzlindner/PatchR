@@ -1,13 +1,13 @@
-#' (OK) Add data (Trace) to PRecording objects
+#' Add a trace/channel to PRecording objects
 #'
 #' `r lifecycle::badge("stable")` \cr
-#' This function adds a new Trace (with data) from any object convertible into a matrix to a \linkS4class{PRecording} X.
+#' This function adds a new trace /channel from any object convertible into a matrix to an existing \linkS4class{PRecording} X.
 #'
 #' @param X A \linkS4class{PRecording} object
+#' @param mtx Any object convertible into a \var{matrix}. Rows are sampling points, columns are sweeps. Number of sampling points and sweeps must match the traces already present in \var{X}
 #' @param Trace Name of the new trace
-#' @param Unit The SI unit of the trace
-#' @param Sweeps Names of the sweeps added. Must be the same as sweep names in \var{X}. Data will be sorted accoding to order of Sweeps in \var{X} Default is \code{colnames(X)}
-#' @param mtx Any X convertible into a \var{matrix}, that has the same dimension as data in the Data slot of \var{X}
+#' @param Unit The unit of the trace
+#' @param Sweeps Names of the sweeps added. Must match the sweep names in \var{X}. Data in \var{Trace} will be sorted according to the order of sweeps in \var{X} before adding. Default is \code{colnames(X)}
 #' @param isOrig if TRUE, marks added trace as an original recording.
 #' @seealso \linkS4class{PRecording}, \linkS4class{PCollection}, \link[base:as.matrix]{as.matrix()}
 #' @return A matrix or \linkS4class{PRecording} X

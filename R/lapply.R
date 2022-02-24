@@ -6,14 +6,14 @@
 #' @param X a \linkS4class{PCollection} object
 #' @param FUN the function to be applied
 #' @return A \linkS4class{PCollection} object
-#' @param ReturnPMobject whether to return results as a \linkS4class{PCollection}  Default is \var{FALSE}, then returns a list
+#' @param ReturnPObject whether to return results as a \linkS4class{PCollection}  Default is \var{FALSE}, then returns a list
 #' @exportMethod lapply
 setMethod("lapply",
           "PCollection",
-          function(X, FUN, ReturnPMobject=F){
-            dat<-lapply(X@Series,FUN)
-            if(ReturnPMobject){
-              X@Series<-dat
+          function(X, FUN, ReturnPObject=F){
+            dat<-lapply(X@Recordings,FUN)
+            if(ReturnPObject){
+              X@Recordings<-dat
                if(!validPCollection(X)){
                  stop(paste("Applying to PCollection", deparse(substitute(object)), "failed. No valid PCollection object returned"))
                }
