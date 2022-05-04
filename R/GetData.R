@@ -53,7 +53,7 @@ setMethod("GetData",
                 stop("Traces to subset not in X")
               }
             }
-            if (isFALSE(all.equal(Time, range(GetTimeTrace(X))))) {
+            if (!isTRUE(all.equal(Time, range(GetTimeTrace(X))))) {
               if (!TimeExclusive) {
                 if (!nowarnings) {
                   cat("Only keep Times: ", Time[1], " to ", Time[2], "\n")
