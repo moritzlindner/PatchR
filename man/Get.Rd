@@ -92,7 +92,7 @@ For \code{GetPlotNames} a \code{vector} of type \code{character}.
 
 For \code{GetPlot} a \link[=ggplot2]{ggplot}.
 
-A \linkS4class{PRecording} or \linkS4class{PCollection} object (for \code{GetData})
+For \code{GetData} A \linkS4class{PRecording} or \linkS4class{PCollection} object.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}} \cr

@@ -23,8 +23,6 @@ MeasureStimResp(X, StimTrace = "V-mon", RespTrace = "I-mon", Time, FUN = mean)
 
 \item{Trace}{The name of the \code{trace} to perform measurements on}
 
-\item{Sweeps}{List of traces/channels or sweeps to keep}
-
 \item{Time}{either a range of time points to keep, or, if \code{TimeExclusive} is \code{TRUE}, then two particular time points}
 
 \item{label}{A label (if \code{Sweeps} has length 1) or a prefix}

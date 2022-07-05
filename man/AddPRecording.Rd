@@ -7,8 +7,12 @@
 AddPRecording(
   X,
   PRecording,
-  Names = if (is.list(PRecording)) {     lapply(PRecording, function(x)
-    x@RecordingParams@Filename) } else {     PRecording@RecordingParams@Filename },
+  Names = if (is.list(PRecording)) {
+     lapply(PRecording, function(x)
+    x@RecordingParams@Filename)
+ } else {
+     PRecording@RecordingParams@Filename
+ },
   Group = "Generic"
 )
 }

@@ -5,7 +5,7 @@
 #' @param Group Subset by Group name. Only for  \linkS4class{PCollection} .
 #' @param TimeExclusive Keep only the two time points stated under Time, not the range
 #' @param nowarnings Supress warning messages.
-#' @return A \linkS4class{PRecording} or \linkS4class{PCollection} object (for \code{GetData})
+#' @return For \code{GetData} A \linkS4class{PRecording} or \linkS4class{PCollection} object.
 #' @exportMethod GetData
 setGeneric(
   name = "GetData",
@@ -151,7 +151,13 @@ setMethod("GetData",
                   RecordingParams = X@RecordingParams
                 )
               } else{
-                X <- X@Recordings[[which(keep)]]
+                X <- PCollection(
+                  Recordings = X@Recordings[[which(keep)]],
+                  Names = X@Names[[which(keep)]],
+                  Group = X@Group[[which(keep)]],
+                  MetaData = md,
+                  RecordingParams = X@RecordingParams
+                )
               }
             }
             X
@@ -159,4 +165,49 @@ setMethod("GetData",
 
 
 #' @describeIn Get Subset is an alias of Getdata
-Subset <- GetData
+setGeneric(
+  name = "Subset",
+  def = function(X,
+                 Traces = GetTraceNames(X),
+                 Sweeps = GetSweepNames(X),
+                 Time = range(GetTimeTrace(X)),
+                 Recordings = NULL,
+                 Group = NULL,
+                 TimeExclusive = F,
+                 nowarnings = F)
+  {
+    standardGeneric("Subset")
+  }
+)
+#' @exportMethod Subset
+setMethod("Subset",
+          "PRecording",
+          function(X,
+                   Traces = GetTraceNames(X),
+                   Sweeps = GetSweepNames(X),
+                   Time = range(GetTimeTrace(X)),
+                   TimeExclusive = F,
+                   nowarnings = F){
+            GetData(X,
+                    Traces,
+                    Sweeps,
+                    Time,
+                    TimeExclusive,
+                    nowarnings)
+          })
+
+setMethod("Subset",
+          "PCollection",
+          function(X,
+                   Traces = GetTraceNames(X),
+                   Sweeps = GetSweepNames(X),
+                   Time = range(GetTimeTrace(X)),
+                   TimeExclusive = F,
+                   nowarnings = F){
+            GetData(X,
+                    Traces,
+                    Sweeps,
+                    Time,
+                    TimeExclusive,
+                    nowarnings)
+          })

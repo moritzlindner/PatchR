@@ -67,13 +67,54 @@ setMethod("apply",
               }
             } else{
               if (MARGIN == 1) {
-                colnames(out) <- GetTraceNames(X)
-                rownames(out) <- GetSweepNames(X)
+                if (!ReturnPObject) {
+                  colnames(out) <- GetTraceNames(X)
+                  rownames(out) <- GetSweepNames(X)
+                }else{
+                  warning("Updating data in PRecording!")
+                  Data<-t(out)
+                  Data<-lapply(seq_len(nrow(Data)), function(i) Data[i,])
+                  names(Data)<-GetTraceNames(X)
+                  Data<-lapply(Data,function(x){t(as.matrix(x))})
+                  out <- PatchR:::PRecording(
+                    Traces = GetTraceNames(X),
+                    Units = X@Units,
+                    TimeTrace = as.numeric(NA),
+                    TimeUnit = X@TimeUnit,
+                    Sweeps = X@Sweeps,
+                    SweepTimes = X@SweepTimes,
+                    Data = Data,
+                    Plots = list(),
+                    RecordingParams = X@RecordingParams
+                  )
+                }
               }
               if (MARGIN == 2) {
-                out <- cbind(X@TimeTrace, out)
-                colnames(out) <-
-                  c(paste0("Time [", X@TimeUnit, "]"), GetTraceNames(X))
+                if (!ReturnPObject) {
+                  out <- cbind(X@TimeTrace, out)
+                  colnames(out) <-
+                    c(paste0("Time [", X@TimeUnit, "]"), GetTraceNames(X))
+                }else{
+                  warning("Updating data in PRecording!")
+                  Data<-lapply(seq_len(ncol(out)), function(i) out[,i])
+                  names(Data)<-GetTraceNames(X)
+                  Data<-lapply(Data,as.matrix)
+                  for(i in seq_along(Data)) {
+                    colnames(Data[[i]]) <- make.names(deparse1(FUN, collapse = ""))
+                  }
+                  out <- PRecording(
+                    Traces = GetTraceNames(X),
+                    Units = X@Units,
+                    TimeTrace = X@TimeTrace,
+                    TimeUnit = X@TimeUnit,
+                    Sweeps = ordered(make.names(deparse1(FUN, collapse = ""))),
+                    SweepTimes = 0,
+                    Data = Data,
+                    Plots = list(),
+                    RecordingParams = X@RecordingParams
+                  )
+                  
+                }
               }
               if (MARGIN == 3) {
                 if (!ReturnPObject) {
@@ -84,7 +125,7 @@ setMethod("apply",
                   X <-
                     AddTrace(
                       X = X,
-                      Trace = as.character(substitute(mean))[1],
+                      Trace = make.names(deparse1(FUN, collapse = "")),
                       Unit = "NA",
                       mtx = out
                     )

@@ -40,7 +40,7 @@ validPRecording<-function(object) {
   }
   if (!(length(object@Sweeps) == length(object@SweepTimes))){
     ret<-ret+1
-    stop("incompatible sweep ids and timing data")
+    stop("Incompatible sweep ids and timing data")
 
   }
   if (!(all(object@RecordingParams@Traces %in% object@Traces))){
