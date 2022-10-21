@@ -22,7 +22,7 @@ validPCollection<-function(object) {
     ret<-ret+1
     err<-cbind(GetRecordingNames(object),unlist(lapply(object@Recordings,function(x) length(GetTraceNames(x@RecordingParams)))))
     colnames(err)<-c("File name","No of Traces")
-    kable(err)
+    print(kable(err))
     stop("Unequal trace names")
   }
 
@@ -30,7 +30,7 @@ validPCollection<-function(object) {
     ret<-ret+1
     err<-cbind(GetRecordingNames(object),unlist(lapply(object@Recordings,function(x) x@RecordingParams@ProtocolName)))
     colnames(err)<-c("File name","Protocol name")
-    kable(err)
+    print(kable(err))
     stop("Unequal protocol names")
   }
 
@@ -46,7 +46,7 @@ validPCollection<-function(object) {
     ret<-ret+1
     err<-cbind(GetRecordingNames(object),unlist(lapply(object@Recordings,function(x) x@RecordingParams@RecMode)))
     colnames(err)<-c("File name","Recording mode")
-    kable(err)
+    print(kable(err))
     stop("Unequal Recording modes")
   }
 
