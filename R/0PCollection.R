@@ -67,7 +67,7 @@ validPCollection<-function(object) {
 #' @slot RecordingParams Stores the Recording parameters that must be identical for all entries in \var{Recordings}  (\var{ProtocolName}, \var{RecMode} and \var{TraceNames}).
 #' @seealso \linkS4class{PRecording}
 #' @importFrom methods setClass new
-#' @importFrom kintr kable
+#' @importFrom knitr kable
 #' @include 0PRecordingParams.R
 #' @exportClass PCollection
 PCollection<-setClass(Class="PCollection",
