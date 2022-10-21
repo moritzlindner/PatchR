@@ -49,21 +49,25 @@ setMethod("apply",
                 MARG
               ))
             }
-
+            
             #simplify and apply
             DAT <- simplify2array(X@Data)
             margins <- 1:length(dim(DAT))
             
             #out <- apply(DAT, margins[!(margins %in% MARGIN)], FUN)
-            if(FUN %in% unlist(lapply( c("Arith"), getGroupMembers ))){
-              if (MARGIN==1){
-                out <- get(FUN)(DAT[1,],DAT[2,])
+            if (is.character(FUN)) {
+              if (FUN %in% unlist(lapply(c("Arith"), getGroupMembers))) {
+                if (MARGIN == 1) {
+                  out <- get(FUN)(DAT[1, ], DAT[2, ])
+                }
+                if (MARGIN == 2) {
+                  message("Untested operation!")
+                  out <- get(FUN)(DAT[, 1], DAT[, 1])
+                }
+              } else{
+                stop("FUN not supported")
               }
-              if (MARGIN==2){
-                message("Untested operation!")
-                out <- get(FUN)(DAT[,1],DAT[,1])
-              }
-            }else{
+            } else{
               out <- apply(DAT, margins[!(margins %in% MARGIN)], FUN)
             }
             
@@ -83,12 +87,16 @@ setMethod("apply",
                 if (!ReturnPObject) {
                   colnames(out) <- GetTraceNames(X)
                   rownames(out) <- GetSweepNames(X)
-                }else{
+                } else{
                   warning("Updating data in PRecording!")
-                  Data<-t(out)
-                  Data<-lapply(seq_len(nrow(Data)), function(i) Data[i,])
-                  names(Data)<-GetTraceNames(X)
-                  Data<-lapply(Data,function(x){t(as.matrix(x))})
+                  Data <- t(out)
+                  Data <-
+                    lapply(seq_len(nrow(Data)), function(i)
+                      Data[i, ])
+                  names(Data) <- GetTraceNames(X)
+                  Data <- lapply(Data, function(x) {
+                    t(as.matrix(x))
+                  })
                   out <- PatchR:::PRecording(
                     Traces = GetTraceNames(X),
                     Units = X@Units,
@@ -107,12 +115,14 @@ setMethod("apply",
                   out <- cbind(X@TimeTrace, out)
                   colnames(out) <-
                     c(paste0("Time [", X@TimeUnit, "]"), GetTraceNames(X))
-                }else{
+                } else{
                   warning("Updating data in PRecording!")
-                  Data<-lapply(seq_len(ncol(out)), function(i) out[,i])
-                  names(Data)<-GetTraceNames(X)
-                  Data<-lapply(Data,as.matrix)
-                  for(i in seq_along(Data)) {
+                  Data <-
+                    lapply(seq_len(ncol(out)), function(i)
+                      out[, i])
+                  names(Data) <- GetTraceNames(X)
+                  Data <- lapply(Data, as.matrix)
+                  for (i in seq_along(Data)) {
                     colnames(Data[[i]]) <- make.names(deparse1(FUN, collapse = ""))
                   }
                   out <- PRecording(
@@ -120,7 +130,9 @@ setMethod("apply",
                     Units = X@Units,
                     TimeTrace = X@TimeTrace,
                     TimeUnit = X@TimeUnit,
-                    Sweeps = ordered(make.names(deparse1(FUN, collapse = ""))),
+                    Sweeps = ordered(make.names(deparse1(
+                      FUN, collapse = ""
+                    ))),
                     SweepTimes = 0,
                     Data = Data,
                     Plots = list(),
