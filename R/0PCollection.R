@@ -38,7 +38,7 @@ validPCollection<-function(object) {
     ret<-ret+1
     err<-lapply(object,function(x){length(GetSweepNames(x))})
     colnames(err)<-c("No of Sweeps")
-    kable(err)
+    print(kable(err))
     stop("Unequal numbers of sweeps")
   }
   
