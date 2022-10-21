@@ -1,9 +1,10 @@
 #' @describeIn Get This function subsets objects by \var{Trace}, \var{Sweep} or \var{Time}. For  \linkS4class{PCollection} additionally by \var{Recordings} or \var{Group}
-#' @param Traces,Sweeps List of traces/channels or sweeps to keep
-#' @param Time either a range of time points to keep, or, if \code{TimeExclusive} is \code{TRUE}, then two particular time points
+#' @param Traces List of traces/channels to keep
+#' @param Sweeps List of sweeps to keep
+#' @param Time either a range of time points to keep or two particular time points
 #' @param Recordings Subset by series/recordings. Understands names (= file names of the recordings) or indices or by logical indexing. Only for \linkS4class{PCollection} .
 #' @param Group Subset by Group name. Only for  \linkS4class{PCollection} .
-#' @param TimeExclusive Keep only the two time points stated under Time, not the range
+#' @param TimeExclusive Keep only the two time points stated under \code{Time}, not the range
 #' @param nowarnings Supress warning messages.
 #' @return For \code{GetData} A \linkS4class{PRecording} or \linkS4class{PCollection} object.
 #' @exportMethod GetData
@@ -69,11 +70,13 @@ setMethod("GetData",
                 Time[2] <-
                   GetTimeTrace(X)[which(abs(GetTimeTrace(X) - Time[2]) == min(abs(GetTimeTrace(X) -
                                                                                     Time[2])))]
-                cat("Only keep Times: ",
-                    Time[1],
-                    " and ",
-                    length(Time) - 1,
-                    "others \n")
+                if (!nowarnings) {
+                  cat("Only keep Times: ",
+                      Time[1],
+                      " and ",
+                      length(Time) - 1,
+                      "others \n")
+                }
               }
             } else{
               Time <- GetTimeTrace(X)
@@ -99,6 +102,14 @@ setMethod("GetData",
             )
           })
 
+
+#' FIXME:
+#' tmp<-GetData(DN81_MoL,Group = "Kv7.2_Kv8.1")
+#' 
+#' Error in validObject(.Object) :
+#'   
+#'   invalid class “PCollection” object: invalid object for slot "MetaData" in
+#' class "PCollection": got class "logical", should be or extend class "matrix"
 setMethod("GetData",
           "PCollection",
           function(X,
@@ -128,7 +139,7 @@ setMethod("GetData",
                 RecordingParams = X@RecordingParams
               )
             }
-
+#FIXME CONSIDER SITUATION THAT ONLY ONE RECORDING KETP. SHOURL RESULT IN PRECORIDNG! WHAT IF EG GROUP AND RECORINDGS SUBSETTED?
             if (all.equal(Recordings, GetRecordingNames(X)) != TRUE) {
               if (!nowarnings) {
                 warning("Plots dropped for consistency.")

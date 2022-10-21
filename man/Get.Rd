@@ -71,15 +71,17 @@ Subset(
 \item A name of a valid Group in a \linkS4class{PCollection} (for \code{GetGroupMembers}). \cr 2) A name or a vector of names of slot(s) in RecordingParams (for \code{GetRecParam}). \cr or 3) A name or a vector of names of a column in the MetaData slot (for \code{GetMetaData}).
 }}
 
-\item{Traces, Sweeps}{List of traces/channels or sweeps to keep}
+\item{Traces}{List of traces/channels to keep}
 
-\item{Time}{either a range of time points to keep, or, if \code{TimeExclusive} is \code{TRUE}, then two particular time points}
+\item{Sweeps}{List of sweeps to keep}
+
+\item{Time}{either a range of time points to keep or two particular time points}
 
 \item{Recordings}{Subset by series/recordings. Understands names (= file names of the recordings) or indices or by logical indexing. Only for \linkS4class{PCollection} .}
 
 \item{Group}{Subset by Group name. Only for  \linkS4class{PCollection} .}
 
-\item{TimeExclusive}{Keep only the two time points stated under Time, not the range}
+\item{TimeExclusive}{Keep only the two time points stated under \code{Time}, not the range}
 
 \item{nowarnings}{Supress warning messages.}
 }

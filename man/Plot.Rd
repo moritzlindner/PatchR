@@ -47,7 +47,7 @@ BuildRecordingPlot(X)
 
 \item{RespTrace}{The name of the \code{trace} that contains the response}
 
-\item{Time}{either a range of time points to keep, or, if \code{TimeExclusive} is \code{TRUE}, then two particular time points}
+\item{Time}{either a range of time points to keep or two particular time points}
 
 \item{fun}{Function to apply on graph for stimulus response plotting}
 

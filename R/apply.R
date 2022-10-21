@@ -53,7 +53,20 @@ setMethod("apply",
             #simplify and apply
             DAT <- simplify2array(X@Data)
             margins <- 1:length(dim(DAT))
-            out <- apply(DAT, margins[!(margins %in% MARGIN)], FUN)
+            
+            #out <- apply(DAT, margins[!(margins %in% MARGIN)], FUN)
+            if(FUN %in% unlist(lapply( c("Arith"), getGroupMembers ))){
+              if (MARGIN==1){
+                out <- get(FUN)(DAT[1,],DAT[2,])
+              }
+              if (MARGIN==2){
+                message("Untested operation!")
+                out <- get(FUN)(DAT[,1],DAT[,1])
+              }
+            }else{
+              out <- apply(DAT, margins[!(margins %in% MARGIN)], FUN)
+            }
+            
             if (isTRUE(all.equal(dim(out), dim(DAT)))) {
               dimnames(out) <- dimnames(DAT)
               if (ReturnPObject) {

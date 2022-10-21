@@ -7,8 +7,8 @@
 #' @param Trace The name of the \code{trace} to perform measurements on
 #' @param StimTrace The name of the \code{trace} that contains the stimulus
 #' @param RespTrace The name of the \code{trace} that contains the response
-#' @param label A label (if \code{Sweeps} has length 1) or a prefix
-#' @param FUN function to apply on sweep. Can be anything that woks with \link[base:apply]{apply()}. But will be usually be \link[base:mean]{mean()}, \link[base:max]{max()}, \link[base:min]{min()}, or \link[base:Arithmetic]{-} .
+#' @param label A label (if \code{Sweeps} has length 1) or a prefix. Will be used to name the columns in the results table
+#' @param FUN function to apply on sweep. Can be anything that woks with \link[base:apply]{apply()}. But will be usually be \link[base:mean]{mean()}, \link[base:max]{max()}, \link[base:min]{min()}, or a basic operator like \link[base:Arithmetic]{-} .
 #' @param ReturnPObject whether to return a \linkS4class{PRecording}/\linkS4class{PCollection} or a matrix.
 #' @examples
 #' data("PRecording")
@@ -183,6 +183,8 @@ setMethod("MeasureStimResp",
             out
           })
 
+#FIXME, general: give better error messages if X is missing/notPRecording
+#FIXME, this failed in patchmaster_Kv81DN_072022
 #' @importFrom tidyr pivot_longer
 #' @importFrom dplyr left_join
 setMethod("MeasureStimResp",

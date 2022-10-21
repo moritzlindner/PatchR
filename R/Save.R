@@ -47,6 +47,8 @@ setMethod("Save",
             }
           })
 
+
+#FIXME, stops at first file
 #' @importFrom hdf5r H5File
 setMethod("Save",
           "PCollection",

@@ -23,11 +23,13 @@ MeasureStimResp(X, StimTrace = "V-mon", RespTrace = "I-mon", Time, FUN = mean)
 
 \item{Trace}{The name of the \code{trace} to perform measurements on}
 
-\item{Time}{either a range of time points to keep, or, if \code{TimeExclusive} is \code{TRUE}, then two particular time points}
+\item{Sweeps}{List of sweeps to keep}
 
-\item{label}{A label (if \code{Sweeps} has length 1) or a prefix}
+\item{Time}{either a range of time points to keep or two particular time points}
 
-\item{FUN}{function to apply on sweep. Can be anything that woks with \link[base:apply]{apply()}. But will be usually be \link[base:mean]{mean()}, \link[base:max]{max()}, \link[base:min]{min()}, or \link[base:Arithmetic]{-} .}
+\item{label}{A label (if \code{Sweeps} has length 1) or a prefix. Will be used to name the columns in the results table}
+
+\item{FUN}{function to apply on sweep. Can be anything that woks with \link[base:apply]{apply()}. But will be usually be \link[base:mean]{mean()}, \link[base:max]{max()}, \link[base:min]{min()}, or a basic operator like \link[base:Arithmetic]{-} .}
 
 \item{ReturnPObject}{whether to return a \linkS4class{PRecording}/\linkS4class{PCollection} or a matrix.}
 

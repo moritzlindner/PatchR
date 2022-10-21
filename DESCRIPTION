@@ -43,6 +43,7 @@ Collate:
     'Inspect.R'
     'Load.R'
     'Measure.R'
+    'Normalize.R'
     'PatchR-data.R'
     'PatchR-package.R'
     'Save.R'
