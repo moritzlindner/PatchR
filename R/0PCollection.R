@@ -20,17 +20,33 @@ validPCollection<-function(object) {
   }
   if (!all(unlist(lapply(object@Recordings,function(x) GetTraceNames(x@RecordingParams))) %in% GetTraceNames(object@RecordingParams))){
     ret<-ret+1
-    print(GetTraceNames(object@RecordingParams))
+    err<-cbind(GetRecordingNames(object),unlist(lapply(object@Recordings,function(x) length(GetTraceNames(x@RecordingParams)))))
+    colnames(err)<-c("File name","No of Traces")
+    kable(err)
     stop("Unequal trace names")
   }
 
   if (!all(lapply(object@Recordings,function(x) x@RecordingParams@ProtocolName)==object@RecordingParams@ProtocolName)){
     ret<-ret+1
+    err<-cbind(GetRecordingNames(object),unlist(lapply(object@Recordings,function(x) x@RecordingParams@ProtocolName)))
+    colnames(err)<-c("File name","Protocol name")
+    kable(err)
     stop("Unequal protocol names")
   }
 
+  if(length(unique(as.vector(lapply(object,function(x){length(GetSweepNames(x))}))))!=1){
+    ret<-ret+1
+    err<-lapply(object,function(x){length(GetSweepNames(x))})
+    colnames(err)<-c("No of Sweeps")
+    kable(err)
+    stop("Unequal numbers of sweeps")
+  }
+  
   if (!all(lapply(object@Recordings,function(x) x@RecordingParams@RecMode)==object@RecordingParams@RecMode)){
     ret<-ret+1
+    err<-cbind(GetRecordingNames(object),unlist(lapply(object@Recordings,function(x) x@RecordingParams@RecMode)))
+    colnames(err)<-c("File name","Recording mode")
+    kable(err)
     stop("Unequal Recording modes")
   }
 
@@ -51,6 +67,7 @@ validPCollection<-function(object) {
 #' @slot RecordingParams Stores the Recording parameters that must be identical for all entries in \var{Recordings}  (\var{ProtocolName}, \var{RecMode} and \var{TraceNames}).
 #' @seealso \linkS4class{PRecording}
 #' @importFrom methods setClass new
+#' @importFrom kintr kable
 #' @include 0PRecordingParams.R
 #' @exportClass PCollection
 PCollection<-setClass(Class="PCollection",
