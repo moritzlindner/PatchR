@@ -23,6 +23,7 @@ setGeneric(
   }
 )
 
+#' @noMd
 setMethod("GetData",
           "PRecording",
           function(X,
@@ -116,6 +117,7 @@ setMethod("GetData",
 #'   
 #'   invalid class “PCollection” object: invalid object for slot "MetaData" in
 #' class "PCollection": got class "logical", should be or extend class "matrix"
+#' @noMd
 setMethod("GetData",
           "PCollection",
           function(X,

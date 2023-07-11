@@ -60,6 +60,7 @@ setGeneric("Boltzmann", function(X,
   standardGeneric("Boltzmann")
 })
 
+#' @noMd
 setMethod("Boltzmann", "PRecording", function(X,
                                               StimTrace = "V-mon",
                                               RespTrace = "I-mon",
@@ -162,7 +163,7 @@ setMethod("Boltzmann", "PRecording", function(X,
                      df.out,
                      title = colnames(df.out),
                      Verbose = F)
-    X@Fits["Boltzmann"]<-coef(fit)[1]
+    X@Fits[["Boltzmann"]]<-fit
     return(X)
   }
 
@@ -172,6 +173,7 @@ setMethod("Boltzmann", "PRecording", function(X,
   
 })
 
+#' @noMd
 setMethod("Boltzmann", "PCollection", function(X,
                                                StimTrace = "V-mon",
                                                RespTrace = "I-mon",
@@ -206,7 +208,7 @@ setMethod("Boltzmann", "PCollection", function(X,
               ReturnPObject = T)
   V_half <- lapply(X,
                    function(x) {
-                     return(x@Fits[["Boltzmann"]][1])
+                     return(coef(x@Fits[["Boltzmann"]])[1])
                    },
                    ReturnPObject = F)
   X <- AddMetaData(X, values = V_half, title = "V_half")

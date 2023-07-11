@@ -41,6 +41,8 @@ normalize <- function(x, range = c(0, 1)) {
 #' FIXME: TURN INTO METHOD FOR both PObjects and document
 #' turn into scale function allow for scale "toMax", "MintoMax"
 
+#' @noMd
+#' @noRd
 Normalize_PCollection <- function(object, Trace) {
   # split ananlig to CurrentDensity
   

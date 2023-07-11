@@ -18,7 +18,7 @@ tmp<-GetData(DN81_MoL,Group = "Kv7.2_Kv8.1")}
 }
 \description{
 Error in validObject(.Object) :
-
-invalid class “PCollection” object: invalid object for slot "MetaData" in
+  
+  invalid class “PCollection” object: invalid object for slot "MetaData" in
 class "PCollection": got class "logical", should be or extend class "matrix"
 }
