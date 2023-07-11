@@ -9,6 +9,7 @@
 #' @param traces Index or indices of Traces/channels to import. The trace is the 3rd order hierarchy in PatchMaster file tree. Must be vector of numeric of length > 0. Default is \code{c(1,2)}.
 #' @param encoding File encoding to use, default is \code{getOption("encoding")}
 #' @param filetype The type of the file to be imported. Accepted values are 'PatchMaster' or 'ABF' If left blank (default), it will be guessed from the file extension.
+#' @param verbose Whether to display verbose messages during the import process. Default is \code{FALSE}.
 #' @seealso \linkS4class{PRecording}
 #' @examples
 #' \dontrun{
@@ -24,7 +25,8 @@ ImportPRecording <- function(filename,
                              series = 1,
                              traces = c(1, 2),
                              encoding = getOption("encoding"),
-                             filetype = NULL) {
+                             filetype = NULL,
+                             verbose = FALSE) {
   message(paste("Importing", filename))
 
   if (!file.exists(filename)) {
@@ -43,7 +45,6 @@ ImportPRecording <- function(filename,
   if (filetype == "PatchMaster") {
     first = T
     for (i in traces) {
-      message(paste("Importing trace", i))
       suppressWarnings(
         imp <-
           getSeries(
@@ -71,7 +72,11 @@ ImportPRecording <- function(filename,
           Created = as.POSIXct(imp$sweeps$time),
           Filename = imp$sweeps$filename,
           Type = filetype,
-          Version = imp$sweeps$version
+          Version = imp$sweeps$version,
+          DataScaler = imp$sweeps$DataScaler,
+          Unit_from_file = imp$sweeps$Unit_from_file,
+          TrYOffset = imp$sweeps$TrYOffset,
+          TrYRange = imp$sweeps$TrYRange
         )
 
         Data <- list()
@@ -89,6 +94,29 @@ ImportPRecording <- function(filename,
           Plots = list(),
           RecordingParams = params
         )
+        
+        if (verbose){
+          report <- data.frame(
+            Variable = c(
+              "Filename",
+              "Created",
+              "RecMode",
+              "ProtocolName",
+              "Traces",
+              "Sweeps"
+            ),
+            Value = c(
+              imp$sweeps$filename,
+              as.POSIXct(imp$sweeps$time),
+              imp$sweeps$RecMode,
+              imp$sweeps$Stimulus,
+              imp$sweeps$tracename,
+              length(colnames(imp$sweeps$y))
+            )
+          )
+          print(kable(head(report)))
+        }
+        
       } else{
         out <- AddTrace(
           X = out,
@@ -98,6 +126,7 @@ ImportPRecording <- function(filename,
           isOrig = T
         )
       }
+      if (verbose) message(paste("Importing trace", i))
     }
   }
   if (filetype == "ABF") {

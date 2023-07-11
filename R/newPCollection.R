@@ -34,6 +34,10 @@ NewPCollection <- function(PRecording,
     Exps <- PRecording
     if (length(Group) == 1) {
       Group <- rep(Group, length(Exps))
+    }else{
+      if(!(length(Group)) == length(Exps)){
+        stop("Number of groups given deos not match number of Recordings")
+      }
     }
     #Trim Traces if requires
     # could include function f trimming PRecording to common minium or orignals, if required. Make dropTrace function therefore.
@@ -41,16 +45,15 @@ NewPCollection <- function(PRecording,
     if (is.null(Names)) {
       Names <- character()
       Names <-
-        as.character(unlist(
-          lapply(PRecording, function(x)
-            x@RecordingParams@Filename)
-        ))
+        as.character(unlist(lapply(Exps, function(x) {
+          GetRecParam(x, "Filename")
+        })))
     }
     params <-
       PRecordingParams(
-        ProtocolName = PRecording[[1]]@RecordingParams@ProtocolName,
-        RecMode = PRecording[[1]]@RecordingParams@RecMode,
-        Traces = PRecording[[1]]@RecordingParams@Traces
+        ProtocolName = Exps[[1]]@RecordingParams@ProtocolName,
+        RecMode = Exps[[1]]@RecordingParams@RecMode,
+        Traces = Exps[[1]]@RecordingParams@Traces
       )
   }
   out <- PCollection(

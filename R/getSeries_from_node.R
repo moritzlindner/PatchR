@@ -59,6 +59,11 @@ getSeries_from_node<-function (node, sweeps = 1:length(node), trace = 1, read_da
 
   XUnit <- attr(series[[1]], "XUnit")
   YUnit <- attr(series[[1]], "YUnit")
+  
+  DataScaler <- attr(series[[1]], "DataScaler")
+  Unit_from_file <- attr(series[[1]], "Unit_from_file")   
+  TrYOffset <- attr(series[[1]], "TrYOffset")   
+  TrYRange <- attr(series[[1]], "TrYRange")   
 
   series_X1 <- 1:nDatapoints_ * Xinterval
   series_X <- matrix(rep(series_X1, length(series_Y[1, ])),
@@ -79,6 +84,10 @@ getSeries_from_node<-function (node, sweeps = 1:length(node), trace = 1, read_da
                  version = version,
                  XUnit = XUnit,
                  YUnit = YUnit,
+                 DataScaler = DataScaler,
+                 Unit_from_file = Unit_from_file,
+                 TrYOffset = TrYOffset,
+                 TrYRange = TrYRange,
                  tracename = attr(series[[1]],
                                   "name"),
                  Trace_Time = SwTimer,

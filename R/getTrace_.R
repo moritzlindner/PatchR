@@ -16,10 +16,13 @@ getTrace_<-function (con, ptr, start = 0, n = NA, read_data = T, name = "",
     nDatapoints <- min(nDatapoints, n)
   }
   seek(con, ptr + 96)
-  # Unit = readBin(con, "char")
-  # if (Unit == "V")
-  #   Unit_ = 1000
-  # else Unit_ = 1e+09
+  
+  
+  Unit = readBin(con, "char")
+  if (Unit == "V")
+    Unit_from_file = 1000
+  else Unit_from_file = 1e+09
+  
   Unit_=1
   seek(con, ptr + 72)
   DataScaler = readBin(con, "double", size = 8)
@@ -57,12 +60,20 @@ getTrace_<-function (con, ptr, start = 0, n = NA, read_data = T, name = "",
   seek(con, ptr + 184)
   attr(trace, "Rs")<-(1/readBin(con, "double", size = 8)) # Rs
 
-
   seek(con, ptr + 120)
   attr(trace, "XUnit")<-(readBin(con, "character", size = 8)) # Rs
 
   seek(con, ptr + 96)
   attr(trace, "YUnit")<-(readBin(con, "character", size = 8)) # Rs
 
+  attr(trace, "DataScaler")<-DataScaler
+  attr(trace, "Unit_from_file")<-Unit_from_file    
+  
+  seek(con, ptr + 136)
+  attr(trace, "TrYOffset")<-(readBin(con, "double", size = 8)) # TrYOffset
+  seek(con, ptr + 128)
+  attr(trace, "TrYRange")<-(readBin(con, "double", size = 8)) # TrYRange
+  
+     
   trace
 }

@@ -41,6 +41,11 @@ setMethod("apply",
                 MARG <- "Trace"
               }
             }
+            
+            if (!(MARGIN %in% c(1:3))) {
+              stop("Undefined MARGIN selected")
+            }
+            
             if (Verbose) {
               message(paste(
                 "Function ",

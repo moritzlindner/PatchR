@@ -7,6 +7,7 @@
 #' @param filelist A data.frame. If importing from [Patch Master .dat](https://www.heka.com/downloads/downloads_main.html#down_patchmaster) files, it must contain the following three columns: "FileName","Experiment","Series". FileName can be an absolute path or relative to \var{parent.dir}. "Experiment","Series" correspond to the second and third order hierarchy in the PatchMaster file tree. If importing from [Axon Binary (.abf)](https://swharden.com/pyabf/abf2-file-format/) files, a single column "FileName" is sufficient. An optional column is "Group" and can be used to assign the individual recordings into groups
 #' @param parent.dir Parent directory where to search for FileNames from \code{filelist}. Optional if no full path is provided in \var{filelist}.
 #' @param filetype The type of the files to be imported. Accepted values are 'PatchMaster' or 'ABF' If left blank (default), it will be guessed from the extension of the first file in list
+#' @param verbose Whether to display verbose messages during the import process. Default is \code{FALSE}.
 #' @seealso \linkS4class{PRecording}, \link[=ImportPRecording]{ImportPRecording}
 #' @examples
 #' \dontrun{
@@ -20,6 +21,7 @@ ImportCollection <- function(filelist = NULL,
                              traces = c(1, 2),
                              parent.dir = "",
                              filetype = NULL,
+                             verbose = FALSE,
                              encoding = getOption("encoding")) {
 
   if (!("Group" %in% colnames(filelist))) {
@@ -60,7 +62,8 @@ ImportCollection <- function(filelist = NULL,
                                            series = as.numeric(x["Series"]),
                                            traces = traces,
                                            encoding = encoding,
-                                           filetype = filetype)
+                                           filetype = filetype,
+                                           verbose = verbose)
                         })
   }
 
@@ -76,7 +79,8 @@ ImportCollection <- function(filelist = NULL,
                                            series = 1,
                                            traces = traces,
                                            encoding = encoding,
-                                           filetype = filetype)
+                                           filetype = filetype,
+                                           verbose = verbose)
                         })
   }
 

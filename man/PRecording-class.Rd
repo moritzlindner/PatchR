@@ -4,7 +4,7 @@
 \name{PRecording-class}
 \alias{PRecording-class}
 \alias{PRecording}
-\title{S4 class storing imported ePhys Traces.}
+\title{S4 class storing imported ePhys traces.}
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}} \cr
 This class stores (usually sweep-oriented) electrophysiology data. Currently only import procedures for HEKA's PatchMaster .dat and Axon's .abd files are implemented. It has some strict validity checks implemented to assure data consistency.
@@ -23,9 +23,11 @@ This class stores (usually sweep-oriented) electrophysiology data. Currently onl
 
 \item{Data}{List of matrices. One list item per Trace. Matrix rows correspond to TimeTrace, columns to Sweeps}
 
+\item{MetaData}{matrix that can contain additional per-sweep Metadata. Per-time Metadata can be stored in the Data slot using the \link[=AddTrace]{AddTrace} method.}
+
 \item{Plots}{List that can contain any ggplot derived from the data. List item names that equal Traces are reserved.}
 
-\item{MetaData}{matrix that can contain additional per-sweep Metadata. Per-time Metadata can be stored in the Data slot using the \link[=AddTrace]{AddTrace} method.}
+\item{Fits}{List that can contain fitted models.}
 
 \item{RecordingParams}{An item of class PRecordingParams containing recording parameters for that trace.}
 }

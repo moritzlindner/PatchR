@@ -10,7 +10,8 @@ ImportPRecording(
   series = 1,
   traces = c(1, 2),
   encoding = getOption("encoding"),
-  filetype = NULL
+  filetype = NULL,
+  verbose = FALSE
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ ImportPRecording(
 \item{encoding}{File encoding to use, default is \code{getOption("encoding")}}
 
 \item{filetype}{The type of the file to be imported. Accepted values are 'PatchMaster' or 'ABF' If left blank (default), it will be guessed from the file extension.}
+
+\item{verbose}{Whether to display verbose messages during the import process. Default is \code{FALSE}.}
 }
 \value{
 A \linkS4class{PRecording} object

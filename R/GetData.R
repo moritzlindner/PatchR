@@ -38,9 +38,15 @@ setMethod("GetData",
                 warning("Subsetting clears all metadata and plotting slots for data consistency!")
               }
             }
+            
+            if (!(all(Time >= range(GetTimeTrace(X))[1]) &
+                  all(Time <= range(GetTimeTrace(X))[2]))) {
+              stop("Time outside range of X.")
+            }
+              
             if (isFALSE(all.equal(Traces, GetTraceNames(X)))) {
               if (!nowarnings) {
-                cat("Only keep Traces:", Traces, "\n")
+                message("Only keep Traces:", Traces, "\n")
               }
               if (!all(Traces %in% GetTraceNames(X))) {
                 stop("Traces to subset not in X")
@@ -48,7 +54,7 @@ setMethod("GetData",
             }
             if (isFALSE(all.equal(Sweeps, GetSweepNames(X)))) {
               if (!nowarnings) {
-                cat("Only keep Sweeps: ", Sweeps, "\n")
+                message("Only keep Sweeps: ", Sweeps, "\n")
               }
               if (!all(Sweeps %in% GetSweepNames(X))) {
                 stop("Traces to subset not in X")
@@ -57,7 +63,7 @@ setMethod("GetData",
             if (!isTRUE(all.equal(Time, range(GetTimeTrace(X))))) {
               if (!TimeExclusive) {
                 if (!nowarnings) {
-                  cat("Only keep Times: ", Time[1], " to ", Time[2], "\n")
+                  message("Only keep Times: ", Time[1], " to ", Time[2], "\n")
                 }
                 Time <-
                   GetTimeTrace(X)[GetTimeTrace(X) >= Time[1] &
@@ -71,7 +77,7 @@ setMethod("GetData",
                   GetTimeTrace(X)[which(abs(GetTimeTrace(X) - Time[2]) == min(abs(GetTimeTrace(X) -
                                                                                     Time[2])))]
                 if (!nowarnings) {
-                  cat("Only keep Times: ",
+                  message("Only keep Times: ",
                       Time[1],
                       " and ",
                       length(Time) - 1,
@@ -121,12 +127,19 @@ setMethod("GetData",
                    TimeExclusive = F,
                    nowarnings = F)
           {
-            X <-
-              lapply(X, function(x)
-                GetData(x, Traces, Sweeps, Time, TimeExclusive, nowarnings = nowarnings), ReturnPObject =
-                  T)
-
-            if (all.equal(Group, GetGroupNames(X)) != TRUE) {
+            if (any(c(
+              Traces != GetTraceNames(X),
+              Sweeps != GetSweepNames(X),
+              Time != range(GetTimeTrace(X))
+            ))) {
+              X <-
+                lapply(X, function(x)
+                  GetData(x, Traces, Sweeps, Time, TimeExclusive, nowarnings = nowarnings), ReturnPObject =
+                    T)
+            }
+            
+            # subset by group
+            if (all.equal(Group, GetGroupNames(X)) != TRUE) { 
               if (!nowarnings) {
                 warning("Plots dropped for consistency.")
               }
@@ -139,11 +152,16 @@ setMethod("GetData",
                 RecordingParams = X@RecordingParams
               )
             }
-#FIXME CONSIDER SITUATION THAT ONLY ONE RECORDING KETP. SHOURL RESULT IN PRECORIDNG! WHAT IF EG GROUP AND RECORINDGS SUBSETTED?
+#FIXME WHAT IF EG GROUP AND RECORINDGS SUBSETTED?
             if (all.equal(Recordings, GetRecordingNames(X)) != TRUE) {
               if (!nowarnings) {
                 warning("Plots dropped for consistency.")
               }
+              
+              if (!all(Recordings %in% GetRecordingNames(X))) {
+                stop("Recordings to subset not in X")
+              }
+              
               if (is.character(Recordings)) {
                 keep <- GetRecordingNames(X) %in% Recordings
               }
@@ -161,17 +179,16 @@ setMethod("GetData",
                   MetaData = md,
                   RecordingParams = X@RecordingParams
                 )
-              } else{
-                X <- PCollection(
-                  Recordings = X@Recordings[[which(keep)]],
-                  Names = X@Names[[which(keep)]],
-                  Group = X@Group[[which(keep)]],
-                  MetaData = md,
-                  RecordingParams = X@RecordingParams
-                )
+              } else {
+                if (sum(keep)==1){
+                  X <- X@Recordings[[which(keep)]]
+                }
+                if (sum(keep)==0){
+                  stop("No valid Recordings selected or none of the selected Recordings inside seected Group.")
+                }
               }
             }
-            X
+            return(X)
           })
 
 

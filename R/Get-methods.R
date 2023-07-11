@@ -221,6 +221,22 @@ setMethod("GetGroupNames",
             levels(X@Group)
           })
 #' ------------------
+#' @describeIn Get Can be used on \linkS4class{PCollection} objects only and returns the groups.
+#' @exportMethod GetGroups
+setGeneric(
+  name = "GetGroups",
+  def = function(X)
+  {
+    standardGeneric("GetGroups")
+  }
+)
+#' @noMd
+setMethod("GetGroups",
+          "PCollection",
+          function(X) {
+            as.character(X@Group)
+          })
+#' ------------------
 #' @describeIn Get Can be used on \linkS4class{PCollection} objects only and returns the names of all recordings.
 #' @exportMethod GetRecordingNames
 setGeneric(

@@ -52,6 +52,18 @@ setMethod("MeasureSweeps",
             if (length(Trace) > 1) {
               stop("This function can only be applied to a single Trace")
             }
+            
+            if (!Trace %in% GetTraceNames(X)) {
+              stop("Trace to subset not in X")
+            }
+            if (!all(Sweeps %in% GetSweepNames(X))) {
+              stop("Traces to subset not in X")
+            }
+            if (!(all(Time > range(GetTimeTrace(X))[1]) &
+                  all(Time < range(GetTimeTrace(X))[2]))) {
+              stop("Time outside range of X.")
+            }
+            
             if (as.character(substitute(FUN)) %in% c("+", "-", "+", "/", "^", "**")) {
               message(
                 paste(
@@ -101,6 +113,17 @@ setMethod("MeasureSweeps",
             if (length(Trace) > 1) {
               stop("This function can only be applied to a single Trace")
             }
+            if (!Trace %in% GetTraceNames(X)) {
+              stop("Trace to subset not in X")
+            }
+            if (!all(Sweeps %in% GetSweepNames(X))) {
+              stop("Traces to subset not in X")
+            }
+            if (!(all(Time > range(GetTimeTrace(X))[1]) &
+                  all(Time < range(GetTimeTrace(X))[2]))) {
+              stop("Time outside range of X.")
+            }
+            
             X <- lapply(X,
                         function(x) {
                           MeasureSweeps(

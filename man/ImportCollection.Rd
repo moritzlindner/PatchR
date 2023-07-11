@@ -9,6 +9,7 @@ ImportCollection(
   traces = c(1, 2),
   parent.dir = "",
   filetype = NULL,
+  verbose = FALSE,
   encoding = getOption("encoding")
 )
 }
@@ -20,6 +21,8 @@ ImportCollection(
 \item{parent.dir}{Parent directory where to search for FileNames from \code{filelist}. Optional if no full path is provided in \var{filelist}.}
 
 \item{filetype}{The type of the files to be imported. Accepted values are 'PatchMaster' or 'ABF' If left blank (default), it will be guessed from the extension of the first file in list}
+
+\item{verbose}{Whether to display verbose messages during the import process. Default is \code{FALSE}.}
 
 \item{encoding}{File encoding to use, default is \code{getOption("encoding")}}
 }

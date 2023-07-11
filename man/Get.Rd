@@ -10,6 +10,7 @@
 \alias{GetRecParam}
 \alias{GetGroupMembers}
 \alias{GetGroupNames}
+\alias{GetGroups}
 \alias{GetRecordingNames}
 \alias{GetMetaData}
 \alias{GetPlotNames}
@@ -33,6 +34,8 @@ GetRecParam(X, which)
 GetGroupMembers(X, which)
 
 GetGroupNames(X)
+
+GetGroups(X)
 
 GetRecordingNames(X)
 
@@ -120,6 +123,8 @@ These methods can be used to access information stored in \linkS4class{PRecordin
 \item \code{GetGroupMembers}: Can be used on \linkS4class{PCollection} objects only and returns the names of all PRecordings belonging to the named Group.
 
 \item \code{GetGroupNames}: Can be used on \linkS4class{PCollection} objects only and returns the names of all groups.
+
+\item \code{GetGroups}: Can be used on \linkS4class{PCollection} objects only and returns the groups.
 
 \item \code{GetRecordingNames}: Can be used on \linkS4class{PCollection} objects only and returns the names of all recordings.
 

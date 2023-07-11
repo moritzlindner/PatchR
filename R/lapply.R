@@ -10,18 +10,23 @@
 #' @exportMethod lapply
 setMethod("lapply",
           "PCollection",
-          function(X, FUN, ReturnPObject=F){
-            dat<-lapply(X@Recordings,FUN)
-            if(ReturnPObject){
-              X@Recordings<-dat
-               if(!validPCollection(X)){
-                 stop(paste("Applying to PCollection", deparse(substitute(object)), "failed. No valid PCollection object returned"))
-               }
+          function(X, FUN, ReturnPObject = F) {
+            dat <- lapply(X@Recordings, FUN)
+            if (ReturnPObject) {
+              X@Recordings <- dat
+              if (!validPCollection(X)) {
+                stop(
+                  paste(
+                    "Applying to PCollection",
+                    deparse(substitute(object)),
+                    "failed. No valid PCollection object returned"
+                  )
+                )
+              }
               return(X)
-            }else{
-              dat<-t(as.data.frame(dat))
-              rownames(dat)<-X@Names
+            } else{
+              dat <- t(as.data.frame(dat))
+              rownames(dat) <- X@Names
               dat
             }
-          }
-)
+          })

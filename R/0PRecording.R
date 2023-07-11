@@ -57,7 +57,7 @@ validPRecording<-function(object) {
 }
 
 
-#' S4 class storing imported ePhys Traces.
+#' S4 class storing imported ePhys traces.
 #'
 #' `r lifecycle::badge("stable")` \cr
 #' This class stores (usually sweep-oriented) electrophysiology data. Currently only import procedures for HEKA's PatchMaster .dat and Axon's .abd files are implemented. It has some strict validity checks implemented to assure data consistency.
@@ -75,9 +75,11 @@ validPRecording<-function(object) {
 #'
 #'    \item{Data}{List of matrices. One list item per Trace. Matrix rows correspond to TimeTrace, columns to Sweeps}
 #'
+#'    \item{MetaData}{matrix that can contain additional per-sweep Metadata. Per-time Metadata can be stored in the Data slot using the \link[=AddTrace]{AddTrace} method.}
+#'
 #'    \item{Plots}{List that can contain any ggplot derived from the data. List item names that equal Traces are reserved.}
 #'
-#'    \item{MetaData}{matrix that can contain additional per-sweep Metadata. Per-time Metadata can be stored in the Data slot using the \link[=AddTrace]{AddTrace} method.}
+#'    \item{Fits}{List that can contain fitted models.}
 #'
 #'    \item{RecordingParams}{An item of class PRecordingParams containing recording parameters for that trace.}
 #'  }
@@ -95,12 +97,13 @@ PRecording<-setClass(Class="PRecording",
                                 MetaData="matrix",
                                 .MetaDataFx="list",
                                 Plots="list",
-                                #Computed="list",
+                                Fits="list",
                                 RecordingParams="PRecordingParams"),
                   prototype=list(
                     MetaData = matrix(ncol=0,nrow=0),
                     .MetaDataFx = list(),
-                    Plots = list()
+                    Plots = list(),
+                    Fits = list()
                   ),
                   validity = validPRecording
 )
