@@ -167,10 +167,6 @@ setMethod("Boltzmann", "PRecording", function(X,
     return(X)
   }
 
-  # make for PCollection
-  # store in in PCollection@MetaData
-  # 
-  
 })
 
 #' @noMd
@@ -183,6 +179,14 @@ setMethod("Boltzmann", "PCollection", function(X,
                                                precision = 3,
                                                ReturnPObject = T,
                                                ...) {
+  
+  if (!ReturnPObject) {
+    # if no PObject is returned, can clear the relevant MetaData Slots
+    X <- ClearMetaData(X, Verbose = F)
+    X <- lapply(X, function(x) {
+      x <- ClearMetaData(x, Verbose = F)
+    }, ReturnPObject = T)
+  }
   X <- lapply(X,
               function(x) {
                 tryCatch({
@@ -196,22 +200,26 @@ setMethod("Boltzmann", "PCollection", function(X,
                     precision = precision,
                     ReturnPObject = T
                   )
-                },    error = function(e) {
-                  stop(
+                },error = function(e) {
+                  warning(
                     "An error occurred when processing ",
                     GetRecParam(x, "Filename"),
                     ": ",
                     conditionMessage(e)
                   )
+                  return(x)
                 })
               },
               ReturnPObject = T)
   V_half <- lapply(X,
                    function(x) {
-                     return(coef(x@Fits[["Boltzmann"]])[1])
+                     tryCatch({(coef(x@Fits[["Boltzmann"]])[1])},error = function(e){
+                       return(NA)
+                     })
                    },
                    ReturnPObject = F)
-  X <- AddMetaData(X, values = V_half, title = "V_half")
+  
+  X <- AddMetaData(X, values = V_half, title = "V_half", Verbose = F)
   
   if (!ReturnPObject) {
     df.out <- data.frame(
@@ -224,17 +232,22 @@ setMethod("Boltzmann", "PCollection", function(X,
       G.predicted.norm = double(),
       V_half = double()
     )
+    
+    # FIXME: This should become part of GetMetaData for PCollection
     for (i in 1:length(X)) {
-      Name <- rep(GetRecordingNames(X)[i], each = GetSweepNames(X))
+      Name <- rep(GetRecordingNames(X)[i], length(GetSweepNames(X)))
       Group <-
-        rep(GetGroups(X)[i], each = GetSweepNames(X))
+        rep(GetGroups(X)[i], length(GetSweepNames(X)))
+      
       md <-
         GetMetaData(
           GetData(X, Recordings = GetRecordingNames(X)[i], nowarnings = T),
           c("V", "G", "G.norm", "G.predicted", "G.predicted.norm")
         )
-      v_half <- rep(GetMetaData(X, "V_half")[i], each = GetSweepNames(X))
-      tmp<-cbind(Name,Group,md)
+      
+      v_half <- rep(GetMetaData(X, "V_half")$V_half[i], length(GetSweepNames(X)))
+      
+      tmp<-cbind(Name,Group,md,v_half)
       df.out<-rbind(df.out,tmp)
     }
     return(df.out)
@@ -242,13 +255,7 @@ setMethod("Boltzmann", "PCollection", function(X,
     return(X)
   }
 
-  
-  # out <- lapply(X, function(x) {
-  #   dat <- GetMetaData(x, c("V","G","G.norm","G.predicted","G.predicted.norm"))
-  #   rep()
-  # })
-  # colnames(out)<-c("V","G","G.norm","G.predicted","G.predicted.norm")
-  
+
 })
 
 #' Estimate the slope of a curve within specified margins

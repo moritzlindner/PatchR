@@ -1,4 +1,4 @@
-#' @describeIn Get This function subsets objects by \var{Trace}, \var{Sweep} or \var{Time}. For  \linkS4class{PCollection} additionally by \var{Recordings} or \var{Group}
+#' @describeIn Get This method subsets objects by \var{Trace}, \var{Sweep} or \var{Time}. For  \linkS4class{PCollection} additionally by \var{Recordings} or \var{Group}
 #' @param Traces List of traces/channels to keep
 #' @param Sweeps List of sweeps to keep
 #' @param Time either a range of time points to keep or two particular time points

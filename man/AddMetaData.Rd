@@ -2,15 +2,12 @@
 % Please edit documentation in R/AddMetaData.R
 \name{AddMetaData}
 \alias{AddMetaData}
-\alias{AddMetaData,PRecording-method}
 \title{Adds metadata to a PRecording or PCollection object}
 \usage{
-AddMetaData(object, values, title = colnames(values), Verbose = T)
-
-\S4method{AddMetaData}{PRecording}(object, values, title = colnames(values), Verbose = T)
+AddMetaData(X, values, title = colnames(values), Verbose = T)
 }
 \arguments{
-\item{object}{A \linkS4class{PRecording} or \linkS4class{PCollection} object.}
+\item{X}{A \linkS4class{PRecording} or \linkS4class{PCollection} object}
 
 \item{values}{The values to be added. Can be anything convertible into a \var{matrix}.}
 
@@ -31,11 +28,6 @@ In a \var{PRecording} object the \var{MetaData} slot is a \var{matrix} with each
 In a \var{PCollection} object the \var{MetaData} slot is a \var{matrix} with each row corresponding to a \var{PRecording} stored in the object.
 Column names must be unique.
 }
-\section{Functions}{
-\itemize{
-\item \code{AddMetaData,PRecording-method}: Method for PRecording
-}}
-
 \examples{
 data("PRecording")
 # add two columns of metadata

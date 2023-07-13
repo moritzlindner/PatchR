@@ -66,7 +66,9 @@ validPCollection<-function(object) {
 #' @slot .MetaDataFx A list fo functions called to under \link[=AddMetaData]{AddMetaData()}
 #' @slot RecordingParams Stores the Recording parameters that must be identical for all entries in \var{Recordings}  (\var{ProtocolName}, \var{RecMode} and \var{TraceNames}).
 #' @seealso \linkS4class{PRecording}
-#' @importFrom methods setClass new
+#' @importFrom methods setClass
+#' @importFrom methods setMethod
+#' @importFrom methods validObject
 #' @importFrom knitr kable
 #' @include 0PRecordingParams.R
 #' @exportClass PCollection

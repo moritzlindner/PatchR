@@ -134,7 +134,7 @@ These methods can be used to access information stored in \linkS4class{PRecordin
 
 \item \code{GetPlot}: Returns a plot from the Plots slot.
 
-\item \code{GetData}: This function subsets objects by \var{Trace}, \var{Sweep} or \var{Time}. For  \linkS4class{PCollection} additionally by \var{Recordings} or \var{Group}
+\item \code{GetData}: This method subsets objects by \var{Trace}, \var{Sweep} or \var{Time}. For  \linkS4class{PCollection} additionally by \var{Recordings} or \var{Group}
 
 \item \code{Subset}: Subset is an alias of Getdata
 }}

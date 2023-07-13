@@ -38,6 +38,7 @@ Collate:
     'BuildQCPlot.R'
     'BuildRecordingPlot.R'
     'Calculate_IV.R'
+    'ClearMetaData.R'
     'CurrentDensity.R'
     'Get-methods.R'
     'GetData.R'

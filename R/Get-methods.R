@@ -182,7 +182,11 @@ setMethod("GetRecParam",
             out <-
               lapply(X, function(x) {
                 unlist(lapply(paste0("x@RecordingParams@", which), function(y) {
-                  eval(parse(text = y))
+                  tryCatch({
+                    eval(parse(text = y))
+                  }, error = function(e) {
+                    stop("Slot ", y, "not found.")
+                  })
                 }))
               })
             colnames(out) <- which
@@ -202,7 +206,16 @@ setGeneric(
 setMethod("GetGroupMembers",
           "PCollection",
           function(X, which) {
-            X@Names[X@Group %in% which]
+            groups <- GetGroups(X)
+            
+            if(sum(which %in% groups)==0){
+              stop("Groups specified in 'which' do not exist")
+            }
+            if(sum(which %in% groups)!=length(which)){
+              warning("Not all groups specified in 'which' found")
+            }
+                        
+            return(GetRecordingNames(X)[groups %in% which])
           })
 #' ------------------
 #' @describeIn Get Can be used on \linkS4class{PCollection} objects only and returns the names of all groups.
@@ -251,18 +264,13 @@ setMethod("GetRecordingNames",
           "PCollection",
           function(X) {
             X@Names
-            # snames <- NULL
-            # for (i in 1:length(X@Recordings)) {
-            #   snames[i] <- GetRecParam(X@Names, "Filename")
-            # }
-            # snames
           })
 
 #' @noMd
 setMethod("names",
           "PCollection",
-          function(x) {
-            GetRecordingNames(x)
+          function(X) {
+            GetRecordingNames(X)
           })
 #' ------------------
 #' @describeIn Get Returns one or more columns from the MetaData Slot.
@@ -294,7 +302,7 @@ setMethod("GetMetaData",
           "PCollection",
           function(X, which = colnames(X@MetaData)) {
             if (max(dim(X@MetaData)) != 0) {
-              out <- cbind(X@Names, X@Group, as.data.frame(X@MetaData[, which]))
+              out <- cbind(GetRecordingNames(X), GetGroups(X), as.data.frame(X@MetaData[, which]))
               colnames(out) <- c("Recordings", "Group", which)
               rownames(out) <- X@Names
               out
@@ -318,13 +326,21 @@ setGeneric(
 setMethod("GetPlotNames",
           "PRecording",
           function(X) {
-            names(X@Plots)
+            if (!is.null(X@Plots)) {
+              return(names(X@Plots))
+            } else {
+              stop("No plots found.")
+            }
           })
 #' @noMd
 setMethod("GetPlotNames",
           "PCollection",
           function(X) {
-            names(X@Plots)
+            if (!is.null(X@Plots)) {
+              return(names(X@Plots))
+            } else {
+              stop("No plots found.")
+            }
           })
 
 #' ------------------
@@ -342,11 +358,29 @@ setGeneric(
 setMethod("GetPlot",
           "PRecording",
           function(X, which = GetPlotNames(X)[1]) {
-            X@Plots[[which]]
+            plotNames <- GetPlotNames(X)
+            
+            if (length(plotNames) == 0) {
+              stop("No plots found.")
+            }
+            
+            if (!(which %in% plotNames)) {
+              stop("Invalid plot name specified.")
+            }
+            
           })
 #' @noMd
 setMethod("GetPlot",
           "PCollection",
           function(X, which = GetPlotNames(X)[1]) {
+            
+            if (length(plotNames) == 0) {
+              stop("No plots found.")
+            }
+            
+            if (!(which %in% plotNames)) {
+              stop("Invalid plot name specified.")
+            }
+            
             X@Plots[[which]]
           })

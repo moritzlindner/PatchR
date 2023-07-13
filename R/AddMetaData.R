@@ -3,7 +3,7 @@
 #' `r lifecycle::badge("stable")` \cr
 #' This function adds metadata to a \linkS4class{PRecording} or \linkS4class{PCollection} object by filling the \var{MetaData} slot. The function calling \code{AddMetaData} is stored in the \var{.MetaDataFx} slot.
 #'
-#' @param object A \linkS4class{PRecording} or \linkS4class{PCollection} object.
+#' @inheritParams Get
 #' @param values The values to be added. Can be anything convertible into a \var{matrix}.
 #' @param title The title(s) for the metadata column(s).
 #' @param Verbose should the names/titles of the columns added be printed?
@@ -25,7 +25,7 @@
 #' @exportMethod AddMetaData
 setGeneric(
   name = "AddMetaData",
-  def = function(object,
+  def = function(X,
                  values,
                  title = colnames(values),
                  Verbose = T)
@@ -34,57 +34,63 @@ setGeneric(
   }
 )
 
-#' @describeIn AddMetaData Method for PRecording
+#' @noMd
 setMethod("AddMetaData",
           "PRecording",
-          function(object,
+          function(X,
                    values,
                    title = colnames(values),
                    Verbose = T) {
             if (any(duplicated(title))) {
               stop("Duplicate MetaData names not allowed")
             }
-            if (any(title %in% colnames(object@MetaData))) {
-              stop("MetaData names already in use")
+            if(is.null(colnames(values))){
+              if(is.null(title)){
+                stop("Title(s) for the metadata columns must be provided if values has no column names.")
+              }
+            }
+            
+            if (any(title %in% colnames(X@MetaData))) {
+              stop("MetaData names already in use. Use ClearMetaData(X,title) to remove.")
             }
             values <- as.matrix(values)
             colnames(values) <- title
             if (Verbose) {
               message("Adding metadata column(s) ", title)
             }
-            if (all(dim(object@MetaData) == 0)) {
-              object@MetaData <- values
-              colnames(object@MetaData) <- as.vector(title)
-              object@.MetaDataFx[[1]] <- sys.calls()[[1]]
+            if (all(dim(X@MetaData) == 0)) {
+              X@MetaData <- values
+              colnames(X@MetaData) <- as.vector(title)
+              X@.MetaDataFx[[1]] <- sys.calls()[[1]]
             } else{
-              cn<-colnames(object@MetaData)
-              object@MetaData <- cbind(object@MetaData,values)
-              colnames(object@MetaData) <- c(cn, title)
-              object@.MetaDataFx <-
-                append(object@.MetaDataFx, sys.calls()[[1]])
+              cn<-colnames(X@MetaData)
+              X@MetaData <- cbind(X@MetaData,values)
+              colnames(X@MetaData) <- c(cn, title)
+              X@.MetaDataFx <-
+                append(X@.MetaDataFx, sys.calls()[[1]])
             }
 
-            if (!validPRecording(object)) {
+            if (!validPRecording(X)) {
               stop(paste(
                 "Adding Metadata to PRecording",
-                deparse(substitute(object)),
-                "failed. incorrect dimensison"
+                deparse(substitute(X)),
+                "failed. Incorrect dimensison"
               ))
             }
-            object
+            X
           })
 
-#' @exportMethod AddMetaData
+#' @noMd
 setMethod("AddMetaData",
           "PCollection",
-          function(object,
+          function(X,
                    values,
                    title = colnames(values),
                    Verbose = T) {
             if (any(duplicated(title))) {
               stop("Duplicate MetaData names not allowed")
             }
-            if (any(title %in% colnames(object@MetaData))) {
+            if (any(title %in% colnames(X@MetaData))) {
               stop("MetaData names already in use")
             }
 
@@ -93,24 +99,24 @@ setMethod("AddMetaData",
             if (Verbose) {
               message("Adding metadata column(s) ", title)
             }
-            if (all(dim(object@MetaData) == 0)) {
-              object@MetaData <- values
-              colnames(object@MetaData) <- as.vector(title)
-              object@.MetaDataFx[[1]] <- sys.calls()[[1]]
+            if (all(dim(X@MetaData) == 0)) {
+              X@MetaData <- values
+              colnames(X@MetaData) <- as.vector(title)
+              X@.MetaDataFx[[1]] <- sys.calls()[[1]]
             } else{
-              cn<-colnames(object@MetaData)
-              object@MetaData <- cbind(object@MetaData, values)
-              colnames(object@MetaData) <- c(cn, title)
-              object@.MetaDataFx <-
-                append(object@.MetaDataFx, sys.calls()[[1]])
+              cn<-colnames(X@MetaData)
+              X@MetaData <- cbind(X@MetaData, values)
+              colnames(X@MetaData) <- c(cn, title)
+              X@.MetaDataFx <-
+                append(X@.MetaDataFx, sys.calls()[[1]])
             }
 
-            if (!validPCollection(object)) {
+            if (!validPCollection(X)) {
               stop(paste(
                 "Adding Metadata to PCollection",
-                deparse(substitute(object)),
+                deparse(substitute(X)),
                 "failed. incorrect dimensison"
               ))
             }
-            object
+            X
           })

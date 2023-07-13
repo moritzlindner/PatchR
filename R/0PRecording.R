@@ -62,29 +62,21 @@ validPRecording<-function(object) {
 #' `r lifecycle::badge("stable")` \cr
 #' This class stores (usually sweep-oriented) electrophysiology data. Currently only import procedures for HEKA's PatchMaster .dat and Axon's .abd files are implemented. It has some strict validity checks implemented to assure data consistency.
 #'
-#' \describe{
-#'    \item{Traces}{Character vector containing names of the Traces (=Channels) imported form the dat file and any subsequently computed Trace. Computed Traces have the same dimensions as imported}
-#'
-#'    \item{Units}{Character vector containing the SI units for data stored in corresponding Trace. Order as in Traces.}
-#'
-#'    \item{TimeTrace}{Numeric vector containing the time points of the recording.}
-#'
-#'    \item{Sweeps}{Ordered vector containing the names of the sweeps.}
-#'
-#'    \item{SweepTimes}{Numeric vector containing start times corresponding to Sweeps}
-#'
-#'    \item{Data}{List of matrices. One list item per Trace. Matrix rows correspond to TimeTrace, columns to Sweeps}
-#'
-#'    \item{MetaData}{matrix that can contain additional per-sweep Metadata. Per-time Metadata can be stored in the Data slot using the \link[=AddTrace]{AddTrace} method.}
-#'
-#'    \item{Plots}{List that can contain any ggplot derived from the data. List item names that equal Traces are reserved.}
-#'
-#'    \item{Fits}{List that can contain fitted models.}
-#'
-#'    \item{RecordingParams}{An item of class PRecordingParams containing recording parameters for that trace.}
-#'  }
+#' @slot Traces Character vector containing names of the Traces (=Channels) imported from the dat file and any subsequently computed Trace. Computed Traces have the same dimensions as imported.
+#' @slot Units Character vector containing the SI units for data stored in corresponding Trace. Order as in Traces.
+#' @slot TimeTrace Numeric vector containing the time points of the recording.
+#' @slot Sweeps Ordered vector containing the names of the sweeps.
+#' @slot SweepTimes Numeric vector containing start times corresponding to Sweeps.
+#' @slot Data List of matrices. One list item per Trace. Matrix rows correspond to TimeTrace, columns to Sweeps.
+#' @slot MetaData Matrix that can contain additional per-sweep Metadata. Per-time Metadata can be stored in the Data slot using the \code{\link[=AddTrace]{AddTrace}} method.
+#' @slot Plots List that can contain any ggplot derived from the data. List item names that equal Traces are reserved.
+#' @slot Fits List that can contain fitted models.
+#' @slot RecordingParams An item of class \code{PRecordingParams} containing recording parameters for that trace.
 #' @seealso \url{https://www.heka.com/downloads/downloads_main.html#down_patchmaster}
-#' @importFrom methods setClass new
+#' @importFrom methods setClass
+#' @importFrom methods setMethod
+#' @importFrom methods validObject
+#' @include 0PRecordingParams.R
 #' @exportClass PRecording
 PRecording<-setClass(Class="PRecording",
                   slots =  list(Traces="character",

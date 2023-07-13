@@ -3,9 +3,6 @@
 \name{show}
 \alias{show}
 \title{Show}
-\arguments{
-\item{object}{An S4 object of type \link[=PRecording]{PRecording} or \link[=PCollection]{PCollection}}
-}
 \description{
 Default method \code{show} for \link[=PRecording]{PRecording} and \link[=PCollection]{PCollection} objects.
 }
