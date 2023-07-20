@@ -1,4 +1,4 @@
-#' (OK) Makes PRecording object scales convenient.
+#' Makes PRecording object scales convenient.
 #'
 #' `r lifecycle::badge("experimental")` \cr
 #' This function converts scaling of a \linkS4class{PRecording} or \linkS4class{PCollection} object and adds SI prefixes. Caution: Currently no check is performed if a unit already carriesa SI prefix.

@@ -2,7 +2,7 @@
 % Please edit documentation in R/convenientScales.R
 \name{ConvenientScales}
 \alias{ConvenientScales}
-\title{(OK) Makes PRecording object scales convenient.}
+\title{Makes PRecording object scales convenient.}
 \usage{
 ConvenientScales(X)
 }

@@ -44,7 +44,7 @@ setMethod("GetData",
                   all(Time <= range(GetTimeTrace(X))[2]))) {
               stop("Time outside range of X.")
             }
-              
+            
             if (isFALSE(all.equal(Traces, GetTraceNames(X)))) {
               if (!nowarnings) {
                 message("Only keep Traces:", Traces, "\n")
@@ -79,16 +79,16 @@ setMethod("GetData",
                                                                                     Time[2])))]
                 if (!nowarnings) {
                   message("Only keep Times: ",
-                      Time[1],
-                      " and ",
-                      length(Time) - 1,
-                      "others \n")
+                          Time[1],
+                          " and ",
+                          length(Time) - 1,
+                          "others \n")
                 }
               }
             } else{
               Time <- GetTimeTrace(X)
             }
-
+            
             RecordingParams <- X@RecordingParams
             RecordingParams@Traces <-
               RecordingParams@Traces[RecordingParams@Traces %in% Traces]
@@ -117,6 +117,8 @@ setMethod("GetData",
 #'   
 #'   invalid class “PCollection” object: invalid object for slot "MetaData" in
 #' class "PCollection": got class "logical", should be or extend class "matrix"
+
+
 #' @noMd
 setMethod("GetData",
           "PCollection",
@@ -195,6 +197,7 @@ setMethod("GetData",
 
 
 #' @describeIn Get Subset is an alias of Getdata
+#' @noMd
 setGeneric(
   name = "Subset",
   def = function(X,
@@ -210,6 +213,7 @@ setGeneric(
   }
 )
 #' @exportMethod Subset
+#' @noMd
 setMethod("Subset",
           "PRecording",
           function(X,

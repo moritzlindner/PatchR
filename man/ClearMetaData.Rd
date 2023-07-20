@@ -4,7 +4,11 @@
 \alias{ClearMetaData}
 \title{Clear specified metadata columns from a PRecording or PCollection object}
 \usage{
-ClearMetaData(X, columns = colnames(GetMetaData(X)), Verbose = T)
+ClearMetaData(
+  X,
+  columns = try(colnames(GetMetaData(X)), silent = T),
+  Verbose = T
+)
 }
 \arguments{
 \item{X}{A \linkS4class{PRecording} or \linkS4class{PCollection} object}

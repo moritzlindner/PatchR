@@ -98,18 +98,7 @@ It estimates the parameters Vhalf, k, and G_max that best fit the data. The Bolt
 }}
 
 \examples{
-data("PRecording")
-df<-Boltzmann(
-  SampleData,
-  StimTrace = "V-mon",
-  RespTrace = "I-mon",
-  Time_Range_Stim = c(1.18, 1.19),
-  Time_Range_Tail_Start = c(1.203, 1.204),
-  Time_Range_Tail_End = c(1.33, 1.38),
-  precision = 3
-)
-df
-attributes(df)
+
 ######
                 
 V <- c(1, 2, 3, 4, 5)

@@ -24,7 +24,7 @@ ImportCollection <- function(filelist = NULL,
                              verbose = FALSE,
                              encoding = getOption("encoding")) {
 
-  if (!("Group" %in% colnames(filelist))) {
+  if (!("Group" %in% colnames(filelist))) {F
     filelist$Group <- "Ungrouped"
 
   }
@@ -46,7 +46,7 @@ ImportCollection <- function(filelist = NULL,
   }
 
   if (filetype=="PatchMaster"){
-    if (!(c("FileName", "Experiment", "Series") %in% colnames(filelist))) {
+    if (!all(c("FileName", "Experiment", "Series") %in% colnames(filelist))) {
       stop(
         "'filelist' provided not in correct format. Must have at least the following three columns: 'FileName', 'Experiment' and 'Series'"
       )
