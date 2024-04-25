@@ -48,7 +48,7 @@ setMethod("AddTrace",
             }
 
             if(!(Trace %in% X@Traces)){
-              if(dim(X@Data[[1]])[1] == dim(mtx)[1] && GetSweepNames(X) == Sweeps){
+              if(dim(X@Data[[1]])[1] == dim(mtx)[1] && all(GetSweepNames(X) == Sweeps)){
                 X@Data[[Trace]]<-as.matrix(mtx)
                 X@Traces<-c(GetTraceNames(X),Trace)
                 X@Units<-c(X@Units,Unit)
