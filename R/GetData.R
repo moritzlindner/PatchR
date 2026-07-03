@@ -196,7 +196,7 @@ setMethod("GetData",
           })
 
 
-#' @describeIn Get Subset is an alias of Getdata
+#' @describeIn Get Subset is an alias of GetData
 #' @noMd
 setGeneric(
   name = "Subset",
